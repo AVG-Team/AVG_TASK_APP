@@ -13,6 +13,7 @@
     <None Remove="Resources\Icons\logo-avg-task.png" />
     <None Remove="Resources\Icons\logo-avg.png" />
     <None Remove="Resources\Icons\user-icon.png" />
+    <None Remove="Resources\Images\backgroundworkspace.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,15 +26,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Images\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Resources\Icons\favicon-avg.png" />
     <Resource Include="Resources\Icons\key-icon.png" />
     <Resource Include="Resources\Icons\logo-avg-task.png" />
     <Resource Include="Resources\Icons\logo-avg.png" />
     <Resource Include="Resources\Icons\user-icon.png" />
+    <Resource Include="Resources\Images\backgroundworkspace.png" />
   </ItemGroup>
 
 </Project>

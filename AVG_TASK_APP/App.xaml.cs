@@ -16,8 +16,8 @@ namespace AVG_TASK_APP
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            HomeView homeView = new HomeView();
-            homeView.Show();
+            CreateWorkspaceView createWorkspaceView = new CreateWorkspaceView();
+            createWorkspaceView.Show();
         }
     }
 }
