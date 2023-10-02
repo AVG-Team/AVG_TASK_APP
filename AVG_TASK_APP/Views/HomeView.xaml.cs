@@ -28,5 +28,52 @@ namespace AVG_TASK_APP.Views
         {
 
         }
+
+        private void pnlControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void pnlControlBar_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btnCreateWorkspace_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMenu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnItemBoard_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnItemMember_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnItemSetting_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
     }
 }

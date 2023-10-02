@@ -9,10 +9,13 @@
 
   <ItemGroup>
     <None Remove="Resources\Icons\favicon-avg.png" />
+    <None Remove="Resources\Icons\icons8-search-16.png" />
     <None Remove="Resources\Icons\key-icon.png" />
     <None Remove="Resources\Icons\logo-avg-task.png" />
     <None Remove="Resources\Icons\logo-avg.png" />
+    <None Remove="Resources\Icons\magnifying-glass.png" />
     <None Remove="Resources\Icons\user-icon.png" />
+    <None Remove="Resources\Images\OIP.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,15 +26,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Images\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Resources\Icons\favicon-avg.png" />
+    <Resource Include="Resources\Icons\icons8-search-16.png" />
     <Resource Include="Resources\Icons\key-icon.png" />
     <Resource Include="Resources\Icons\logo-avg-task.png" />
     <Resource Include="Resources\Icons\logo-avg.png" />
+    <Resource Include="Resources\Icons\magnifying-glass.png" />
     <Resource Include="Resources\Icons\user-icon.png" />
+    <Resource Include="Resources\Images\OIP.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
