@@ -20,8 +20,8 @@
     <Border CornerRadius="30">
         <Border CornerRadius="30"
                 BorderThickness="2"
-                BorderBrush="#DA34AE"
-                Background="#ffffff">
+                BorderBrush="{StaticResource borderColor}"
+                Background="{StaticResource backColor}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -38,7 +38,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Text="Login"
-                               Foreground="DarkGray"
+                               Foreground="{StaticResource textColor}"
                                FontSize="12"
                                FontFamily="Montserrat"
                                Grid.Column="0"
@@ -48,7 +48,7 @@
                     <Button x:Name="btnMinimize"
                             BorderThickness="0"
                             Content="-"
-                            Foreground="White"
+                            Foreground="{StaticResource textButtonColor}"
                             FontSize="16"
                             FontFamily="Montserrat"
                             Cursor="Hand"
@@ -56,10 +56,10 @@
                             Click="btnMinimize_Click">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#28AEED"/>
+                                <Setter Property="Background" Value="{StaticResource color2}"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#278BEF"/>
+                                        <Setter Property="Background" Value="{StaticResource hoverColor2}"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -80,7 +80,7 @@
                     <Button x:Name="btnClose"
                             BorderThickness="0"
                             Content="X"
-                            Foreground="White"
+                            Foreground="{StaticResource textButtonColor}"
                             FontSize="12"
                             FontFamily="Montserrat"
                             Cursor="Hand"
@@ -88,10 +88,10 @@
                             Click="btnClose_Click">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#DA34AE"/>
+                                <Setter Property="Background" Value="{StaticResource color1}"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#C62DAE"/>
+                                        <Setter Property="Background" Value="{StaticResource hoverColor1}"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -118,7 +118,7 @@
                            Height="100"/>
 
                     <TextBlock Text="AVG TASK APPLICATION"
-                               Foreground="#8F3FEE"
+                               Foreground="{StaticResource titleColor}"
                                FontSize="18"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
@@ -126,7 +126,7 @@
                                Margin="0,5,0,0"/>
                     
                     <TextBlock Text="Application Made By AVG Team"
-                               Foreground="#bb8bf4"
+                               Foreground="{StaticResource subTitleColor}"
                                FontSize="11"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
@@ -134,7 +134,7 @@
                                Margin="0,5,0,0"/>
 
                     <TextBlock Text="Username"
-                               Foreground="DarkGray"
+                               Foreground="{StaticResource textColor}"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
@@ -145,9 +145,9 @@
                              FontFamily="Montserrat"
                              FontSize="13"
                              FontWeight="Medium"
-                             Foreground="DarkGray"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
+                             Foreground="{StaticResource textColor}"
+                             CaretBrush="{StaticResource color5}"
+                             BorderBrush="{StaticResource color3}"
                              BorderThickness="0,0,0,1"
                              Height="28"
                              VerticalContentAlignment="Center"
@@ -166,7 +166,7 @@
                                FontSize="12"
                                FontFamily="Montserrat"
                                FontWeight="Medium"
-                               Foreground="DarkGray"
+                               Foreground="{StaticResource textColor}"
                                Margin="0,35,0,0"/>
 
                     <customcontrols:BindablePasswordBox
@@ -187,8 +187,9 @@
                             Command="{Binding LoginCommand}"
                             BorderThickness="0"
                             Content="Login"
-                            Foreground="White"
+                            Foreground="{StaticResource textButtonColor}"
                             FontSize="12"
+                            FontWeight="Medium"
                             FontFamily="Montserrat"
                             Cursor="Hand"
                             Grid.Column="2"
@@ -197,10 +198,10 @@
 
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#8F3FEE"/>
+                                <Setter Property="Background" Value="{StaticResource buttonColor}"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#bb8bf4"/>
+                                        <Setter Property="Background" Value="{StaticResource hoverButtonColor}"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -221,12 +222,12 @@
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">
                         <TextBlock Text="Forgot Password?"
-                                   Foreground="DarkGray"
+                                   Foreground="{StaticResource textColor}"
                                    FontSize="12"
                                    FontWeight="Medium"
                                    FontFamily="Montserrat"/>
                         <TextBlock Text="Reset"
-                                   Foreground="#8F3FEE"
+                                   Foreground="{StaticResource color4}"
                                    FontSize="12"
                                    FontWeight="Medium"
                                    FontFamily="Montserrat"
