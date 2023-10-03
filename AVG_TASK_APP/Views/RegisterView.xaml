@@ -37,8 +37,8 @@
                         <ColumnDefinition Width="5"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="SignUp"
-                           Foreground="{StaticResource textColor}"
+                    <TextBlock Text="Register"
+                           Foreground="{StaticResource textColor1}"
                            FontSize="12"
                            FontFamily="Montserrat"
                            Grid.Column="0"
@@ -113,10 +113,7 @@
                 <StackPanel Width="220"
                             Grid.Row="1"
                             Orientation="Vertical"
-                            Margin="0,20,0,0">
-                    <Image Source="/Resources/Icons/favicon-avg.png"
-                           Width="100"
-                           Height="100"/>
+                            Margin="0,35,0,0">
 
                     <TextBlock Text="AVG TASK APPLICATION"
                                Foreground="{StaticResource titleColor}"
@@ -134,19 +131,44 @@
                                HorizontalAlignment="Center"
                                Margin="0,5,0,0"
                                />
-
-                    <TextBlock Text="Username"
-                               Foreground="{StaticResource textColor}"
+                    <TextBlock Text="Full Name"
+                               Foreground="{StaticResource textColor1}"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
-                               Margin="0,10,0,0"/>
+                               Margin="0,30,0,0"/>
+
+                    <TextBox   x:Name="txtFullName"
+                               Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}" 
+                               FontFamily="Montserrat"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource textColor1}"
+                               CaretBrush="{StaticResource color5}"
+                               BorderBrush="{StaticResource color3}"
+                               BorderThickness="0,0,0,1"
+                               Height="20"
+                               VerticalAlignment="Center"
+                               Margin="0,2,0,0"
+                               Padding="20,0,0,0">
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="/Resources/Icons/user-icon.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </TextBox.Background>
+                    </TextBox>
+
+                    <TextBlock Text="Username"
+                               Foreground="{StaticResource textColor1}"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Margin="0,20,0,0"/>
 
                     <TextBox   x:Name="txtUsername"
                                Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
                                FontFamily="Montserrat"
                                FontWeight="Medium"
-                               Foreground="{StaticResource textColor}"
+                               Foreground="{StaticResource textColor1}"
                                CaretBrush="{StaticResource color5}"
                                BorderBrush="{StaticResource color3}"
                                BorderThickness="0,0,0,1"
@@ -162,7 +184,7 @@
                     </TextBox>
 
                     <TextBlock Text="Phone"
-                               Foreground="{StaticResource textColor}"
+                               Foreground="{StaticResource textColor1}"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
@@ -172,7 +194,7 @@
                                Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" 
                                FontFamily="Montserrat"
                                FontWeight="Medium"
-                               Foreground="{StaticResource textColor}"
+                               Foreground="{StaticResource textColor1}"
                                CaretBrush="{StaticResource color5}"
                                BorderBrush="{StaticResource color3}"
                                BorderThickness="0,0,0,1"
@@ -190,7 +212,7 @@
                     </TextBox>
 
                     <TextBlock Text="Password"
-                               Foreground="{StaticResource textColor}"
+                               Foreground="{StaticResource textColor1}"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
@@ -203,7 +225,7 @@
                     </customcontrols:BindablePasswordBox>
 
                     <TextBlock Text="Repeat Password"
-                                Foreground="{StaticResource textColor}"
+                                Foreground="{StaticResource textColor1}"
                                 FontSize="12"
                                 FontWeight="Medium"
                                 FontFamily="Montserrat"
@@ -220,14 +242,14 @@
                               HorizontalAlignment="Left"
                               FontSize="10">
                         <TextBlock>
-                            <Run Foreground="{StaticResource textColor}">By signing I agree with</Run>
+                            <Run Foreground="{StaticResource textColor1}">By signing I agree with</Run>
                             <Run Foreground="{StaticResource buttonColor}">terms and conditions</Run>
                         </TextBlock>
                     </CheckBox>
                     
                     <Button x:Name="btnSignUp"
                             BorderThickness="0"
-                            Content="Sign Up"
+                            Content="Register"
                             FontSize="12"
                             FontWeight="Medium"
                             FontFamily="Montserrat"
