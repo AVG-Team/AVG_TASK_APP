@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Icons\clock-regular.png" />
     <None Remove="Resources\Icons\favicon-avg.png" />
     <None Remove="Resources\Icons\icons8-search-16.png" />
     <None Remove="Resources\Icons\key-icon.png" />
@@ -17,6 +18,7 @@
     <None Remove="Resources\Icons\R.png" />
     <None Remove="Resources\Icons\magnifying-glass.png" />
     <None Remove="Resources\Icons\user-icon.png" />
+    <None Remove="Resources\Images\background_Ws.jpg" />
     <None Remove="Resources\Images\backgroundworkspace.png" />
     <None Remove="Resources\Images\OIP.jpg" />
   </ItemGroup>
@@ -31,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Icons\clock-regular.png" />
     <Resource Include="Resources\Icons\favicon-avg.png" />
     <Resource Include="Resources\Icons\icons8-search-16.png" />
     <Resource Include="Resources\Icons\key-icon.png" />
@@ -39,6 +42,7 @@
     <Resource Include="Resources\Icons\phone-icon.png" />
     <Resource Include="Resources\Icons\magnifying-glass.png" />
     <Resource Include="Resources\Icons\user-icon.png" />
+    <Resource Include="Resources\Images\background_Ws.jpg" />
     <Resource Include="Resources\Images\backgroundworkspace.png" />
     <Resource Include="Resources\Images\OIP.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

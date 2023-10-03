@@ -35,29 +35,29 @@
 
                         <StackPanel Grid.Column="0">
                             <Image Source="/AVG_TASK_APP;component/Resources/Icons/logo-avg-task.png"
-                       Margin="0,0,0,5"
-                       Height="80" StretchDirection="Both"
-                       Cursor="Hand"/>
+                                    Margin="0,0,0,5"
+                                    Height="80" StretchDirection="Both"
+                                    Cursor="Hand"/>
                         </StackPanel>
                         <!-- Control Button -->
                         <Grid Grid.Column="2">
                             <StackPanel x:Name="pnlControlBar"
-                        Orientation="Horizontal"
-                        Margin="0,0,15,0"
-                        FlowDirection="RightToLeft"
-                        Background="Transparent"
-                        MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
-                        MouseEnter="pnlControlBar_MouseEnter">
+                                        Orientation="Horizontal"
+                                        Margin="0,0,15,0"
+                                        FlowDirection="RightToLeft"
+                                        Background="Transparent"
+                                        MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+                                        MouseEnter="pnlControlBar_MouseEnter">
 
                                 <Button x:Name="btnClose"
-                            BorderThickness="0"
-                            Content="X"
-                            Margin="0,0,10,0"
-                            Foreground="{StaticResource textButtonColor}"
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            Click="btnClose_Click">
+                                        BorderThickness="0"
+                                        Content="X"
+                                        Margin="0,0,10,0"
+                                        Foreground="{StaticResource textButtonColor}"
+                                        FontSize="12"
+                                        FontFamily="Montserrat"
+                                        Cursor="Hand"
+                                        Click="btnClose_Click">
                                     <Button.Style>
                                         <Style TargetType="Button">
                                             <Setter Property="Background" Value="{StaticResource color1}"/>
@@ -72,8 +72,8 @@
                                     <Button.Template>
                                         <ControlTemplate TargetType="Button">
                                             <Border Width="22" Height="22"
-                                        CornerRadius="10"
-                                        Background="{TemplateBinding Background}">
+                                                    CornerRadius="10"
+                                                    Background="{TemplateBinding Background}">
                                                 <ContentPresenter VerticalAlignment="Center"
                                                        HorizontalAlignment="Center"/>
                                             </Border>
@@ -81,13 +81,13 @@
                                     </Button.Template>
                                 </Button>
                                 <Button x:Name="btnMinimize"
-                            BorderThickness="0"
-                            Content="-"
-                            Foreground="{StaticResource textButtonColor}"
-                            FontSize="16"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            Click="btnMinimize_Click">
+                                        BorderThickness="0"
+                                        Content="-"
+                                        Foreground="{StaticResource textButtonColor}"
+                                        FontSize="16"
+                                        FontFamily="Montserrat"
+                                        Cursor="Hand"
+                                        Click="btnMinimize_Click">
                                     <Button.Style>
                                         <Style TargetType="Button">
                                             <Setter Property="Background" Value="{StaticResource color2}"/>
@@ -115,26 +115,26 @@
 
                         <!-- Search control-->
                         <StackPanel Grid.Column="1"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
                             <TextBox x:Name="txtUsername"
-                         Text="Search"
-                         FontFamily="Montserrat"
-                         FontSize="13"
-                         FontWeight="Medium"
-                         Foreground="{StaticResource textColor1}"
-                         CaretBrush="{StaticResource color5}"
-                         BorderBrush="{StaticResource color3}"
-                         BorderThickness="0,0,0,1"
-                         Height="28"
-                         Width="250"
-                         VerticalContentAlignment="Center"
-                         Margin="0,20,30,0"
-                         Padding="20,0,0,0">
+                                    Text="Search"
+                                    FontFamily="Montserrat"
+                                    FontSize="13"
+                                    FontWeight="Medium"
+                                    Foreground="{StaticResource textColor1}"
+                                    CaretBrush="{StaticResource color5}"
+                                    BorderBrush="{StaticResource color3}"
+                                    BorderThickness="0,0,0,1"
+                                    Height="28"
+                                    Width="250"
+                                    VerticalContentAlignment="Center"
+                                    Margin="0,20,30,0"
+                                    Padding="20,0,0,0">
                                 <TextBox.Background>
                                     <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Icons/icons8-search-16.png"
-                                    Stretch="None"
-                                    AlignmentX="Left"/>
+                                                Stretch="None"
+                                                AlignmentX="Left"/>
                                 </TextBox.Background>
                             </TextBox>
                         </StackPanel>
@@ -150,9 +150,9 @@
 
                         <!-- Menu Button-->
                         <Border Grid.Column="0"
-                    Margin="0,60,0,0"
-                    CornerRadius=" 0 70 0 0"
-                    Background="{StaticResource color2}">
+                                Margin="0,60,0,0"
+                                CornerRadius=" 0 70 0 0"
+                                Background="{StaticResource color2}">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="90"/>
@@ -163,11 +163,11 @@
                                     <StackPanel Orientation="Horizontal">
                                         <!-- User Icon-->
                                         <Border Width="80" Height="80"
-                                    Padding="3"
-                                    Background="{StaticResource backColor}"
-                                    CornerRadius="100"
-                                    HorizontalAlignment="Left"
-                                    Margin="20 -50 0 30">
+                                                Padding="3"
+                                                Background="{StaticResource backColor}"
+                                                CornerRadius="100"
+                                                HorizontalAlignment="Left"
+                                                Margin="20 -50 0 30">
                                             <Ellipse>
                                                 <Ellipse.Fill>
                                                     <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
@@ -176,11 +176,11 @@
                                         </Border>
 
                                         <TextBlock Text="Username"
-                                       Foreground="{StaticResource color6}"
-                                       FontSize="22"
-                                       FontWeight="SemiBold"
-                                       FontFamily="Montserrat"
-                                       TextAlignment="Center"
+                                                   Foreground="{StaticResource color6}"
+                                                   FontSize="22"
+                                                   FontWeight="SemiBold"
+                                                   FontFamily="Montserrat"
+                                                   TextAlignment="Center"
                                        Margin=" 80 10 0 10"/>
                                     </StackPanel>
                                 </Grid>
@@ -219,20 +219,20 @@
                                            Margin="30,0,0,0"
                                            HorizontalAlignment="Left"/>
                                             <Button x:Name="btnCreateWorkspace"
-                                        Style="{StaticResource menuButton2}"
-                                        Content="+"
-                                        VerticalAlignment="Center"
-                                        Foreground="{StaticResource textButtonColor}"
-                                        FontSize="20"
-                                        FontFamily="Montserrat"
-                                        Cursor="Hand"
-                                        Click="btnCreateWorkspace_Click"></Button>
+                                                    Style="{StaticResource menuButton2}"
+                                                    Content="+"
+                                                    VerticalAlignment="Center"
+                                                    Foreground="{StaticResource textButtonColor}"
+                                                    FontSize="20"
+                                                    FontFamily="Montserrat"
+                                                    Cursor="Hand"
+                                                    Click="btnCreateWorkspace_Click"></Button>
                                         </StackPanel>
                                         <!--// Services //-->
                                         <RadioButton x:Name="btnMenu"
-                                         Style="{StaticResource workspaceMenuButton}"
-                                         Tag="{StaticResource color6}"
-                                         Click="btnMenu_Click">
+                                                    Style="{StaticResource workspaceMenuButton}"
+                                                    Tag="{StaticResource color6}"
+                                                    Click="btnMenu_Click">
                                             <StackPanel Orientation="Horizontal">
                                                 <fa:IconImage Icon="Book" Style="{StaticResource menuButtonIcon}"/>
                                                 <TextBlock Text="Name Workspace" Style="{StaticResource menuButtonText}"/>
@@ -241,38 +241,38 @@
                                         </RadioButton>
 
                                         <StackPanel x:Name="itemMenuWorkspace"
-                                        Orientation="Vertical"
-                                        Margin="20,0,0,0">
+                                                    Orientation="Vertical"
+                                                    Margin="20,0,0,0">
                                             <RadioButton x:Name="btnItemBoard"
-                                            Style="{StaticResource workspaceMenuButton}"
-                                            Tag="{StaticResource color6}"
-                                            Click="btnItemBoard_Click">
+                                                        Style="{StaticResource workspaceMenuButton}"
+                                                        Tag="{StaticResource color6}"
+                                                        Click="btnItemBoard_Click">
                                                 <StackPanel Orientation="Horizontal"
-                                                VerticalAlignment="Center">
+                                                            VerticalAlignment="Center">
                                                     <fa:IconImage Icon="Table" Style="{StaticResource menuButtonIcon}"/>
                                                     <TextBlock Text="Board" Style="{StaticResource menuButtonText}"/>
                                                 </StackPanel>
                                             </RadioButton>
                                             <RadioButton x:Name="btnItemMember"
-                                             Style="{StaticResource workspaceMenuButton}"
-                                             Tag="{StaticResource color6}"
-                                             Click="btnItemMember_Click">
+                                                         Style="{StaticResource workspaceMenuButton}"
+                                                         Tag="{StaticResource color6}"
+                                                         Click="btnItemMember_Click">
                                                 <StackPanel Orientation="Horizontal"
-                                                VerticalAlignment="Center">
+                                                            VerticalAlignment="Center">
                                                     <fa:IconImage Icon="Users" Style="{StaticResource menuButtonIcon}"/>
                                                     <TextBlock Text="Member" Style="{StaticResource menuButtonText}"/>
                                                     <fa:IconImage Icon="Plus"
-                                                      Margin="198,0,0,0" 
-                                                      HorizontalAlignment="Right"
-                                                      Style="{StaticResource menuButtonIcon}"/>
+                                                                  Margin="198,0,0,0" 
+                                                                  HorizontalAlignment="Right"
+                                                                  Style="{StaticResource menuButtonIcon}"/>
                                                 </StackPanel>
                                             </RadioButton>
                                             <RadioButton x:Name="btnItemSetting"
-                                             Style="{StaticResource workspaceMenuButton}"
-                                             Tag="{StaticResource color6}"
-                                             Click="btnItemSetting_Click">
+                                                         Style="{StaticResource workspaceMenuButton}"
+                                                         Tag="{StaticResource color6}"
+                                                         Click="btnItemSetting_Click">
                                                 <StackPanel Orientation="Horizontal"
-                                                VerticalAlignment="Center">
+                                                            VerticalAlignment="Center">
                                                     <fa:IconImage Icon="Gear" Style="{StaticResource menuButtonIcon}"/>
                                                     <TextBlock Text="Setting" Style="{StaticResource menuButtonText}"/>
                                                 </StackPanel>
@@ -287,9 +287,9 @@
                         </Border>
                         <!-- Menu Button End-->
                         <!-- Content Begin -->
-                        <DockPanel Grid.Column="1">
-                            
-                        </DockPanel>
+                        <Grid  Grid.Column="1">
+                            <customcontrols:BoardView/>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Border>
