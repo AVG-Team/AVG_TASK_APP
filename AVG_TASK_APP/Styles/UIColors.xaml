@@ -10,12 +10,15 @@
     <SolidColorBrush x:Key="color3" Color="DarkGray"/>
     <SolidColorBrush x:Key="color4" Color="#8F3FEE"/>
     <SolidColorBrush x:Key="color5" Color="LightGray"/>
+    <SolidColorBrush x:Key="color6" Color="#ffffff"/>
+    <SolidColorBrush x:Key="color7" Color="#000000"/>
     <SolidColorBrush x:Key="hoverColor1" Color="#C62DAE"/>
     <SolidColorBrush x:Key="hoverColor2" Color="#278BEF"/>
     <SolidColorBrush x:Key="backColor" Color="#ffffff"/>
     <SolidColorBrush x:Key="borderColor" Color="#DA34AE"/>
     <!--Font Colors-->
-    <SolidColorBrush x:Key="textColor" Color="DarkGray"/>
+    <SolidColorBrush x:Key="textColor1" Color="DarkGray"/>
+    <SolidColorBrush x:Key="textColor2" Color="#ffffff"/>
     <SolidColorBrush x:Key="titleColor" Color="#8F3FEE"/>
     <SolidColorBrush x:Key="subTitleColor" Color="#bb8bf4"/>
     <SolidColorBrush x:Key="textButtonColor" Color="#ffffff"/>
