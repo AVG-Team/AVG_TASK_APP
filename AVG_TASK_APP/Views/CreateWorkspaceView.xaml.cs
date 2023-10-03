@@ -40,18 +40,15 @@ namespace AVG_TASK_APP.Views
         private bool checkInput()
         {
             bool result = true;
-            MessageBox.Show(2 + "A");
             if (string.IsNullOrEmpty(txtName.Text))
             {
-            MessageBox.Show(1 +  "A");
-                txtName.BorderBrush = Brushes.Red;
+                MessageBox.Show("Vui lòng điền tên không gian của bạn !!!");
                 result = false;
             }
             if(string.IsNullOrWhiteSpace(txtCode.Text))
             {
                 txtCode.Text = RandomCode();
             }
-            MessageBox.Show(txtName.Text);
 
             return result;
         }
@@ -59,6 +56,9 @@ namespace AVG_TASK_APP.Views
         private void btnContinue_Click(object sender, RoutedEventArgs e)
         {
             checkInput();
+            AddMemberToWorkspace addMemberToWorkspace = new AddMemberToWorkspace();
+            this.Close();
+            addMemberToWorkspace.Show();
         }
     }
 }

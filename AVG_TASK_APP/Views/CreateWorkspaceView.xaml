@@ -6,7 +6,7 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
         mc:Ignorable="d"
-        Title="CreateWorkspaceView" Height="520" Width="800"
+        Title="Create Workspace" Height="520" Width="800"
     Background="{StaticResource panelColor}"
       >
     <Grid>
@@ -47,10 +47,10 @@
                 <TextBox Width="350" x:Name="txtName"
                          VerticalAlignment="Center" 
                          HorizontalAlignment="Left" 
-                         Margin="5,0,5,10" 
                          Background="Transparent"
                          Padding="10"
                          Style="{StaticResource MyWaterMarkStyle}"
+                         BorderThickness="1"
                          Tag="VD: Công ty AVG"
                          />
 
@@ -105,7 +105,8 @@
                              Background="Transparent"
                              Padding="10"
                              Style="{StaticResource MyWaterMarkStyle}"
-                             Tag="VD : AVG_2023"/>
+                             Tag="VD : AVG_2023"
+                             />
 
                     <Button x:Name="btnGenerateCode"
         BorderThickness="0"
