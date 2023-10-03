@@ -26,22 +26,39 @@ namespace AVG_TASK_APP.Views
             txtDateStart.SelectedDate = DateTime.Today;
         }
 
-        private void btnGenerateCode_Click(object sender, RoutedEventArgs e)
+        private string RandomCode()
         {
             Random rnd = new Random();
-            string code = "AVG_" + rnd.Next();
-
-            txtCode.Text = code;
+            return "AVG_" + rnd.Next();
         }
 
-        private void checkInput()
+        private void btnGenerateCode_Click(object sender, RoutedEventArgs e)
         {
+            txtCode.Text = RandomCode();
+        }
 
+        private bool checkInput()
+        {
+            bool result = true;
+            MessageBox.Show(2 + "A");
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+            MessageBox.Show(1 +  "A");
+                txtName.BorderBrush = Brushes.Red;
+                result = false;
+            }
+            if(string.IsNullOrWhiteSpace(txtCode.Text))
+            {
+                txtCode.Text = RandomCode();
+            }
+            MessageBox.Show(txtName.Text);
+
+            return result;
         }
 
         private void btnContinue_Click(object sender, RoutedEventArgs e)
         {
-
+            checkInput();
         }
     }
 }

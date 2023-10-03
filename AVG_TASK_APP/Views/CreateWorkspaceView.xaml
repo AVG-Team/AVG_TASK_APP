@@ -9,7 +9,6 @@
         Title="CreateWorkspaceView" Height="520" Width="800"
     Background="{StaticResource panelColor}"
       >
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"/>
@@ -43,32 +42,17 @@
                    FontSize="12"
                    FontWeight="Medium"
                    FontFamily="Montserrat"
-                   Margin="0,30,0,10"/>
+                   Margin="0,30,0,5"/>
+
                 <TextBox Width="350" x:Name="txtName"
                          VerticalAlignment="Center" 
                          HorizontalAlignment="Left" 
                          Margin="5,0,5,10" 
                          Background="Transparent"
-                         Padding="10">
-                    <TextBox.Style>
-                        <Style TargetType="{x:Type TextBox}">
-                            <Style.Resources>
-                                <SolidColorBrush x:Key="PlaceholderTextBrush" Color="LightGray"/>
-                            </Style.Resources>
-                            <Setter Property="Foreground" Value="Black"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsFocused" Value="True">
-                                    <Setter Property="Foreground" Value="LightGray"/>
-                                    <Setter Property="Text" Value=""/>
-                                </Trigger>
-                                <Trigger Property="IsFocused" Value="False">
-                                    <Setter Property="Foreground" Value="DarkGray"/>
-                                    <Setter Property="Text" Value="VD: Công ty AVGTask"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
+                         Padding="10"
+                         Style="{StaticResource MyWaterMarkStyle}"
+                         Tag="VD: Công ty AVG"
+                         />
 
                 <TextBlock Text="Đây là tên của công ty, nhóm hoặc tổ chức của bạn." 
                    Foreground="{StaticResource textColor}"
@@ -120,26 +104,9 @@
                              x:Name="txtCode" Margin="5"
                              Background="Transparent"
                              Padding="10"
-                             >
-                        <TextBox.Style>
-                            <Style TargetType="{x:Type TextBox}">
-                                <Style.Resources>
-                                    <SolidColorBrush x:Key="PlaceholderTextBrush" Color="LightGray"/>
-                                </Style.Resources>
-                                <Setter Property="Foreground" Value="Black"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsFocused" Value="True">
-                                        <Setter Property="Foreground" Value="LightGray"/>
-                                        <Setter Property="Text" Value=""/>
-                                    </Trigger>
-                                    <Trigger Property="IsFocused" Value="False">
-                                        <Setter Property="Foreground" Value="DarkGray"/>
-                                        <Setter Property="Text" Value="VD: avg1234"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
+                             Style="{StaticResource MyWaterMarkStyle}"
+                             Tag="VD : AVG_2023"/>
+
                     <Button x:Name="btnGenerateCode"
         BorderThickness="0"
         Foreground="{StaticResource textButtonColor}"
@@ -148,7 +115,7 @@
         FontFamily="Montserrat"
         Cursor="Hand"
         Grid.Column="2"
-        Margin="15,0,0,0" Click="btnGenerateCode_Click">
+        Margin="1,0,0,0" Click="btnGenerateCode_Click">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="{StaticResource buttonColor}"/>
