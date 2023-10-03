@@ -17,9 +17,9 @@ namespace AVG_TASK_APP.Views
     /// <summary>
     /// Interaction logic for HomeView.xaml
     /// </summary>
-    public partial class HomeView : Window
+    public partial class PageLayout : Window
     {
-        public HomeView()
+        public PageLayout()
         {
             InitializeComponent();
         }
