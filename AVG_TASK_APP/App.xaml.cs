@@ -16,10 +16,8 @@ namespace AVG_TASK_APP
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-           //PageLayout pageLayout = new PageLayout();
-           //pageLayout.Show();
-           RegisterView register = new RegisterView();
-            register.Show();
+           PageLayout pageLayout = new PageLayout();
+           pageLayout.Show();
         }
     }
 }
