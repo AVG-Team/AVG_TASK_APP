@@ -15,6 +15,7 @@
     <None Remove="Resources\Icons\logo-avg.png" />
     <None Remove="Resources\Icons\magnifying-glass.png" />
     <None Remove="Resources\Icons\user-icon.png" />
+    <None Remove="Resources\Images\backgroundworkspace.png" />
     <None Remove="Resources\Images\OIP.jpg" />
   </ItemGroup>
 
@@ -35,6 +36,7 @@
     <Resource Include="Resources\Icons\logo-avg.png" />
     <Resource Include="Resources\Icons\magnifying-glass.png" />
     <Resource Include="Resources\Icons\user-icon.png" />
+    <Resource Include="Resources\Images\backgroundworkspace.png" />
     <Resource Include="Resources\Images\OIP.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
