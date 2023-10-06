@@ -16,8 +16,9 @@ namespace AVG_TASK_APP
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            CreateWorkspaceView createWorkspaceView = new CreateWorkspaceView();
-            createWorkspaceView.Show();
+
+           PageLayout pageLayout = new PageLayout();
+           pageLayout.Show();
         }
     }
 }
