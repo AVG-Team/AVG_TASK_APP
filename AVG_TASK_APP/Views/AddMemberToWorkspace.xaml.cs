@@ -34,7 +34,6 @@ namespace AVG_TASK_APP.Views
         {
             if(string.IsNullOrEmpty(txtEmail.Text))
             {
-                MessageBox.Show("cac");
                 return;
             }
             try
