@@ -42,7 +42,7 @@ namespace AVG_TASK_APP.Views
             bool result = true;
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                MessageBox.Show("Vui lòng điền tên không gian của bạn !!!");
+                MessageBox.Show("Please fill in your workspace name!!!");
                 result = false;
             }
             if(string.IsNullOrWhiteSpace(txtCode.Text))

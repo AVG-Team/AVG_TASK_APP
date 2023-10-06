@@ -23,7 +23,7 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Margin="10">
                 <TextBlock Grid.Row="0"
-                Text="Mời Nhóm Của Bạn" 
+                Text="Invite Your Team" 
                 Foreground="{StaticResource textColor}"
                 FontSize="22"
                 FontWeight="Medium"
@@ -31,7 +31,7 @@
                 HorizontalAlignment="Left"
                 Margin="0,20,0,10"/>
                 <TextBlock
-                Text="AVG Task giúp nhóm bạn làm việc hiệu quả hơn.&#x0A;Mời các thành viên nhóm mới của bạn để bắt đầu"
+                Text="AVG Task helps your team work more effectively.&#x0A;Invite your new team members to get started"
                 Foreground="{StaticResource textColor}"
                 FontSize="12"
                 FontFamily="Montserrat"
@@ -39,7 +39,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <TextBlock
-                Text="Các thành viên không gian làm việc"
+                Text="Add Workspace Members"
                 Foreground="{StaticResource textColor}"
                 FontSize="12"
                 FontFamily="Montserrat"/>
@@ -58,7 +58,7 @@
                      BorderThickness="1"
                      Tag="VD: avg_task@hutech.edu.vn"
                      />
-                <TextBlock Text="Mẹo chuyên gia : Thêm bằng email hoặc liên kết" Foreground="LightGray" Margin="0,10,0,0" FontSize="13.6"/>
+                <TextBlock Text="Pro Tip: Add by email or link" Foreground="LightGray" Margin="0,10,0,0" FontSize="13.6"/>
                 <Button x:Name="btnContinue"
                     Command="{Binding LoginCommand}"
                     BorderThickness="0"
@@ -66,7 +66,7 @@
                     FontSize="12"
                     FontWeight="Medium"
                     FontFamily="Montserrat"
-                    Content="Mời Vào Không Gian Làm Việc" Margin="0,20,0,0"
+                    Content="Invitation to Workspace" Margin="0,20,0,0"
                     Cursor="Hand" Click="btnContinue_Click">
                     <Button.Style>
                         <Style TargetType="Button">
@@ -81,17 +81,16 @@
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Width="250" Height="40"
-                    CornerRadius="5"
-                    Background="{TemplateBinding Background}">
+                                    CornerRadius="5"
+                                    Background="{TemplateBinding Background}">
                                 <ContentPresenter VerticalAlignment="Center"
                                   HorizontalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <TextBlock
-                           HorizontalAlignment="Center" TextDecorations="Underline" Margin="0,5,0,5">
-                    <Hyperlink NavigateUri="http://www.google.com" Click="Hyperlink_Click" Foreground="LightGray">Tôi sẽ thực hiện sau</Hyperlink>
+                <TextBlock HorizontalAlignment="Center" TextDecorations="Underline" Margin="0,5,0,5">
+                    <Hyperlink NavigateUri="http://www.google.com" Click="Hyperlink_Click" Foreground="LightGray">I will do it later</Hyperlink>
                 </TextBlock>
             </StackPanel>
         </Grid>
