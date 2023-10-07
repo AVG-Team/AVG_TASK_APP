@@ -236,7 +236,7 @@
                                             <StackPanel Orientation="Horizontal">
                                                 <fa:IconImage Icon="Book" Style="{StaticResource menuButtonIcon}"/>
                                                 <TextBlock Text="Name Workspace" Style="{StaticResource menuButtonText}"/>
-                                                <fa:IconImage Icon="CaretDown" Margin="160,0,0,0" Style="{StaticResource menuButtonIcon}"/>
+                                                <fa:IconImage Name="iconMenu" Icon="CaretDown" Margin="160,0,0,0" Style="{StaticResource menuButtonIcon}"/>
                                             </StackPanel>
                                         </RadioButton>
 
