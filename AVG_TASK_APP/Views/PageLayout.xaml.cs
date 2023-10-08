@@ -1,8 +1,11 @@
-﻿using System;
+﻿using AVG_TASK_APP.CustomControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FontAwesome.Sharp;
 using System.Threading.Tasks;
+using FontAwesome.WPF;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,7 +26,11 @@ namespace AVG_TASK_APP.Views
         {
             InitializeComponent();
         }
-
+        public DockPanel dockPanel
+        {
+            get { return dockPanel; }
+            set { dockPanel = value; }
+        }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
@@ -56,7 +63,17 @@ namespace AVG_TASK_APP.Views
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {
-
+            StackPanel stackPanel = itemMenuWorkspace;
+            if(stackPanel.Visibility == Visibility.Collapsed)
+            {
+                stackPanel.Visibility = Visibility.Visible;
+                iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretDown;
+            }
+            else
+            {
+                stackPanel.Visibility = Visibility.Collapsed;
+                iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretUp;
+            }
         }
 
         private void btnItemBoard_Click(object sender, RoutedEventArgs e)
@@ -74,6 +91,14 @@ namespace AVG_TASK_APP.Views
 
         }
 
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+          
+        }
 
+        private void Border_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
