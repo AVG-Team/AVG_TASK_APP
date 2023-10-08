@@ -24,7 +24,7 @@
             <StackPanel Grid.Row="0" Margin="10">
                 <TextBlock Grid.Row="0"
                 Text="Invite Your Team" 
-                Foreground="{StaticResource textColor}"
+                Foreground="{StaticResource textColor3}"
                 FontSize="22"
                 FontWeight="Medium"
                 FontFamily="Montserrat"
@@ -32,7 +32,7 @@
                 Margin="0,20,0,10"/>
                 <TextBlock
                 Text="AVG Task helps your team work more effectively.&#x0A;Invite your new team members to get started"
-                Foreground="{StaticResource textColor}"
+                Foreground="{StaticResource textColor3}"
                 FontSize="12"
                 FontFamily="Montserrat"
                            Margin="0,0,0,20"/>
@@ -40,7 +40,7 @@
             <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <TextBlock
                 Text="Add Workspace Members"
-                Foreground="{StaticResource textColor}"
+                Foreground="{StaticResource textColor3}"
                 FontSize="12"
                 FontFamily="Montserrat"/>
                 <!--<TextBlock>
