@@ -107,7 +107,7 @@ namespace AVG_TASK_APP.ViewModels
             }
             else
             {
-                ErrorMessage = "* Invalid username or password";
+                ErrorMessage = "*Invalid username or password";
             }
         }
 
