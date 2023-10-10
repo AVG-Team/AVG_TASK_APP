@@ -8,8 +8,8 @@
         xmlns:customcontrols="clr-namespace:AVG_TASK_APP.CustomControls"
         mc:Ignorable="d"
         Title="HomeView"  
-        Width="{x:Static SystemParameters.VirtualScreenWidth}" 
-        Height="{x:Static SystemParameters.VirtualScreenHeight}"
+        Width="{x:Static SystemParameters.MaximizedPrimaryScreenWidth}" 
+        Height="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -150,7 +150,7 @@
 
                         <!-- Menu Button-->
                         <Border Grid.Column="0"
-                                Margin="0,60,0,0"
+                                Margin="0,40,0,0"
                                 CornerRadius=" 0 70 0 0"
                                 Background="{StaticResource color2}">
                             <Grid>
