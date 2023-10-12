@@ -261,10 +261,9 @@
                                                             VerticalAlignment="Center">
                                                     <fa:IconImage Icon="Users" Style="{StaticResource menuButtonIcon}"/>
                                                     <TextBlock Text="Member" Style="{StaticResource menuButtonText}"/>
-                                                    <fa:IconImage Icon="Plus"
-                                                                  Margin="198,0,0,0" 
-                                                                  HorizontalAlignment="Right"
-                                                                  Style="{StaticResource menuButtonIcon}"/>
+
+                                                    <Button Content="+" Margin="198,0,0,0"  FontSize="20" HorizontalAlignment="Right" Background="Transparent"
+                                                            Foreground="White" BorderThickness="0" Click="Button_Click"/>
                                                 </StackPanel>
                                             </RadioButton>
                                             <RadioButton x:Name="btnItemSetting"
