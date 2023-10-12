@@ -100,5 +100,11 @@ namespace AVG_TASK_APP.Views
         {
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AddMember addMember = new AddMember();  
+            addMember.Show();
+        }
     }
 }
