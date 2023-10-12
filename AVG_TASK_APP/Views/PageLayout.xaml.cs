@@ -105,6 +105,7 @@ namespace AVG_TASK_APP.Views
 
         }
 
+
         private void btnContinue_Click(object sender, RoutedEventArgs e)
         {
 
@@ -114,7 +115,6 @@ namespace AVG_TASK_APP.Views
         {
 
         }
-
 
     }
 }

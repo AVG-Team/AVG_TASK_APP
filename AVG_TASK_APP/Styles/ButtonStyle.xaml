@@ -276,6 +276,35 @@
         </Style.Triggers>
     </Style>
 
+
+    <Style x:Key="filterButtonNoBorder" TargetType="Button">
+        <!--Normal button style-->
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Background" Value="{StaticResource backColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource textColor5}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource backColor}"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!--Button Style on hover-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource color5}"/>
+                <Setter Property="Foreground" Value="{StaticResource textColor3}"/>
+                <Setter Property="Opacity" Value="1"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="filterButtonIcon" TargetType="fa:IconImage">
         <Setter Property="Foreground" Value="{StaticResource color9}"/>
         <Setter Property="Width" Value="16"/>
