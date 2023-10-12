@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="AVG_TASK_APP.CustomControls.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:local="clr-namespace:AVG_TASK_APP.CustomControls"
+             xmlns:customcontrols="clr-namespace:AVG_TASK_APP.CustomControls"
+             mc:Ignorable="d" 
+             Background="{StaticResource backColor}"
+             d:DesignHeight="784" d:DesignWidth="1136">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical"
+             Margin="40,40,0,0" Grid.Column="0">
+            <StackPanel Orientation="Horizontal"
+                     Margin="0,0,0,10">
+                <fa:IconImage Icon="Heart"
+                           Foreground="{StaticResource color9}"/>
+                <TextBlock Text="Highlights" 
+                        Foreground="{StaticResource textColor5}" 
+                        FontSize="18"
+                        FontWeight="Bold"
+                        VerticalAlignment="Center"
+                        FontFamily="Montserrat"
+                        Width="auto"
+                        Margin="10,0,0,0"/>
+            </StackPanel>
+            <Border BorderBrush="LightGray" HorizontalAlignment="Left"
+                    CornerRadius="20" Width="600" Height="135"
+                    BorderThickness="1" x:Name="groupFeatured">
+                <StackPanel Orientation="Horizontal">
+                    <Border CornerRadius="20,0,0,20" Width="88" Height="135" BorderThickness="0">
+                        <Border.Background>
+                            <ImageBrush Stretch="Fill" ImageSource="/AVG_TASK_APP;component/Resources/Images/featured.png"/>
+                        </Border.Background>
+                    </Border>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Highlights"
+                                Foreground="{StaticResource textColor3}"
+                                FontSize="22"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Margin="15,10,0,15"
+                                HorizontalAlignment="Left" />
+                        <TextBlock Text="Stay up to date with activity from your Workspaces&#x0A;and boards."
+                                Foreground="{StaticResource textColor3}"
+                                FontSize="18"
+                                FontFamily="Montserrat"
+                                Margin="15,5,0,0"
+                                HorizontalAlignment="Left" />
+                        <Button Content="Got it! Dismiss this."
+                                Style="{StaticResource filterButtonNoBorder}"
+                                Width="300" Click="Button_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Grid Margin="0,10,0,10"></Grid>
+            <Border HorizontalAlignment="Left">
+                <StackPanel>
+                    <Grid Width="600" Height="170">
+                        <Border CornerRadius="20,20,0,0" Width="600" Height="170" BorderThickness="0">
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" ImageSource="/AVG_TASK_APP;component/Resources/Images/bg_home_block.png"/>
+                            </Border.Background>
+                        </Border>
+                        <StackPanel Orientation="Vertical">
+                            <Border BorderBrush="LightGray" VerticalAlignment="Top"
+                                CornerRadius="20" Width="550" Height="100" Margin="0,20,0,0"
+                                BorderThickness="1" Background="{StaticResource color6}" Padding="20">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="Name Task" Foreground="{StaticResource textColor3}"
+                                       FontFamily="Montserrat" FontSize="20" Margin="0,0,0,10"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <fa:IconImage Icon="Comment" Foreground="{StaticResource color9}" Width="20" Opacity="0.6" Margin="0,0,5,0"/>
+                                        <TextBlock x:Name="countComment" Text="0" Opacity="0.8" Margin="0,3,0,0"/>
+                                        <fa:IconImage Icon="Tasks" Foreground="{StaticResource color9}" Width="20" Opacity="0.6" Margin="10,0,5,0"/>
+                                        <TextBlock x:Name="contMiniTask" Text="0/0" Opacity="0.8" Margin="0,3,0,0"/>
+                                        <fa:IconImage Icon="CalendarTimes" Foreground="{StaticResource color9}" Width="20" Opacity="0.6" Margin="10,0,5,0"/>
+                                        <TextBlock x:Name="dateDeadline" Text="16-08-2003" Opacity="0.8" Margin="0,3,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
+                                <TextBlock Text="Name WorkSpace |" Margin="0,0,10,0" 
+                                           FontFamily="Montserrat" FontWeight="DemiBold"/>
+                                <TextBlock Text="Name Table:" Margin="0,0,10,0" 
+                                           FontFamily="Montserrat" FontWeight="DemiBold"/>
+                                <TextBlock Text="Name Card" Margin="0,0,10,0"
+                                           FontFamily="Montserrat"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+            <Border HorizontalAlignment="Left">
+                <Border CornerRadius="0,0,20,20" Width="600" Height="140"
+                        BorderBrush="{StaticResource color5}"
+                        BorderThickness="3" Background="{StaticResource color6}">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Border CornerRadius="20,0,0,20" Width="60" Height="60" 
+                                    BorderThickness="0" Margin="20,20,0,20">
+                                <Border.Background>
+                                    <ImageBrush Stretch="Fill" ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
+                                </Border.Background>
+                            </Border>
+                            <TextBox Text="Name Comment" VerticalAlignment="Center" BorderThickness="0"
+                                     FontFamily="Montserrat" FontSize="20" FontWeight="Medium"/>
+                        </StackPanel>
+                        <TextBlock Text="Comment" HorizontalAlignment="Center"
+                                   FontFamily="Montserrat" FontSize="18" FontWeight="DemiBold" Opacity="0.8"/>
+                    </StackPanel>
+                </Border>
+            </Border>
+        </StackPanel>
+        <StackPanel Orientation="Vertical"
+             Margin="0,40,0,0" Grid.Column="1">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                <fa:IconImage Icon="Clock"
+                           Foreground="{StaticResource color9}"/>
+                <TextBlock Text="Recently" 
+                        Foreground="{StaticResource textColor5}" 
+                        FontSize="18"
+                        FontWeight="Bold"
+                        VerticalAlignment="Center"
+                        FontFamily="Montserrat"
+                        Width="auto"
+                        Margin="10,0,0,0"/>
+            </StackPanel>
+            <customcontrols:btnBoardInHome/>
+        </StackPanel>
+    </Grid>
+</UserControl>
