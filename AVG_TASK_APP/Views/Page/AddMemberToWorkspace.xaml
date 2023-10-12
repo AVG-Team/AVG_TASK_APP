@@ -96,7 +96,11 @@
         </Grid>
 
         <Grid Grid.Column="1" Background="Transparent">
-            <Image Source="/Resources/Images/backgroundworkspace.png" HorizontalAlignment="Right" Width="700"/>
+            <Image Source="/Resources/Images/backgroundworkspace.png" 
+                   Width="1000"/>
+            <Image Source="/Resources/Images/createwp.png" Panel.ZIndex="1"/>
+            <Image Source="/Resources/Images/memberwp.png" 
+                   Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,0,0,20"/>
         </Grid>
     </Grid>
 </Page>

@@ -21,6 +21,8 @@
     <None Remove="Resources\Images\background_Ws.jpg" />
     <None Remove="Resources\Images\backgroundworkspace.png" />
     <None Remove="Resources\Images\featured.png" />
+    <None Remove="Resources\Images\createwp.png" />
+    <None Remove="Resources\Images\memberwp.png" />
     <None Remove="Resources\Images\OIP.jpg" />
   </ItemGroup>
 
