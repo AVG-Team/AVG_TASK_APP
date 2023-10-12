@@ -130,15 +130,41 @@
                                 Orientation="Horizontal"
                                 FlowDirection="LeftToRight"
                                 Margin="20,0,0,0">
-                        <RadioButton Width="190"
-                                     Style="{StaticResource menuRadioButtonHeader}"
-                                     Tag="{StaticResource textColor5}"
-                                     Click="rdbtnMenuHeader_Click">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Workspace" Style="{StaticResource menuButtonTextHeader}"/>
-                                <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
-                            </StackPanel>
-                        </RadioButton>
+                        <Menu Background="Transparent">
+                            <MenuItem Header="File"  Width="150" Style="{StaticResource menuHeader}">
+                                <MenuItem Header="New" />
+                                <MenuItem Header="Open"/>
+                                <MenuItem Header="Save" />
+                                <Separator />
+                                <MenuItem Header="Exit" />
+                            </MenuItem>
+                            <MenuItem Header="Edit">
+                                <MenuItem Header="Cut" />
+                                <MenuItem Header="Copy" />
+                                <MenuItem Header="Paste"/>
+                            </MenuItem>
+                        </Menu>
+                        <StackPanel Orientation="Vertical" >
+                            <RadioButton Width="190"
+                                         Style="{StaticResource menuRadioButtonHeader}"
+                                         Tag="{StaticResource textColor5}"
+                                         Click="rdbtnMenuHeader_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Workspace" Style="{StaticResource menuButtonTextHeader}"/>
+                                    <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
+                                </StackPanel>
+                            </RadioButton>
+                            <RadioButton Width="190"
+                                        Style="{StaticResource menuRadioButtonHeader}"
+                                        Tag="{StaticResource textColor5}"
+                                        Click="rdbtnMenuHeader_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Workspace" Style="{StaticResource menuButtonTextHeader}"/>
+                                    <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
+                                </StackPanel>
+                            </RadioButton>
+                        </StackPanel>
+
 
                         <RadioButton  Width="150"
                                      Style="{StaticResource menuRadioButtonHeader}"
@@ -434,8 +460,9 @@
             </Border>
             <!-- Menu Button End-->
             <Grid Grid.Column="1">
-                
-            </Grid>        
+
+
+            </Grid>
         </Grid>
     </Grid>
 </Window>
