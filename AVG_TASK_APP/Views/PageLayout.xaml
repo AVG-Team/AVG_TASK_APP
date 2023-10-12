@@ -188,18 +188,20 @@
                                 <!-- Button -->
                                 <Grid Grid.Row="1">
                                     <StackPanel Orientation="Vertical">
-                                        <RadioButton Style="{StaticResource menuButton}"
+                                        <RadioButton x:Name="boardBtn"
+                                         Style="{StaticResource menuButton}"
                                          Tag="{StaticResource color6}"
                                          IsChecked="True"
-                                         Command="{Binding ShowHomeViewCommand}">
+                                         Click="boardBtn_Click">
                                             <StackPanel Orientation="Horizontal">
                                                 <fa:IconImage Icon="Table" Style="{StaticResource menuButtonIcon}"/>
                                                 <TextBlock Text="Board" Style="{StaticResource menuButtonText}"/>
                                             </StackPanel>
                                         </RadioButton>
-                                        <RadioButton Style="{StaticResource menuButton}"
+                                        <RadioButton x:Name="homeBtn"
+                                         Style="{StaticResource menuButton}"
                                          Tag="{StaticResource color6}"
-                                         Command="{Binding ShowCustomerViewCommand}">
+                                         Click="homeBtn_Click">
                                             <StackPanel Orientation="Horizontal">
                                                 <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
                                                 <TextBlock Text="Home" Style="{StaticResource menuButtonText}"/>
@@ -227,7 +229,7 @@
                                                     FontFamily="Montserrat"
                                                     Cursor="Hand"
                                                     Click="btnCreateWorkspace_Click"></Button>
-                                        </StackPanel>           
+                                        </StackPanel>
                                         <StackPanel x:Name="menuWorkspace" 
                                                     Orientation="Vertical">
 
@@ -239,9 +241,8 @@
                         </Border>
                         <!-- Menu Button End-->
                         <!-- Content Begin -->
-                        <Grid  Grid.Column="1">
+                        <Grid  Grid.Column="1" x:Name="contenPanel">
 
-                            <customcontrols:BoardView/>
                         </Grid>
                     </Grid>
                 </Grid>
