@@ -20,6 +20,7 @@
     <None Remove="Resources\Icons\user-icon.png" />
     <None Remove="Resources\Images\background_Ws.jpg" />
     <None Remove="Resources\Images\backgroundworkspace.png" />
+    <None Remove="Resources\Images\featured.png" />
     <None Remove="Resources\Images\OIP.jpg" />
   </ItemGroup>
 
@@ -45,6 +46,8 @@
     <Resource Include="Resources\Icons\user-icon.png" />
     <Resource Include="Resources\Images\background_Ws.jpg" />
     <Resource Include="Resources\Images\backgroundworkspace.png" />
+    <Resource Include="Resources\Images\featured.png" />
+    <Resource Include="Resources\Images\bg_home_block.png" />
     <Resource Include="Resources\Images\OIP.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

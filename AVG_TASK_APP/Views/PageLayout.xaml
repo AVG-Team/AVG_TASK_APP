@@ -288,7 +288,7 @@
                         <!-- Menu Button End-->
                         <!-- Content Begin -->
                         <Grid  Grid.Column="1">
-                            <customcontrols:BoardView/>
+                            <customcontrols:HomeView/>
                         </Grid>
                     </Grid>
                 </Grid>
