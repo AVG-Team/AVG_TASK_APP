@@ -18,7 +18,7 @@ namespace AVG_TASK_APP.Views
     /// <summary>
     /// Interaction logic for AddMemberToWorkspace.xaml
     /// </summary>
-    public partial class AddMemberToWorkspace : Window
+    public partial class AddMemberToWorkspace : Page
     {
         public AddMemberToWorkspace()
         {
@@ -27,12 +27,13 @@ namespace AVG_TASK_APP.Views
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Window parent = Window.GetWindow(this);
+            parent.Close();
         }
 
         private void btnContinue_Click(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrEmpty(txtEmail.Text))
+            if (string.IsNullOrEmpty(txtEmail.Text))
             {
                 return;
             }
