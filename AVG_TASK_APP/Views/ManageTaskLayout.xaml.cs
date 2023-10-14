@@ -112,6 +112,9 @@ namespace AVG_TASK_APP.Views
 
         }
 
+        private void ComboBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
 
+        }
     }
 }

@@ -130,60 +130,39 @@
                                 Orientation="Horizontal"
                                 FlowDirection="LeftToRight"
                                 Margin="20,0,0,0">
-                        <Menu Background="Transparent">
-                            <MenuItem Header="File"  Width="150" Style="{StaticResource menuHeader}">
-                                <MenuItem Header="New" />
-                                <MenuItem Header="Open"/>
-                                <MenuItem Header="Save" />
-                                <Separator />
-                                <MenuItem Header="Exit" />
-                            </MenuItem>
-                            <MenuItem Header="Edit">
-                                <MenuItem Header="Cut" />
-                                <MenuItem Header="Copy" />
-                                <MenuItem Header="Paste"/>
-                            </MenuItem>
-                        </Menu>
                         <StackPanel Orientation="Vertical" >
-                            <RadioButton Width="190"
-                                         Style="{StaticResource menuRadioButtonHeader}"
+                            <ComboBox Width="190"
+                                         Style="{DynamicResource menuRadioButtonHeader}"
                                          Tag="{StaticResource textColor5}"
-                                         Click="rdbtnMenuHeader_Click">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Workspace" Style="{StaticResource menuButtonTextHeader}"/>
-                                    <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
-                                </StackPanel>
-                            </RadioButton>
-                            <RadioButton Width="190"
-                                        Style="{StaticResource menuRadioButtonHeader}"
-                                        Tag="{StaticResource textColor5}"
-                                        Click="rdbtnMenuHeader_Click">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Workspace" Style="{StaticResource menuButtonTextHeader}"/>
-                                    <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
-                                </StackPanel>
-                            </RadioButton>
+                                         MouseDoubleClick="ComboBox_MouseDoubleClick">
+                                <ComboBoxItem>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Workspace" Style="{StaticResource menuButtonTextHeader}"/>
+                                        <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
+                                    </StackPanel>
+                                </ComboBoxItem>
+                            </ComboBox>
                         </StackPanel>
 
 
-                        <RadioButton  Width="150"
+                        <ComboBox  Width="150"
                                      Style="{StaticResource menuRadioButtonHeader}"
                                      Tag="{StaticResource textColor5}"
-                                     Click="rdbtnMenuHeader_Click">
+                                      MouseDoubleClick="ComboBox_MouseDoubleClick">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Recent" Style="{StaticResource menuButtonTextHeader}"/>
                                 <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
                             </StackPanel>
-                        </RadioButton>
-                        <RadioButton  Width="140"
+                        </ComboBox>
+                        <ComboBox  Width="140"
                                       Style="{StaticResource menuRadioButtonHeader}"
                                       Tag="{StaticResource textColor5}"
-                                      Click="rdbtnMenuHeader_Click">
+                                       MouseDoubleClick="ComboBox_MouseDoubleClick">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Stared" Style="{StaticResource menuButtonTextHeader}"/>
                                 <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
                             </StackPanel>
-                        </RadioButton>
+                        </ComboBox>
                         <Button  Width="140"
                                  Style="{StaticResource menuButtonHeader}"
                                  Tag="{StaticResource textColor6}"

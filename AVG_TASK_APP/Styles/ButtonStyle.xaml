@@ -269,7 +269,7 @@
 
 
     <!-- Menu -->
-    <Style x:Key="menuRadioButtonHeader" TargetType="RadioButton">
+    <Style x:Key="menuRadioButtonHeader" TargetType="ComboBox">
         <!--Normal button style-->
         <Setter Property="Height" Value="55"/>
         <Setter Property="Margin" Value="0,0,0,10"/>
@@ -278,7 +278,7 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="RadioButton">
+                <ControlTemplate TargetType="ComboBox">
                     <Border Background="{TemplateBinding Background}"
                             CornerRadius="10"
                             BorderThickness="2,0,0,0"
