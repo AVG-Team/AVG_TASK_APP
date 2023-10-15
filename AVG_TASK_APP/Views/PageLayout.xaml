@@ -15,7 +15,8 @@
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource backColor}"
         AllowsTransparency="True"
-        MouseDown="Window_MouseDown">
+        MouseDown="Window_MouseDown"
+        Loaded="Window_Loaded">
     <DockPanel>
         <Border >
             <Border Background="Transparent">
@@ -24,7 +25,6 @@
                         <RowDefinition Height="80"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-
                     <!-- Header Begin -->
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
@@ -227,57 +227,9 @@
                                                     FontFamily="Montserrat"
                                                     Cursor="Hand"
                                                     Click="btnCreateWorkspace_Click"></Button>
-                                        </StackPanel>
-                                        <!--// Services //-->
-                                        <RadioButton x:Name="btnMenu"
-                                                    Style="{StaticResource workspaceMenuButton}"
-                                                    Tag="{StaticResource color6}"
-                                                    Click="btnMenu_Click">
-                                            <StackPanel Orientation="Horizontal">
-                                                <fa:IconImage Icon="Book" Style="{StaticResource menuButtonIcon}"/>
-                                                <TextBlock Text="Name Workspace" Style="{StaticResource menuButtonText}"/>
-                                                <fa:IconImage Name="iconMenu" Icon="CaretDown" Margin="160,0,0,0" Style="{StaticResource menuButtonIcon}"/>
-                                            </StackPanel>
-                                        </RadioButton>
-
-                                        <StackPanel x:Name="itemMenuWorkspace"
-                                                    Orientation="Vertical"
-                                                    Margin="20,0,0,0">
-                                            <RadioButton x:Name="btnItemBoard"
-                                                        Style="{StaticResource workspaceMenuButton}"
-                                                        Tag="{StaticResource color6}"
-                                                        Click="btnItemBoard_Click">
-                                                <StackPanel Orientation="Horizontal"
-                                                            VerticalAlignment="Center">
-                                                    <fa:IconImage Icon="Table" Style="{StaticResource menuButtonIcon}"/>
-                                                    <TextBlock Text="Board" Style="{StaticResource menuButtonText}"/>
-                                                </StackPanel>
-                                            </RadioButton>
-                                            <RadioButton x:Name="btnItemMember"
-                                                         Style="{StaticResource workspaceMenuButton}"
-                                                         Tag="{StaticResource color6}"
-                                                         Click="btnItemMember_Click">
-                                                <StackPanel Orientation="Horizontal"
-                                                            VerticalAlignment="Center">
-                                                    <fa:IconImage Icon="Users" Style="{StaticResource menuButtonIcon}"/>
-                                                    <TextBlock Text="Member" Style="{StaticResource menuButtonText}"/>
-                                                    <fa:IconImage Icon="Plus"
-                                                                  Margin="198,0,0,0" 
-                                                                  HorizontalAlignment="Right"
-                                                                  Style="{StaticResource menuButtonIcon}"/>
-                                                </StackPanel>
-                                            </RadioButton>
-                                            <RadioButton x:Name="btnItemSetting"
-                                                         Style="{StaticResource workspaceMenuButton}"
-                                                         Tag="{StaticResource color6}"
-                                                         Click="btnItemSetting_Click">
-                                                <StackPanel Orientation="Horizontal"
-                                                            VerticalAlignment="Center">
-                                                    <fa:IconImage Icon="Gear" Style="{StaticResource menuButtonIcon}"/>
-                                                    <TextBlock Text="Setting" Style="{StaticResource menuButtonText}"/>
-                                                </StackPanel>
-                                            </RadioButton>
-
+                                        </StackPanel>           
+                                        <StackPanel x:Name="menuWorkspace" 
+                                                    Orientation="Vertical">
 
                                         </StackPanel>
 
@@ -288,6 +240,7 @@
                         <!-- Menu Button End-->
                         <!-- Content Begin -->
                         <Grid  Grid.Column="1">
+
                             <customcontrols:BoardView/>
                         </Grid>
                     </Grid>

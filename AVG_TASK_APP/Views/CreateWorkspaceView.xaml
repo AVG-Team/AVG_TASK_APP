@@ -6,9 +6,12 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
         mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
         Title="Create Workspace" Height="520" Width="800"
-    Background="{StaticResource panelColor}"
-      >
+    Background="{StaticResource panelColor}">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"/>
@@ -24,7 +27,7 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0"
                 Text="Let's build a workspace!" 
-                Foreground="{StaticResource textColor3}"
+                Foreground="{StaticResource textColor2}"
                 FontSize="18"
                 FontWeight="Medium"
                 FontFamily="Montserrat"
@@ -33,13 +36,13 @@
             <TextBlock Grid.Row="1"
                 Text="Increase your productivity by making it easy for everyone&#x0A;
 access the table in one location."
-                Foreground="{StaticResource textColor3}"
+                Foreground="{StaticResource textColor2}"
                 FontSize="12"
                 FontFamily="Montserrat"
                 HorizontalAlignment="Left"/>
             <StackPanel Grid.Row="2">
                 <TextBlock Text="Workspace Name"
-                   Foreground="{StaticResource textColor3}"
+                   Foreground="{StaticResource textColor2}"
                    FontSize="12"
                    FontWeight="Medium"
                    FontFamily="Montserrat"
@@ -56,12 +59,12 @@ access the table in one location."
                          />
 
                 <TextBlock Text="This is the name of your company, group or organization." 
-                   Foreground="{StaticResource textColor3}"
+                   Foreground="{StaticResource textColor2}"
                    FontSize="10" Margin="0,5,0,0"
                    FontFamily="Montserrat"/>
 
                 <TextBlock Text="Start day"
-                   Foreground="{StaticResource textColor3}"
+                   Foreground="{StaticResource textColor2}"
                    FontSize="12"
                    FontWeight="Medium"
                    FontFamily="Montserrat"
@@ -71,7 +74,7 @@ access the table in one location."
                 </DatePicker>
 
                 <TextBlock Text="Display Mode"
-                   Foreground="{StaticResource textColor3}"
+                   Foreground="{StaticResource textColor2}"
                    FontSize="12"
                    FontWeight="Medium"
                    FontFamily="Montserrat"
@@ -93,7 +96,7 @@ access the table in one location."
                     </RadioButton>
                 </StackPanel>
                 <TextBlock Text="Code"
-                           Foreground="{StaticResource textColor3}"
+                           Foreground="{StaticResource textColor2}"
                            FontSize="12"
                            FontWeight="Medium"
                            FontFamily="Montserrat"
@@ -180,6 +183,7 @@ access the table in one location."
         <Grid Grid.Column="1">
             <Image Source="/Resources/Images/backgroundworkspace.png" 
                    Width="1000"/>
+            <Image Width="400" Source="/Resources/Images/createwp.png"/>
         </Grid>
     </Grid>
 </Window>
