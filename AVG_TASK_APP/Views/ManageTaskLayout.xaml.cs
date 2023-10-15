@@ -62,8 +62,12 @@ namespace AVG_TASK_APP.Views
 
         private void rdbtnMenuHeader_Click(object sender, RoutedEventArgs e)
         {
-            MenuItem contextMenu = this.FindResource("contextMenu") as MenuItem;
-            contextMenu.IsSubmenuOpen = true;
+
+            StackPanel stackPanel = sender as StackPanel;
+            ContextMenu contextMenu = stackPanel.ContextMenu;
+            contextMenu.PlacementTarget = stackPanel;
+            contextMenu.IsOpen = true;
+            e.Handled = true;
 
         }
 

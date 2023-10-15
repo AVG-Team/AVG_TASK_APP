@@ -269,7 +269,7 @@
 
 
     <!-- Menu -->
-    <Style x:Key="menuRadioButtonHeader" TargetType="ComboBox">
+    <Style x:Key="menuRadioButtonHeader" TargetType="RadioButton">
         <!--Normal button style-->
         <Setter Property="Height" Value="55"/>
         <Setter Property="Margin" Value="0,0,0,10"/>
@@ -278,7 +278,7 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="ComboBox">
+                <ControlTemplate TargetType="RadioButton">
                     <Border Background="{TemplateBinding Background}"
                             CornerRadius="10"
                             BorderThickness="2,0,0,0"
@@ -345,39 +345,8 @@
     </Style>
 
 
-    <!-- Menu -->
-    <Style x:Key="menuHeader" TargetType="MenuItem">
-        <!--Normal button style-->
-        <Setter Property="Height" Value="55"/>
-        <Setter Property="FontSize" Value="20"/>
-        <Setter Property="FontFamily" Value="Montserrat"/>
-        <Setter Property="FontWeight" Value="Medium"/>
-        <Setter Property="Margin" Value="0,0,0,10"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{StaticResource textColor5}"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="MenuItem">
-                    <Border 
-                        CornerRadius="10"
-                        BorderThickness="2,0,0,0"
-                        BorderBrush="{TemplateBinding BorderBrush}">
-                        <ContentPresenter Content="{TemplateBinding Header}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <!--Button Style on hover-->
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Margin" Value="0,0,0,5"/>
-                <Setter Property="Background" Value="{StaticResource panelColor1}"/>
-                <Setter Property="Foreground" Value="{StaticResource textColor5}"/>
-            </Trigger>
-            <!--Activated button style-->
-        </Style.Triggers>
-    </Style>
+
+
 
 
 </ResourceDictionary>

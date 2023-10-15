@@ -18,6 +18,7 @@ namespace AVG_TASK_APP
         {
             ManageTaskLayout manageTaskLayout = new ManageTaskLayout();
             manageTaskLayout.Show();
+
         }
     }
 }

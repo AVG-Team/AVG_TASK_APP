@@ -130,39 +130,42 @@
                                 Orientation="Horizontal"
                                 FlowDirection="LeftToRight"
                                 Margin="20,0,0,0">
-                        <StackPanel Orientation="Vertical" >
-                            <ComboBox Width="190"
+                        <StackPanel ContextMenuService.Placement="Bottom">
+                            <RadioButton Width="190"
                                          Style="{DynamicResource menuRadioButtonHeader}"
                                          Tag="{StaticResource textColor5}"
-                                         MouseDoubleClick="ComboBox_MouseDoubleClick">
-                                <ComboBoxItem>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Workspace" Style="{StaticResource menuButtonTextHeader}"/>
-                                        <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
-                                    </StackPanel>
-                                </ComboBoxItem>
-                            </ComboBox>
+                                         ContextMenuService.Placement="Custom">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Workspace" Style="{StaticResource menuButtonTextHeader}"/>
+                                    <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
+                                </StackPanel>
+                            </RadioButton>
+
                         </StackPanel>
 
 
-                        <ComboBox  Width="150"
-                                     Style="{StaticResource menuRadioButtonHeader}"
-                                     Tag="{StaticResource textColor5}"
-                                      MouseDoubleClick="ComboBox_MouseDoubleClick">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Recent" Style="{StaticResource menuButtonTextHeader}"/>
-                                <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
-                            </StackPanel>
-                        </ComboBox>
-                        <ComboBox  Width="140"
-                                      Style="{StaticResource menuRadioButtonHeader}"
-                                      Tag="{StaticResource textColor5}"
-                                       MouseDoubleClick="ComboBox_MouseDoubleClick">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Stared" Style="{StaticResource menuButtonTextHeader}"/>
-                                <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
-                            </StackPanel>
-                        </ComboBox>
+                        <StackPanel>
+                            <RadioButton  Width="150"
+                                          Style="{StaticResource menuRadioButtonHeader}"
+                                          Tag="{StaticResource textColor5}" >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Recent" Style="{StaticResource menuButtonTextHeader}"/>
+                                    <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
+                                </StackPanel>
+                            </RadioButton>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <RadioButton  Width="140"
+                                          Style="{StaticResource menuRadioButtonHeader}"
+                                          Tag="{StaticResource textColor5}" >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Stared" Style="{StaticResource menuButtonTextHeader}"/>
+                                    <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
+                                </StackPanel>
+                            </RadioButton>
+                        </StackPanel>
+
                         <Button  Width="140"
                                  Style="{StaticResource menuButtonHeader}"
                                  Tag="{StaticResource textColor6}"
@@ -439,8 +442,6 @@
             </Border>
             <!-- Menu Button End-->
             <Grid Grid.Column="1">
-
-
             </Grid>
         </Grid>
     </Grid>
