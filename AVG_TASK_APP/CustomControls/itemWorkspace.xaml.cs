@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Window = System.Windows.Window;
 
 namespace AVG_TASK_APP.CustomControls
 {
@@ -58,7 +59,6 @@ namespace AVG_TASK_APP.CustomControls
 
         private void btnItemMember_Click(object sender, RoutedEventArgs e)
         {
-            InsertGmail insertGmail = new InsertGmail();
 
         }
 
