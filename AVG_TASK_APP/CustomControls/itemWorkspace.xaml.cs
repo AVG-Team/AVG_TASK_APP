@@ -1,4 +1,5 @@
-﻿using FontAwesome.WPF;
+﻿using AVG_TASK_APP.Views;
+using FontAwesome.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Window = System.Windows.Window;
 
 namespace AVG_TASK_APP.CustomControls
 {

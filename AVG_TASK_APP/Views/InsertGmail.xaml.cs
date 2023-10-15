@@ -17,7 +17,7 @@ namespace AVG_TASK_APP.Views
     /// <summary>
     /// Interaction logic for InsertGmail.xaml
     /// </summary>
-    public partial class InsertGmail : Window
+    public partial class InsertGmail : Page
     {
         public InsertGmail()
         {
@@ -26,17 +26,12 @@ namespace AVG_TASK_APP.Views
 
         private void Insert_btnClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-        }
 
-        private void Insert_btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+
         }
 
         private void Insert_txtInput_TextChanged(object sender, TextChangedEventArgs e)
