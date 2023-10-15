@@ -129,42 +129,107 @@
                     <StackPanel Grid.Column="0"
                                 Orientation="Horizontal"
                                 FlowDirection="LeftToRight"
-                                Margin="20,0,0,0">
-                        <StackPanel ContextMenuService.Placement="Bottom">
-                            <RadioButton Width="190"
-                                         Style="{DynamicResource menuRadioButtonHeader}"
-                                         Tag="{StaticResource textColor5}"
-                                         ContextMenuService.Placement="Custom">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Workspace" Style="{StaticResource menuButtonTextHeader}"/>
-                                    <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
-                                </StackPanel>
-                            </RadioButton>
+                                Margin="40,0,0,0">
+                        <Menu Grid.Column="0"  Background="Transparent">
 
-                        </StackPanel>
+                            <Menu.ItemsPanel>
+
+                                <ItemsPanelTemplate>
+
+                                    <VirtualizingStackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </Menu.ItemsPanel>
+
+                            <!--// Main Menu - Workspaces //-->
+                            <MenuItem Header="Workspaces" Width="190"
+                                      Template="{StaticResource Menu_SubMenu_Template}" >
+                                <!--// Music Submenu - All Songs //-->
+                                <MenuItem Header="All Songs"
+                                          Template="{StaticResource Item_Template}">
+                                </MenuItem>
+
+                                <!--// Music Submenu - Albums //-->
+
+                                <MenuItem Header="Albums"
+                                          Template="{StaticResource Item_Template}">
+                                </MenuItem>
+
+                                <!--// Music Submenu - Artists //-->
+
+                                <MenuItem Header="Artists"
+                                          Template="{StaticResource Item_Template}">
+                                </MenuItem>
+
+                                <!--// Music Submenu - Playlists //-->
+
+                                <MenuItem Header="Playlists"
+                                           Template="{StaticResource Item_Template}">
+                                </MenuItem>
+
+                            </MenuItem>
+
+                            <!--// Main Menu - Recent//-->
+                            <MenuItem Header="Recent" 
+                                      Template="{StaticResource Menu_SubMenu_Template}" >
+                                <!--// Music Submenu - All Songs //-->
+                                <MenuItem Header="All Songs"
+                                          Template="{StaticResource Menu_SubMenu2_Template}">
+                                </MenuItem>
+
+                                <!--// Music Submenu - Albums //-->
+
+                                <MenuItem Header="Albums"
+                                          Template="{StaticResource Menu_SubMenu2_Template}">
+                                </MenuItem>
+
+                                <!--// Music Submenu - Artists //-->
+
+                                <MenuItem Header="Artists"
+                                          Template="{StaticResource Menu_SubMenu2_Template}">
+                                </MenuItem>
+
+                                <!--// Music Submenu - Playlists //-->
+
+                                <MenuItem Header="Playlists"
+                                          Template="{StaticResource Menu_SubMenu2_Template}">
+                                </MenuItem>
+
+                            </MenuItem>
 
 
-                        <StackPanel>
-                            <RadioButton  Width="150"
-                                          Style="{StaticResource menuRadioButtonHeader}"
-                                          Tag="{StaticResource textColor5}" >
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Recent" Style="{StaticResource menuButtonTextHeader}"/>
-                                    <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
-                                </StackPanel>
-                            </RadioButton>
-                        </StackPanel>
+                            <!--// Main Menu - Recent//-->
+                            <MenuItem Header="Stared"
+                                      Template="{StaticResource Menu_SubMenu_Template}" >
+                                <!--// Music Submenu - All Songs //-->
+                                <MenuItem Header="All Songs"
+                                          Template="{StaticResource Item_Template}">
+                                    <TextBlock Text="Current Workspace"
+                                               FontFamily="Montserrat"
+                                               FontSize="12"
+                                               FontWeight="Light"/>
+                                </MenuItem>
 
-                        <StackPanel>
-                            <RadioButton  Width="140"
-                                          Style="{StaticResource menuRadioButtonHeader}"
-                                          Tag="{StaticResource textColor5}" >
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Stared" Style="{StaticResource menuButtonTextHeader}"/>
-                                    <fa:IconImage Icon="AngleDown" Margin="10,0,0,0" Style="{StaticResource menuButtonIconHeader}"/>
-                                </StackPanel>
-                            </RadioButton>
-                        </StackPanel>
+                                <!--// Music Submenu - Albums //-->
+
+                                <MenuItem Header="Albums"
+                                          Template="{StaticResource Item_Template}">
+                                </MenuItem>
+
+                                <!--// Music Submenu - Artists //-->
+
+                                <MenuItem Header="Artists"
+                                          Template="{StaticResource Item_Template}">
+                                </MenuItem>
+
+                                <!--// Music Submenu - Playlists //-->
+
+                                <MenuItem Header="Playlists"
+                                          Template="{StaticResource Item_Template}">
+                                </MenuItem>
+
+                            </MenuItem>
+
+                        </Menu>
 
                         <Button  Width="140"
                                  Style="{StaticResource menuButtonHeader}"
@@ -180,7 +245,7 @@
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
                                 FlowDirection="RightToLeft"
-                                Margin="0,0,10,0"
+                                Margin="0,0,20,0"
                                 Background="Transparent">
 
                         <Ellipse Width="40"
@@ -224,28 +289,31 @@
                             </Button.Style>
                         </Button>
 
-                        <TextBox x:Name="txtUsername"
-                                Text="Search"
-                                FontFamily="Montserrat"
-                                FontSize="13"
-                                FontWeight="Medium"
-                                Foreground="{StaticResource textColor1}"
-                                CaretBrush="{StaticResource color5}"
-                                BorderBrush="{StaticResource color3}"
-                                BorderThickness="2"
-                                Height="28"
-                                Width="160"
-                                VerticalContentAlignment="Center"
-                                HorizontalAlignment="Center"
-                                Margin="20,0,0,0"
-                                Padding="20,0,0,0"
-                                FlowDirection="LeftToRight">
-                            <TextBox.Background>
-                                <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Icons/icons8-search-16.png"
-                                            Stretch="None"
-                                        AlignmentX="Left"/>
-                            </TextBox.Background>
-                        </TextBox>
+                        <Border CornerRadius="10" BorderThickness="1" BorderBrush="{StaticResource color3}" Height="40" Width="170" Margin="16,0,0,0">
+                            <TextBox x:Name="txtUsername"
+                                     FontFamily="Montserrat"
+                                     FontSize="13"
+                                     FontWeight="Medium"
+                                     Foreground="{StaticResource textColor1}"
+                                     CaretBrush="{StaticResource color5}"
+                                     BorderBrush="{StaticResource color3}"
+                                     BorderThickness="0"
+                                     VerticalContentAlignment="Center"
+                                     HorizontalAlignment="Center"
+                                     Width="160"
+                                     Height="40"
+                                     Margin="0,0,10,0"
+                                     Padding="20,0,0,0"
+                                     FlowDirection="LeftToRight">
+                                <TextBox.Background>
+                                    <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Icons/icons8-search-16.png"
+                                                Stretch="None"
+                                                AlignmentX="Left"/>
+                                </TextBox.Background>
+
+                            </TextBox>
+                        </Border>
+
                     </StackPanel>
                 </Grid>
 
@@ -442,6 +510,7 @@
             </Border>
             <!-- Menu Button End-->
             <Grid Grid.Column="1">
+
             </Grid>
         </Grid>
     </Grid>
