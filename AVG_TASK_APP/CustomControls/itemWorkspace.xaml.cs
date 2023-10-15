@@ -1,4 +1,5 @@
-﻿using FontAwesome.WPF;
+﻿using AVG_TASK_APP.Views;
+using FontAwesome.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,6 +58,7 @@ namespace AVG_TASK_APP.CustomControls
 
         private void btnItemMember_Click(object sender, RoutedEventArgs e)
         {
+            InsertGmail insertGmail = new InsertGmail();
 
         }
 
