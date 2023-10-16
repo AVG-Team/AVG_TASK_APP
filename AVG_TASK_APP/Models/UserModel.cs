@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 namespace AVG_TASK_APP.Models
 {
-    public class UserModel
+
+    public class UserModel 
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -14,6 +17,7 @@ namespace AVG_TASK_APP.Models
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
         public string Level { get; set; }
+        public List<Notify> notifies;
 
     }
 }

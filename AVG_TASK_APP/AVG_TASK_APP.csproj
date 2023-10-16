@@ -20,6 +20,9 @@
     <None Remove="Resources\Icons\user-icon.png" />
     <None Remove="Resources\Images\background_Ws.jpg" />
     <None Remove="Resources\Images\backgroundworkspace.png" />
+    <None Remove="Resources\Images\createwp.png" />
+    <None Remove="Resources\Images\featured.png" />
+    <None Remove="Resources\Images\memberwp.png" />
     <None Remove="Resources\Images\OIP.jpg" />
   </ItemGroup>
 
@@ -27,9 +30,17 @@
     <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
     <PackageReference Include="MySql.Data" Version="8.1.0" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />
     <PackageReference Include="MySqlConnector" Version="2.2.7" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
@@ -45,6 +56,9 @@
     <Resource Include="Resources\Icons\user-icon.png" />
     <Resource Include="Resources\Images\background_Ws.jpg" />
     <Resource Include="Resources\Images\backgroundworkspace.png" />
+    <Resource Include="Resources\Images\createwp.png" />
+    <Resource Include="Resources\Images\featured.png" />
+    <Resource Include="Resources\Images\bg_home_block.png" />
     <Resource Include="Resources\Images\OIP.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
