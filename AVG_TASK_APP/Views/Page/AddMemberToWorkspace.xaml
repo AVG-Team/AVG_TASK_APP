@@ -8,8 +8,7 @@
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
         mc:Ignorable="d"
         Title="Add Member To Workspace" Height="330" Width="660"
-    Background="{StaticResource panelColor}"
-        WindowStyle="None">
+    Background="{StaticResource panelColor}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="330"/>

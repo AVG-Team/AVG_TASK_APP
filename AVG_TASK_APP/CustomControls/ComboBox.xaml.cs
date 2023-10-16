@@ -10,23 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AVG_TASK_APP.Views
+namespace AVG_TASK_APP.CustomControls
 {
     /// <summary>
-    /// Interaction logic for ShareBoard.xaml
+    /// Interaction logic for ComboBox.xaml
     /// </summary>
-    public partial class ShareBoard : Window
+    public partial class ComboBox : UserControl
     {
-        public ShareBoard()
+        public ComboBox()
         {
             InitializeComponent();
-        }
-
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

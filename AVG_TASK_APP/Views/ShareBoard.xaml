@@ -3,73 +3,189 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
-        mc:Ignorable="d"
-        WindowStyle="None"
-        WindowStartupLocation="CenterScreen"
-        Title="InsertGmail" Height="417" Width="800">
-    <Grid Margin="0,0,0,-6" Background="#3E4B51">
-        <StackPanel Orientation="Horizontal"
-      VerticalAlignment="Top">
-            <Viewbox Width="570" Stretch="Fill" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,190,0">
-                <Label Content="Share Board" Height="35" Width="350" FontSize="20" VerticalAlignment="Top" FontStretch="Expanded"
-      FontWeight="Bold" Foreground="White"/>
-            </Viewbox>
-            <Button x:Name="Insert_btnClose"
-         BorderThickness="0"
-         Content="X"
-         Foreground="{StaticResource textButtonColor}"
-         FontSize="12"
-         FontFamily="Montserrat"
-         Cursor="Hand"
-         Click="Insert_btnClose_Click">
-                <Button.Style>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="Background" Value= "DarkGray"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="DarkGray"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
+        mc:Ignorable="d" WindowStyle="None"
+        xmlns:customcontrols="clr-namespace:AVG_TASK_APP.CustomControls"
+        Title="Share Board" Height="500" Width="608">
+    <Grid Background="#3E4B51">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" VerticalAlignment="Top" Margin="0,8,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="35"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Share Board"
+                       FontSize="20" 
+                       VerticalAlignment="Center" 
+                       FontFamily="Montserrat"
+                       FontWeight="Bold" 
+                       Foreground="{StaticResource textColor2}"/>
+                <Button x:Name="btnClose"
+                        Grid.Column="1"
+                    BorderThickness="0"
+                    Content="x"
+                    Foreground="{StaticResource textButtonColor}"
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand" Click="btnClose_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value= "{StaticResource color3}"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="0.8"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
 
-                <Button.Template>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Width="22" Height="22"
-             Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center"
-                HorizontalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="22" Height="22"
+                                CornerRadius="100"
+                                Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Grid>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0,20,0,0">
+            <StackPanel Orientation="Horizontal"  VerticalAlignment="Center">
+                <TextBox x:Name="Insert_txtUsername"
+                   Style="{StaticResource MyWaterMarkStyle}"
+                   BorderThickness="3"
+                   Tag="Example: AVG Company"
+                   Background="Transparent"
+                   FontFamily="Montserrat"
+                   FontSize="13"
+                   FontWeight="Medium"
+                   Foreground="{StaticResource textColor1}"
+                   CaretBrush="{StaticResource color5}"
+                   BorderBrush="{StaticResource color3}"
+                   VerticalContentAlignment="Center"
+                   Margin="20,0,10,0"
+                         Width="400"
+                   Padding="20">
+                </TextBox>
+                <Button x:Name="btnShare"
+                            BorderThickness="0"
+                            Content="Share"
+                            Foreground="{StaticResource textButtonColor}"
+                            FontSize="12"
+                            FontWeight="Medium"
+                            FontFamily="Montserrat"
+                            Cursor="Hand">
 
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="{StaticResource buttonColor}"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource hoverButtonColor}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="150" Height="40"
+                                        CornerRadius="6"
+                                        Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+            <Grid Margin="20,10,0,0" Height="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnCopyLink"
+                            BorderThickness="0"
+                            Foreground="{StaticResource textButtonColor}"
+                            Cursor="Hand">
+                    <Button.Content>
+                        <fa:IconImage Icon="Link" Grid.Column="0" Width="20" Height="20" Foreground="{StaticResource textColor2}"/>
+                    </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="{StaticResource buttonColor}"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource hoverButtonColor}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="6"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <StackPanel Orientation="Vertical" Margin="10,0,0,0" Grid.Column="1">
+                    <TextBlock Text="Anyone with the board share link"
+                               Foreground="{StaticResource textColor2}"
+                               FontFamily="Montserrat" FontSize="15"/>
+                    <TextBlock Margin="0,5,0,0" Text="Copy Link"
+                               Foreground="Blue"
+                               FontFamily="Montserrat" FontSize="15"
+                               FontWeight="Medium"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="20,30,0,0" Height="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="190" />
+                </Grid.ColumnDefinitions>
+                <Border CornerRadius="20" Width="40" Height="40"
+                    Grid.Column="0"
+                    BorderThickness="0">
+                    <Border.Background>
+                        <ImageBrush Stretch="Fill" ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
+                    </Border.Background>
+                </Border>
+                <StackPanel Orientation="Vertical" Margin="10,0,0,0" Grid.Column="1">
+                    <TextBlock Text="Avengers Task ( You )"
+                               Foreground="{StaticResource textColor2}"
+                               FontFamily="Montserrat" FontSize="15"/>
+                    <TextBlock Margin="0,5,0,0" Text="Copy Link"
+                               Foreground="{StaticResource textColor6}"
+                               FontFamily="Montserrat" FontSize="12"
+                               FontWeight="Medium" Opacity="0.8"/>
+                </StackPanel>
+                <ComboBox Grid.Column="2" Margin="0,0,15,0" SelectedIndex="1"
+                          Style="{StaticResource theComboBox}"
+                          ItemContainerStyle="{StaticResource theComboBoxItem}">
+                    <ComboBoxItem>
+                        <TextBlock Text="Admim"/>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock Text="Member"/>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock Text="Leave Board"/>
+                    </ComboBoxItem>
+                </ComboBox>
+            </Grid>
         </StackPanel>
-
-        <TextBox x:Name="Insert_txtUsername"
-       Style="{StaticResource MyWaterMarkStyle}"
-       BorderThickness="1"
-       Tag="Example: AVG Company"
-     Background="Transparent"
-     TextChanged="Insert_txtInput_TextChanged"
-     FontFamily="Montserrat"
-     FontSize="13"
-     FontWeight="Medium"
-     Foreground="{StaticResource textColor1}"
-     CaretBrush="{StaticResource color5}"
-     BorderBrush="{StaticResource color3}"
-     VerticalContentAlignment="Center"
-     Margin="16,55,200,328"
-     Padding="20,0,0,0"
-     >
-        </TextBox>
-
-        <StackPanel Orientation="Horizontal"
-VerticalAlignment="Bottom">
-            <Label Content="Invite someone by Link" Height="30" Width="300" FontSize="17" VerticalAlignment="Top" FontStretch="UltraExpanded" Margin="10,0,170,50"
-     Foreground="White"/>
-            <Button Content="Insert_Button" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="78" Click="Button_Click"/>
-        </StackPanel>
-    </Grid>
+</Grid>
 </Window>
