@@ -16,9 +16,8 @@ namespace AVG_TASK_APP
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            ShareBoard shareBoard = new ShareBoard();
-            shareBoard.Show();
-
+            PageLayout pageLayout = new PageLayout();
+            pageLayout.Show();
         }
     }
 }

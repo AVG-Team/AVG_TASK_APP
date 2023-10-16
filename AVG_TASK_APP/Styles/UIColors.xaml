@@ -37,6 +37,8 @@
     <SolidColorBrush x:Key="panelColor1" Color="LightGray"/>
     <!--Button Colors-->
     <SolidColorBrush x:Key="buttonColor" Color="#8F3FEE"/>
+    <SolidColorBrush x:Key="buttonColor1" Color="#c6c6c6"/>
+
     <SolidColorBrush x:Key="hoverButtonColor" Color="#bb8bf4"/>
     <!--TextBox Colors-->
     <!--Etc-->
