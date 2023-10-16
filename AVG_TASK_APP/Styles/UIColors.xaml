@@ -4,6 +4,7 @@
     <Color x:Key="backcolor">#ffffff</Color>
     <!--Window Border Colors-->
     <Color x:Key="winBorderColor">#DA34AE</Color>
+    <Color x:Key="winBorderColor1">#28AEED</Color>
     <!--Color Palette-->
     <SolidColorBrush x:Key="color1" Color="#DA34AE"/>
     <SolidColorBrush x:Key="color2" Color="#28AEED"/>
@@ -14,6 +15,7 @@
     <SolidColorBrush x:Key="color7" Color="#000000"/>
     <SolidColorBrush x:Key="color8" Color="#222222"/>
     <SolidColorBrush x:Key="color9" Color="#333333"/>
+    <SolidColorBrush x:Key="color10" Color="#8a8a8a"/>
     <SolidColorBrush x:Key="hoverColor1" Color="#C62DAE"/>
     <SolidColorBrush x:Key="hoverColor2" Color="#278BEF"/>
     <SolidColorBrush x:Key="backColor" Color="#ffffff"/>
@@ -32,6 +34,7 @@
     <SolidColorBrush x:Key="panelColor" Color="#200F53"/>
     <SolidColorBrush x:Key="panelOverColor" Color="#281269"/>
     <SolidColorBrush x:Key="panelActiveColor" Color="#2B1372"/>
+    <SolidColorBrush x:Key="panelColor1" Color="LightGray"/>
     <!--Button Colors-->
     <SolidColorBrush x:Key="buttonColor" Color="#8F3FEE"/>
     <SolidColorBrush x:Key="buttonColor1" Color="#c6c6c6"/>

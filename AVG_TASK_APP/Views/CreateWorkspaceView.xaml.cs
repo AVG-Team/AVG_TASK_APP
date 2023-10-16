@@ -20,6 +20,7 @@ namespace AVG_TASK_APP.Views
     /// </summary>
     public partial class CreateWorkspaceView : Window
     {
+
         public CreateWorkspaceView()
         {
             InitializeComponent();
@@ -45,7 +46,7 @@ namespace AVG_TASK_APP.Views
                 MessageBox.Show("Please fill in your workspace name!!!");
                 result = false;
             }
-            if(string.IsNullOrWhiteSpace(txtCode.Text))
+            if (string.IsNullOrWhiteSpace(txtCode.Text))
             {
                 txtCode.Text = RandomCode();
             }
@@ -55,10 +56,14 @@ namespace AVG_TASK_APP.Views
 
         private void btnContinue_Click(object sender, RoutedEventArgs e)
         {
-            checkInput();
+            //checkInput();
             AddMemberToWorkspace addMemberToWorkspace = new AddMemberToWorkspace();
-            this.Close();
-            addMemberToWorkspace.Show();
+            //this.Close();
+            this.Content = addMemberToWorkspace;
+            this.Width = addMemberToWorkspace.Width;
+            this.Height = addMemberToWorkspace.Height;
+
+
         }
     }
 }
