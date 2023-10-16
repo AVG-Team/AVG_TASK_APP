@@ -8,7 +8,8 @@
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
         mc:Ignorable="d"
         Title="Add Member To Workspace" Height="330" Width="660"
-    Background="{StaticResource panelColor}">
+    Background="{StaticResource panelColor}"
+        WindowStyle="None">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="330"/>
@@ -24,7 +25,7 @@
             <StackPanel Grid.Row="0" Margin="10">
                 <TextBlock Grid.Row="0"
                 Text="Invite Your Team" 
-                Foreground="{StaticResource textColor3}"
+                Foreground="{StaticResource textColor2}"
                 FontSize="22"
                 FontWeight="Medium"
                 FontFamily="Montserrat"
@@ -32,7 +33,7 @@
                 Margin="0,20,0,10"/>
                 <TextBlock
                 Text="AVG Task helps your team work more effectively.&#x0A;Invite your new team members to get started"
-                Foreground="{StaticResource textColor3}"
+                Foreground="{StaticResource textColor2}"
                 FontSize="12"
                 FontFamily="Montserrat"
                            Margin="0,0,0,20"/>
