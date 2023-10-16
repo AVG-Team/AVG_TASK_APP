@@ -22,18 +22,21 @@ namespace AVG_TASK_APP.Views
     /// </summary>
     public partial class PageLayout : Window
     {
+        private int _count = 1;
+
         public PageLayout()
         {
             InitializeComponent();
         }
-        public DockPanel dockPanel
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            get { return dockPanel; }
-            set { dockPanel = value; }
+            itemWorkspace itemWorkspace = new itemWorkspace();
+            menuWorkspace.Children.Add(itemWorkspace.userControl);
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
 
         private void pnlControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -59,21 +62,22 @@ namespace AVG_TASK_APP.Views
         private void btnCreateWorkspace_Click(object sender, RoutedEventArgs e)
         {
 
+            CreateWorkspaceView createWorkspaceView = new CreateWorkspaceView();
+            createWorkspaceView.ShowDialog();
+            if (createWorkspaceView.Visibility == Visibility.Visible)
+            {
+
+                itemWorkspace itemWorkspace = new itemWorkspace();
+                menuWorkspace.Children.Add(itemWorkspace.userControl);
+
+            }
+
+
         }
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {
-            StackPanel stackPanel = itemMenuWorkspace;
-            if(stackPanel.Visibility == Visibility.Collapsed)
-            {
-                stackPanel.Visibility = Visibility.Visible;
-                iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretDown;
-            }
-            else
-            {
-                stackPanel.Visibility = Visibility.Collapsed;
-                iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretUp;
-            }
+
         }
 
         private void btnItemBoard_Click(object sender, RoutedEventArgs e)
@@ -93,12 +97,24 @@ namespace AVG_TASK_APP.Views
 
         private void RadioButton_Click(object sender, RoutedEventArgs e)
         {
-          
+
         }
 
         private void Border_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
+
+
+        private void btnContinue_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnGenerateCode_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

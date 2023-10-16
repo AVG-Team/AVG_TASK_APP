@@ -16,10 +16,8 @@ namespace AVG_TASK_APP
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            CreateBoard createBoard = new CreateBoard();
-            createBoard.Show();
-
-            
+            PageLayout pageLayout = new PageLayout();
+            pageLayout.Show();
 
         }
     }
