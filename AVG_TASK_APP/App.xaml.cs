@@ -18,7 +18,6 @@ namespace AVG_TASK_APP
         {
             PageLayout pageLayout = new PageLayout();
             pageLayout.Show();
-
         }
     }
 }
