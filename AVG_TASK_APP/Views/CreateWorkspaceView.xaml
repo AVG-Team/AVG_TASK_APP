@@ -183,6 +183,7 @@ access the table in one location."
         <Grid Grid.Column="1">
             <Image Source="/Resources/Images/backgroundworkspace.png" 
                    Width="1000"/>
+            <Image Width="400" Source="/Resources/Images/createwp.png"/>
         </Grid>
     </Grid>
 </Window>
