@@ -16,8 +16,8 @@ namespace AVG_TASK_APP
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            Views.MessageBoxView messageBox = new Views.MessageBoxView();
-            messageBox.ProcessFault("hehe",2);
+            CreateBoard createBoard = new CreateBoard();
+            createBoard.Show();
 
             
 
