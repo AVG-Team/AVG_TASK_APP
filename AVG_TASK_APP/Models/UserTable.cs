@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace AVG_TASK_APP.Models
 {
-    public class Notify
+    public class UserTable
     {
-        public int Id { get; set; }       
-        public string Content { get; set; }
-        public int Pin { get; set; }
+        public int Id { get; set; }
+        public int Id_Table { get; set; }
         public int Id_User { get; set; }
+        public string Role { get; set; }
         public UserModel User { get; set; }
-        public DateTime Created_At { get; set; } = DateTime.Now;
+        public Table Table { get; set; }
     }
 }

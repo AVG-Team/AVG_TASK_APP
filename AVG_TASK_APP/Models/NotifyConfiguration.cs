@@ -18,7 +18,8 @@ namespace AVG_TASK_APP.Migrations.Config
             builder.HasKey(x => x.Id);          
             builder.Property(x => x.Id).UseMySqlIdentityColumn();
             builder.Property(x => x.Content).IsRequired();
-            builder.Property(x => x.Pin).HasDefaultValue(false); 
+            builder.Property(x => x.Pin).HasDefaultValue(false);
+            builder.Property(x => x.Created_At);
             builder.HasOne(x => x.User).WithMany(x => x.notifies).HasForeignKey(x => x.Id_User);
         }
     }
