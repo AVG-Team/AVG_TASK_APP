@@ -1,0 +1,75 @@
+﻿<Window x:Class="AVG_TASK_APP.Views.ShareBoard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AVG_TASK_APP.Views"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Title="InsertGmail" Height="417" Width="800">
+    <Grid Margin="0,0,0,-6" Background="#3E4B51">
+        <StackPanel Orientation="Horizontal"
+      VerticalAlignment="Top">
+            <Viewbox Width="570" Stretch="Fill" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,190,0">
+                <Label Content="Share Board" Height="35" Width="350" FontSize="20" VerticalAlignment="Top" FontStretch="Expanded"
+      FontWeight="Bold" Foreground="White"/>
+            </Viewbox>
+            <Button x:Name="Insert_btnClose"
+         BorderThickness="0"
+         Content="X"
+         Foreground="{StaticResource textButtonColor}"
+         FontSize="12"
+         FontFamily="Montserrat"
+         Cursor="Hand"
+         Click="Insert_btnClose_Click">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value= "DarkGray"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="DarkGray"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Width="22" Height="22"
+             Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </StackPanel>
+
+        <TextBox x:Name="Insert_txtUsername"
+       Style="{StaticResource MyWaterMarkStyle}"
+       BorderThickness="1"
+       Tag="Example: AVG Company"
+     Background="Transparent"
+     TextChanged="Insert_txtInput_TextChanged"
+     FontFamily="Montserrat"
+     FontSize="13"
+     FontWeight="Medium"
+     Foreground="{StaticResource textColor1}"
+     CaretBrush="{StaticResource color5}"
+     BorderBrush="{StaticResource color3}"
+     VerticalContentAlignment="Center"
+     Margin="16,55,200,328"
+     Padding="20,0,0,0"
+     >
+        </TextBox>
+
+        <StackPanel Orientation="Horizontal"
+VerticalAlignment="Bottom">
+            <Label Content="Invite someone by Link" Height="30" Width="300" FontSize="17" VerticalAlignment="Top" FontStretch="UltraExpanded" Margin="10,0,170,50"
+     Foreground="White"/>
+            <Button Content="Insert_Button" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="78" Click="Button_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
