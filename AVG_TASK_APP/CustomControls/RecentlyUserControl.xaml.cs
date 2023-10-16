@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -17,24 +16,21 @@ using System.Windows.Shapes;
 namespace AVG_TASK_APP.CustomControls
 {
     /// <summary>
-    /// Interaction logic for BoardView.xaml
+    /// Interaction logic for RecentlyUserControl.xaml
     /// </summary>
-    public partial class BoardView : System.Windows.Controls.UserControl
+    public partial class RecentlyUserControl : UserControl
     {
-        public BoardView()
+        public RecentlyUserControl()
         {
             InitializeComponent();
         }
 
-        private void BoardView_Loaded(object sender, RoutedEventArgs e)
+        private void Recently_Loaded(object sender, RoutedEventArgs e)
         {
-            btnBoard btnBoard = new btnBoard();
-            workspaceStackPanel.Children.Add(btnBoard);
-
-
-
+            recentLyPanel.Children.Add(new btnBoard());
+            
         }
 
-
+        
     }
 }

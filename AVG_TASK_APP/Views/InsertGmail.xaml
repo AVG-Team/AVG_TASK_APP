@@ -1,64 +1,39 @@
-﻿<Window x:Class="AVG_TASK_APP.Views.InsertGmail"
+﻿<Page x:Class="AVG_TASK_APP.Views.InsertGmail"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
         mc:Ignorable="d"
-        WindowStyle="None"
-        WindowStartupLocation="CenterScreen"
-        Title="InsertGmail" Height="217" Width="608">
+        Title="InsertGmail" Height="212" Width="608">
     <Grid Margin="0,0,0,-6" Background="#3E4B51">
         <StackPanel Orientation="Horizontal"
-      VerticalAlignment="Top">
+                    VerticalAlignment="Top">
             <Viewbox Width="350" Stretch="Fill" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,190,0">
-                <Label Content="Invite Someone into Workspace" Height="35" Width="350" FontSize="20" VerticalAlignment="Center" FontStretch="Expanded"
-      FontWeight="Bold" Foreground="White"/>
+                <Label Content="Invite Someone into Workspace" 
+                       Height="35" 
+                       Width="350" 
+                       FontSize="20" 
+                       VerticalAlignment="Center" 
+                       FontFamily="Montserrat"
+                       FontWeight="Bold" 
+                       Foreground="White"/>
             </Viewbox>
-            <Button x:Name="Insert_btnMinimize"
-          BorderThickness="0"
-          Content="-"
-          Foreground="{StaticResource textButtonColor}"
-          FontSize="16"
-          FontFamily="Montserrat"
-          Cursor="Hand"
-          Click="Insert_btnMinimize_Click">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="DarkGray"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="DarkGray"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Width="22" Height="22"
-                     Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center"
-                HorizontalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
             <Button x:Name="Insert_btnClose"
-         BorderThickness="0"
-         Content="X"
-         Margin="0,0,10,0"
-         Foreground="{StaticResource textButtonColor}"
-         FontSize="12"
-         FontFamily="Montserrat"
-         Cursor="Hand"
-         Click="Insert_btnClose_Click">
+                    BorderThickness="0"
+                    Content="x"
+                    Margin="30,0,0,0"
+                    Foreground="{StaticResource textButtonColor}"
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    Click="Insert_btnClose_Click">
                 <Button.Style>
                     <Style TargetType="Button">
-                        <Setter Property="Background" Value= "DarkGray"/>
+                        <Setter Property="Background" Value= "{StaticResource color3}"/>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="DarkGray"/>
+                                <Setter Property="Opacity" Value="0.8"/>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -67,9 +42,10 @@
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Width="22" Height="22"
-             Background="{TemplateBinding Background}">
+                                CornerRadius="100"
+                                Background="{TemplateBinding Background}">
                             <ContentPresenter VerticalAlignment="Center"
-                HorizontalAlignment="Center"/>
+                                              HorizontalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
@@ -78,28 +54,53 @@
         </StackPanel>
 
         <TextBox x:Name="Insert_txtUsername"
-       Style="{StaticResource MyWaterMarkStyle}"
-       BorderThickness="1"
-       Tag="Example: AVG Company"
-     Background="Transparent"
-     TextChanged="Insert_txtInput_TextChanged"
-     FontFamily="Montserrat"
-     FontSize="13"
-     FontWeight="Medium"
-     Foreground="{StaticResource textColor1}"
-     CaretBrush="{StaticResource color5}"
-     BorderBrush="{StaticResource color3}"
-     VerticalContentAlignment="Center"
-     Margin="16,55,54,95"
-     Padding="20,0,0,0"
-     >
+                   Style="{StaticResource MyWaterMarkStyle}"
+                   BorderThickness="1"
+                   Tag="Example: AVG Company"
+                   Background="Transparent"
+                   TextChanged="Insert_txtInput_TextChanged"
+                   FontFamily="Montserrat"
+                   FontSize="13"
+                   FontWeight="Medium"
+                   Foreground="{StaticResource textColor1}"
+                   CaretBrush="{StaticResource color5}"
+                   BorderBrush="{StaticResource color3}"
+                   VerticalContentAlignment="Center"
+                   Margin="16,55,54,95"
+                   Padding="20,0,0,0">
         </TextBox>
 
-        <StackPanel Orientation="Horizontal"
-VerticalAlignment="Bottom">
-            <Label Content="Invite someone by Link" Height="30" Width="300" FontSize="17" VerticalAlignment="Top" FontStretch="UltraExpanded" Margin="10,0,170,50"
-     Foreground="White"/>
-            <Button Content="Insert_Button" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="78" Click="Button_Click"/>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,143,0,0">
+            <Label Content="Invite someone by Link" 
+                   Height="30" Width="300" 
+                   FontSize="14" 
+                   VerticalAlignment="Top" 
+                   FontFamily="Montserrat" 
+                   Margin="10,0,150,50" 
+                   Foreground="White"/>
+            <Button Content="Create Link" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="78" Click="Button_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value= "{StaticResource color3}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.8"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="70" Height="25"
+                                CornerRadius="5"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </StackPanel>
     </Grid>
-</Window>
+</Page>
