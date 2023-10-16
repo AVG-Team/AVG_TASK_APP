@@ -28,6 +28,7 @@ namespace AVG_TASK_APP.Migration
             modelBuilder.ApplyConfiguration(new UserTaskConfiguration());
             modelBuilder.ApplyConfiguration(new CardConfiguration());
             modelBuilder.ApplyConfiguration(new MiniTaskConfiguration());
+            modelBuilder.ApplyConfiguration(new CommentConfiguration());
         }
 
         public DbSet <UserModel>Users { get; set; }
@@ -36,10 +37,8 @@ namespace AVG_TASK_APP.Migration
         public DbSet<UserWorkspace> UserWorkspaces { get; set; }
         public DbSet<Table> Tables { get; set; }
         public DbSet<UserTable> UserTables { get; set; }
-        public DbSet<System.Threading.Tasks.Task> Tasks { get; set; }
-        public DbSet<UserTask> UserTasks { get; set; }
-        public DbSet<MiniTask> MiniTasks { get; set; }
         public DbSet<Card> Cards { get; set; }
-
+        public DbSet<MiniTask> MiniTasks { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

@@ -12,17 +12,17 @@ namespace AVG_TASK_APP.Models
     {
         public void Configure(EntityTypeBuilder<Task> builder)
         {
-            builder.ToTable("Tasks");
-            builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseMySqlIdentityColumn();
-            builder.Property(x => x.Name).HasMaxLength(200).IsRequired();
-            builder.Property(x => x.Description).HasMaxLength(200).IsRequired();
-            builder.Property(x => x.Activity).HasDefaultValue(false);
-            builder.Property(x => x.Label).IsRequired();
-            builder.Property(x => x.Estimate).IsRequired();
-            builder.Property(x => x.Deadline).IsRequired();
-            builder.Property(x => x.Deleted_At).HasDefaultValue(null);
-            builder.Property(x => x.Created_At).IsRequired();
+            builder.ToTable("Task");
+            builder.HasKey(t => t.Id);
+            builder.Property(t => t.Id).UseMySqlIdentityColumn();
+            builder.Property(t => t.Name).HasMaxLength(200).IsRequired();
+            builder.Property(t => t.Description).HasMaxLength(200).IsRequired();
+            builder.Property(t => t.Activity).HasDefaultValue(false);
+            builder.Property(t => t.Estimate).HasMaxLength(200).IsRequired();
+            builder.Property(t => t.Deadline).IsRequired();
+            builder.Property(t => t.Deleted_At).HasDefaultValue(null);
+            builder.Property(t=>t.Created_At);
+
             builder.HasOne(x => x.Table).WithMany(x => x.tasks).HasForeignKey(x => x.Id_Table);
             builder.HasOne(x => x.Card).WithMany(x => x.tasks).HasForeignKey(x => x.Id_Card);
         }

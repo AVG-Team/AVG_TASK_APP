@@ -13,5 +13,6 @@ namespace AVG_TASK_APP.Models
         public int Pin { get; set; }
         public int Id_User { get; set; }
         public UserModel User { get; set; }
+        public DateTime Created_At { get; set; } = DateTime.Now;
     }
 }

@@ -21,5 +21,7 @@ namespace AVG_TASK_APP.Models
         public List<UserWorkspace> userWorkspaces;
         public List<UserTable> userTables;
         public List<UserTask> userTasks;
+        public List<Comment> comments;
+   
     }
 }
