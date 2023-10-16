@@ -18,6 +18,8 @@ namespace AVG_TASK_APP.Models
         public string PhoneNumber { get; set; }
         public string Level { get; set; }
         public List<Notify> notifies;
-
+        public List<UserWorkspace> userWorkspaces;
+        public List<UserTable> userTables;
+        public List<UserTask> userTasks;
     }
 }
