@@ -23,5 +23,10 @@ namespace AVG_TASK_APP.Views
         {
             InitializeComponent();
         }
+
+        private void btnChangeAvatar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
