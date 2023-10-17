@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AVG_TASK_APP.Models
+namespace AVG_TASK_APP.Models.Configuaration
 {
     public class TableConfiguration : IEntityTypeConfiguration<Table>
     {
@@ -14,7 +14,7 @@ namespace AVG_TASK_APP.Models
         {
             builder.ToTable("Tables");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseMySqlIdentityColumn();
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Name).HasMaxLength(200).IsRequired();
             builder.Property(x => x.Pin).HasDefaultValue(false);
             builder.Property(x => x.Visible).HasDefaultValue(false);

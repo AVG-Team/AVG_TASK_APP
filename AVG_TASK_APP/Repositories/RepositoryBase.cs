@@ -1,29 +1,55 @@
-﻿using System.Data.Common;
-using System.Data.SqlClient;
+﻿using AVG_TASK_APP.Migration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Data.Common;
+using System.IO;
+using System.Windows;
+using MySql.Data.MySqlClient;
 
 namespace AVG_TASK_APP.Repositories
 {
     public class RepositoryBase
     {
-        private readonly string _connectionString;
+        public string ConnectionString
+        {
+            get
+            {
+                string appRootDirectory = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\"));
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                    .SetBasePath(appRootDirectory)
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+
+                var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+                if (connectionString == null)
+                {
+                    return "";
+                }
+
+                return connectionString;
+            }
+        }
+
         public RepositoryBase()
         {
-            _connectionString = "Server=103.200.23.139;Database=ntddevte_avg_task;Uid=ntddevte_huy;Pwd=AVGTASK2023;";
         }
-        protected SqlConnection GetConnection()
+
+        protected MySqlConnection GetConnection()
         {
-            return new SqlConnection(_connectionString);
+            return new MySqlConnection(ConnectionString);
         }
         public bool IsServerConnected()
         {
-            using (var l_oConnection = new SqlConnection(_connectionString))
+            using (var l_oConnection = new MySqlConnection(ConnectionString))
             {
                 try
                 {
                     l_oConnection.Open();
                     return true;
                 }
-                catch (SqlException)
+                catch (MySqlException)
                 {
                     return false;
                 }

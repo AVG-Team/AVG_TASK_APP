@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AVG_TASK_APP.Models
+namespace AVG_TASK_APP.Models.Configuaration
 {
     public class UserTaskConfiguration : IEntityTypeConfiguration<UserTask>
     {
@@ -14,7 +14,7 @@ namespace AVG_TASK_APP.Models
         {
             builder.ToTable("User Tasks");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseMySqlIdentityColumn();
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
             builder.HasOne(x => x.User).WithMany(x => x.userTasks).HasForeignKey(x => x.Id_User);
             builder.HasOne(x => x.Task).WithMany(x => x.userTasks).HasForeignKey(x => x.Id_Task);
