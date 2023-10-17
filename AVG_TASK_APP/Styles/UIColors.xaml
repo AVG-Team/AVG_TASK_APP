@@ -27,6 +27,7 @@
     <SolidColorBrush x:Key="textColor4" Color="#222222"/>
     <SolidColorBrush x:Key="textColor5" Color="#333333"/>
     <SolidColorBrush x:Key="textColor6" Color="LightGray"/>
+    
     <SolidColorBrush x:Key="titleColor" Color="#8F3FEE"/>
     <SolidColorBrush x:Key="subTitleColor" Color="#bb8bf4"/>
     <SolidColorBrush x:Key="textButtonColor" Color="#ffffff"/>
