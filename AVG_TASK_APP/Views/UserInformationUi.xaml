@@ -339,27 +339,27 @@
                                     Margin="40,30,0,0"
 >
 
-                                    <Button.Style>
-                                        <Style TargetType="Button">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
                                                 <Setter Property="Background" Value="{StaticResource buttonColor}"/>
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="{StaticResource hoverButtonColor}"/>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Button.Style>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="{StaticResource hoverButtonColor}"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
 
-                                    <Button.Template>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Width="150" Height="40"
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Width="150" Height="40"
                                                 CornerRadius="20"
                                                 Background="{TemplateBinding Background}">
-                                                <ContentPresenter VerticalAlignment="Center"
+                                                    <ContentPresenter VerticalAlignment="Center"
                                                               HorizontalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Button.Template>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
                                     </Button>
                                 </StackPanel>
                             </StackPanel>

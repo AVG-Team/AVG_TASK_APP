@@ -26,7 +26,6 @@
                          Tag="{StaticResource color6}">
                     <StackPanel Orientation="Horizontal">
                         <fa:IconImage Icon="CircleInfo" Style="{StaticResource menuButtonIcon}"/>
-
                         <TextBlock FontSize="20"   Text = "Information about"  Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>
@@ -167,8 +166,9 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-
             </StackPanel>
         </Grid>
+        
+        
     </Grid>
 </UserControl>
