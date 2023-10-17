@@ -20,6 +20,9 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class ManageTaskUserControl : UserControl
     {
+        private bool isDragging = false;
+        private object draggedItem;
+
         public ManageTaskUserControl()
         {
             InitializeComponent();
@@ -29,5 +32,7 @@ namespace AVG_TASK_APP.CustomControls
         {
 
         }
+
+     
     }
 }

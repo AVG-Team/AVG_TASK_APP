@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:customcontrol="clr-namespace:AVG_TASK_APP.CustomControls"
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
         mc:Ignorable="d"
         Width="{x:Static SystemParameters.MaximizedPrimaryScreenWidth}" 
@@ -510,7 +511,7 @@
             </Border>
             <!-- Menu Button End-->
             <Grid Grid.Column="1">
-
+                <customcontrol:ManageTaskUserControl/>
             </Grid>
         </Grid>
     </Grid>

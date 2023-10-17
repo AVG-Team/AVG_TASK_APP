@@ -3,46 +3,97 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:AVG_TASK_APP.CustomControls"
+             xmlns:customcontrol="clr-namespace:AVG_TASK_APP.CustomControls"
              mc:Ignorable="d" 
              d:DesignHeight="948" d:DesignWidth="1616">
-    <Grid>
+    <Grid Margin="0,20,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="120"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="500"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Border CornerRadius="20,0,0,0"
+                Grid.Row="0"
+                Background="{StaticResource color5}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="500"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- Header code here-->
-        </Grid>
-
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="3">
-            <Border CornerRadius="10" Width="200" Height="400" BorderThickness="1" BorderBrush="AntiqueWhite" Background="{StaticResource color2}">
-                <StackPanel Orientation="Vertical"
-                            Width="200"
-                            Height="400"
-                            Background="Transparent">
-                    <TextBlock Text="Name Card" 
-                               Foreground="White" 
-                               FontSize="14" 
-                               FontWeight="Bold" 
-                               HorizontalAlignment="Left" 
-                               Margin="10,5,0,10"/>
-                    <Border CornerRadius="10" Width="190" Height="50" BorderBrush="{StaticResource color1}" Background="{StaticResource color1}"
-                            Margin="5">
-                        <StackPanel MouseDown="StackPanel_MouseDown">
-
-                        </StackPanel>
-                    </Border>
-
+                <StackPanel Orientation="Horizontal"
+                            Margin="25,0,0,0"
+                            Grid.Row="0"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="Name Board"
+                               FontSize="25"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Foreground="{StaticResource textColor3}"
+                               VerticalAlignment="Center"
+                               Margin="0,0,15,0"/>
+                    <Button Background="Transparent"
+                            Width="40" Height="40"
+                            BorderThickness="0">
+                        <fa:IconImage Icon="Star" Height="25" Width="25"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Opacity" Value="0.8"/>
+                                        <Setter Property="Foreground" Value="{StaticResource color11}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                 </StackPanel>
-            </Border>
-        </StackPanel>
 
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            FlowDirection="RightToLeft"
+                            Margin="0,0,15,0"
+                            VerticalAlignment="Center">
+                    <Button Background="Transparent"
+                            Width="30" Height="30"
+                            BorderThickness="0">
+                        <fa:IconImage Icon="Bars" Height="25" Width="25"/>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Opacity" Value="0.8"/>
+                                        <Setter Property="Foreground" Value="{StaticResource color11}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <Button Style="{StaticResource menuButtonHeader}"
+                            Width="100" Height="40"
+                            BorderThickness="0"
+                            Margin="10,0,0,0">
+                        <TextBlock Text="Share"
+                                   FontSize="14"
+                                   FontWeight="Medium"
+                                   FontFamily="Montserrat"
+                                   Foreground="{StaticResource textColor2}"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+
+        <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    Margin="25 40 25 0">
+            <customcontrol:CardUserControl/>
+            <customcontrol:CardUserControl/>
+
+        </StackPanel>
     </Grid>
 </UserControl>
