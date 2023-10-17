@@ -202,6 +202,7 @@ namespace AVG_TASK_APP.ViewModels
             else
             {
                 ErrorMessage = "*Email is exists";
+                MessageBox.Show(ErrorMessage);
             }
         }
 
