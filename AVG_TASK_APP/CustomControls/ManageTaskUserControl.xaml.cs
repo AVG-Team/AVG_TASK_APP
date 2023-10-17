@@ -1,4 +1,5 @@
-﻿using System;
+﻿using C1.WPF.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,12 +21,33 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class ManageTaskUserControl : UserControl
     {
-        private bool isDragging = false;
-        private object draggedItem;
+
 
         public ManageTaskUserControl()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+
+                for (int i = 1; i <= 5; i++)
+                {
+                    addCard(i);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
+
+
+        private void addCard(int pos)
+        {
+            CardUserControl cardUserControl = new CardUserControl();
+
+            areaCard.Children.Add(cardUserControl);
         }
 
         private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -33,6 +55,6 @@ namespace AVG_TASK_APP.CustomControls
 
         }
 
-     
+
     }
 }

@@ -87,12 +87,11 @@
         </Border>
 
 
-        <StackPanel Grid.Row="1" 
+        <StackPanel x:Name="areaCard"
+                    Grid.Row="1" 
                     Orientation="Horizontal"
                     VerticalAlignment="Top"
                     Margin="25 40 25 0">
-            <customcontrol:CardUserControl/>
-            <customcontrol:CardUserControl/>
 
         </StackPanel>
     </Grid>

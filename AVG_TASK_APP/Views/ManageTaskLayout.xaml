@@ -510,7 +510,7 @@
                 </Grid>
             </Border>
             <!-- Menu Button End-->
-            <Grid Grid.Column="1">
+            <Grid x:Name="areaManageTask" Grid.Column="1">
                 <customcontrol:ManageTaskUserControl/>
             </Grid>
         </Grid>
