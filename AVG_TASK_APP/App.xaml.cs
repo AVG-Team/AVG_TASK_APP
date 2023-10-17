@@ -16,8 +16,8 @@ namespace AVG_TASK_APP
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            LoginView loginView = new LoginView();
-            loginView.Show();
+           PageLayout pageLayout = new PageLayout();
+            pageLayout.Show();
         }
     }
 }
