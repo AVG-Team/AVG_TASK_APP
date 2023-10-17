@@ -147,6 +147,18 @@ namespace AVG_TASK_APP.ViewModels
             }
         }
 
+        private bool CheckRepeatPassword(SecureString password, SecureString RepeatPassword)
+        {
+            IntPtr unmanagedString = IntPtr.Zero;
+            unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(password);
+            string passwordTmp = Marshal.PtrToStringUni(unmanagedString);
+
+            IntPtr unmanagedStringRepeat = IntPtr.Zero;
+            unmanagedStringRepeat = Marshal.SecureStringToGlobalAllocUnicode(RepeatPassword);
+            string repeatPasswordTmp = Marshal.PtrToStringUni(unmanagedStringRepeat);
+            return passwordTmp == repeatPasswordTmp ? true : false;
+        }
+
         private bool CanExcuteRegisterCommand(object obj)
         {
             bool validData = false;
@@ -154,7 +166,8 @@ namespace AVG_TASK_APP.ViewModels
                 string.IsNullOrWhiteSpace(FullName) || FullName.Length < 3 ||
                 string.IsNullOrWhiteSpace(Phone) || Phone.Length < 9 ||
                 Password == null || Password.Length < 3 ||
-                RepeatPassword == null || RepeatPassword.Length < 3 || !IsCheckedPrivacy)
+                RepeatPassword == null || RepeatPassword.Length < 3 || ! CheckRepeatPassword(Password, RepeatPassword)
+                || !IsCheckedPrivacy)
             {
                 validData = false;
             }
@@ -169,9 +182,9 @@ namespace AVG_TASK_APP.ViewModels
             if (user == null)
             {
 
-                byte[] salt = GenerateSalt();
+                byte[] salt = userRepository.GenerateSalt();
 
-                string hashedPassword = HashPassword(Password, salt);
+                string hashedPassword = userRepository.HashPassword(Password, salt);
 
                 UserModel newUser = new UserModel
                 {
@@ -190,30 +203,6 @@ namespace AVG_TASK_APP.ViewModels
             {
                 ErrorMessage = "*Email is exists";
             }
-        }
-
-        public string HashPassword(SecureString securePassword, byte[] salt)
-        {
-            IntPtr unmanagedString = IntPtr.Zero;
-            unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(securePassword);
-            string password = Marshal.PtrToStringUni(unmanagedString);
-
-            using (var sha256 = new SHA256Managed())
-            {
-                var saltedPassword = Encoding.UTF8.GetBytes(password).Concat(salt).ToArray();
-                var hash = sha256.ComputeHash(saltedPassword);
-                return Convert.ToBase64String(hash);
-            }
-        }
-
-        public byte[] GenerateSalt()
-        {
-            byte[] salt = new byte[16];
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                rng.GetBytes(salt);
-            }
-            return salt;
         }
 
         public bool CanExecute(object? parameter)

@@ -8,6 +8,9 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
+using System.Security;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -96,6 +99,30 @@ namespace AVG_TASK_APP.Repositories
             {
                 MessageBox.Show("Error!!");
             }
+        }
+
+        public string HashPassword(SecureString securePassword, byte[] salt)
+        {
+            IntPtr unmanagedString = IntPtr.Zero;
+            unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(securePassword);
+            string password = Marshal.PtrToStringUni(unmanagedString);
+
+            using (var sha256 = new SHA256Managed())
+            {
+                var saltedPassword = Encoding.UTF8.GetBytes(password).Concat(salt).ToArray();
+                var hash = sha256.ComputeHash(saltedPassword);
+                return Convert.ToBase64String(hash);
+            }
+        }
+
+        public byte[] GenerateSalt()
+        {
+            byte[] salt = new byte[16];
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(salt);
+            }
+            return salt;
         }
     }
 }
