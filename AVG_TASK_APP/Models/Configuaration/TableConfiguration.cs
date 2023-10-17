@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AVG_TASK_APP.Models
+namespace AVG_TASK_APP.Models.Configuaration
 {
     public class TableConfiguration : IEntityTypeConfiguration<Table>
     {

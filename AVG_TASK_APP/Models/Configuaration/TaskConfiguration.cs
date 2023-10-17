@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AVG_TASK_APP.Models
+namespace AVG_TASK_APP.Models.Configuaration
 {
     public class TaskConfiguration : IEntityTypeConfiguration<Task>
     {
@@ -21,7 +21,7 @@ namespace AVG_TASK_APP.Models
             builder.Property(t => t.Estimate).HasMaxLength(200).IsRequired();
             builder.Property(t => t.Deadline).IsRequired();
             builder.Property(t => t.Deleted_At).HasDefaultValue(null);
-            builder.Property(t=>t.Created_At);
+            builder.Property(t => t.Created_At);
 
             builder.HasOne(x => x.Table).WithMany(x => x.tasks).HasForeignKey(x => x.Id_Table);
             builder.HasOne(x => x.Card).WithMany(x => x.tasks).HasForeignKey(x => x.Id_Card);

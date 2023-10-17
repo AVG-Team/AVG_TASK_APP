@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AVG_TASK_APP.Migrations.Config;
+using AVG_TASK_APP.Models.Configuaration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic.ApplicationServices;
 using AVG_TASK_APP.Models;

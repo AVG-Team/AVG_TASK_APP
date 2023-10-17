@@ -20,7 +20,6 @@ namespace AVG_TASK_APP.Repositories
             throw new NotImplementedException();
         }
 
-
         public bool AuthenticateUser(NetworkCredential credential)
         {
             bool validUser;

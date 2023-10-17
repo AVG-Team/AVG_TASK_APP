@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using AVG_TASK_APP.Models;
 
-namespace AVG_TASK_APP.Migrations.Config
+namespace AVG_TASK_APP.Models.Configuaration
 {
     public class UserConfiguration : IEntityTypeConfiguration<UserModel>
     {
