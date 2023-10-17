@@ -16,7 +16,7 @@ namespace AVG_TASK_APP
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            ContactTaskUI pageLayout = new ContactTaskUI();
+           PageLayout pageLayout = new PageLayout();
             pageLayout.Show();
         }
     }

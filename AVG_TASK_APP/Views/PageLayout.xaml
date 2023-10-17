@@ -16,6 +16,7 @@
         Background="{StaticResource backColor}"
         AllowsTransparency="True"
         MouseDown="Window_MouseDown"
+        PreviewMouseDown="Window_PreviewMouseDown"
         Loaded="Window_Loaded">
     <DockPanel>
         <Border >
@@ -130,7 +131,10 @@
                                     Width="250"
                                     VerticalContentAlignment="Center"
                                     Margin="0,20,30,0"
-                                    Padding="20,0,0,0">
+                                    Padding="20,0,0,0"
+                                     MouseDown="txtUsername_MouseDown"
+                                     GotFocus="txtUsername_GotFocus"
+                                     LostFocus="txtUsername_LostFocus">
                                 <TextBox.Background>
                                     <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Icons/icons8-search-16.png"
                                                 Stretch="None"

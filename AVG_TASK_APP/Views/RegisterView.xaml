@@ -15,8 +15,15 @@
         Background="Transparent"
         MouseDown="Window_MouseDown">
     <Window.DataContext>
-        <viewmodels:LoginViewModel/>
+        <viewmodels:RegisterViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </Window.Resources>
+    <Window.Visibility>
+        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+    </Window.Visibility>
+    
     <Border CornerRadius="30">
         <Border CornerRadius="30"
             BorderThickness="2"
@@ -110,10 +117,10 @@
                     </Button>
                 </Grid>
 
-                <StackPanel Width="220"
+                <StackPanel
+                            HorizontalAlignment="Center"
                             Grid.Row="1"
-                            Orientation="Vertical"
-                            Margin="0,35,0,0">
+                            Margin="0,25,0,0">
 
                     <TextBlock Text="AVG TASK APPLICATION"
                                Foreground="{StaticResource titleColor}"
@@ -157,7 +164,7 @@
                         </TextBox.Background>
                     </TextBox>
 
-                    <TextBlock Text="Username"
+                    <TextBlock Text="Username / Email"
                                Foreground="{StaticResource textColor1}"
                                FontSize="12"
                                FontWeight="Medium"
@@ -232,22 +239,25 @@
                                 Margin="0,20,0,0"/>
 
                     <customcontrols:BindablePasswordBox
-                        Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Password="{Binding RepeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Height="22"
                         Margin="0,5,0,0">
                     </customcontrols:BindablePasswordBox>
 
-                    <CheckBox Margin="0,20,0,0"
+                    <Border CornerRadius="20">
+                        <CheckBox Margin="0,20,0,0"
                               Height="20"
                               HorizontalAlignment="Left"
+                              IsChecked="{Binding IsCheckedPrivacy, UpdateSourceTrigger=PropertyChanged}"
                               FontSize="10">
-                        <TextBlock>
-                            <Run Foreground="{StaticResource textColor1}">By signing I agree with</Run>
-                            <Run Foreground="{StaticResource buttonColor}">terms and conditions</Run>
-                        </TextBlock>
-                    </CheckBox>
-                    
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="By signing I agree with " Foreground="{StaticResource textColor1}"/>
+                                <TextBlock Text="terms and conditions" Foreground="{StaticResource buttonColor}"/>
+                            </StackPanel>
+                        </CheckBox>
+                    </Border>
                     <Button x:Name="btnSignUp"
+                            Command="{Binding RegisterCommand}"
                             BorderThickness="0"
                             Content="Register"
                             FontSize="12"

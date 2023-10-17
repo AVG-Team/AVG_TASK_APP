@@ -10,23 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AVG_TASK_APP.Views
+namespace AVG_TASK_APP.CustomControls
 {
     /// <summary>
-    /// Interaction logic for UserInformationUi.xaml
+    /// Interaction logic for MenuBoard_UserControl.xaml
     /// </summary>
-    public partial class UserInformationUi : Window
+    public partial class MenuBoard_UserControl : UserControl
     {
-        public UserInformationUi()
+        public MenuBoard_UserControl()
         {
             InitializeComponent();
         }
 
-        private void btnChangeAvatar_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-
+            Application.Current.Shutdown();
         }
     }
 }
