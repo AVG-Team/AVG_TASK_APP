@@ -58,7 +58,7 @@
                                             Cursor="Hand"
                                             Grid.Column="2"
                                             Margin="0,30,0,0"
-                                            Click="btnLogin_Click">
+                                            Click="btnChangeAvatar_Click">
 
                                         <Button.Style>
                                             <Style TargetType="Button">
