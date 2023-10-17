@@ -14,7 +14,7 @@ namespace AVG_TASK_APP.Models.Configuaration
         {
             builder.ToTable("Mini Tasks");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseMySqlIdentityColumn();
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Name).HasMaxLength(200).IsRequired();
             builder.Property(x => x.Status).HasDefaultValue(false);
             builder.HasOne(x => x.Task).WithMany(x => x.miniTasks).HasForeignKey(x => x.Id_Task);

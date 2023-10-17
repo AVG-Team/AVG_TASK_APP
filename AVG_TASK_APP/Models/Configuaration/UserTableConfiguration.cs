@@ -14,7 +14,7 @@ namespace AVG_TASK_APP.Models.Configuaration
         {
             builder.ToTable("User Tables");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseMySqlIdentityColumn();
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Role).HasMaxLength(200).IsRequired();
             builder.HasOne(x => x.User).WithMany(x => x.userTables).HasForeignKey(x => x.Id_User);
             builder.HasOne(x => x.Table).WithMany(x => x.userTables).HasForeignKey(x => x.Id_Table);

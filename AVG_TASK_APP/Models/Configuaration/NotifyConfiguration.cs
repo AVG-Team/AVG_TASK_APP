@@ -16,7 +16,7 @@ namespace AVG_TASK_APP.Models.Configuaration
         {
             builder.ToTable("Notifies");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseMySqlIdentityColumn();
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Content).IsRequired();
             builder.Property(x => x.Pin).HasDefaultValue(false);
             builder.Property(x => x.Created_At);

@@ -14,7 +14,7 @@ namespace AVG_TASK_APP.Models.Configuaration
         {
             builder.ToTable("Comments");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseMySqlIdentityColumn();
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Message).HasMaxLength(2000).IsRequired();
             builder.Property(x => x.Created_At);
             builder.HasOne(x => x.Task).WithMany(x => x.comments).HasForeignKey(x => x.Id_Task);

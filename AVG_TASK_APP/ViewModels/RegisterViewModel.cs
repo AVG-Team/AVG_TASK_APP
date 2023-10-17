@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Net.Mail;
 using System.Windows;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 
 namespace AVG_TASK_APP.ViewModels
 {
@@ -148,7 +149,7 @@ namespace AVG_TASK_APP.ViewModels
 
         private bool CanExcuteRegisterCommand(object obj)
         {
-            bool validData;
+            bool validData = false;
             if (string.IsNullOrWhiteSpace(Username) || Username.Length < 3 || !IsValid(Username) ||
                 string.IsNullOrWhiteSpace(FullName) || FullName.Length < 3 ||
                 string.IsNullOrWhiteSpace(Phone) || Phone.Length < 9 ||
@@ -164,17 +165,55 @@ namespace AVG_TASK_APP.ViewModels
 
         private void ExcuteRegisterCommand(object obj)
         {
-            var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
-            if (isValidUser)
+            UserModel user = userRepository.GetByEmail(Username);
+            if (user == null)
             {
-                Thread.CurrentPrincipal = new GenericPrincipal(
-                    new GenericIdentity(Username), null);
-                IsViewVisible = false;
+
+                byte[] salt = GenerateSalt();
+
+                string hashedPassword = HashPassword(Password, salt);
+
+                UserModel newUser = new UserModel
+                {
+                   Name = FullName,
+                   Email = Username,
+                   PhoneNumber = Phone,
+                   Password = hashedPassword,
+                   Level = 0,
+                   Salt = salt.ToString()
+                };
+
+                userRepository.Add(newUser);
+                MessageBox.Show("Add Member Successfully");
             }
             else
             {
-                ErrorMessage = "*Invalid";
+                ErrorMessage = "*Email is exists";
             }
+        }
+
+        public string HashPassword(SecureString securePassword, byte[] salt)
+        {
+            IntPtr unmanagedString = IntPtr.Zero;
+            unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(securePassword);
+            string password = Marshal.PtrToStringUni(unmanagedString);
+
+            using (var sha256 = new SHA256Managed())
+            {
+                var saltedPassword = Encoding.UTF8.GetBytes(password).Concat(salt).ToArray();
+                var hash = sha256.ComputeHash(saltedPassword);
+                return Convert.ToBase64String(hash);
+            }
+        }
+
+        public byte[] GenerateSalt()
+        {
+            byte[] salt = new byte[16];
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(salt);
+            }
+            return salt;
         }
 
         public bool CanExecute(object? parameter)

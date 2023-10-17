@@ -14,7 +14,7 @@ namespace AVG_TASK_APP.Models.Configuaration
         {
             builder.ToTable("Task");
             builder.HasKey(t => t.Id);
-            builder.Property(t => t.Id).UseMySqlIdentityColumn();
+            builder.Property(t => t.Id).ValueGeneratedOnAdd();
             builder.Property(t => t.Name).HasMaxLength(200).IsRequired();
             builder.Property(t => t.Description).HasMaxLength(200).IsRequired();
             builder.Property(t => t.Activity).HasDefaultValue(false);
