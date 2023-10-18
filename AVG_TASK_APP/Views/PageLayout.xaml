@@ -171,7 +171,7 @@
                                                 Background="{StaticResource backColor}"
                                                 CornerRadius="100"
                                                 HorizontalAlignment="Left"
-                                                Margin="20 -50 0 30">
+                                                Margin="20 -50 0 30" MouseDown="Border_MouseDown">
                                             <Ellipse>
                                                 <Ellipse.Fill>
                                                     <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
@@ -192,7 +192,7 @@
                                 <!-- Button -->
                                 <Grid Grid.Row="1">
                                     <StackPanel Orientation="Vertical">
-                                        <RadioButton Style="{StaticResource menuButton}"
+                                        <RadioButton x:Name="WorkspaceRadioButton" Click="WorkspaceRadioButton_Click" Style="{StaticResource menuButton}"
                                          Tag="{StaticResource color6}"
                                          IsChecked="True"
                                          Command="{Binding ShowHomeViewCommand}">
@@ -201,7 +201,7 @@
                                                 <TextBlock Text="Board" Style="{StaticResource menuButtonText}"/>
                                             </StackPanel>
                                         </RadioButton>
-                                        <RadioButton Style="{StaticResource menuButton}"
+                                        <RadioButton x:Name="HomeRadioButton" Click="HomeRadioButton_Click" Style="{StaticResource menuButton}"
                                          Tag="{StaticResource color6}"
                                          Command="{Binding ShowCustomerViewCommand}">
                                             <StackPanel Orientation="Horizontal">
@@ -243,7 +243,7 @@
                         </Border>
                         <!-- Menu Button End-->
                         <!-- Content Begin -->
-                        <Grid  Grid.Column="1">
+                        <Grid x:Name="AreaUserControl" Grid.Column="1">
 
                             <customcontrols:BoardView/>
                         </Grid>

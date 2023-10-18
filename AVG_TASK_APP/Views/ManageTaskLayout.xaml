@@ -15,7 +15,7 @@
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource backColor}"
         AllowsTransparency="True"
-        MouseDown="Window_MouseDown">
+        MouseDown="Window_MouseDown" Loaded="Window_Loaded">
     <Window.Resources>
         <Menu x:Key="contextMenu">
             <MenuItem Header="àihiahfhaif"/>
@@ -27,7 +27,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid x:Name="GridHeader" Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="*"/>
@@ -232,10 +232,10 @@
 
                         </Menu>
 
-                        <Button  Width="140"
+                        <Button x:Name="ButtonCreate" Width="140"
                                  Style="{StaticResource menuButtonHeader}"
                                  Tag="{StaticResource textColor6}"
-                                 Click="btnMenuHeader_Click">
+                                 Click="buttonCreate_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Create" Foreground="{StaticResource textColor2}" Style="{StaticResource menuButtonTextHeader}"/>
                             </StackPanel>
@@ -249,7 +249,7 @@
                                 Margin="0,0,20,0"
                                 Background="Transparent">
 
-                        <Ellipse Width="40"
+                        <Ellipse MouseDown="Ellipse_MouseDown" Width="40"
                                  Height="40">
                             <Ellipse.Fill>
                                 <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
@@ -328,10 +328,11 @@
             </Grid.ColumnDefinitions>
 
             <!-- Menu Button-->
-            <Border Grid.Column="0"
+            <Border  x:Name="gridLeft" Grid.Column="0"
                     Margin="0,20,0,0"
                     CornerRadius=" 0 20 0 0"
-                    Background="{StaticResource color2}">
+                    Background="{StaticResource color2}"
+                    MouseMove="gridLeft_MouseMove">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"/>
@@ -361,7 +362,7 @@
                                        FontFamily="Montserrat"
                                        TextAlignment="Center"
                                        Margin=" 15 40 10 20"/>
-                            <Button Background="Transparent"
+                            <Button x:Name="MoveControlButton" Background="Transparent" Click="MoveControlButton_Click"
                                     Width="30"
                                     Height="30"
                                     BorderThickness="0">
@@ -392,9 +393,10 @@
                         <StackPanel Orientation="Vertical">
                             <Separator Margin="25" Height="0.8" Background="{StaticResource color7}"/>
 
-                            <RadioButton Style="{StaticResource menuButton}"
+                            <RadioButton x:Name="BoardRadioButton" Style="{StaticResource menuButton}"
+                                         Click="BoardRadioButton_Click"
                                         Tag="{StaticResource color6}"
-                                        IsChecked="True"
+                                         IsChecked="True"
                                         Command="{Binding ShowHomeViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="Table" Style="{StaticResource menuButtonIcon}"/>
@@ -404,7 +406,6 @@
                             <RadioButton x:Name="btnItemMember"
                                          Style="{StaticResource workspaceMenuButton}"
                                          Tag="{StaticResource color6}"
-                                         IsChecked="True"
                                          Click="btnItemMember_Click">
                                 <StackPanel Orientation="Horizontal"
                                             VerticalAlignment="Center">
@@ -510,6 +511,7 @@
                 </Grid>
             </Border>
             <!-- Menu Button End-->
+
             <Grid x:Name="areaManageTask" Grid.Column="1">
                 <customcontrol:ManageTaskUserControl/>
             </Grid>

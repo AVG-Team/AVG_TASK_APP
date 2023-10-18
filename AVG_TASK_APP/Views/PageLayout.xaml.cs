@@ -146,9 +146,25 @@ namespace AVG_TASK_APP.Views
 
         private void txtUsername_MouseDown(object sender, MouseButtonEventArgs e)
         {
-          
-          
-           
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            UserInformationUi userInformationUi = new UserInformationUi();
+            userInformationUi.ShowDialog();
+        }
+
+        private void HomeRadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            HomeView homeView = new HomeView();
+            AreaUserControl.Children.Add(homeView);
+
+        }
+
+        private void WorkspaceRadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            BoardView boardView = new BoardView();
+            AreaUserControl.Children.Add(boardView);
         }
     }
 }

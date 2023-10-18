@@ -39,7 +39,23 @@ namespace AVG_TASK_APP.Views
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            LoginView loginView = new LoginView();
+            loginView.Show();
+            this.Close();
+        }
+
+        private void textHadAccount_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            LoginView loginView = new LoginView();
+            loginView.Show();
+            this.Close();
+        }
+
+        private void clickHereLink_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            LoginView loginView = new LoginView();
+            loginView.Show();
+            this.Close();
         }
     }
 }
