@@ -259,7 +259,7 @@
                                         <TextBox.Background>
                                             <ImageBrush 
 
-                                                        ImageSource="/Resources/Icons/magnifying-glass.png"
+                                                        ImageSource="C:\Users\ASUS\Documents\hc bai\AVG_TASK_APP\Resources\Icons\mail.png"
                                                         Stretch="None"
                                                         AlignmentX="Left"/>
                                         </TextBox.Background>
