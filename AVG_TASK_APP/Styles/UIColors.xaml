@@ -28,6 +28,7 @@
     <SolidColorBrush x:Key="textColor4" Color="#222222"/>
     <SolidColorBrush x:Key="textColor5" Color="#333333"/>
     <SolidColorBrush x:Key="textColor6" Color="LightGray"/>
+    
     <SolidColorBrush x:Key="titleColor" Color="#8F3FEE"/>
     <SolidColorBrush x:Key="subTitleColor" Color="#bb8bf4"/>
     <SolidColorBrush x:Key="textButtonColor" Color="#ffffff"/>
@@ -38,6 +39,8 @@
     <SolidColorBrush x:Key="panelColor1" Color="LightGray"/>
     <!--Button Colors-->
     <SolidColorBrush x:Key="buttonColor" Color="#8F3FEE"/>
+    <SolidColorBrush x:Key="buttonColor1" Color="#c6c6c6"/>
+
     <SolidColorBrush x:Key="hoverButtonColor" Color="#bb8bf4"/>
     <!--TextBox Colors-->
     <!--Etc-->

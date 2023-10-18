@@ -1,0 +1,146 @@
+﻿<UserControl x:Class="AVG_TASK_APP.CustomControls.MenuCard_UserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AVG_TASK_APP.CustomControls"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             mc:Ignorable="d" 
+            d:DesignHeight="450" d:DesignWidth="400"
+           Background="{StaticResource color8}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="180"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"  Margin="150,0,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="87*"/>
+                <ColumnDefinition Width="308*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal"
+                      VerticalAlignment="Center">
+                <TextBlock
+                  Text="Operation"  FontSize="28" Foreground="White" 
+                  Background="Transparent">
+                </TextBlock>
+
+                <Button x:Name="btnClose"
+                       Margin="80,0,0,0"
+                       Background="{StaticResource backColor}"
+                   BorderThickness="0"
+                   Content="x"
+                   Foreground="{StaticResource textColor3}"
+                   FontSize="18"
+                   FontFamily="Montserrat"
+                   Cursor="Hand"
+                   Grid.Column="2" Click="btnClose_Click"
+                   >
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="0.8"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="25" Height="25"
+                   CornerRadius="10"
+                   Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                 HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0,0,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="87*"/>
+                <ColumnDefinition Width="308*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.ColumnSpan="2" Orientation="Vertical">
+                <RadioButton Style="{StaticResource menuButton}"
+                       Tag="{StaticResource color6}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="Plus" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock FontSize="20" Text="Add card..." Style="{StaticResource menuButtonText}"/>
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton Style="{StaticResource menuButton}"
+                              Tag="{StaticResource color6}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="Copy" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock FontSize="20" Text="Copy card..." Style="{StaticResource menuButtonText}"/>
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton Style="{StaticResource menuButton}"
+                              Tag="{StaticResource color6}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="PaperPlane" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock FontSize="20" Text="Move card..." Style="{StaticResource menuButtonText}"/>
+                    </StackPanel>
+                </RadioButton>
+            </StackPanel>
+            <Separator Width="390" Grid.ColumnSpan="2" Background="White" 
+                     VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                     Margin="10,30,0,10"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="87*"/>
+                <ColumnDefinition Width="308*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" Grid.ColumnSpan="2">
+                <RadioButton Style="{StaticResource menuButton}"
+                       Tag="{StaticResource color6}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="ArrowDownUpAcrossLine" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock FontSize="20" Text="Order..." Style="{StaticResource menuButtonText}"/>
+                    </StackPanel>
+                </RadioButton>
+            </StackPanel>
+
+            <Separator Width="390" Grid.ColumnSpan="2" Background="White" 
+ VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,30,0,8"/>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="87*"/>
+                <ColumnDefinition Width="308*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.ColumnSpan="2" Orientation="Vertical">
+                <RadioButton Style="{StaticResource menuButton}"
+            Tag="{StaticResource color6}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="ShareSquare" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock FontSize="20" Text="Move all..." Style="{StaticResource menuButtonText}"/>
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton Style="{StaticResource menuButton}"
+                   Tag="{StaticResource color6}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:IconImage Icon="Trash" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock FontSize="20" Text="Delete" Style="{StaticResource menuButtonText}"/>
+                    </StackPanel>
+                </RadioButton>
+            </StackPanel>
+         
+        </Grid>
+    </Grid>
+</UserControl>
