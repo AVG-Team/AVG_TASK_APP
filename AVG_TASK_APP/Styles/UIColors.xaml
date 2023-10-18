@@ -16,6 +16,7 @@
     <SolidColorBrush x:Key="color8" Color="#222222"/>
     <SolidColorBrush x:Key="color9" Color="#333333"/>
     <SolidColorBrush x:Key="color10" Color="#8a8a8a"/>
+    <SolidColorBrush x:Key="color11" Color="#EE9A00"/>
     <SolidColorBrush x:Key="hoverColor1" Color="#C62DAE"/>
     <SolidColorBrush x:Key="hoverColor2" Color="#278BEF"/>
     <SolidColorBrush x:Key="backColor" Color="#ffffff"/>
@@ -26,7 +27,7 @@
     <SolidColorBrush x:Key="textColor3" Color="#000000"/>
     <SolidColorBrush x:Key="textColor4" Color="#222222"/>
     <SolidColorBrush x:Key="textColor5" Color="#333333"/>
-    <SolidColorBrush x:Key="textColor6" Color="#4e5d76"/>
+    <SolidColorBrush x:Key="textColor6" Color="LightGray"/>
     
     <SolidColorBrush x:Key="titleColor" Color="#8F3FEE"/>
     <SolidColorBrush x:Key="subTitleColor" Color="#bb8bf4"/>

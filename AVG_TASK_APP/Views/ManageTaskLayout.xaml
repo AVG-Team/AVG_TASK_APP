@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-        xmlns:local="clr-namespace:AVG_TASK_APP.Views" xmlns:customcontrols="clr-namespace:AVG_TASK_APP.CustomControls"
+        xmlns:customcontrol="clr-namespace:AVG_TASK_APP.CustomControls"
+        xmlns:local="clr-namespace:AVG_TASK_APP.Views"
         mc:Ignorable="d"
         Width="{x:Static SystemParameters.MaximizedPrimaryScreenWidth}" 
         Height="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}"
@@ -510,8 +511,9 @@
                 </Grid>
             </Border>
             <!-- Menu Button End-->
-            <Grid x:Name="AreaUserControl" Grid.Column="1">
-                <customcontrols:BoardView/>
+
+            <Grid x:Name="areaManageTask" Grid.Column="1">
+                <customcontrol:ManageTaskUserControl/>
             </Grid>
         </Grid>
     </Grid>

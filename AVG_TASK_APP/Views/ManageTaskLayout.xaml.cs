@@ -29,6 +29,10 @@ namespace AVG_TASK_APP.Views
             InitializeComponent();
 
 
+            ManageTaskUserControl manageTaskUserControl = new ManageTaskUserControl();
+            areaManageTask.Children.Add(manageTaskUserControl);
+
+
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
