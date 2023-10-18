@@ -231,7 +231,7 @@
                                                     FontFamily="Montserrat"
                                                     Cursor="Hand"
                                                     Click="btnCreateWorkspace_Click"></Button>
-                                        </StackPanel>           
+                                        </StackPanel>
                                         <StackPanel x:Name="menuWorkspace" 
                                                     Orientation="Vertical">
 

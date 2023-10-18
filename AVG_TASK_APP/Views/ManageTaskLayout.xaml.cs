@@ -1,4 +1,5 @@
-﻿using FontAwesome.WPF;
+﻿using AVG_TASK_APP.CustomControls;
+using FontAwesome.WPF;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,6 +27,10 @@ namespace AVG_TASK_APP.Views
         public ManageTaskLayout()
         {
             InitializeComponent();
+
+
+            ManageTaskUserControl manageTaskUserControl = new ManageTaskUserControl();
+            areaManageTask.Children.Add(manageTaskUserControl);
 
 
         }
