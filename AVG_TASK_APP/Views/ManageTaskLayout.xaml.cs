@@ -1,4 +1,5 @@
-﻿using FontAwesome.WPF;
+﻿using AVG_TASK_APP.CustomControls;
+using FontAwesome.WPF;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -113,7 +114,8 @@ namespace AVG_TASK_APP.Views
 
         private void btnMenuItemAddMember_Click(object sender, RoutedEventArgs e)
         {
-
+            AddMember addMember = new AddMember();
+            addMember.ShowDialog();
         }
 
         private void ComboBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -121,6 +123,39 @@ namespace AVG_TASK_APP.Views
 
         }
 
+        private void buttonCreate_Click(object sender, RoutedEventArgs e)
+        {
+            CreateBoard createBoard = new CreateBoard();
+            createBoard.ShowDialog();
+        }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BoardRadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            itemWorkspace itemWorkspace = new itemWorkspace();
+            AreaUserControl.Children.Add(itemWorkspace);
+        }
+
+        private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            UserInformationUi ui = new UserInformationUi();
+            ui.ShowDialog();
+        }
+
+        private void MoveControlButton_Click(object sender, RoutedEventArgs e)
+        {
+            gridLeft.Width = 15;
+            AreaUserControl.Width = GridHeader.Width;
+            gridLeft.HorizontalAlignment = HorizontalAlignment.Left;
+
+        }
+        private void gridLeft_MouseMove(object sender, MouseEventArgs e)
+        {
+            gridLeft.Width = 320;
+        }
     }
 }
