@@ -24,6 +24,7 @@ namespace AVG_TASK_APP.CustomControls
     {
         private List<UserControl> _listCard = new List<UserControl>();
         private List<ListBox> listBoxes = new List<ListBox>();
+
         private C1DragDropManager _dd;
 
         public ManageTaskUserControl()
@@ -50,28 +51,37 @@ namespace AVG_TASK_APP.CustomControls
                 {
                     Button button = new Button();
 
+                    var border = new Border();
+                    border.BorderBrush = Brushes.Black;
+                    border.CornerRadius = new CornerRadius(10);
+                    border.Background = Brushes.White;
+                    border.Height = 40;
+                    border.Width = 180;
+                    border.Margin.Bottom.Equals(10);
 
-                    var personElement = new ContentPresenter();
-                    personElement.Content = p.Name;
-                    personElement.MouseLeftButtonUp += personElement_MouseEnter;
-                    personElement.ContentTemplate = (DataTemplate)Resources["listBoxItem"];
-                    lb.Items.Add(personElement);
 
-                    _dd.RegisterDragSource(personElement, DragDropEffect.Move, ModifierKeys.None);
-                    _dd.RegisterDragSource(button, DragDropEffect.Move, ModifierKeys.None);
+                    var element = new ContentPresenter();
+                    element.Content = p.Name;
+                    element.MouseLeftButtonUp += personElement_MouseEnter;
+                    element.VerticalAlignment = VerticalAlignment.Center;
+                    element.HorizontalAlignment = HorizontalAlignment.Center;
+
+                    border.Child = element;
+                    lb.Items.Add(border);
+
+                    _dd.RegisterDragSource(border, DragDropEffect.Move, ModifierKeys.None);
+
+
                     _dd.DragThreshold = 5;
 
-                    personElement.MouseDown += (s, e) =>
+
+                    border.MouseDown += (s, e) =>
                     {
                         e.Handled = true;
                     };
                 }
             }
-
             _dd.DragDrop += _dd_DragDrop;
-
-
-
         }
 
         private void Button_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
