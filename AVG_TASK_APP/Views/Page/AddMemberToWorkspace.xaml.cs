@@ -47,5 +47,11 @@ namespace AVG_TASK_APP.Views
                 // False
             }
         }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Window parent = Window.GetWindow(this);
+            parent.Close();
+        }
     }
 }

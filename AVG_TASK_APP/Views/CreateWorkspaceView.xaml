@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:viewmodels="clr-namespace:AVG_TASK_APP.ViewModels"
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
         mc:Ignorable="d"
         WindowStyle="None"
@@ -12,6 +13,15 @@
         Title="Create Workspace" Height="520" Width="800"
     Background="{StaticResource panelColor}">
 
+    <Window.DataContext>
+        <viewmodels:WorkspaceViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </Window.Resources>
+    <Window.Visibility>
+        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+    </Window.Visibility>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"/>
@@ -23,7 +33,7 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="70" />
+                <RowDefinition Height="100" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0"
                 Text="Let's build a workspace!" 
@@ -49,14 +59,14 @@ access the table in one location."
                    Margin="0,30,0,5"/>
 
                 <TextBox Width="350" x:Name="txtName"
+                         Text="{Binding WorkspaceName , UpdateSourceTrigger=PropertyChanged}"
                          VerticalAlignment="Center" 
                          HorizontalAlignment="Left" 
                          Background="Transparent"
                          Padding="10"
                          Style="{StaticResource MyWaterMarkStyle}"
                          BorderThickness="1"
-                         Tag="Example: AVG Company"
-                         />
+                         Tag="Example: AVG Company" />
 
                 <TextBlock Text="This is the name of your company, group or organization." 
                    Foreground="{StaticResource textColor2}"
@@ -70,8 +80,20 @@ access the table in one location."
                    FontFamily="Montserrat"
                    Margin="0,20,0,10"/>
 
-                <DatePicker Background="Transparent" x:Name="txtDateStart">
-                </DatePicker>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="70"/>
+                    </Grid.ColumnDefinitions>
+                    <DatePicker Background="Transparent" 
+                                Grid.Column="0" x:Name="txtDateStart"
+                                Margin="0,0,10,0" SelectedDateChanged="txtDateStart_SelectedDateChanged"/>
+                    <ComboBox x:Name="hourComboBox"  Margin="0,0,10,0" Grid.Column="1" SelectionChanged="hourComboBox_SelectionChanged"/>
+                    <ComboBox x:Name="minuteComboBox"  Grid.Column="2" SelectionChanged="minuteComboBox_SelectionChanged"/>
+                </Grid>
+                <TextBox x:Name="txtValueDateStart" Visibility="Collapsed"
+                           Text="{Binding DateStart, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock Text="Display Mode"
                    Foreground="{StaticResource textColor2}"
@@ -81,15 +103,14 @@ access the table in one location."
                    Margin="0,20,0,5"/>
 
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton 
-                         IsChecked="True"
-                         Command="{Binding ShowHomeViewCommand}" Margin="10" x:Name="radioVisibility">
+                    <RadioButton GroupName="public" IsChecked="{Binding IsCheckedPublic, UpdateSourceTrigger=PropertyChanged}"
+                          Margin="10" x:Name="radioVisibility">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Public" Foreground="LightGray"/>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton x:Name="radioInvisibility"
-                                Command="{Binding ShowHomeViewCommand}" Margin="100,10,10,10">
+                    <RadioButton x:Name="radioInvisibility" GroupName="public" IsChecked="{Binding IsCheckedNotPublic, UpdateSourceTrigger=PropertyChanged}"
+                                Margin="100,10,10,10">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Not public" Foreground="LightGray"/>
                         </StackPanel>
@@ -102,15 +123,15 @@ access the table in one location."
                            FontFamily="Montserrat"
                            Margin="0,10,0,0"/>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Width="350" 
+                    <TextBox Width="350"
+                             Text="{Binding Code , UpdateSourceTrigger=PropertyChanged}"
                              VerticalAlignment="Center" 
                              HorizontalAlignment="Left" 
                              x:Name="txtCode" Margin="5"
                              Background="Transparent"
                              Padding="10"
                              Style="{StaticResource MyWaterMarkStyle}"
-                             Tag="VD : AVG_2023"
-                             />
+                             Tag="VD : AVG_2023" />
 
                     <Button x:Name="btnGenerateCode"
                             BorderThickness="0"
@@ -146,9 +167,9 @@ access the table in one location."
                 </StackPanel>
             </StackPanel>
 
-            <Grid Grid.Row="3">
+            <StackPanel Orientation="Vertical" Grid.Row="3" VerticalAlignment="Top" Margin="0,10,0,0">
                 <Button x:Name="btnContinue"
-                        Command="{Binding LoginCommand}"
+                        Command="{Binding ContinueCommand}"
                         BorderThickness="0"
                         Foreground="{StaticResource textButtonColor}"
                         FontSize="12"
@@ -177,10 +198,48 @@ access the table in one location."
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-            </Grid>
+                <TextBlock Text="I don't need it anymore, close the window"
+                           Foreground="{StaticResource textColor6}"
+                           HorizontalAlignment="Center" x:Name="txtClose"
+                           TextDecorations="Underline"
+                           Margin="0,10,0,0" MouseDown="txtClose_MouseDown" />
+            </StackPanel>
         </Grid>
 
         <Grid Grid.Column="1">
+
+            <Button x:Name="btnClose" Margin="10"
+                    BorderThickness="0"
+                    Content="X"
+                    Foreground="{StaticResource textButtonColor}"
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    Panel.ZIndex="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right" Click="btnClose_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="{StaticResource color1}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource hoverColor1}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18"
+                                        CornerRadius="10"
+                                        Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
             <Image Source="/Resources/Images/backgroundworkspace.png" 
                    Width="1000"/>
             <Image Width="400" Source="/Resources/Images/createwp.png"/>
