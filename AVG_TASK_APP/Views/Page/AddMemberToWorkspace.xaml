@@ -9,6 +9,7 @@
         mc:Ignorable="d"
         Title="Add Member To Workspace" Height="330" Width="660"
          Background="{StaticResource panelColor}">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="330"/>

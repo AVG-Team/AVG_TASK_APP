@@ -16,10 +16,8 @@ namespace AVG_TASK_APP
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-
-            ManageTaskLayout manageTaskLayout = new ManageTaskLayout();
-            manageTaskLayout.Show();
-
+            PageLayout pageLayout = new PageLayout();
+            pageLayout.Show();
         }
     }
 }
