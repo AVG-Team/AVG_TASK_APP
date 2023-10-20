@@ -20,7 +20,7 @@ namespace AVG_TASK_APP.Models.Configuaration
             builder.Property(t => t.Email).HasMaxLength(200).IsRequired();
             builder.Property(t => t.Password).HasMaxLength(200).IsRequired();
             builder.Property(t => t.PhoneNumber).HasMaxLength(200).IsRequired();
-            builder.Property(t => t.Salt).HasMaxLength(200).IsRequired();
+            builder.Property(t => t.Salt).IsRequired();
             builder.Property(t => t.Level).IsRequired();
         }
     }

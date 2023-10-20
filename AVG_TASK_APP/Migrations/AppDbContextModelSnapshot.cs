@@ -249,10 +249,9 @@ namespace AVG_TASK_APP.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 
-                    b.Property<string>("Salt")
+                    b.Property<byte[]>("Salt")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("longblob");
 
                     b.HasKey("Id");
 
