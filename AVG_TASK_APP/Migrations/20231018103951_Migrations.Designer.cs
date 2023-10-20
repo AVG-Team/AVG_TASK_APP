@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AVG_TASK_APP.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231017113949_migrations")]
-    partial class migrations
+    [Migration("20231018103951_Migrations")]
+    partial class Migrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,12 +31,17 @@ namespace AVG_TASK_APP.Migrations
                     b.Property<DateTime>("Created_At")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("Id_Table")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Id_Table");
 
                     b.ToTable("Cards", (string)null);
                 });
@@ -76,9 +81,6 @@ namespace AVG_TASK_APP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_Table")
-                        .HasColumnType("int");
-
                     b.Property<int>("Id_Task")
                         .HasColumnType("int");
 
@@ -94,7 +96,7 @@ namespace AVG_TASK_APP.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id_Table");
+                    b.HasIndex("Id_Task");
 
                     b.ToTable("Mini Tasks", (string)null);
                 });
@@ -202,9 +204,6 @@ namespace AVG_TASK_APP.Migrations
                     b.Property<int>("Id_Card")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_Table")
-                        .HasColumnType("int");
-
                     b.Property<string>("Label")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -217,8 +216,6 @@ namespace AVG_TASK_APP.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Id_Card");
-
-                    b.HasIndex("Id_Table");
 
                     b.ToTable("Task", (string)null);
                 });
@@ -374,6 +371,17 @@ namespace AVG_TASK_APP.Migrations
                     b.ToTable("Workspaces", (string)null);
                 });
 
+            modelBuilder.Entity("AVG_TASK_APP.Models.Card", b =>
+                {
+                    b.HasOne("AVG_TASK_APP.Models.Table", "Table")
+                        .WithMany("cards")
+                        .HasForeignKey("Id_Table")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Table");
+                });
+
             modelBuilder.Entity("AVG_TASK_APP.Models.Comment", b =>
                 {
                     b.HasOne("AVG_TASK_APP.Models.Task", "Task")
@@ -397,7 +405,7 @@ namespace AVG_TASK_APP.Migrations
                 {
                     b.HasOne("AVG_TASK_APP.Models.Task", "Task")
                         .WithMany("miniTasks")
-                        .HasForeignKey("Id_Table")
+                        .HasForeignKey("Id_Task")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -434,15 +442,7 @@ namespace AVG_TASK_APP.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AVG_TASK_APP.Models.Table", "Table")
-                        .WithMany("tasks")
-                        .HasForeignKey("Id_Table")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Card");
-
-                    b.Navigation("Table");
                 });
 
             modelBuilder.Entity("AVG_TASK_APP.Models.UserTable", b =>
@@ -509,7 +509,7 @@ namespace AVG_TASK_APP.Migrations
 
             modelBuilder.Entity("AVG_TASK_APP.Models.Table", b =>
                 {
-                    b.Navigation("tasks");
+                    b.Navigation("cards");
 
                     b.Navigation("userTables");
                 });

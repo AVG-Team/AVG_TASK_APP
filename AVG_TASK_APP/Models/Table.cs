@@ -18,6 +18,6 @@ namespace AVG_TASK_APP.Models
         public DateTime Created_At { get; set; } = DateTime.Now;
         public List<UserTable> userTables;
         public Workspace Workspace { get; set; }
-        public List<Task> tasks;
+        public List<Card> cards;
     }
 }

@@ -82,6 +82,17 @@
                                    FontFamily="Montserrat"
                                    Foreground="{StaticResource textColor2}"/>
                     </Button>
+
+                    <Button Style="{StaticResource menuButtonHeader}"
+                             Width="150" Height="40"
+                             BorderThickness="0"
+                             Margin="10,0,0,0">
+                        <TextBlock Text="Add another lists"
+                                    FontSize="14"
+                                    FontWeight="Medium"
+                                    FontFamily="Montserrat"
+                                    Foreground="{StaticResource textColor2}"/>
+                    </Button>
                 </StackPanel>
             </Grid>
         </Border>
