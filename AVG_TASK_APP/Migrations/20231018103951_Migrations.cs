@@ -7,28 +7,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AVG_TASK_APP.Migrations
 {
     /// <inheritdoc />
-    public partial class migrations : Microsoft.EntityFrameworkCore.Migrations.Migration
+    public partial class Migrations : Microsoft.EntityFrameworkCore.Migrations.Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Cards",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Created_At = table.Column<DateTime>(type: "datetime(6)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cards", x => x.Id);
-                })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
@@ -160,37 +144,21 @@ namespace AVG_TASK_APP.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Task",
+                name: "Cards",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Description = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Activity = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: false),
-                    Label = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Estimate = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Deadline = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Deleted_At = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     Created_At = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Id_Table = table.Column<int>(type: "int", nullable: false),
-                    Id_Card = table.Column<int>(type: "int", nullable: false)
+                    Id_Table = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Task", x => x.Id);
+                    table.PrimaryKey("PK_Cards", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Task_Cards_Id_Card",
-                        column: x => x.Id_Card,
-                        principalTable: "Cards",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Task_Tables_Id_Table",
+                        name: "FK_Cards_Tables_Id_Table",
                         column: x => x.Id_Table,
                         principalTable: "Tables",
                         principalColumn: "Id",
@@ -222,6 +190,38 @@ namespace AVG_TASK_APP.Migrations
                         name: "FK_User Tables_Users_Id_User",
                         column: x => x.Id_User,
                         principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Task",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Description = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Activity = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: false),
+                    Label = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Estimate = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Deadline = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Deleted_At = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    Created_At = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Id_Card = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Task", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Task_Cards_Id_Card",
+                        column: x => x.Id_Card,
+                        principalTable: "Cards",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -264,7 +264,6 @@ namespace AVG_TASK_APP.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Id_Task = table.Column<int>(type: "int", nullable: false),
-                    Id_Table = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Status = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: false)
@@ -273,8 +272,8 @@ namespace AVG_TASK_APP.Migrations
                 {
                     table.PrimaryKey("PK_Mini Tasks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Mini Tasks_Task_Id_Table",
-                        column: x => x.Id_Table,
+                        name: "FK_Mini Tasks_Task_Id_Task",
+                        column: x => x.Id_Task,
                         principalTable: "Task",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -309,6 +308,11 @@ namespace AVG_TASK_APP.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cards_Id_Table",
+                table: "Cards",
+                column: "Id_Table");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Comments_Id_Task",
                 table: "Comments",
                 column: "Id_Task");
@@ -319,9 +323,9 @@ namespace AVG_TASK_APP.Migrations
                 column: "Id_User");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Mini Tasks_Id_Table",
+                name: "IX_Mini Tasks_Id_Task",
                 table: "Mini Tasks",
-                column: "Id_Table");
+                column: "Id_Task");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Notifies_Id_User",
@@ -337,11 +341,6 @@ namespace AVG_TASK_APP.Migrations
                 name: "IX_Task_Id_Card",
                 table: "Task",
                 column: "Id_Card");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Task_Id_Table",
-                table: "Task",
-                column: "Id_Table");
 
             migrationBuilder.CreateIndex(
                 name: "IX_User Tables_Id_Table",

@@ -10,7 +10,6 @@ namespace AVG_TASK_APP.Models
     {
         public int Id { get; set; }
         public int Id_Task { get; set; }
-        public int Id_Table { get; set; }
         public string Name { get; set; }
         public bool Status { get; set; }
         public Task Task { get; set; }
