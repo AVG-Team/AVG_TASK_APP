@@ -193,7 +193,7 @@ namespace AVG_TASK_APP.ViewModels
                    PhoneNumber = Phone,
                    Password = hashedPassword,
                    Level = 0,
-                   Salt = salt.ToString()
+                   Salt = salt
                 };
 
                 userRepository.Add(newUser);
