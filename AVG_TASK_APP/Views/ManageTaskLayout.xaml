@@ -16,11 +16,6 @@
         Background="{StaticResource backColor}"
         AllowsTransparency="True"
         MouseDown="Window_MouseDown">
-    <Window.Resources>
-        <ContextMenu x:Key="contextMenu" x:Name="contextMenu" Placement="Left">
-            <MenuItem Header="Logout"/>
-        </ContextMenu>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
