@@ -20,7 +20,7 @@
         PreviewMouseDown="Window_PreviewMouseDown"
         Loaded="Window_Loaded">
     <Window.DataContext>
-        <viewModel:PageLayoutModel/>
+        <viewModel:PageLayoutViewModel/>
     </Window.DataContext>
     
     <DockPanel>

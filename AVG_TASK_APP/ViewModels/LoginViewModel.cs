@@ -1,6 +1,8 @@
 ﻿using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Views;
+using Microsoft.VisualBasic.ApplicationServices;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -103,18 +105,29 @@ namespace AVG_TASK_APP.ViewModels
             var isValidUser = userRepository.verifyAccount(Username, Password);
             if (isValidUser)
             {
-                PageLayout pageLayout = new PageLayout();
-                pageLayout.Show();
+                MessageBoxView msb = new MessageBoxView();
+                msb.ProcessFault("success", 1);
+                //Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
 
-                foreach(Window window in Application.Current.Windows)
-                {
-                    if(window is LoginView)
-                    {
-                        window.Close();
-                        IsViewVisible = false;
-                        return;
-                    }
-                }
+                //byte[] salt = userRepository.GetByEmail(Username).Salt;
+                //string passwordTmp = userRepository.HashPassword(Password, salt);
+
+                //var registryKey = Registry.CurrentUser.CreateSubKey("Software\\MyApp\\Login");
+                //registryKey.SetValue("Username", Username);
+                //registryKey.SetValue("Password", passwordTmp);
+
+                //PageLayout pageLayout = new PageLayout();
+                //pageLayout.Show();
+
+                //foreach(Window window in Application.Current.Windows)
+                //{
+                //    if(window is LoginView)
+                //    {
+                //        window.Close();
+                //        IsViewVisible = false;
+                //        return;
+                //    }
+                //}
             }
             else
             {

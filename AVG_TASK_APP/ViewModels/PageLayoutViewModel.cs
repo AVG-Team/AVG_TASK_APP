@@ -1,5 +1,6 @@
 ﻿using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +12,7 @@ using System.Windows;
 
 namespace AVG_TASK_APP.ViewModels
 {
-    class PageLayoutModel: ViewModelBase
+    class PageLayoutViewModel: ViewModelBase
     {
         private UserAccount _currentUserAccount;
         private IUserRepository userRepository;
@@ -27,7 +28,7 @@ namespace AVG_TASK_APP.ViewModels
                 OnPropertyChanged(nameof(CurrentUserAccount));
             }
         }
-        public PageLayoutModel()
+        public PageLayoutViewModel()
         {
             userRepository = new UserRepository();
             CurrentUserAccount = new UserAccount();
@@ -39,15 +40,26 @@ namespace AVG_TASK_APP.ViewModels
             var user = userRepository.GetByEmail(Thread.CurrentPrincipal.Identity.Name);
             if (user != null)
             {
-
-                    CurrentUserAccount.Username = user.Name;
-                    CurrentUserAccount.DisplayName = $"Welcome {user.Id} {user.Name} ;)";
-                    CurrentUserAccount.ProfiePiture = null;
-                  
+                CurrentUserAccount.Id = user.Id;
+                CurrentUserAccount.Name = user.Name;
+                CurrentUserAccount.Email = user.Email;
+                CurrentUserAccount.Level = user.Level;
             }
             else
             {
-                CurrentUserAccount.DisplayName = "Invalid user, not logged in";
+                LoginView loginView = new LoginView();
+                loginView.Show();
+
+
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window is PageLayout)
+                    {
+                        window.Close();
+                        return;
+                    }
+                }
+                return;
             }
         }
     }

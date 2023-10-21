@@ -8,9 +8,9 @@ namespace AVG_TASK_APP.Models
 {
     public class UserAccount
     {
-        public string Username {  get; set; }
-        public string DisplayName { get; set; }
-        public byte[] ProfiePiture { get; set; }
-
+        public int Id {  get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public int Level { get; set; }
     }
 }

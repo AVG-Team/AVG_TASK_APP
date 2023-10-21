@@ -143,5 +143,24 @@ namespace AVG_TASK_APP.Repositories
             }
             return true;
         }
+
+        public bool verifyAccount(string username, String password)
+        {
+            var connection = GetConnection();
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+            optionsBuilder.UseMySql(connection, serverVersion);
+
+            var dbContext = new AppDbContext(optionsBuilder.Options);
+
+            
+            byte[] salt = dbContext.Users.FirstOrDefault(x => x.Email == username).Salt;
+
+            if(!password.Equals(dbContext.Users.FirstOrDefault(x => x.Email == username).Password))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
