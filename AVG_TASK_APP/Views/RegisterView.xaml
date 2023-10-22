@@ -298,7 +298,25 @@
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
-                    </Button> 
+                    </Button>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="0,15,0,0">
+                        <TextBlock Text="You already had account? "
+                                   Foreground="{StaticResource textColor1}"
+                                   FontSize="12"
+                                   FontWeight="Medium"
+                                   FontFamily="Montserrat"/>
+                        <TextBlock 
+                                   x:Name="clickHereLink" 
+                                   Text="Login"
+                                   Foreground="{StaticResource color4}"
+                                   FontSize="12"
+                                   FontWeight="Medium"
+                                   FontFamily="Montserrat"
+                                   Cursor="Hand"
+                                   MouseDown="clickHereLink_MouseDown"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </Border>

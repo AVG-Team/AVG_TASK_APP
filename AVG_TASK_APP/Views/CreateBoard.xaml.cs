@@ -26,7 +26,7 @@ namespace AVG_TASK_APP.Views
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
@@ -36,7 +36,9 @@ namespace AVG_TASK_APP.Views
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-
+            ContactTaskUI contactTaskUI = new ContactTaskUI();
+            contactTaskUI.ShowDialog();
         }
+
     }
 }

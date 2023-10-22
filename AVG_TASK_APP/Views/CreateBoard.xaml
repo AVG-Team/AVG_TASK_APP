@@ -177,7 +177,8 @@
                                 FontFamily="Montserrat"
                                 Cursor="Hand"
                                 Click="btnCreate_Click"       
-                                Margin="0,15,0,0">
+                                Margin="0,15,0,0"
+                                >
                             <Button.Style>
                                 <Style TargetType="{x:Type Button}">
                                     <Setter Property="Background" Value="{StaticResource buttonColor}"/>
