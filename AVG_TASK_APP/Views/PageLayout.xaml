@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
-        xmlns:viewModel ="clr-namespace:AVG_TASK_APP.ViewModels"
+        xmlns:viewModels ="clr-namespace:AVG_TASK_APP.ViewModels"
         xmlns:customcontrols="clr-namespace:AVG_TASK_APP.CustomControls"
         mc:Ignorable="d"
         Title="HomeView"  
@@ -20,7 +20,7 @@
         PreviewMouseDown="Window_PreviewMouseDown"
         Loaded="Window_Loaded">
     <Window.DataContext>
-        <viewModel:PageLayoutModel/>
+        <viewModels:PageLayoutViewModel/>
     </Window.DataContext>
     
     <DockPanel>
@@ -219,15 +219,15 @@
                                                 CornerRadius="100"
                                                 HorizontalAlignment="Left"
                                                 Margin="20 -50 0 30">
-                                            <Ellipse >
+                                            <Ellipse>
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
+                                                    <ImageBrush ImageSource="{Binding UserAccountImage}"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </Border>
                                     </StackPanel>
                                     <StackPanel>
-                                        <TextBlock Text="Username"
+                                        <TextBlock Text="{Binding UserAccountName}"
                                                     Foreground="{StaticResource color6}"
                                                     FontSize="22"
                                                     FontWeight="SemiBold"
