@@ -2,19 +2,18 @@
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Views;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
+using System.Net.Mail;
+using System.Runtime.InteropServices;
+using System.Security;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Windows.Input;
 
 namespace AVG_TASK_APP.ViewModels
 {
     public class PageLayoutViewModel : ViewModelBase
     {
+
         private UserAccount currentUserAccount;
         private IUserRepository userRepository;
         private string _userAccountName;

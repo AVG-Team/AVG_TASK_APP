@@ -179,12 +179,12 @@
                                                 Margin="20 -50 0 30">
                                             <Ellipse>
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="{Binding UserAccountImage, UpdateSourceTrigger=PropertyChanged}"/>
+                                                    <ImageBrush ImageSource="{Binding UserAccountImage}"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </Border>
 
-                                        <TextBlock Text="{Binding UserAccountName, UpdateSourceTrigger=PropertyChanged}"
+                                        <TextBlock Text="{Binding UserAccountName}"
                                                    Foreground="{StaticResource color6}"
                                                    FontSize="22"
                                                    FontWeight="SemiBold"
