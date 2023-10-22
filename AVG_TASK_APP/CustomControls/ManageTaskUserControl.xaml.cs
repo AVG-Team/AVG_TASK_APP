@@ -46,42 +46,42 @@ namespace AVG_TASK_APP.CustomControls
                 listBoxes.Add(card.lb);
             }
 
-            foreach (ListBox lb in listBoxes)
-            {
-                foreach (Person p in Person.Generate(5))
-                {
-                    Button button = new Button();
+            //foreach (ListBox lb in listBoxes)
+            //{
+            //    foreach (Person p in Person.Generate(5))
+            //    {
+            //        Button button = new Button();
 
-                    var border = new Border();
-                    border.BorderBrush = Brushes.Black;
-                    border.CornerRadius = new CornerRadius(10);
-                    border.Background = Brushes.White;
-                    border.Height = 40;
-                    border.Width = 180;
-                    border.Margin.Bottom.Equals(10);
-
-
-                    var element = new ContentPresenter();
-                    element.Content = p.Name;
-                    element.MouseLeftButtonUp += personElement_MouseEnter;
-                    element.VerticalAlignment = VerticalAlignment.Center;
-                    element.HorizontalAlignment = HorizontalAlignment.Center;
-
-                    border.Child = element;
-                    lb.Items.Add(border);
-
-                    _dd.RegisterDragSource(border, DragDropEffect.Move, ModifierKeys.None);
+            //        var border = new Border();
+            //        border.BorderBrush = Brushes.Black;
+            //        border.CornerRadius = new CornerRadius(10);
+            //        border.Background = Brushes.White;
+            //        border.Height = 40;
+            //        border.Width = 180;
+            //        border.Margin.Bottom.Equals(10);
 
 
-                    _dd.DragThreshold = 5;
+            //        var element = new ContentPresenter();
+            //        element.Content = p.Name;
+            //        element.MouseLeftButtonUp += personElement_MouseEnter;
+            //        element.VerticalAlignment = VerticalAlignment.Center;
+            //        element.HorizontalAlignment = HorizontalAlignment.Center;
+
+            //        border.Child = element;
+            //        lb.Items.Add(border);
+
+            //        _dd.RegisterDragSource(border, DragDropEffect.Move, ModifierKeys.None);
 
 
-                    border.MouseDown += (s, e) =>
-                    {
-                        e.Handled = true;
-                    };
-                }
-            }
+            //        _dd.DragThreshold = 5;
+
+
+            //        border.MouseDown += (s, e) =>
+            //        {
+            //            e.Handled = true;
+            //        };
+            //    }
+            //}
             _dd.DragDrop += _dd_DragDrop;
         }
 

@@ -20,6 +20,8 @@ namespace AVG_TASK_APP.Models
         UserModel GetById(int id);
         UserModel GetByEmail(string email);
         IEnumerable<UserModel> GetAll();
+        bool verifyAccount(string username , SecureString password);
+        bool verifyAccount(string username , String password);
 
     }
 }
