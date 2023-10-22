@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,7 +27,9 @@ namespace AVG_TASK_APP
         {
             userRepository = new UserRepository();
 
-            var registryKey = Registry.CurrentUser.OpenSubKey("Software\\MyApp\\Login");
+            var assembly = Assembly.GetExecutingAssembly();
+
+            var registryKey = Registry.CurrentUser.OpenSubKey("Software\\" + assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title + "\\Login");
             if (registryKey == null)
             {
                 LoginView loginView = new LoginView();
@@ -37,7 +40,7 @@ namespace AVG_TASK_APP
             var username = (string)registryKey.GetValue("Username", String.Empty);
             var password = (string)registryKey.GetValue("Password", String.Empty);
 
-            if(username == null || password == null)
+            if (username == null || password == null)
             {
                 LoginView loginView = new LoginView();
                 loginView.Show();

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Security;
 using System.Security.Principal;
 using System.Text;
@@ -106,28 +107,28 @@ namespace AVG_TASK_APP.ViewModels
             if (isValidUser)
             {
                 MessageBoxView msb = new MessageBoxView();
-                msb.ProcessFault("success", 1);
-                //Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+                Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
 
-                //byte[] salt = userRepository.GetByEmail(Username).Salt;
-                //string passwordTmp = userRepository.HashPassword(Password, salt);
+                byte[] salt = userRepository.GetByEmail(Username).Salt;
+                string passwordTmp = userRepository.HashPassword(Password, salt);
 
-                //var registryKey = Registry.CurrentUser.CreateSubKey("Software\\MyApp\\Login");
-                //registryKey.SetValue("Username", Username);
-                //registryKey.SetValue("Password", passwordTmp);
+                var assembly = Assembly.GetExecutingAssembly();
+                var registryKey = Registry.CurrentUser.CreateSubKey("Software\\" + assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title + "\\Login");
+                registryKey.SetValue("Username", Username);
+                registryKey.SetValue("Password", passwordTmp);
 
-                //PageLayout pageLayout = new PageLayout();
-                //pageLayout.Show();
+                PageLayout pageLayout = new PageLayout();
+                pageLayout.Show();
 
-                //foreach(Window window in Application.Current.Windows)
-                //{
-                //    if(window is LoginView)
-                //    {
-                //        window.Close();
-                //        IsViewVisible = false;
-                //        return;
-                //    }
-                //}
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window is LoginView)
+                    {
+                        window.Close();
+                        IsViewVisible = false;
+                        return;
+                    }
+                }
             }
             else
             {
