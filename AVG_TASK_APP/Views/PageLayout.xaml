@@ -243,7 +243,7 @@
                         </Border>
                         <!-- Menu Button End-->
                         <!-- Content Begin -->
-                        <Grid x:Name="AreaUserControl" Grid.Column="1">
+                        <Grid x:Name="areaUserControl" Grid.Column="1">
 
                             <customcontrols:BoardView/>
                         </Grid>

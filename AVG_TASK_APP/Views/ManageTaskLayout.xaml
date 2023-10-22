@@ -477,7 +477,7 @@
                                              Style="{StaticResource workspaceMenuButton}"
                                              Tag="{StaticResource color6}"
                                               IsChecked="False"
-                                             Click="btnItemMember_Click">
+                                             Click="BoardRadioButton_Click">
                                     <StackPanel Orientation="Horizontal"
                                                 VerticalAlignment="Center">
                                         <fa:IconImage Icon="Users" Style="{StaticResource menuButtonIcon}"/>

@@ -157,14 +157,14 @@ namespace AVG_TASK_APP.Views
         private void HomeRadioButton_Click(object sender, RoutedEventArgs e)
         {
             HomeView homeView = new HomeView();
-            AreaUserControl.Children.Add(homeView);
+            areaUserControl.Children.Add(homeView);
 
         }
 
         private void WorkspaceRadioButton_Click(object sender, RoutedEventArgs e)
         {
             BoardView boardView = new BoardView();
-            AreaUserControl.Children.Add(boardView);
+            areaUserControl.Children.Add(boardView);
         }
     }
 }

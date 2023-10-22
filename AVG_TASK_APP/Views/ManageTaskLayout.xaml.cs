@@ -130,7 +130,7 @@ namespace AVG_TASK_APP.Views
         private void buttonCreate_Click(object sender, RoutedEventArgs e)
         {
             CreateBoard createBoard = new CreateBoard();
-            createBoard.ShowDialog();
+            createBoard.Show();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -141,7 +141,7 @@ namespace AVG_TASK_APP.Views
         private void BoardRadioButton_Click(object sender, RoutedEventArgs e)
         {
             itemWorkspace itemWorkspace = new itemWorkspace();
-            AreaUserControl.Children.Add(itemWorkspace);
+            areaManageTask.Children.Add(itemWorkspace);
         }
 
         private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
@@ -153,7 +153,7 @@ namespace AVG_TASK_APP.Views
         private void MoveControlButton_Click(object sender, RoutedEventArgs e)
         {
             gridLeft.Width = 15;
-            AreaUserControl.Width = GridHeader.Width;
+            areaManageTask.Width += gridLeft.Width -15;
             gridLeft.HorizontalAlignment = HorizontalAlignment.Left;
 
         }

@@ -67,13 +67,6 @@
                 <Setter Property="Foreground" Value="{StaticResource titleColor}"/>
                 <Setter Property="BorderBrush" Value="{StaticResource color1}"/>
             </Trigger>
-            <!--Activated button style-->
-            <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Margin" Value="0,0,0,5"/>
-                <Setter Property="Background" Value="{StaticResource panelActiveColor}"/>
-                <Setter Property="Foreground" Value="{StaticResource color1}"/>
-                <Setter Property="BorderBrush" Value="{StaticResource color1}"/>
-            </Trigger>
         </Style.Triggers>
     </Style>
 
