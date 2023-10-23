@@ -257,8 +257,8 @@
                                 </Ellipse.Fill>
                             </Ellipse>
                             <Button.ContextMenu>
-                                <ContextMenu x:Name="context" Placement="Bottom" Background="Transparent">
-                                    <MenuItem Header="Logout"/>
+                                <ContextMenu x:Name="context" Placement="Bottom" Background="Transparent" >
+                                    <MenuItem Header="Logout" Click="MenuItem_Click" />
                                 </ContextMenu>
                             </Button.ContextMenu>
                         </Button>
