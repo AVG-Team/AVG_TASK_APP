@@ -11,8 +11,10 @@ using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Security;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Xml.Linq;
@@ -25,7 +27,6 @@ namespace AVG_TASK_APP.Repositories
     {
         public AppDbContext DbContext()
         {
-
             var connection = GetConnection();
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
@@ -36,8 +37,20 @@ namespace AVG_TASK_APP.Repositories
         public void Add(Workspace workspace)
         {
             var dbContext = DbContext();
+            IUserRepository userRepository = new UserRepository();
+
+            var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
+            int id = int.Parse(identity.FindFirst("Id").ToString());
 
             dbContext.Workspaces.Add(workspace);
+            UserWorkspace userWorkspace = new UserWorkspace()
+            {
+                Id_User = id,
+                Id_Workspace = workspace.Id,
+                Role = 1,
+            };
+
+            dbContext.UserWorkspaces.Add(userWorkspace);
             dbContext.SaveChanges();
         }
 
@@ -59,7 +72,7 @@ namespace AVG_TASK_APP.Repositories
         {
             var dbContext = DbContext();
             var workspace = dbContext.Workspaces
-                .FirstOrDefault(s => s.Name == name && s.userWorkspaces.Any(t => t.User == user));
+                .FirstOrDefault(s => s.Name == name && s.UserWorkspaces.Any(t => t.User == user));
             return workspace;
         }
 

@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace AVG_TASK_APP
 
             var assembly = Assembly.GetExecutingAssembly();
 
-            var registryKey = Registry.CurrentUser.OpenSubKey("Software\\" + assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title + "\\Login");
+            var registryKey = Registry.CurrentUser.OpenSubKey("Software\\" + assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title + "\\Login", true);
             if (registryKey == null)
             {
                 LoginView loginView = new LoginView();
@@ -59,7 +60,19 @@ namespace AVG_TASK_APP
                 return;
             }
 
-            Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(username), null);
+            UserModel user = userRepository.GetByEmail(username);
+            var identity = new ClaimsIdentity(new[]
+            {
+                new Claim(ClaimTypes.Name, user.Name),
+                new Claim("Email", user.Email),
+                new Claim("Id", user.Id.ToString()),
+                new Claim("Level", user.Level.ToString()),
+            }, "ApplicationCookie");
+
+            var principal = new ClaimsPrincipal(identity);
+            Thread.CurrentPrincipal = principal;
+            AppDomain.CurrentDomain.SetThreadPrincipal(principal);
+
             PageLayout layout = new PageLayout();
             layout.Show();
         }

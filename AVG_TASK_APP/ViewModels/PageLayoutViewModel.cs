@@ -2,9 +2,11 @@
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Views;
 using System;
+using System.Linq;
 using System.Net.Mail;
 using System.Runtime.InteropServices;
 using System.Security;
+using System.Security.Claims;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
@@ -48,13 +50,13 @@ namespace AVG_TASK_APP.ViewModels
 
         private void LoadCurrentUserData()
         {
-            var user = userRepository.GetByEmail(Thread.CurrentPrincipal.Identity.Name);
-            if (user != null)
+            var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
+            if (identity != null)
             {
-                currentUserAccount.Id = user.Id;
-                currentUserAccount.Name = user.Name;
-                currentUserAccount.Email = user.Email;
-                currentUserAccount.Level = user.Level;
+                currentUserAccount.Id = int.Parse(identity.Claims.FirstOrDefault(s => s.Type == "Id").Value);
+                currentUserAccount.Name = identity.Name;
+                currentUserAccount.Email = identity.Claims.FirstOrDefault(s => s.Type == "Email").Value;
+                currentUserAccount.Level = int.Parse(identity.Claims.FirstOrDefault(s => s.Type == "Level").Value);
 
                 UserAccountName = currentUserAccount.Name;
                 if (currentUserAccount.Level == 0)
@@ -65,6 +67,8 @@ namespace AVG_TASK_APP.ViewModels
                 {
                     UserAccountImage = "/AVG_TASK_APP;component/Resources/Images/ADMIN.png";
                 }
+
+                string email = Thread.CurrentPrincipal.Identity.Name;
             }
             else
             {

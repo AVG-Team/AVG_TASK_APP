@@ -122,9 +122,10 @@ namespace AVG_TASK_APP.ViewModels
 
         private void ExcuteCreateWorkspaceCommand(object obj)
         {
+            string email = Thread.CurrentPrincipal.Identity.Name;
             //TODO: check user curent
-            try
-            {
+            //try
+            //{
                 Workspace workspace = new Workspace()
                 {
                     Name = WorkspaceName,
@@ -148,11 +149,11 @@ namespace AVG_TASK_APP.ViewModels
                         break;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error Unknow, Please try again");
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error Unknow, Please try again");
+            //}
         }
     }
 }
