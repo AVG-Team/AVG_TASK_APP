@@ -2,6 +2,7 @@
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Views;
 using Microsoft.Win32;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
