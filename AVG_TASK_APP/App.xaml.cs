@@ -40,6 +40,7 @@ namespace AVG_TASK_APP
             var username = (string)registryKey.GetValue("Username", String.Empty);
             var password = (string)registryKey.GetValue("Password", String.Empty);
 
+
             if (username == null || password == null)
             {
                 LoginView loginView = new LoginView();
