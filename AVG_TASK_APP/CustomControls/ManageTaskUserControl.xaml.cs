@@ -1,4 +1,5 @@
 ﻿using AVG_TASK_APP.Models;
+using AVG_TASK_APP.Views;
 using C1.WPF.Core;
 using System;
 using System.Collections.Generic;
@@ -134,7 +135,8 @@ namespace AVG_TASK_APP.CustomControls
 
         private void personElement_MouseEnter(object sender, MouseButtonEventArgs e)
         {
-            throw new NotImplementedException();
+            ContactTaskUI contactTaskUI = new ContactTaskUI();
+            contactTaskUI.Show();
         }
 
         private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -142,6 +144,21 @@ namespace AVG_TASK_APP.CustomControls
 
         }
 
+        private void addNameBoardButton_Click(object sender, RoutedEventArgs e)
+        {
+            CreateWorkspaceView createWorkspaceView = new CreateWorkspaceView();
+            createWorkspaceView.Show();
+        }
 
+        private void shareButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShareBoard shareBoard = new ShareBoard();
+            shareBoard.Show();
+        }
+
+        private void shareButton_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

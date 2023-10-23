@@ -1,19 +1,14 @@
 ﻿using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Security.Principal;
-using System.Security;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using System.Net.Mail;
-using System.Windows;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using AVG_TASK_APP.Views;
+using System.Security;
+using System.Windows;
+using System.Windows.Input;
+
 
 namespace AVG_TASK_APP.ViewModels
 {
@@ -198,6 +193,18 @@ namespace AVG_TASK_APP.ViewModels
 
                 userRepository.Add(newUser);
                 MessageBox.Show("Add Member Successfully");
+
+                LoginView loginView = new LoginView();
+                loginView.Show();
+
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window is RegisterView)
+                    {
+                        window.Close();
+                        break;
+                    }
+                }
             }
             else
             {

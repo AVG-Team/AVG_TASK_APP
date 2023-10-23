@@ -7,7 +7,7 @@
         xmlns:viewmodels="clr-namespace:AVG_TASK_APP.ViewModels"
         xmlns:customcontrols="clr-namespace:AVG_TASK_APP.CustomControls"
         mc:Ignorable="d"
-        Title="LoginView" Height="700" Width="900"
+        Title="LoginView" Height="600" Width="900"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -43,10 +43,11 @@
                                              HorizontalAlignment="Center"
                                              VerticalAlignment="Center" />
                                 <StackPanel Orientation="Vertical" Grid.Row="1">
-                                    <Image Grid.Row="1"
-                                           Margin="0,20,0,0"
-                                           VerticalAlignment="Top"
-                                           Source="C:\Users\ASUS\Downloads\user-2160923_1280.png"/>
+                                    <Ellipse Width="200" Height="200" Margin="10,0,10,0">
+                                        <Ellipse.Fill>
+                                            <ImageBrush x:Name="AvatarImage" ImageSource="\AVG_TASK_APP;component\Resources\Images\OIP.jpg"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
                                     <Button x:Name="btnChangeAvatar"
                                             Command="{Binding LoginCommand}"
                                             BorderThickness="0"
@@ -57,7 +58,9 @@
                                             FontFamily="Montserrat"
                                             Cursor="Hand"
                                             Grid.Column="2"
-                                            Margin="0,30,0,0">
+                                            Margin="0,60,0,0"
+                                            Click="btnChangeAvatar_Click_1"
+                                            >
 
                                         <Button.Style>
                                             <Style TargetType="Button">
@@ -147,6 +150,7 @@
                                      FontFamily="Montserrat"
                                      Cursor="Hand"
                                      Grid.Column="2"
+                                    Click="btnCancel_Click"
                                     >
                                 <Button.Style>
                                     <Style TargetType="Button">
@@ -253,7 +257,8 @@
                                              Margin="50,3,0,0"
                                              Padding="20,0,0,0">
                                         <TextBox.Background>
-                                            <ImageBrush ImageSource="/Resources/Icons/icons8-search-16.png"
+                                            <ImageBrush 
+                                                        ImageSource="\AVG_TASK_APP;component\Resources\Icons\mail.png"
                                                         Stretch="None"
                                                         AlignmentX="Left"/>
                                         </TextBox.Background>
@@ -301,7 +306,8 @@
                                             Cursor="Hand"
                                             Grid.Column="2"
                                             Margin="20,30,0,0"
-        >
+                                            Click="btnCancel_Click"
+                                            >
 
                                         <Button.Style>
                                             <Style TargetType="Button">

@@ -16,18 +16,13 @@
         Background="{StaticResource backColor}"
         AllowsTransparency="True"
         MouseDown="Window_MouseDown">
-    <Window.Resources>
-        <Menu x:Key="contextMenu">
-            <MenuItem Header="àihiahfhaif"/>
-        </Menu>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid x:Name="GridHeader" Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="*"/>
@@ -124,7 +119,7 @@
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="400"/>
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0"
@@ -232,10 +227,10 @@
 
                         </Menu>
 
-                        <Button  Width="140"
+                        <Button x:Name="ButtonCreate" Width="140"
                                  Style="{StaticResource menuButtonHeader}"
                                  Tag="{StaticResource textColor6}"
-                                 Click="btnMenuHeader_Click">
+                                 Click="buttonCreate_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Create" Foreground="{StaticResource textColor2}" Style="{StaticResource menuButtonTextHeader}"/>
                             </StackPanel>
@@ -248,46 +243,37 @@
                                 FlowDirection="RightToLeft"
                                 Margin="0,0,20,0"
                                 Background="Transparent">
-
-                        <Ellipse Width="40"
-                                 Height="40">
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-
+                        <Button x:Name="btnUserMenu"
+                                Width="40" Height="40" 
+                                Background="Transparent" 
+                                BorderThickness="0" 
+                                Style="{StaticResource menuButtonHeader}"
+                                ContextMenuService.IsEnabled="False"
+                                Click="btnUserMenu_Click">
+                            <Ellipse Width="40"
+                                     Height="40">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Button.ContextMenu>
+                                <ContextMenu x:Name="context" Placement="Bottom" Background="Transparent">
+                                    <MenuItem Header="Logout"/>
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                        </Button>
                         <Button Background="Transparent"
                                 Width="30" Height="30"
-                                BorderThickness="0">
+                                BorderThickness="0"
+                                Style="{StaticResource menuButtonHeader}">
                             <fa:IconImage Icon="QuestionCircle" Height="20" Width="20"/>
-                            <Button.Style>
-                                <Style TargetType="Button">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Margin" Value="0,0,0,5"/>
-                                            <Setter Property="Background" Value="{StaticResource hoverColor2}"/>
-                                            <Setter Property="Foreground" Value="{StaticResource textColor6}"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
                         </Button>
 
                         <Button Background="Transparent"
                                 Width="30" Height="30"
-                                BorderThickness="0">
+                                BorderThickness="0"
+                                Style="{StaticResource menuButtonHeader}">
                             <fa:IconImage Icon="Bell" Height="20" Width="20"/>
-                            <Button.Style>
-                                <Style TargetType="Button">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Margin" Value="0,0,0,5"/>
-                                            <Setter Property="Background" Value="{StaticResource hoverColor2}"/>
-                                            <Setter Property="Foreground" Value="{StaticResource textColor6}"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
                         </Button>
 
                         <Border CornerRadius="10" BorderThickness="1" BorderBrush="{StaticResource color3}" Height="40" Width="170" Margin="16,0,0,0">
@@ -328,10 +314,11 @@
             </Grid.ColumnDefinitions>
 
             <!-- Menu Button-->
-            <Border Grid.Column="0"
+            <Border  x:Name="gridLeft" Grid.Column="0"
                     Margin="0,20,0,0"
                     CornerRadius=" 0 20 0 0"
-                    Background="{StaticResource color2}">
+                    Background="{StaticResource color2}"
+                    MouseMove="gridLeft_MouseMove">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"/>
@@ -361,7 +348,7 @@
                                        FontFamily="Montserrat"
                                        TextAlignment="Center"
                                        Margin=" 15 40 10 20"/>
-                            <Button Background="Transparent"
+                            <Button x:Name="MoveControlButton" Background="Transparent" Click="MoveControlButton_Click"
                                     Width="30"
                                     Height="30"
                                     BorderThickness="0">
@@ -392,9 +379,10 @@
                         <StackPanel Orientation="Vertical">
                             <Separator Margin="25" Height="0.8" Background="{StaticResource color7}"/>
 
-                            <RadioButton Style="{StaticResource menuButton}"
+                            <RadioButton x:Name="BoardRadioButton" Style="{StaticResource menuButton}"
+                                         Click="BoardRadioButton_Click"
                                         Tag="{StaticResource color6}"
-                                        IsChecked="True"
+                                         IsChecked="True"
                                         Command="{Binding ShowHomeViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <fa:IconImage Icon="Table" Style="{StaticResource menuButtonIcon}"/>
@@ -404,7 +392,6 @@
                             <RadioButton x:Name="btnItemMember"
                                          Style="{StaticResource workspaceMenuButton}"
                                          Tag="{StaticResource color6}"
-                                         IsChecked="True"
                                          Click="btnItemMember_Click">
                                 <StackPanel Orientation="Horizontal"
                                             VerticalAlignment="Center">
@@ -476,7 +463,7 @@
                                              Style="{StaticResource workspaceMenuButton}"
                                              Tag="{StaticResource color6}"
                                               IsChecked="False"
-                                             Click="btnItemMember_Click">
+                                             Click="BoardRadioButton_Click">
                                     <StackPanel Orientation="Horizontal"
                                                 VerticalAlignment="Center">
                                         <fa:IconImage Icon="Users" Style="{StaticResource menuButtonIcon}"/>
@@ -510,6 +497,7 @@
                 </Grid>
             </Border>
             <!-- Menu Button End-->
+
             <Grid x:Name="areaManageTask" Grid.Column="1">
                 <customcontrol:ManageTaskUserControl/>
             </Grid>

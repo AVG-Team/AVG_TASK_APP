@@ -124,5 +124,51 @@ namespace AVG_TASK_APP.Repositories
             }
             return salt;
         }
+
+        public bool verifyAccount(string username, SecureString password)
+        {
+            var connection = GetConnection();
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+            optionsBuilder.UseMySql(connection, serverVersion);
+
+            var dbContext = new AppDbContext(optionsBuilder.Options);
+
+            if (dbContext.Users.FirstOrDefault(x => x.Email == username) == null)
+            {
+                return false;
+            }
+
+            byte[] salt = dbContext.Users.FirstOrDefault(x => x.Email == username).Salt;
+
+            if (!HashPassword(password, salt).Equals(dbContext.Users.FirstOrDefault(x => x.Email == username).Password))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool verifyAccount(string username, String password)
+        {
+            var connection = GetConnection();
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+            optionsBuilder.UseMySql(connection, serverVersion);
+
+            var dbContext = new AppDbContext(optionsBuilder.Options);
+
+            if (dbContext.Users.FirstOrDefault(x => x.Email == username) == null)
+            {
+                return false;
+            }
+
+            byte[] salt = dbContext.Users.FirstOrDefault(x => x.Email == username).Salt;
+
+            if (!password.Equals(dbContext.Users.FirstOrDefault(x => x.Email == username).Password))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

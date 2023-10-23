@@ -45,5 +45,12 @@ namespace AVG_TASK_APP.Views
         {
             
         }
+
+        private void createAccountLink_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            RegisterView registerView = new RegisterView();
+            registerView.Show();
+            this.Close();
+        }
     }
 }

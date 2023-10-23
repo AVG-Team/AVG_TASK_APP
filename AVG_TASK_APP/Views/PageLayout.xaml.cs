@@ -32,6 +32,9 @@ namespace AVG_TASK_APP.Views
         {
             itemWorkspace itemWorkspace = new itemWorkspace();
             menuWorkspace.Children.Add(itemWorkspace.userControl);
+
+            BoardView boardView = new BoardView();
+            contenPanel.Children.Add(boardView);
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -146,9 +149,25 @@ namespace AVG_TASK_APP.Views
 
         private void txtUsername_MouseDown(object sender, MouseButtonEventArgs e)
         {
-          
-          
-           
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            UserInformationUi userInformationUi = new UserInformationUi();
+            userInformationUi.ShowDialog();
+        }
+
+        private void HomeRadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            HomeView homeView = new HomeView();
+            areaUserControl.Children.Add(homeView);
+
+        }
+
+        private void WorkspaceRadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            BoardView boardView = new BoardView();
+            areaUserControl.Children.Add(boardView);
         }
     }
 }
