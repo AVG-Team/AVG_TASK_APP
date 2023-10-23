@@ -144,10 +144,10 @@ namespace AVG_TASK_APP.CustomControls
 
         }
 
-        private void addNameBoardButton_Click(object sender, RoutedEventArgs e)
+        private void addNameCardButton_Click(object sender, RoutedEventArgs e)
         {
-            CreateWorkspaceView createWorkspaceView = new CreateWorkspaceView();
-            createWorkspaceView.Show();
+            AddCard addCard = new AddCard();
+            addCard.Show();
         }
 
         private void shareButton_Click(object sender, RoutedEventArgs e)

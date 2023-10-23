@@ -2,6 +2,7 @@
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Views;
 using Microsoft.Win32;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -29,7 +30,7 @@ namespace AVG_TASK_APP
 
             var assembly = Assembly.GetExecutingAssembly();
 
-            var registryKey = Registry.CurrentUser.OpenSubKey("Software\\" + assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title + "\\Login");
+            var registryKey = Registry.CurrentUser.OpenSubKey("Software\\" + assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title + "\\Login", true);
             if (registryKey == null)
             {
                 LoginView loginView = new LoginView();
