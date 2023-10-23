@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AVG_TASK_APP.Migrations
 {
     /// <inheritdoc />
-    public partial class migrations : Microsoft.EntityFrameworkCore.Migrations.Migration
+    public partial class Migrations : Microsoft.EntityFrameworkCore.Migrations.Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -207,8 +207,8 @@ namespace AVG_TASK_APP.Migrations
                     Deadline = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Deleted_At = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     Created_At = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Id_Table = table.Column<int>(type: "int", nullable: false),
-                    Id_Card = table.Column<int>(type: "int", nullable: false)
+                    Id_Card = table.Column<int>(type: "int", nullable: false),
+                    Id_Table = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -265,7 +265,6 @@ namespace AVG_TASK_APP.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Id_Task = table.Column<int>(type: "int", nullable: false),
-                    Id_Table = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Status = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: false)
@@ -274,8 +273,8 @@ namespace AVG_TASK_APP.Migrations
                 {
                     table.PrimaryKey("PK_Mini Tasks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Mini Tasks_Task_Id_Table",
-                        column: x => x.Id_Table,
+                        name: "FK_Mini Tasks_Task_Id_Task",
+                        column: x => x.Id_Task,
                         principalTable: "Task",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -325,9 +324,9 @@ namespace AVG_TASK_APP.Migrations
                 column: "Id_User");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Mini Tasks_Id_Table",
+                name: "IX_Mini Tasks_Id_Task",
                 table: "Mini Tasks",
-                column: "Id_Table");
+                column: "Id_Task");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Notifies_Id_User",

@@ -196,6 +196,9 @@ namespace AVG_TASK_APP.Migrations
                     b.Property<int>("Id_Card")
                         .HasColumnType("int");
 
+                    b.Property<int>("Id_Table")
+                        .HasColumnType("int");
+
                     b.Property<string>("Label")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -208,6 +211,8 @@ namespace AVG_TASK_APP.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Id_Card");
+
+                    b.HasIndex("Id_Table");
 
                     b.ToTable("Task", (string)null);
                 });
@@ -388,7 +393,7 @@ namespace AVG_TASK_APP.Migrations
                 {
                     b.HasOne("AVG_TASK_APP.Models.Task", "Task")
                         .WithMany("MiniTasks")
-                        .HasForeignKey("Id_Table")
+                        .HasForeignKey("Id_Task")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -432,6 +437,8 @@ namespace AVG_TASK_APP.Migrations
                         .IsRequired();
 
                     b.Navigation("Card");
+
+                    b.Navigation("Table");
                 });
 
             modelBuilder.Entity("AVG_TASK_APP.Models.UserTable", b =>

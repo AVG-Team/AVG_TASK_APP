@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AVG_TASK_APP.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231023042416_migrations")]
-    partial class migrations
+    [Migration("20231023052007_Migrations")]
+    partial class Migrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,9 +81,6 @@ namespace AVG_TASK_APP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_Table")
-                        .HasColumnType("int");
-
                     b.Property<int>("Id_Task")
                         .HasColumnType("int");
 
@@ -99,7 +96,7 @@ namespace AVG_TASK_APP.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id_Table");
+                    b.HasIndex("Id_Task");
 
                     b.ToTable("Mini Tasks", (string)null);
                 });
@@ -399,7 +396,7 @@ namespace AVG_TASK_APP.Migrations
                 {
                     b.HasOne("AVG_TASK_APP.Models.Task", "Task")
                         .WithMany("MiniTasks")
-                        .HasForeignKey("Id_Table")
+                        .HasForeignKey("Id_Task")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -22,7 +22,7 @@
     <Window.DataContext>
         <viewModels:PageLayoutViewModel/>
     </Window.DataContext>
-    
+
     <DockPanel>
         <Border >
             <Border Background="Transparent">
@@ -243,16 +243,14 @@
                                     <StackPanel Orientation="Vertical">
                                         <RadioButton x:Name="WorkspaceRadioButton" Click="WorkspaceRadioButton_Click" Style="{StaticResource menuButton}"
                                          Tag="{StaticResource color6}"
-                                         IsChecked="True"
-                                         Click="boardBtn_Click">
+                                         IsChecked="True">
                                             <StackPanel Orientation="Horizontal">
                                                 <fa:IconImage Icon="Table" Style="{StaticResource menuButtonIcon}"/>
                                                 <TextBlock Text="Board" Style="{StaticResource menuButtonText}"/>
                                             </StackPanel>
                                         </RadioButton>
                                         <RadioButton x:Name="HomeRadioButton" Click="HomeRadioButton_Click" Style="{StaticResource menuButton}"
-                                         Tag="{StaticResource color6}"
-                                         Click="homeBtn_Click">
+                                         Tag="{StaticResource color6}">
                                             <StackPanel Orientation="Horizontal">
                                                 <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
                                                 <TextBlock Text="Home" Style="{StaticResource menuButtonText}"/>
