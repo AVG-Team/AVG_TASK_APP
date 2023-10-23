@@ -12,6 +12,7 @@
         <RadioButton x:Name="btnMenu"
                 Style="{StaticResource workspaceMenuButton}"
                 Tag="{StaticResource color6}"
+                IsChecked="False"
                 Click="btnMenu_Click">
             <StackPanel Orientation="Horizontal">
                 <fa:IconImage Icon="Book" Style="{StaticResource menuButtonIcon}"/>

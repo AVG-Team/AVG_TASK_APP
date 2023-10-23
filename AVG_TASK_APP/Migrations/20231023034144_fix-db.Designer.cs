@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AVG_TASK_APP.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231017113949_migrations")]
-    partial class migrations
+    [Migration("20231023034144_fix-db")]
+    partial class fixdb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -175,11 +175,6 @@ namespace AVG_TASK_APP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<bool>("Activity")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint(1)")
-                        .HasDefaultValue(false);
-
                     b.Property<DateTime>("Created_At")
                         .HasColumnType("datetime(6)");
 
@@ -252,10 +247,9 @@ namespace AVG_TASK_APP.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 
-                    b.Property<string>("Salt")
+                    b.Property<byte[]>("Salt")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("longblob");
 
                     b.HasKey("Id");
 
@@ -320,10 +314,6 @@ namespace AVG_TASK_APP.Migrations
 
                     b.Property<int>("Id_Workspace")
                         .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.Property<string>("Role")
                         .IsRequired()

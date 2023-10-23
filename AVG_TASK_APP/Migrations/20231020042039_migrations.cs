@@ -45,8 +45,7 @@ namespace AVG_TASK_APP.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PhoneNumber = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Salt = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Salt = table.Column<byte[]>(type: "longblob", nullable: false),
                     Level = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

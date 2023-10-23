@@ -13,7 +13,7 @@ namespace AVG_TASK_APP.ViewModels
 
         public void OnPropertyChanged(string propertyName)
         {
-           PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+           PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }

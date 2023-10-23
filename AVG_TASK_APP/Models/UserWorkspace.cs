@@ -12,7 +12,6 @@ namespace AVG_TASK_APP.Models
         public int Id { get; set; }
         public int Id_User { get; set; }
         public int Id_Workspace { get; set; }
-        public string Name { get; set; }
         public string Role { get; set; }
         public UserModel User { get; set; }
         public Workspace Workspace { get; set; }

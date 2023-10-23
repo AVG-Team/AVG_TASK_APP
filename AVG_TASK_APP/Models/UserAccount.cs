@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace AVG_TASK_APP.Models
 {
-    public class MiniTask
+    public class UserAccount
     {
-        public int Id { get; set; }
-        public int Id_Task { get; set; }
+        public int Id {  get; set; }
         public string Name { get; set; }
-        public bool Status { get; set; }
-        public Task Task { get; set; }
+        public string Email { get; set; }
+        public int Level { get; set; }
     }
 }

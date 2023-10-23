@@ -45,7 +45,8 @@
                         FontSize="12"
                         FontFamily="Montserrat"
                         Cursor="Hand"
-                        Grid.Column="2">
+                        Grid.Column="2"
+                        Click="btnClose_Click">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
                                 <Setter Property="Background" Value="{StaticResource color1}"/>
@@ -267,6 +268,7 @@
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
+                   
                                 <RichTextBox Width='500' Height="200" FontSize="14" FontWeight="Medium" FontFamily="Montserrat" MouseDoubleClick="RichTextBox_MouseDoubleClick">
                                     <RichTextBox.Template>
                                         <ControlTemplate>

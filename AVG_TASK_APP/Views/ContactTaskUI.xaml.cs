@@ -24,6 +24,11 @@ namespace AVG_TASK_APP.Views
             InitializeComponent();
         }
 
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
 
