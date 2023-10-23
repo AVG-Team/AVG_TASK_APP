@@ -32,6 +32,9 @@ namespace AVG_TASK_APP.Views
         {
             itemWorkspace itemWorkspace = new itemWorkspace();
             menuWorkspace.Children.Add(itemWorkspace.userControl);
+
+            BoardView boardView = new BoardView();
+            areaUserControl.Children.Add(boardView);
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -135,13 +138,13 @@ namespace AVG_TASK_APP.Views
                 txtUsername.Text = "Search..."; // Đặt lại nội dung mặc định nếu không có gì được nhập
             }
             txtUsername.Width = 150;  // Thu hẹp TextBox khi nó mất focus
-         
+
 
         }
 
         private void Window_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-           
+
         }
 
         private void txtUsername_MouseDown(object sender, MouseButtonEventArgs e)

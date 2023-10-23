@@ -17,9 +17,11 @@ namespace AVG_TASK_APP.Models
         public DateTime? Deleted_At { get; set; }
         public DateTime Created_At { get; set; } = DateTime.Now;
         public int Id_Card { get; set; }
+        public int Id_Table { get; set; }
         public Card Card { get; set; }
-        public List<UserTask> userTasks;
-        public List<MiniTask> miniTasks;
-        public List<Comment> comments;
+        public Table Table { get; set; }
+        public List<UserTask> UserTasks;
+        public List<MiniTask> MiniTasks;
+        public List<Comment> Comments;
     }
 }

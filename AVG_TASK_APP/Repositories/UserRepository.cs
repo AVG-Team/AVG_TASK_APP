@@ -134,10 +134,14 @@ namespace AVG_TASK_APP.Repositories
 
             var dbContext = new AppDbContext(optionsBuilder.Options);
 
-            
+            if (dbContext.Users.FirstOrDefault(x => x.Email == username) == null)
+            {
+                return false;
+            }
+
             byte[] salt = dbContext.Users.FirstOrDefault(x => x.Email == username).Salt;
 
-            if(!HashPassword(password, salt).Equals(dbContext.Users.FirstOrDefault(x => x.Email == username).Password))
+            if (!HashPassword(password, salt).Equals(dbContext.Users.FirstOrDefault(x => x.Email == username).Password))
             {
                 return false;
             }
@@ -153,10 +157,14 @@ namespace AVG_TASK_APP.Repositories
 
             var dbContext = new AppDbContext(optionsBuilder.Options);
 
-            
+            if (dbContext.Users.FirstOrDefault(x => x.Email == username) == null)
+            {
+                return false;
+            }
+
             byte[] salt = dbContext.Users.FirstOrDefault(x => x.Email == username).Salt;
 
-            if(!password.Equals(dbContext.Users.FirstOrDefault(x => x.Email == username).Password))
+            if (!password.Equals(dbContext.Users.FirstOrDefault(x => x.Email == username).Password))
             {
                 return false;
             }

@@ -17,11 +17,11 @@ namespace AVG_TASK_APP.Models
         public string PhoneNumber { get; set; }
         public byte[] Salt { get; set; }
         public int Level { get; set; }
-        public List<Notify> notifies;
-        public List<UserWorkspace> userWorkspaces;
-        public List<UserTable> userTables;
-        public List<UserTask> userTasks;
-        public List<Comment> comments;
+        public List<Notify> Notifies;
+        public List<UserWorkspace>UserWorkspaces;
+        public List<UserTable> UserTables;
+        public List<UserTask> UserTasks;
+        public List<Comment> Comments;
    
     }
 }
