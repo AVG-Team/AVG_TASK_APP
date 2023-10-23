@@ -11,7 +11,6 @@ namespace AVG_TASK_APP.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public bool Activity { get; set; }
         public string Label { get; set; }
         public string Estimate { get; set; }
         public DateTime Deadline { get; set; }
