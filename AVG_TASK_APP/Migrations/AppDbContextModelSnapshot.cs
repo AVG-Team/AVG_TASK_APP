@@ -28,12 +28,17 @@ namespace AVG_TASK_APP.Migrations
                     b.Property<DateTime>("Created_At")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("Id_Table")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Id_Table");
 
                     b.ToTable("Cards", (string)null);
                 });
@@ -265,10 +270,8 @@ namespace AVG_TASK_APP.Migrations
                     b.Property<int>("Id_User")
                         .HasColumnType("int");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -312,10 +315,8 @@ namespace AVG_TASK_APP.Migrations
                     b.Property<int>("Id_Workspace")
                         .HasColumnType("int");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -361,16 +362,27 @@ namespace AVG_TASK_APP.Migrations
                     b.ToTable("Workspaces", (string)null);
                 });
 
+            modelBuilder.Entity("AVG_TASK_APP.Models.Card", b =>
+                {
+                    b.HasOne("AVG_TASK_APP.Models.Table", "Table")
+                        .WithMany("Cards")
+                        .HasForeignKey("Id_Table")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Table");
+                });
+
             modelBuilder.Entity("AVG_TASK_APP.Models.Comment", b =>
                 {
                     b.HasOne("AVG_TASK_APP.Models.Task", "Task")
-                        .WithMany("comments")
+                        .WithMany("Comments")
                         .HasForeignKey("Id_Task")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AVG_TASK_APP.Models.UserModel", "User")
-                        .WithMany("comments")
+                        .WithMany("Comments")
                         .HasForeignKey("Id_User")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -383,7 +395,7 @@ namespace AVG_TASK_APP.Migrations
             modelBuilder.Entity("AVG_TASK_APP.Models.MiniTask", b =>
                 {
                     b.HasOne("AVG_TASK_APP.Models.Task", "Task")
-                        .WithMany("miniTasks")
+                        .WithMany("MiniTasks")
                         .HasForeignKey("Id_Table")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -394,7 +406,7 @@ namespace AVG_TASK_APP.Migrations
             modelBuilder.Entity("AVG_TASK_APP.Models.Notify", b =>
                 {
                     b.HasOne("AVG_TASK_APP.Models.UserModel", "User")
-                        .WithMany("notifies")
+                        .WithMany("Notifies")
                         .HasForeignKey("Id_User")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -405,7 +417,7 @@ namespace AVG_TASK_APP.Migrations
             modelBuilder.Entity("AVG_TASK_APP.Models.Table", b =>
                 {
                     b.HasOne("AVG_TASK_APP.Models.Workspace", "Workspace")
-                        .WithMany("tables")
+                        .WithMany("Tables")
                         .HasForeignKey("Id_Workspace")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -416,13 +428,13 @@ namespace AVG_TASK_APP.Migrations
             modelBuilder.Entity("AVG_TASK_APP.Models.Task", b =>
                 {
                     b.HasOne("AVG_TASK_APP.Models.Card", "Card")
-                        .WithMany("tasks")
+                        .WithMany("Tasks")
                         .HasForeignKey("Id_Card")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AVG_TASK_APP.Models.Table", "Table")
-                        .WithMany("tasks")
+                        .WithMany("Tasks")
                         .HasForeignKey("Id_Table")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -435,13 +447,13 @@ namespace AVG_TASK_APP.Migrations
             modelBuilder.Entity("AVG_TASK_APP.Models.UserTable", b =>
                 {
                     b.HasOne("AVG_TASK_APP.Models.Table", "Table")
-                        .WithMany("userTables")
+                        .WithMany("UserTables")
                         .HasForeignKey("Id_Table")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AVG_TASK_APP.Models.UserModel", "User")
-                        .WithMany("userTables")
+                        .WithMany("UserTables")
                         .HasForeignKey("Id_User")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -454,13 +466,13 @@ namespace AVG_TASK_APP.Migrations
             modelBuilder.Entity("AVG_TASK_APP.Models.UserTask", b =>
                 {
                     b.HasOne("AVG_TASK_APP.Models.Task", "Task")
-                        .WithMany("userTasks")
+                        .WithMany("UserTasks")
                         .HasForeignKey("Id_Task")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AVG_TASK_APP.Models.UserModel", "User")
-                        .WithMany("userTasks")
+                        .WithMany("UserTasks")
                         .HasForeignKey("Id_User")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -473,13 +485,13 @@ namespace AVG_TASK_APP.Migrations
             modelBuilder.Entity("AVG_TASK_APP.Models.UserWorkspace", b =>
                 {
                     b.HasOne("AVG_TASK_APP.Models.UserModel", "User")
-                        .WithMany("userWorkspaces")
+                        .WithMany("UserWorkspaces")
                         .HasForeignKey("Id_User")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AVG_TASK_APP.Models.Workspace", "Workspace")
-                        .WithMany("userWorkspaces")
+                        .WithMany("UserWorkspaces")
                         .HasForeignKey("Id_Workspace")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -491,43 +503,45 @@ namespace AVG_TASK_APP.Migrations
 
             modelBuilder.Entity("AVG_TASK_APP.Models.Card", b =>
                 {
-                    b.Navigation("tasks");
+                    b.Navigation("Tasks");
                 });
 
             modelBuilder.Entity("AVG_TASK_APP.Models.Table", b =>
                 {
-                    b.Navigation("tasks");
+                    b.Navigation("Cards");
 
-                    b.Navigation("userTables");
+                    b.Navigation("Tasks");
+
+                    b.Navigation("UserTables");
                 });
 
             modelBuilder.Entity("AVG_TASK_APP.Models.Task", b =>
                 {
-                    b.Navigation("comments");
+                    b.Navigation("Comments");
 
-                    b.Navigation("miniTasks");
+                    b.Navigation("MiniTasks");
 
-                    b.Navigation("userTasks");
+                    b.Navigation("UserTasks");
                 });
 
             modelBuilder.Entity("AVG_TASK_APP.Models.UserModel", b =>
                 {
-                    b.Navigation("comments");
+                    b.Navigation("Comments");
 
-                    b.Navigation("notifies");
+                    b.Navigation("Notifies");
 
-                    b.Navigation("userTables");
+                    b.Navigation("UserTables");
 
-                    b.Navigation("userTasks");
+                    b.Navigation("UserTasks");
 
-                    b.Navigation("userWorkspaces");
+                    b.Navigation("UserWorkspaces");
                 });
 
             modelBuilder.Entity("AVG_TASK_APP.Models.Workspace", b =>
                 {
-                    b.Navigation("tables");
+                    b.Navigation("Tables");
 
-                    b.Navigation("userWorkspaces");
+                    b.Navigation("UserWorkspaces");
                 });
 #pragma warning restore 612, 618
         }

@@ -20,7 +20,7 @@ namespace AVG_TASK_APP.Models.Configuaration
             builder.Property(x => x.Visible).HasDefaultValue(false);
             builder.Property(x => x.Code).HasMaxLength(2000).IsRequired();
             builder.Property(x => x.Deleted_At).HasDefaultValue(null);
-            builder.HasOne(x => x.Workspace).WithMany(x => x.tables).HasForeignKey(x => x.Id_Workspace);
+            builder.HasOne(x => x.Workspace).WithMany(x => x.Tables).HasForeignKey(x => x.Id_Workspace);
         }
     }
 }

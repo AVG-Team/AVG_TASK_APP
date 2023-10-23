@@ -17,6 +17,7 @@ namespace AVG_TASK_APP.Models.Configuaration
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Name).HasMaxLength(200).IsRequired();
             builder.Property(x => x.Created_At);
+            builder.HasOne(x => x.Table).WithMany(x => x.Cards).HasForeignKey(x => x.Id_Table);
         }
     }
 }

@@ -22,8 +22,8 @@ namespace AVG_TASK_APP.Models.Configuaration
             builder.Property(t => t.Deleted_At).HasDefaultValue(null);
             builder.Property(t => t.Created_At);
 
-            builder.HasOne(x => x.Table).WithMany(x => x.tasks).HasForeignKey(x => x.Id_Table);
-            builder.HasOne(x => x.Card).WithMany(x => x.tasks).HasForeignKey(x => x.Id_Card);
+            builder.HasOne(x => x.Table).WithMany(x => x.Tasks).HasForeignKey(x => x.Id_Table);
+            builder.HasOne(x => x.Card).WithMany(x => x.Tasks).HasForeignKey(x => x.Id_Card);
         }
     }
 }

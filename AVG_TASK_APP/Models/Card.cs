@@ -10,7 +10,9 @@ namespace AVG_TASK_APP.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int Id_Table { get; set; }
         public DateTime Created_At { get; set; } = DateTime.Now;
-        public List <Task> tasks { get; set; }
+        public List <Task> Tasks { get; set; }
+        public Table Table;
     }
 }
