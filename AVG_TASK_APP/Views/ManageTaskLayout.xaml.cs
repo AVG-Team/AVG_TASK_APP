@@ -159,15 +159,10 @@ namespace AVG_TASK_APP.Views
         private void btnUserMenu_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-
-            // Get the button and check for nulls
-
             if (button == null || button.ContextMenu == null)
                 return;
-            // Set the placement target of the ContextMenu to the button
             button.ContextMenu.PlacementTarget = button;
             button.ContextMenu.FlowDirection = FlowDirection.LeftToRight;
-            // Open the ContextMenu
             button.ContextMenu.IsOpen = true;
 
         }
