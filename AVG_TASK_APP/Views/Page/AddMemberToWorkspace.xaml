@@ -8,8 +8,7 @@
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
         mc:Ignorable="d"
         Title="Add Member To Workspace" Height="330" Width="660"
-         Background="{StaticResource panelColor}">
-
+    Background="{StaticResource panelColor}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="330"/>
@@ -41,7 +40,7 @@
             <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <TextBlock
                 Text="Add Workspace Members"
-                Foreground="{StaticResource textColor3}"
+                Foreground="{StaticResource textColor2}"
                 FontSize="12"
                 FontFamily="Montserrat"/>
                 <!--<TextBlock>
@@ -95,12 +94,45 @@
                 </TextBlock>
             </StackPanel>
         </Grid>
-
+            
         <Grid Grid.Column="1" Background="Transparent">
+
+            <Button x:Name="btnClose" Margin="10"
+                    BorderThickness="0"
+                    Content="X"
+                    Foreground="{StaticResource textButtonColor}"
+                    FontSize="12"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    Panel.ZIndex="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right" Click="btnClose_Click" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="{StaticResource color1}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource hoverColor1}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18"
+                                        CornerRadius="10"
+                                        Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
             <Image Source="/Resources/Images/backgroundworkspace.png" 
                    Width="1000"/>
             <Image Source="/Resources/Images/createwp.png" Panel.ZIndex="1"/>
-            <Image Source="/Resources/Images/memberwp.png" 
+            <Image Source="/Resources/Images/memberwp.png" Panel.ZIndex="2"
                    Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,0,0,20"/>
         </Grid>
     </Grid>

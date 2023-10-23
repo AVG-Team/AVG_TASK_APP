@@ -24,7 +24,22 @@ namespace AVG_TASK_APP.Views
         public CreateWorkspaceView()
         {
             InitializeComponent();
+            txtDateStart.Text = DateTime.Today.ToString();
             txtDateStart.SelectedDate = DateTime.Today;
+
+            hourComboBox.Items.Add("hour");
+            for (int i = 0; i < 24; i++)
+            {
+                hourComboBox.Items.Add(i.ToString("00"));
+            }
+            hourComboBox.SelectedIndex = 1;
+
+            minuteComboBox.Items.Add("Minute");
+            for (int i = 0; i < 60; i++)
+            {
+                minuteComboBox.Items.Add(i.ToString("00"));
+            }
+            minuteComboBox.SelectedIndex = 1;
         }
 
         private string RandomCode()
@@ -38,32 +53,45 @@ namespace AVG_TASK_APP.Views
             txtCode.Text = RandomCode();
         }
 
-        private bool checkInput()
-        {
-            bool result = true;
-            if (string.IsNullOrEmpty(txtName.Text))
-            {
-                MessageBox.Show("Please fill in your workspace name!!!");
-                result = false;
-            }
-            if (string.IsNullOrWhiteSpace(txtCode.Text))
-            {
-                txtCode.Text = RandomCode();
-            }
-
-            return result;
-        }
-
         private void btnContinue_Click(object sender, RoutedEventArgs e)
         {
-            //checkInput();
-            AddMemberToWorkspace addMemberToWorkspace = new AddMemberToWorkspace();
-            //this.Close();
-            this.Content = addMemberToWorkspace;
-            this.Width = addMemberToWorkspace.Width;
-            this.Height = addMemberToWorkspace.Height;
+        }
 
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
+        private void txtClose_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtDateStart_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateValueDateStart();
+        }
+
+        private void hourComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateValueDateStart();
+        }
+
+        private void minuteComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateValueDateStart();
+        }
+
+        private void UpdateValueDateStart()
+        {
+            DateTime selectedDate = txtDateStart.SelectedDate ?? DateTime.Now;
+            int hour = hourComboBox.SelectedItem != null ? int.Parse(hourComboBox.SelectedItem.ToString()) : 0;
+            int minute = minuteComboBox.SelectedItem != null ? int.Parse(minuteComboBox.SelectedItem.ToString()) : 0;
+
+            DateTime selectedDateTime = new DateTime(
+                selectedDate.Year, selectedDate.Month, selectedDate.Day, hour, minute, 0);
+
+            txtValueDateStart.Text = selectedDateTime.ToString("yyyy-MM-dd HH:mm");
         }
     }
 }
