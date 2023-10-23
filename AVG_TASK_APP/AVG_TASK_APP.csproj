@@ -9,11 +9,13 @@
 
   <ItemGroup>
     <None Remove="Resources\Icons\clock-regular.png" />
+    <None Remove="Resources\Icons\envelope-regular.png" />
     <None Remove="Resources\Icons\favicon-avg.png" />
     <None Remove="Resources\Icons\icons8-search-16.png" />
     <None Remove="Resources\Icons\key-icon.png" />
     <None Remove="Resources\Icons\logo-avg-task.png" />
     <None Remove="Resources\Icons\logo-avg.png" />
+    <None Remove="Resources\Icons\mail.png" />
     <None Remove="Resources\Icons\phone-icon.png" />
     <None Remove="Resources\Icons\R.png" />
     <None Remove="Resources\Icons\magnifying-glass.png" />
@@ -47,11 +49,13 @@
 
   <ItemGroup>
     <Resource Include="Resources\Icons\clock-regular.png" />
+    <Resource Include="Resources\Icons\envelope-regular.png" />
     <Resource Include="Resources\Icons\favicon-avg.png" />
     <Resource Include="Resources\Icons\icons8-search-16.png" />
     <Resource Include="Resources\Icons\key-icon.png" />
     <Resource Include="Resources\Icons\logo-avg-task.png" />
     <Resource Include="Resources\Icons\logo-avg.png" />
+    <Resource Include="Resources\Icons\mail.png" />
     <Resource Include="Resources\Icons\phone-icon.png" />
     <Resource Include="Resources\Icons\magnifying-glass.png" />
     <Resource Include="Resources\Icons\user-icon.png" />

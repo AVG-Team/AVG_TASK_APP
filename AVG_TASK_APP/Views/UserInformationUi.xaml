@@ -45,7 +45,7 @@
                                 <StackPanel Orientation="Vertical" Grid.Row="1">
                                     <Ellipse Width="200" Height="200" Margin="10,0,10,0">
                                         <Ellipse.Fill>
-                                            <ImageBrush x:Name="AvatarImage" ImageSource="\Resources\Images\OIP.jpg"/>
+                                            <ImageBrush x:Name="AvatarImage" ImageSource="\AVG_TASK_APP;component\Resources\Images\OIP.jpg"/>
                                         </Ellipse.Fill>
                                     </Ellipse>
                                     <Button x:Name="btnChangeAvatar"
@@ -61,7 +61,7 @@
                                             Margin="0,60,0,0"
                                             Click="btnChangeAvatar_Click_1"
                                             >
-                        
+
                                         <Button.Style>
                                             <Style TargetType="Button">
                                                 <Setter Property="Background" Value="{StaticResource buttonColor}"/>
@@ -258,8 +258,7 @@
                                              Padding="20,0,0,0">
                                         <TextBox.Background>
                                             <ImageBrush 
-
-                                                        ImageSource="C:\Users\ASUS\Documents\hc bai\AVG_TASK_APP\Resources\Icons\mail.png"
+                                                        ImageSource="\AVG_TASK_APP;component\Resources\Icons\mail.png"
                                                         Stretch="None"
                                                         AlignmentX="Left"/>
                                         </TextBox.Background>
