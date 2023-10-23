@@ -1,14 +1,20 @@
 ﻿using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.Views;
+using Microsoft.VisualBasic.ApplicationServices;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
+using System.Reflection;
 using System.Security;
 using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -85,10 +91,24 @@ namespace AVG_TASK_APP.ViewModels
             throw new NotImplementedException();
         }
 
+        public bool IsValid(string emailaddress)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(emailaddress);
+
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
         private bool CanExcuteLoginCommand(object obj)
         {
             bool validData;
-            if (string.IsNullOrWhiteSpace(Username) || Username.Length < 3 ||
+            if (string.IsNullOrWhiteSpace(Username) || Username.Length < 3 || !IsValid(Username) ||
                 Password == null || Password.Length < 3)
                 validData = false;
             else
@@ -98,12 +118,32 @@ namespace AVG_TASK_APP.ViewModels
 
         private void ExcuteLoginCommand(object obj)
         {
-            var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
+            var isValidUser = userRepository.verifyAccount(Username, Password);
             if (isValidUser)
             {
-                Thread.CurrentPrincipal = new GenericPrincipal(
-                    new GenericIdentity(Username), null);
-                IsViewVisible = false;
+                MessageBoxView msb = new MessageBoxView();
+                Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+
+                byte[] salt = userRepository.GetByEmail(Username).Salt;
+                string passwordTmp = userRepository.HashPassword(Password, salt);
+
+                var assembly = Assembly.GetExecutingAssembly();
+                var registryKey = Registry.CurrentUser.CreateSubKey("Software\\" + assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title + "\\Login");
+                registryKey.SetValue("Username", Username);
+                registryKey.SetValue("Password", passwordTmp);
+
+                PageLayout pageLayout = new PageLayout();
+                pageLayout.Show();
+
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window is LoginView)
+                    {
+                        window.Close();
+                        IsViewVisible = false;
+                        return;
+                    }
+                }
             }
             else
             {

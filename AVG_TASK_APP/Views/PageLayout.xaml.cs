@@ -38,6 +38,11 @@ namespace AVG_TASK_APP.Views
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (!txtUsername.IsMouseOver)
+            {
+                txtUsername.Width = 150;  // Thu hẹp TextBox
+                btnMinimize.Focus();    // Loại bỏ focus từ TextBox
+            }
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
@@ -119,21 +124,50 @@ namespace AVG_TASK_APP.Views
 
         }
 
-        private void RadioButton_Click_1(object sender, RoutedEventArgs e)
+        private void txtUsername_GotFocus(object sender, RoutedEventArgs e)
         {
+            txtUsername.Text = ""; // Xóa nội dung mặc định khi bấm vào
+            txtUsername.Width = 300; // Kích thước mới khi TextBox nhận focus
 
         }
 
-        private void homeBtn_Click(object sender, RoutedEventArgs e)
+        private void txtUsername_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtUsername.Text))
+            {
+                txtUsername.Text = "Search..."; // Đặt lại nội dung mặc định nếu không có gì được nhập
+            }
+            txtUsername.Width = 150;  // Thu hẹp TextBox khi nó mất focus
+         
+
+        }
+
+        private void Window_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+           
+        }
+
+        private void txtUsername_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            UserInformationUi userInformationUi = new UserInformationUi();
+            userInformationUi.ShowDialog();
+        }
+
+        private void HomeRadioButton_Click(object sender, RoutedEventArgs e)
         {
             HomeView homeView = new HomeView();
-            contenPanel.Children.Add(homeView);
+            areaUserControl.Children.Add(homeView);
+
         }
 
-        private void boardBtn_Click(object sender, RoutedEventArgs e)
+        private void WorkspaceRadioButton_Click(object sender, RoutedEventArgs e)
         {
             BoardView boardView = new BoardView();
-            contenPanel.Children.Add(boardView);
+            areaUserControl.Children.Add(boardView);
         }
     }
 }

@@ -46,8 +46,8 @@
                     <!--  End -->
                     <Grid Grid.Row="1">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition/>
+                            <RowDefinition Height="55"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <StackPanel x:Name="Workspace" 
                                 Grid.Row="0"
