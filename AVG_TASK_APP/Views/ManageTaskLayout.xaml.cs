@@ -175,5 +175,11 @@ namespace AVG_TASK_APP.Views
             button.ContextMenu.IsOpen = true;
 
         }
+
+        private void infomationUser_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            UserInformationUi userInformationUi = new UserInformationUi();
+            userInformationUi.Show();
+        }
     }
 }

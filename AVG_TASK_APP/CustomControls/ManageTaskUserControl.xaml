@@ -64,7 +64,7 @@
                             Width="30" Height="30"
                             BorderThickness="0"
                             >
-                        <fa:IconImage Icon="Bars" Height="25" Width="25"/>
+                        <fa:IconImage x:Name="MenuButton" Icon="Bars" Height="25" Width="25" MouseDown="MenuButton_MouseDown"/>
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Style.Triggers>
@@ -112,7 +112,10 @@
                     Orientation="Horizontal"
                     VerticalAlignment="Top"
                     Margin="25 40 25 0">
-
+            
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right">
+            <customcontrol:MenuBoard_UserControl Visibility="Collapsed" x:Name="menuBoardControl"  Width="350" Height="650" />
         </StackPanel>
     </Grid>
 </UserControl>

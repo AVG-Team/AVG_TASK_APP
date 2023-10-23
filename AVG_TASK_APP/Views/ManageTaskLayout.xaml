@@ -314,7 +314,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Menu Button-->
-            <Border  x:Name="gridLeft" Grid.Column="0"
+            <Border x:Name="gridLeft" Grid.Column="0"
                     Margin="0,20,0,0"
                     CornerRadius=" 0 20 0 0"
                     Background="{StaticResource color2}"
@@ -334,7 +334,7 @@
                                     CornerRadius="5"
                                     HorizontalAlignment="Left"
                                     Margin="20 0 0 0">
-                                <Ellipse>
+                                <Ellipse x:Name="infomationUser" MouseDown="infomationUser_MouseDown">
                                     <Ellipse.Fill>
                                         <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
                                     </Ellipse.Fill>
@@ -498,9 +498,7 @@
             </Border>
             <!-- Menu Button End-->
 
-            <Grid x:Name="areaManageTask" Grid.Column="1">
-                <customcontrol:ManageTaskUserControl/>
-            </Grid>
+            <Grid x:Name="areaManageTask" Grid.Column="1"  HorizontalAlignment="Right"></Grid>
         </Grid>
     </Grid>
 </Window>
