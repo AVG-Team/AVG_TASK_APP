@@ -17,7 +17,6 @@ namespace AVG_TASK_APP.Models.Configuaration
             builder.Property(t => t.Id).ValueGeneratedOnAdd();
             builder.Property(t => t.Name).HasMaxLength(200).IsRequired();
             builder.Property(t => t.Description).HasMaxLength(200).IsRequired();
-            builder.Property(t => t.Activity).HasDefaultValue(false);
             builder.Property(t => t.Estimate).HasMaxLength(200).IsRequired();
             builder.Property(t => t.Deadline).IsRequired();
             builder.Property(t => t.Deleted_At).HasDefaultValue(null);
