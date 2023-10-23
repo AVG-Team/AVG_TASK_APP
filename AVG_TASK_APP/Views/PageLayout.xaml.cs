@@ -32,6 +32,9 @@ namespace AVG_TASK_APP.Views
         {
             itemWorkspace itemWorkspace = new itemWorkspace();
             menuWorkspace.Children.Add(itemWorkspace.userControl);
+
+            BoardView boardView = new BoardView();
+            contenPanel.Children.Add(boardView);
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

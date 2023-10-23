@@ -244,7 +244,7 @@
                                         <RadioButton x:Name="WorkspaceRadioButton" Click="WorkspaceRadioButton_Click" Style="{StaticResource menuButton}"
                                          Tag="{StaticResource color6}"
                                          IsChecked="True"
-                                         Command="{Binding ShowHomeViewCommand}">
+                                         Click="boardBtn_Click">
                                             <StackPanel Orientation="Horizontal">
                                                 <fa:IconImage Icon="Table" Style="{StaticResource menuButtonIcon}"/>
                                                 <TextBlock Text="Board" Style="{StaticResource menuButtonText}"/>
@@ -252,7 +252,7 @@
                                         </RadioButton>
                                         <RadioButton x:Name="HomeRadioButton" Click="HomeRadioButton_Click" Style="{StaticResource menuButton}"
                                          Tag="{StaticResource color6}"
-                                         Command="{Binding ShowCustomerViewCommand}">
+                                         Click="homeBtn_Click">
                                             <StackPanel Orientation="Horizontal">
                                                 <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
                                                 <TextBlock Text="Home" Style="{StaticResource menuButtonText}"/>
@@ -294,7 +294,6 @@
                         <!-- Content Begin -->
                         <Grid x:Name="areaUserControl" Grid.Column="1">
 
-                            <customcontrols:BoardView/>
                         </Grid>
                     </Grid>
                 </Grid>
