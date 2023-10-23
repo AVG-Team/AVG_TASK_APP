@@ -16,7 +16,7 @@ namespace AVG_TASK_APP.Models
         public string Code { get; set; }
         public DateTime? Deleted_At { get; set; }
         public DateTime Created_At { get; set; } = DateTime.Now;
-        public List<UserWorkspace> userWorkspaces { get; set; }
-        public List<Table> tables { get; set; }
+        public List<UserWorkspace> UserWorkspaces { get; set; }
+        public List<Table> Tables { get; set; }
     }
 }

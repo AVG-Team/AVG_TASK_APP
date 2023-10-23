@@ -20,7 +20,7 @@ namespace AVG_TASK_APP.Models.Configuaration
             builder.Property(x => x.Content).IsRequired();
             builder.Property(x => x.Pin).HasDefaultValue(false);
             builder.Property(x => x.Created_At);
-            builder.HasOne(x => x.User).WithMany(x => x.notifies).HasForeignKey(x => x.Id_User);
+            builder.HasOne(x => x.User).WithMany(x => x.Notifies).HasForeignKey(x => x.Id_User);
         }
     }
 }
