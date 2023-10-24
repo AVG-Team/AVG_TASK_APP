@@ -1,25 +1,11 @@
 ﻿using AVG_TASK_APP.Migration;
 using AVG_TASK_APP.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Net;
-using System.Runtime.InteropServices;
-using System.Security;
 using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Xml.Linq;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace AVG_TASK_APP.Repositories
 {
@@ -92,6 +78,36 @@ namespace AVG_TASK_APP.Repositories
         public IEnumerable<Workspace> GetAllForUser()
         {
             throw new NotImplementedException();
+        }
+
+        public bool AddUserToWorkspace(Workspace workspace, UserModel user)
+        {
+            try
+            {
+                var dbContext = DbContext();
+                UserWorkspace userWorkspace = new UserWorkspace()
+                {
+                    Id_User = user.Id,
+                    Id_Workspace = workspace.Id,
+                    Role = 0,
+                };
+
+                dbContext.UserWorkspaces.Add(userWorkspace);
+                dbContext.SaveChanges();
+
+                return true;
+            } catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public Workspace GetById(int id)
+        {
+            var dbContext = DbContext();
+            var workspace = dbContext.Workspaces
+                .FirstOrDefault(s => s.Id == id);
+            return workspace;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AVG_TASK_APP.Models;
+﻿using AVG_TASK_APP.CustomControls;
+using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Views;
 using Microsoft.Win32;
@@ -26,55 +27,8 @@ namespace AVG_TASK_APP
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            userRepository = new UserRepository();
-
-            var assembly = Assembly.GetExecutingAssembly();
-
-            var registryKey = Registry.CurrentUser.OpenSubKey("Software\\" + assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title + "\\Login", true);
-            if (registryKey == null)
-            {
-                LoginView loginView = new LoginView();
-                loginView.Show();
-                return;
-            }
-
-            var username = (string)registryKey.GetValue("Username", String.Empty);
-            var password = (string)registryKey.GetValue("Password", String.Empty);
-
-
-            if (username == null || password == null)
-            {
-                LoginView loginView = new LoginView();
-                loginView.Show();
-                return;
-            }
-
-            var isValidUser = userRepository.verifyAccount(username, password.ToString());
-            if (!isValidUser)
-            {
-                LoginView loginView = new LoginView();
-                loginView.Show();
-
-                registryKey.SetValue("Username", String.Empty);
-                registryKey.SetValue("Password", String.Empty);
-                return;
-            }
-
-            UserModel user = userRepository.GetByEmail(username);
-            var identity = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Name, user.Name),
-                new Claim("Email", user.Email),
-                new Claim("Id", user.Id.ToString()),
-                new Claim("Level", user.Level.ToString()),
-            }, "ApplicationCookie");
-
-            var principal = new ClaimsPrincipal(identity);
-            Thread.CurrentPrincipal = principal;
-            AppDomain.CurrentDomain.SetThreadPrincipal(principal);
-
-            PageLayout layout = new PageLayout();
-            layout.Show();
+            CreateWorkspaceView createWorkspaceView = new CreateWorkspaceView();
+            createWorkspaceView.Show();
         }
     }
 }

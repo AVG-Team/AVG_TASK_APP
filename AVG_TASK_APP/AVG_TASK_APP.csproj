@@ -20,6 +20,7 @@
     <None Remove="Resources\Icons\R.png" />
     <None Remove="Resources\Icons\magnifying-glass.png" />
     <None Remove="Resources\Icons\user-icon.png" />
+    <None Remove="Resources\Images\ADMIN.png" />
     <None Remove="Resources\Images\background_Ws.jpg" />
     <None Remove="Resources\Images\backgroundworkspace.png" />
     <None Remove="Resources\Images\createwp.png" />
@@ -59,6 +60,7 @@
     <Resource Include="Resources\Icons\phone-icon.png" />
     <Resource Include="Resources\Icons\magnifying-glass.png" />
     <Resource Include="Resources\Icons\user-icon.png" />
+    <Resource Include="Resources\Images\ADMIN.png" />
     <Resource Include="Resources\Images\background_Ws.jpg" />
     <Resource Include="Resources\Images\backgroundworkspace.png" />
     <Resource Include="Resources\Images\createwp.png" />

@@ -141,7 +141,7 @@ namespace AVG_TASK_APP.ViewModels
                 {
                     if (window is CreateWorkspaceView)
                     {
-                        AddMemberToWorkspace addMemberToWorkspace = new AddMemberToWorkspace();
+                        AddMemberToWorkspace addMemberToWorkspace = new AddMemberToWorkspace(workspace.Id);
                         window.Content = addMemberToWorkspace;
                         window.Width = addMemberToWorkspace.Width;
                         window.Height = addMemberToWorkspace.Height;
