@@ -6,8 +6,10 @@
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:AVG_TASK_APP.CustomControls"
              xmlns:customcontrol="clr-namespace:AVG_TASK_APP.CustomControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="948" d:DesignWidth="1616">
+             
+             mc:Ignorable="d"
+             
+             d:DesignHeight="948" d:DesignWidth="2000">
     <Grid Margin="0,20,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -62,7 +64,7 @@
                             Width="30" Height="30"
                             BorderThickness="0"
                             >
-                        <fa:IconImage Icon="Bars" Height="25" Width="25"/>
+                        <fa:IconImage x:Name="MenuButton" Icon="Bars" Height="25" Width="25" MouseDown="MenuButton_MouseDown"/>
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Style.Triggers>
@@ -89,10 +91,10 @@
                                    Foreground="{StaticResource textColor2}"/>
                     </Button>
 
-                    <Button x:Name="addNameBoardButton" Style="{StaticResource menuButtonHeader}"
+                    <Button x:Name="addNameCardButton" Style="{StaticResource menuButtonHeader}"
                              Width="150" Height="40"
                              BorderThickness="0"
-                             Margin="10,0,0,0" Click="addNameBoardButton_Click"
+                             Margin="10,0,0,0" Click="addNameCardButton_Click"
                              >
                         <TextBlock Text="Add another lists"
                                     FontSize="14"
@@ -110,7 +112,10 @@
                     Orientation="Horizontal"
                     VerticalAlignment="Top"
                     Margin="25 40 25 0">
-
+            
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right">
+            <customcontrol:MenuBoard_UserControl Visibility="Collapsed" x:Name="menuBoardControl"  Width="350" Height="650" />
         </StackPanel>
     </Grid>
 </UserControl>

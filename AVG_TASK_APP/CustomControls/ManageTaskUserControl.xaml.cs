@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -144,10 +145,10 @@ namespace AVG_TASK_APP.CustomControls
 
         }
 
-        private void addNameBoardButton_Click(object sender, RoutedEventArgs e)
+        private void addNameCardButton_Click(object sender, RoutedEventArgs e)
         {
-            CreateWorkspaceView createWorkspaceView = new CreateWorkspaceView();
-            createWorkspaceView.Show();
+            AddCard addCard = new AddCard();
+            addCard.Show();
         }
 
         private void shareButton_Click(object sender, RoutedEventArgs e)
@@ -159,6 +160,21 @@ namespace AVG_TASK_APP.CustomControls
         private void shareButton_Click_1(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void MenuButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (menuBoardControl != null)
+            {
+                if (menuBoardControl.Visibility == Visibility.Collapsed)
+                {
+                    menuBoardControl.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    menuBoardControl.Visibility = Visibility.Collapsed;
+                }
+            }
         }
     }
 }

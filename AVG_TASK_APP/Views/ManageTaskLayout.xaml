@@ -257,8 +257,8 @@
                                 </Ellipse.Fill>
                             </Ellipse>
                             <Button.ContextMenu>
-                                <ContextMenu x:Name="context" Placement="Bottom" Background="Transparent">
-                                    <MenuItem Header="Logout"/>
+                                <ContextMenu x:Name="context" Placement="Bottom" Background="Transparent" >
+                                    <MenuItem Header="Logout" Click="MenuItem_Click" />
                                 </ContextMenu>
                             </Button.ContextMenu>
                         </Button>
@@ -309,16 +309,16 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="320"/>
+                <ColumnDefinition x:Name="gridLeft" Width="320"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <!-- Menu Button-->
-            <Border  x:Name="gridLeft" Grid.Column="0"
+            <Border x:Name="boderLeft" Grid.Column="0"
                     Margin="0,20,0,0"
                     CornerRadius=" 0 20 0 0"
                     Background="{StaticResource color2}"
-                    MouseMove="gridLeft_MouseMove">
+                    MouseMove="boderLeft_MouseMove">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"/>
@@ -334,7 +334,7 @@
                                     CornerRadius="5"
                                     HorizontalAlignment="Left"
                                     Margin="20 0 0 0">
-                                <Ellipse>
+                                <Ellipse x:Name="infomationUser" MouseDown="infomationUser_MouseDown">
                                     <Ellipse.Fill>
                                         <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
                                     </Ellipse.Fill>
@@ -497,9 +497,8 @@
                 </Grid>
             </Border>
             <!-- Menu Button End-->
-
-            <Grid x:Name="areaManageTask" Grid.Column="1">
-                <customcontrol:ManageTaskUserControl/>
+            <Grid Grid.Column="1" x:Name="areaManageTaskSet" HorizontalAlignment="Center">
+                <Grid Width="1200" x:Name="areaManageTask" HorizontalAlignment="Right"></Grid>
             </Grid>
         </Grid>
     </Grid>

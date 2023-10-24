@@ -7,7 +7,7 @@
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="400"
-             Background="{StaticResource color8}">
+             Background="{StaticResource color9}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -22,25 +22,25 @@
                 <ColumnDefinition Width="308*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical" Grid.ColumnSpan="2">
-                <RadioButton Style="{StaticResource menuButton}"
+                <RadioButton Style="{StaticResource menuButton1}"
                          Tag="{StaticResource color6}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:IconImage Icon="CircleInfo" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock FontSize="20"   Text = "Information about"  Style="{StaticResource menuButtonText}"/>
+                        <fa:IconImage Width="15" Height="15" Icon="CircleInfo" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock FontSize="12"   Text = "Information about"  Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>
-                <RadioButton Style="{StaticResource menuButton}"
+                <RadioButton Style="{StaticResource menuButton1}"
                             Tag="{StaticResource color6}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:IconImage Icon="list" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock FontSize="20"  Text = "Activity"  Style="{StaticResource menuButtonText}"/>
+                        <fa:IconImage Width="15" Height="15" Icon="list" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock FontSize="12"  Text = "Activity"  Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>
-                <RadioButton Style="{StaticResource menuButton}"
+                <RadioButton Style="{StaticResource menuButton1}"
               Tag="{StaticResource color6}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:IconImage Icon="BoxArchive" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock FontSize="20"  Text = "Archive"  Style="{StaticResource menuButtonText}"/>
+                        <fa:IconImage Width="15" Height="15" Icon="BoxArchive" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock FontSize="12"  Text = "Archive"  Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>
                
@@ -57,26 +57,26 @@
                 <ColumnDefinition Width="308*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical" Grid.ColumnSpan="2">
-                <RadioButton Style="{StaticResource menuButton}"
+                <RadioButton Style="{StaticResource menuButton1}"
                  Tag="{StaticResource color6}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:IconImage Icon="Gear" Style="{StaticResource menuButtonIcon}"/>
+                        <fa:IconImage Width="15" Height="15" Icon="Gear" Style="{StaticResource menuButtonIcon}"/>
 
-                        <TextBlock FontSize="20"   Text = "Setting"  Style="{StaticResource menuButtonText}"/>
+                        <TextBlock FontSize="12"   Text = "Setting"  Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>
-                <RadioButton Style="{StaticResource menuButton}"
+                <RadioButton Style="{StaticResource menuButton1}"
                     Tag="{StaticResource color6}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:IconImage Icon="Image" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock FontSize="20"  Text = "Change Image"  Style="{StaticResource menuButtonText}"/>
+                        <fa:IconImage Width="15" Height="15" Icon="Image" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock FontSize="12"  Text = "Change Image"  Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>
-                <RadioButton Style="{StaticResource menuButton}"
+                <RadioButton Style="{StaticResource menuButton1}"
       Tag="{StaticResource color6}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:IconImage Icon="Tag" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock FontSize="20"  Text = "Label"  Style="{StaticResource menuButtonText}"/>
+                        <fa:IconImage Width="15" Height="15" Icon="Tag" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock FontSize="12"  Text = "Label"  Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>
             </StackPanel>
@@ -91,26 +91,26 @@
                 <ColumnDefinition Width="308*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical" Grid.ColumnSpan="2">
-                <RadioButton Style="{StaticResource menuButton}"
+                <RadioButton Style="{StaticResource menuButton1}"
                  Tag="{StaticResource color6}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:IconImage Icon="Copy" Style="{StaticResource menuButtonIcon}"/>
+                        <fa:IconImage Width="15" Height="15" Icon="Copy" Style="{StaticResource menuButtonIcon}"/>
 
-                        <TextBlock FontSize="20"   Text = "Copy Board"  Style="{StaticResource menuButtonText}"/>
+                        <TextBlock FontSize="12"   Text = "Copy Board"  Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>
-                <RadioButton Style="{StaticResource menuButton}"
+                <RadioButton Style="{StaticResource menuButton1}"
                     Tag="{StaticResource color6}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:IconImage Icon="RightFromBracket" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock FontSize="20"  Text = "Leave Board"  Style="{StaticResource menuButtonText}"/>
+                        <fa:IconImage Width="15" Height="15" Icon="RightFromBracket" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock FontSize="12"  Text = "Leave Board"  Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>
-                <RadioButton Style="{StaticResource menuButton}"
+                <RadioButton Style="{StaticResource menuButton1}"
       Tag="{StaticResource color6}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:IconImage Icon="Xmark" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock FontSize="20"  Text = "Close Board"  Style="{StaticResource menuButtonText}"/>
+                        <fa:IconImage Width="15" Height="15" Icon="Xmark" Style="{StaticResource menuButtonIcon}"/>
+                        <TextBlock FontSize="12"  Text = "Close Board"  Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>
             </StackPanel>
@@ -124,9 +124,10 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2"
                         VerticalAlignment="Center">
-                <TextBox Text="Menu"
+                <TextBox Margin="0,20,0,0"
+                         Text="Menu"
                          Height="45"
-                         FontSize="28"
+                         FontSize="18"
                          BorderBrush="Transparent"
                          Foreground="White"
                          Background="Transparent"

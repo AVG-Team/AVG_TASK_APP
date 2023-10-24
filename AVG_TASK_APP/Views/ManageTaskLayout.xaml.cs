@@ -1,10 +1,14 @@
 ﻿using AVG_TASK_APP.CustomControls;
 using FontAwesome.WPF;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
+using System.Security.Claims;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -151,15 +155,11 @@ namespace AVG_TASK_APP.Views
 
         private void MoveControlButton_Click(object sender, RoutedEventArgs e)
         {
-            gridLeft.Width = 15;
-            areaManageTask.Width += gridLeft.Width -15;
-            gridLeft.HorizontalAlignment = HorizontalAlignment.Left;
+            gridLeft.Width = new GridLength(15);
+            areaManageTaskSet.HorizontalAlignment = HorizontalAlignment.Center;
+            areaManageTask.Width = 1520;
+        }
 
-        }
-        private void gridLeft_MouseMove(object sender, MouseEventArgs e)
-        {
-            gridLeft.Width = 320;
-        }
         private void btnUserMenu_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
@@ -174,6 +174,47 @@ namespace AVG_TASK_APP.Views
             // Open the ContextMenu
             button.ContextMenu.IsOpen = true;
 
+        }
+
+        private void infomationUser_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            UserInformationUi userInformationUi = new UserInformationUi();
+            userInformationUi.Show();
+        }
+
+        private void boderLeft_MouseMove(object sender, MouseEventArgs e)
+        {
+            gridLeft.Width = new GridLength(320);
+            areaManageTask.Width = 1220;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var registryKey = Registry.CurrentUser.OpenSubKey("Software\\" + assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title + "\\Login", true);
+
+            registryKey.SetValue("Username", String.Empty);
+            registryKey.SetValue("Password", String.Empty);
+
+            var currentPrincipal = Thread.CurrentPrincipal as ClaimsPrincipal;
+            if (currentPrincipal != null)
+            {
+                foreach (var identity in currentPrincipal.Identities)
+                {
+                    identity.Claims.ToList().ForEach(c => identity.RemoveClaim(c));
+                }
+            }
+
+            LoginView login = new LoginView();
+            login.Show();
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (! (window is LoginView))
+                {
+                    window.Close();
+                }
+            }
         }
     }
 }
