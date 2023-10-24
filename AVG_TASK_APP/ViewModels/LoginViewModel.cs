@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Reflection;
 using System.Security;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
 using System.Threading;
@@ -122,7 +123,36 @@ namespace AVG_TASK_APP.ViewModels
             if (isValidUser)
             {
                 MessageBoxView msb = new MessageBoxView();
-                Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+
+                UserModel user = userRepository.GetByEmail(Username);
+                var currentPrincipal = Thread.CurrentPrincipal as ClaimsPrincipal;
+
+                if (currentPrincipal != null)
+                {
+                    // Cập nhật claims trong principal
+                    var identity = currentPrincipal.Identities.First(); // Lấy identity đầu tiên
+                                                                        // Xóa claims hiện có và thêm claims mới
+                    identity.Claims.ToList().ForEach(c => identity.RemoveClaim(c));
+                    identity.AddClaim(new Claim(ClaimTypes.Name, user.Name));
+                    identity.AddClaim(new Claim("Email", user.Email));
+                    identity.AddClaim(new Claim("Id", user.Id.ToString()));
+                    identity.AddClaim(new Claim("Level", user.Level.ToString()));
+                }
+                else
+                {
+                    // Tạo principal mới nếu chưa tồn tại
+                    var identity = new ClaimsIdentity(new[]
+                    {
+        new Claim(ClaimTypes.Name, user.Name),
+        new Claim("Email", user.Email),
+        new Claim("Id", user.Id.ToString()),
+        new Claim("Level", user.Level.ToString()),
+    }, "ApplicationCookie");
+
+                    var principal = new ClaimsPrincipal(identity);
+                    Thread.CurrentPrincipal = principal;
+                    AppDomain.CurrentDomain.SetThreadPrincipal(principal);
+                }
 
                 byte[] salt = userRepository.GetByEmail(Username).Salt;
                 string passwordTmp = userRepository.HashPassword(Password, salt);
