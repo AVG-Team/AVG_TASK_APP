@@ -26,9 +26,10 @@ namespace AVG_TASK_APP.Repositories
             IUserRepository userRepository = new UserRepository();
 
             var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
-            int id = int.Parse(identity.FindFirst("Id").ToString());
+            int id = int.Parse(identity.Claims.FirstOrDefault(s => s.Type == "Id").Value);
 
             dbContext.Workspaces.Add(workspace);
+            dbContext.SaveChanges();
             UserWorkspace userWorkspace = new UserWorkspace()
             {
                 Id_User = id,
@@ -85,6 +86,9 @@ namespace AVG_TASK_APP.Repositories
             try
             {
                 var dbContext = DbContext();
+
+                if (dbContext.UserWorkspaces.FirstOrDefault(x => x.Id_Workspace == workspace.Id && x.Id_User == user.Id) != null)
+                    return false;
                 UserWorkspace userWorkspace = new UserWorkspace()
                 {
                     Id_User = user.Id,

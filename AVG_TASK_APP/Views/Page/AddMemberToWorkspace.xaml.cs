@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media.TextFormatting;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace AVG_TASK_APP.Views
 {
@@ -20,39 +21,28 @@ namespace AVG_TASK_APP.Views
         private System.Windows.Controls.ListBox _menuSearch = new System.Windows.Controls.ListBox();
         private IUserRepository userRepository;
         private MessageBoxView msb = new MessageBoxView();
+        private List<ItemMenuSearch> selectedItems = new List<ItemMenuSearch>();
 
-        public AddMemberToWorkspace(int idWorkspace)
+        public AddMemberToWorkspace(int idWorkspaceTmp)
         {
             InitializeComponent();
-            this.idWorkspace.Text = idWorkspace.ToString();
+            this.idWorkspace.Text = idWorkspaceTmp.ToString();
 
             userRepository = new UserRepository();
             MenuSearch menuSearch = new MenuSearch();
             areaMenu.Child = menuSearch;
             _menuSearch = menuSearch.lb;
+
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            //Window parent = Window.GetWindow(this);
-            //parent.Close();
+            Window parent = Window.GetWindow(this);
+            parent.Close();
         }
 
         private void btnContinue_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtEmail.Text))
-            {
-                return;
-            }
-            try
-            {
-                MailAddress mailAddress = new MailAddress(txtEmail.Text);
-                // True
-            }
-            catch (FormatException)
-            {
-                // False
-            }
         }
 
         private void autoComplete()
@@ -63,8 +53,20 @@ namespace AVG_TASK_APP.Views
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            //Window parent = Window.GetWindow(this);
-            //parent.Close();
+            Window parent = Window.GetWindow(this);
+            parent.Close();
+        }
+
+        private bool IsSelected(string email)
+        {
+            foreach (ItemMenuSearch selectedItem in selectedItems)
+            {
+                if (selectedItem.Email == email)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
@@ -72,23 +74,26 @@ namespace AVG_TASK_APP.Views
             areaMenu.IsOpen = true;
             _menuSearch.Items.Clear();
 
-            string search = txtEmail.Text;
+            string search = txtEmail.Text.Trim();
             if (search.Contains(";"))
             {
-                string[] tmp = search.Split(';');
-                search = tmp[tmp.Length-1];
+                string[] emailParts = search.Split(';');
+                search = emailParts[emailParts.Length - 1].Trim();
             }
 
-            List<UserModel> users = (List<UserModel>)userRepository.GetByContainEmail(search);
-            if (txtEmail.Text.Length == 0 )
-            {
-                users = (List<UserModel>)userRepository.GetAll();
-            }
+            List<UserModel> users = (search.Length == 0) ? (List<UserModel>)userRepository.GetAll() : (List<UserModel>)userRepository.GetByContainEmail(search);
+
+            if (users == null)
+                return;
+
             foreach (UserModel user in users)
             {
-                ItemMenuSearch itemMenuSearch = new ItemMenuSearch(user.Email, user.Name, user.Level);
-                itemMenuSearch.PreviewMouseDown += ItemMenuSearch_PreviewMouseDown;
-                _menuSearch.Items.Add(itemMenuSearch);
+                if (!IsSelected(user.Email))
+                {
+                    ItemMenuSearch itemMenuSearch = new ItemMenuSearch(user.Email, user.Name, user.Level);
+                    itemMenuSearch.PreviewMouseDown += ItemMenuSearch_PreviewMouseDown;
+                    _menuSearch.Items.Add(itemMenuSearch);
+                }
             }
         }
 
@@ -96,14 +101,60 @@ namespace AVG_TASK_APP.Views
         {
             ItemMenuSearch item = (ItemMenuSearch)sender;
             string emailTmp = item.Email;
-            txtEmail.Text += emailTmp + ";";
+            valueEmail.Text += item.Email + ";";
+            txtEmail.Text = valueEmail.Text;
             areaMenu.IsOpen = false;
+            selectedItems.Add(item);
         }
 
         private void txtEmail_LostFocus(object sender, RoutedEventArgs e)
         {
             areaMenu.IsOpen = false;
             _menuSearch.Items.Clear();
+        }
+
+        private void txtEmail_PreviewKeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (txtEmail.Text.Length == 0)
+            {
+                areaMenu.IsOpen = false;
+                _menuSearch.Items.Clear();
+                valueEmail.Text = null;
+                selectedItems = new List<ItemMenuSearch>();
+                return;
+            }
+            if(e.Key == Key.Back || e.Key == Key.Delete)
+            {
+                areaMenu.IsOpen = false;
+                _menuSearch.Items.Clear();
+                char lastChar = txtEmail.Text[txtEmail.Text.Length - 1];
+                if (lastChar == ';')
+                {
+                    string[] tmp = txtEmail.Text.Split(";");
+                    if (tmp.Length == 1)
+                    {
+                        valueEmail.Text = null;
+                        selectedItems = new List<ItemMenuSearch>();
+                        return;
+                    }
+
+                    valueEmail.Text = txtEmail.Text;
+                    List<ItemMenuSearch> selectedItemsTmp = new List<ItemMenuSearch>();
+                    foreach (ItemMenuSearch selectedItem in selectedItems)
+                    {
+                        foreach (string email in tmp)
+                        {
+                            if(email == selectedItem.Email)
+                            {
+                                selectedItemsTmp.Add(selectedItem);
+                                break;
+                            }
+                        }
+                    }
+
+                    selectedItems = selectedItemsTmp;
+                }
+            }
         }
     }
 }

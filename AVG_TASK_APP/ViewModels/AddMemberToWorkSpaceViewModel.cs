@@ -94,23 +94,20 @@ namespace AVG_TASK_APP.ViewModels
         {
             bool validData;
             bool validDataEmail = true;
-            if(EmailUsers.Contains(";"))
+            if (EmailUsers == null)
+                return false;
+            if (EmailUsers.Contains(";"))
             {
                 string[] tmp = EmailUsers.Split(';');
-                foreach(string s in tmp)
+                string[] newArray = tmp.Take(tmp.Length - 1).ToArray();
+                foreach (string s in newArray)
                 {
-                    if(! IsValidEmail(s))
+                    if (!IsValidEmail(s))
                     {
                         validDataEmail = false;
                     }
                 }
 
-            } else
-            {
-                if(! IsValidEmail(EmailUsers))
-                {
-                    validData = false;
-                }
             }
 
             if (string.IsNullOrWhiteSpace(EmailUsers) || EmailUsers.Length < 3 ||! validDataEmail || int.Parse(IdWorkspace) == -1)
@@ -134,30 +131,47 @@ namespace AVG_TASK_APP.ViewModels
 
         private void ExcuteInvitationCommand(object obj)
         {
+            bool isSuccess = false;
             if (EmailUsers.Contains(";"))
             {
                 string[] tmp = EmailUsers.Split(';');
-                foreach (string email in tmp)
+                string[] newArray = tmp.Take(tmp.Length - 1).ToArray();
+                foreach (string email in newArray)
                 {
                     try
                     {
                         processAdd(email, int.Parse(IdWorkspace));
+                        MessageBoxView msb = new MessageBoxView();
+                        msb.Show("Add Successfully");
+                        isSuccess = true;
                     } catch (Exception ex)
                     {
+                        isSuccess = false;
                         ErrorMessage += " Email " + email + " Error Unknown, Please Again";
                     }
                 }
-            } else
-            {
-                try
-                {
-                    processAdd(EmailUsers, int.Parse(IdWorkspace));
-                } catch(Exception ex)
-                {
-                    ErrorMessage += " Email " + EmailUsers + " Error Unknown, Please Again";
-                }
-
             }
+            if(isSuccess)
+            {
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window is CreateWorkspaceView)
+                    {
+                        window.Close();
+                        return;
+                    }
+                }
+            }
+        }
+
+        public bool CanExecute(object? parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Execute(object? parameter)
+        {
+            throw new NotImplementedException();
         }
 
     }

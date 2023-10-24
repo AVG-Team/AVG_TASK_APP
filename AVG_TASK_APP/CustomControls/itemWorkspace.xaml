@@ -56,9 +56,6 @@
                     <TextBlock Text="Setting" Style="{StaticResource menuButtonText}"/>
                 </StackPanel>
             </RadioButton>
-
-
         </StackPanel>
-
     </StackPanel>
 </UserControl>

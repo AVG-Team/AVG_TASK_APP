@@ -9,11 +9,11 @@
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
         xmlns:viewmodels="clr-namespace:AVG_TASK_APP.ViewModels"
         mc:Ignorable="d"
-        Title="Add Member To Workspace" Height="330" Width="660"
+        Title="Add Member To Workspace" Height="340" Width="660"
     Background="{StaticResource panelColor}">
 
     <Page.DataContext>
-        <viewmodels:WorkspaceViewModel/>
+        <viewmodels:AddMemberToWorkSpaceViewModel/>
     </Page.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -21,7 +21,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" Margin="10,0,0,0">
+        <Grid Grid.Column="0" Margin="10,0,0,0" Height="330" VerticalAlignment="Top">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
@@ -54,23 +54,31 @@
                 </TextBlock>-->
             </StackPanel>
             <StackPanel Grid.Row="2" Margin="0,5,0,0">
-                <TextBlock x:Name="idWorkspace" Text="{Binding IdWorkspace, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed" />
+                <TextBox Visibility="Collapsed" x:Name="idWorkspace" Text="{Binding IdWorkspace, UpdateSourceTrigger=PropertyChanged}" Foreground="White" FontSize="25" />
                 <TextBox Width="300" Text="{Binding EmailUsers, UpdateSourceTrigger=PropertyChanged}"
                       x:Name="txtEmail"
                      VerticalAlignment="Center" 
                      HorizontalAlignment="Left" 
                      Background="Transparent"
-                     Padding="10"
+                     Padding="10" 
                      Style="{StaticResource MyWaterMarkStyle}"
                      BorderThickness="1" 
-                     Tag="VD: avg_task@hutech.edu.vn" TextChanged="txtEmail_TextChanged" LostFocus="txtEmail_LostFocus"
+                     Tag="VD: avg_task@hutech.edu.vn" TextChanged="txtEmail_TextChanged" LostFocus="txtEmail_LostFocus" PreviewKeyUp="txtEmail_PreviewKeyUp"
                      />
                 <Popup x:Name="areaMenu"
                        IsOpen="false"
                        PlacementTarget="{Binding ElementName=txtEmail}" >
                     <customcontrol:MenuSearch/>
                 </Popup>
+                <TextBox Visibility="Collapsed" Foreground="Black" x:Name="valueEmail" />
                 <TextBlock Text="Pro Tip: Add by email or link" Foreground="LightGray" Margin="0,10,0,0" FontSize="13.6"/>
+                <TextBlock Text="{Binding ErrorMessage}"
+           FontSize="15"
+           Foreground="#D7596D"
+           FontFamily="Montserrat"
+           FontWeight="Medium"
+           Margin="0,10,0,0"
+           TextWrapping="Wrap"/>
                 <Button x:Name="btnContinue"
                     Command="{Binding InvitationCommand}"
                     BorderThickness="0"
