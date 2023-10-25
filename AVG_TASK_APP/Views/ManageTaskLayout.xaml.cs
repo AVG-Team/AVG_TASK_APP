@@ -1,11 +1,15 @@
 ﻿using AVG_TASK_APP.CustomControls;
 using FontAwesome.WPF;
+using Microsoft.Win32;
 using Org.BouncyCastle.Utilities.IO.Pem;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
+using System.Security.Claims;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -185,6 +189,35 @@ namespace AVG_TASK_APP.Views
         {
             gridLeft.Width = new GridLength(320);
             areaManageTask.Width = 1220;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var registryKey = Registry.CurrentUser.OpenSubKey("Software\\" + assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title + "\\Login", true);
+
+            registryKey.SetValue("Username", String.Empty);
+            registryKey.SetValue("Password", String.Empty);
+
+            var currentPrincipal = Thread.CurrentPrincipal as ClaimsPrincipal;
+            if (currentPrincipal != null)
+            {
+                foreach (var identity in currentPrincipal.Identities)
+                {
+                    identity.Claims.ToList().ForEach(c => identity.RemoveClaim(c));
+                }
+            }
+
+            LoginView login = new LoginView();
+            login.Show();
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (! (window is LoginView))
+                {
+                    window.Close();
+                }
+            }
         }
 
         private void starList_Click(object sender, RoutedEventArgs e) {
