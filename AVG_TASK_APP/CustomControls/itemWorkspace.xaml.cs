@@ -1,4 +1,6 @@
-﻿using AVG_TASK_APP.Views;
+﻿using AVG_TASK_APP.Models;
+using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.Views;
 using FontAwesome.WPF;
 using System;
 using System.Collections.Generic;
@@ -26,7 +28,10 @@ namespace AVG_TASK_APP.CustomControls
     {
         PageLayout pageLayout;
         ManageTaskLayout manageTaskLayout;
-        public itemWorkspace()
+        IWorkspaceReposity workspaceReposity = new WorkspaceReposity();
+        public int idWorkspace;
+
+        public itemWorkspace(int idWorkspaceDB)
         {
             InitializeComponent();
             pageLayout = new PageLayout();
@@ -34,6 +39,11 @@ namespace AVG_TASK_APP.CustomControls
             userControl.Height = 50;
             StackPanel stackPanel = itemMenuWorkspace;
             stackPanel.Visibility = Visibility.Collapsed;
+
+            this.idWorkspace = idWorkspaceDB;
+            Workspace workspace = workspaceReposity.GetById(idWorkspace);
+            nameWorkspace.Text = workspace.Name;
+
             iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretUp;
         }
 

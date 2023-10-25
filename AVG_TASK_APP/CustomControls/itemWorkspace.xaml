@@ -14,11 +14,17 @@
                 Tag="{StaticResource color6}"
                 IsChecked="False"
                 Click="btnMenu_Click">
-            <StackPanel Orientation="Horizontal">
-                <fa:IconImage Icon="Book" Style="{StaticResource menuButtonIcon}"/>
-                <TextBlock Text="Name Workspace" Style="{StaticResource menuButtonText}"/>
-                <fa:IconImage Name="iconMenu" Icon="CaretDown" Margin="160,0,0,0" Style="{StaticResource menuButtonIcon}"/>
-            </StackPanel>
+            <Grid Width="400">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="70"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <fa:IconImage Icon="Book" Width="20" Style="{StaticResource menuButtonIcon}"/>
+                    <TextBlock Text="" x:Name="nameWorkspace" Style="{StaticResource menuButtonText}"/>
+                </StackPanel>
+                <fa:IconImage Name="iconMenu" Width="20" Grid.Column="1" Icon="CaretDown" Style="{StaticResource menuButtonIcon}"/>
+            </Grid>
         </RadioButton>
 
         <StackPanel x:Name="itemMenuWorkspace"

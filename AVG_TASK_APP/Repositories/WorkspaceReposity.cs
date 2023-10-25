@@ -1,6 +1,7 @@
 ﻿using AVG_TASK_APP.Migration;
 using AVG_TASK_APP.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,7 +79,19 @@ namespace AVG_TASK_APP.Repositories
 
         public IEnumerable<Workspace> GetAllForUser()
         {
-            throw new NotImplementedException();
+            var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
+            if (identity == null)
+            {
+                return null;
+            }
+
+            int id = int.Parse(identity.Claims.FirstOrDefault(s => s.Type == "Id").Value);
+            var dbContext = DbContext();
+            var workspaces = dbContext.UserWorkspaces
+                                .Where(s => s.Id_User == id)
+                                .Select(s => s.Workspace)
+                                .ToList();
+            return workspaces;
         }
 
         public bool AddUserToWorkspace(Workspace workspace, UserModel user)

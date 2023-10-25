@@ -14,6 +14,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AVG_TASK_APP.Models;
+using AVG_TASK_APP.Repositories;
 
 namespace AVG_TASK_APP.Views
 {
@@ -23,25 +25,38 @@ namespace AVG_TASK_APP.Views
     public partial class PageLayout : Window
     {
         private int _count = 1;
+        private IWorkspaceReposity workspaceReposity = new WorkspaceReposity();
 
         public PageLayout()
         {
             InitializeComponent();
         }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            itemWorkspace itemWorkspace = new itemWorkspace();
-            menuWorkspace.Children.Add(itemWorkspace.userControl);
+            loadItemWorkspace();
 
             BoardView boardView = new BoardView();
             areaUserControl.Children.Add(boardView);
         }
+
+        public void loadItemWorkspace()
+        {
+            menuWorkspace.Children.Clear();
+            List<Workspace>workspaces = (List<Workspace>) workspaceReposity.GetAllForUser();
+            foreach (Workspace workspace in workspaces)
+            {
+                itemWorkspace itemWorkspace = new itemWorkspace(workspace.Id);
+                menuWorkspace.Children.Add(itemWorkspace.userControl);
+            }
+        }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (!txtUsername.IsMouseOver)
             {
-                txtUsername.Width = 150;  // Thu hẹp TextBox
-                btnMinimize.Focus();    // Loại bỏ focus từ TextBox
+                txtUsername.Width = 150;
+                btnMinimize.Focus();
             }
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
@@ -74,10 +89,7 @@ namespace AVG_TASK_APP.Views
             createWorkspaceView.ShowDialog();
             if (createWorkspaceView.Visibility == Visibility.Visible)
             {
-
-                itemWorkspace itemWorkspace = new itemWorkspace();
-                menuWorkspace.Children.Add(itemWorkspace.userControl);
-
+                loadItemWorkspace();
             }
 
 

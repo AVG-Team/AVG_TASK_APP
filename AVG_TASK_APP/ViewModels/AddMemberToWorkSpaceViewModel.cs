@@ -1,23 +1,16 @@
-﻿using AVG_TASK_APP.Models;
+﻿using AVG_TASK_APP.CustomControls;
+using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Views;
-using Microsoft.VisualBasic.ApplicationServices;
-using Microsoft.Win32;
+using C1.WPF.Core;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net;
 using System.Net.Mail;
-using System.Reflection;
-using System.Security;
-using System.Security.Principal;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace AVG_TASK_APP.ViewModels
 {
@@ -27,9 +20,16 @@ namespace AVG_TASK_APP.ViewModels
         private string _emailUsers;
         private string _idWorkspace;
         private string _errorMessage;
+        private bool _isOpen;
+        private string _valueEmail;
+        public ObservableCollection<ItemMenuSearch> SelectedItems { get; set; } = new ObservableCollection<ItemMenuSearch>();
+
+        private ObservableCollection<ItemMenuSearch> _menuSearch;
 
         private IUserRepository userRepository;
         private IWorkspaceReposity workspaceReposity;
+
+        public List<UserModel> Users { get; set; }
 
         public event EventHandler? CanExecuteChanged;
 
@@ -41,6 +41,7 @@ namespace AVG_TASK_APP.ViewModels
             {
                 _emailUsers = value;
                 OnPropertyChanged(nameof(EmailUsers));
+                UpdateSearch();
             }
         }
 
@@ -64,6 +65,46 @@ namespace AVG_TASK_APP.ViewModels
             }
         }
 
+        public ObservableCollection<ItemMenuSearch> MenuSearch
+        {
+            get
+            {
+                if (_menuSearch == null)
+                {
+                    _menuSearch = new ObservableCollection<ItemMenuSearch>();
+                }
+                return _menuSearch;
+            }
+            set
+            {
+                _menuSearch = value;
+                OnPropertyChanged(nameof(MenuSearch));
+            }
+        }
+
+        public bool IsOpen
+        {
+            get { return _isOpen; }
+            set
+            {
+                _isOpen = value;
+                OnPropertyChanged(nameof(IsOpen));
+            }
+        }
+
+        public string ValueEmail
+        {
+            get 
+            {
+                return _valueEmail;
+            }
+            set
+            {
+                _valueEmail = value;
+                OnPropertyChanged(nameof(ValueEmail));
+            }
+        }
+
         // --> Command 
         public ICommand InvitationCommand { get; }
 
@@ -74,6 +115,62 @@ namespace AVG_TASK_APP.ViewModels
             userRepository = new UserRepository();
             workspaceReposity = new WorkspaceReposity();
             InvitationCommand = new ViewModelCommand(ExcuteInvitationCommand, CanExcuteInvitationCommand);
+        }
+
+        private bool IsSelected(string email)
+        {
+            if (ValueEmail == null)
+                return false;
+            string[] tmp = ValueEmail.Split(";");
+            foreach (string e in tmp)
+            {
+                if (e == email)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void UpdateSearch()
+        {
+            IsOpen = true;
+            if (MenuSearch != null)
+                MenuSearch.Clear();
+
+            string search = EmailUsers.Trim();
+            if (search.Contains(";"))
+            {
+                string[] emailParts = search.Split(';');
+                search = emailParts[emailParts.Length - 1].Trim();
+            }
+
+            List<UserModel> users = (search.Length == 0) ? (List<UserModel>)userRepository.GetAll() : (List<UserModel>)userRepository.GetByContainEmail(search);
+
+            if (users == null)
+                return;
+
+            if (users == null)
+                return;
+
+            foreach (UserModel user in users)
+            {
+                if (!IsSelected(user.Email))
+                {
+                    ItemMenuSearch itemMenuSearch = new ItemMenuSearch(user.Email, user.Name, user.Level);
+                    itemMenuSearch.PreviewMouseDown += ItemMenuSearch_PreviewMouseDown;
+                    MenuSearch.Add(itemMenuSearch);
+                }
+            }
+        }
+
+        private void ItemMenuSearch_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ItemMenuSearch item = (ItemMenuSearch)sender;
+            string emailTmp = item.Email;
+            ValueEmail += item.Email + ";";
+            EmailUsers = ValueEmail;
+            IsOpen = false;
         }
 
         public bool IsValidEmail(string emailaddress)
@@ -109,7 +206,7 @@ namespace AVG_TASK_APP.ViewModels
                 }
 
             }
-
+            int tmp12312 = int.Parse(IdWorkspace);
             if (string.IsNullOrWhiteSpace(EmailUsers) || EmailUsers.Length < 3 ||! validDataEmail || int.Parse(IdWorkspace) == -1)
                 validData = false;
             else
@@ -141,8 +238,6 @@ namespace AVG_TASK_APP.ViewModels
                     try
                     {
                         processAdd(email, int.Parse(IdWorkspace));
-                        MessageBoxView msb = new MessageBoxView();
-                        msb.Show("Add Successfully");
                         isSuccess = true;
                     } catch (Exception ex)
                     {
@@ -153,6 +248,9 @@ namespace AVG_TASK_APP.ViewModels
             }
             if(isSuccess)
             {
+                MessageBoxView msb = new MessageBoxView();
+                msb.Show("Add Successfully");
+
                 foreach (Window window in Application.Current.Windows)
                 {
                     if (window is CreateWorkspaceView)
