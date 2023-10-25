@@ -101,6 +101,7 @@
                             <TextBlock FontSize="30" Text="Boards"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1">
+                            
                             <TextBox x:Name="txtFind"
                                      Text="Search"
                                      FontFamily="Montserrat"
@@ -118,6 +119,7 @@
                                      MouseDown="txtFind_MouseDown"
                                      GotFocus="txtFind_GotFocus"
                                      LostFocus="txtFind_LostFocus">
+                                
                                 <TextBox.Background>
                                     <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Icons/icons8-search-16.png"
                                                  Stretch="None"
@@ -128,7 +130,7 @@
                     </Grid>
 
                 </StackPanel>
-                <StackPanel x:Name="areaBoard" Grid.Row="1" Margin="20,20,0,0" HorizontalAlignment="Left" >
+                <StackPanel x:Name="areaBoard" Grid.Row="1" Margin="20,20,0,0" HorizontalAlignment="Left" Loaded="areaBoard_Loaded" >
                 </StackPanel>
                 <StackPanel Grid.Row="2" HorizontalAlignment="Left">
                     <Button x:Name="btnCancelDescription"

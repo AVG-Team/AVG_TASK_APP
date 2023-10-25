@@ -25,36 +25,64 @@ namespace AVG_TASK_APP.CustomControls
             InitializeComponent();         
             btnBoard board1 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
             board1.Content.Text = "Add";
-            board1.MouseDown += BtnBoard1_Click;
             btnBoard board2 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
             btnBoard board3 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
             btnBoard board4 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
-/*            btnBoard board5 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
+            btnBoard board5 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
             btnBoard board6 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
             btnBoard board7 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
             btnBoard board8 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
-            btnBoard board9 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };*/
+            btnBoard board9 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
             boards.Add(board1);
             boards.Add(board2);
             boards.Add(board3);
             boards.Add(board4);
-/*            boards.Add(board5);
+            boards.Add(board5);
             boards.Add(board6);
             boards.Add(board7);
             boards.Add(board8);
-            boards.Add(board9);*/
+            boards.Add(board9);
+            for (int i = 0; i < boards.Count(); i++)
+            {
+                btnBoard board = new btnBoard();
+
+                // Set the margin for each button
+                board.Margin = new Thickness(5); // Adjust as needed
+
+                if (i % 4 == 0)
+                {
+                    // Create a new horizontal StackPanel for each row of buttons with margin
+                    StackPanel rowPanel = new StackPanel()
+                    {
+                        Orientation = Orientation.Horizontal,
+                        Margin = new Thickness(0, 10, 0, 0), // Adjust margin values as needed
+                    };
+
+                    areaBoard.Children.Add(rowPanel);
+                }
+
+                // Find the last added StackPanel and add the button to it
+                if (areaBoard.Children.Count > 0 && areaBoard.Children[areaBoard.Children.Count - 1] is StackPanel rowStackPanel)
+                {
+                    rowStackPanel.Children.Add(boards[i]);
+                }
+            }
+
+
         }
 
+
+        private void AddNewButton()
+        {
+            btnBoard newBoard = new btnBoard() { Margin = new Thickness(10, 0, 0, 0) };
+            newBoard.Content.Text = "New"; // Set content for the new button
+            areaBoard.Children.Add(newBoard);
+        }
         private void txtFind_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
         }
 
-        private void BtnBoard1_Click(object sender, MouseButtonEventArgs e)
-        {
-            btnBoard newBoard = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
-            boards.Add(newBoard);
-        }
         private void txtFind_GotFocus(object sender, RoutedEventArgs e)
         {
             txtFind.Text = ""; // Xóa nội dung mặc định khi bấm vào
@@ -68,6 +96,10 @@ namespace AVG_TASK_APP.CustomControls
                 txtFind.Text = "Search..."; // Đặt lại nội dung mặc định nếu không có gì được nhập
             }
             txtFind.Width = 150;  // Thu hẹp TextBox khi nó mất focus
+        }
+
+        private void areaBoard_Loaded(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
