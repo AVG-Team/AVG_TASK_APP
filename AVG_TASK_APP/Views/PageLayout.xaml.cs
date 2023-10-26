@@ -26,6 +26,7 @@ namespace AVG_TASK_APP.Views
     public partial class PageLayout : Window
     {
         private int _count = 1;
+        WorkspaceReposity workspaceReposity = new WorkspaceReposity();
 
         public PageLayout()
         {
@@ -34,16 +35,26 @@ namespace AVG_TASK_APP.Views
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
             BoardView boardView = new BoardView();
             areaUserControl.Children.Add(boardView);
         }
-
+        public void loadItemWorkspace()
+        {
+            menuWorkspace.Children.Clear();
+            List<Workspace> workspaces = (List<Workspace>)workspaceReposity.GetAllForUser();
+            foreach (Workspace workspace in workspaces)
+            {
+                itemWorkspace itemWorkspace = new itemWorkspace(workspace.Id);
+                menuWorkspace.Children.Add(itemWorkspace.userControl);
+            }
+        }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (!txtSearch.IsMouseOver)
             {
-                txtSearch.Width = 150;  
-                btnMinimize.Focus();   
+                txtSearch.Width = 150;
+                btnMinimize.Focus();
             }
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
@@ -58,18 +69,10 @@ namespace AVG_TASK_APP.Views
         {
             Application.Current.Shutdown();
         }
-        
+
         private void btnCreateWorkspace_Click(object sender, RoutedEventArgs e)
         {
-            CreateWorkspaceView createWorkspaceView = new CreateWorkspaceView();
-            createWorkspaceView.ShowDialog();
-            if (createWorkspaceView.Visibility == Visibility.Visible)
-            {
-
-                itemWorkspace itemWorkspace = new itemWorkspace();
-                menuWorkspace.Children.Add(itemWorkspace.userControl);
-
-            }
+            loadItemWorkspace();
         }
 
         private void txtSearch_GotFocus(object sender, RoutedEventArgs e)
