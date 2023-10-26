@@ -131,7 +131,7 @@
                              FontFamily="Montserrat"
                              FontSize="12"
                              FontWeight="Medium"
-                             Foreground="{StaticResource textColor2}"
+                             Foreground="{StaticResource textColor3}"
                              CaretBrush="{StaticResource color6}"
                              BorderBrush="{StaticResource color3}"
                              BorderThickness="0,0,0,1"

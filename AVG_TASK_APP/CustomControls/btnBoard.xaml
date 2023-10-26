@@ -21,7 +21,7 @@
         <StackPanel Orientation="Vertical"
          Height="100"
          Width="200">
-            <TextBlock Text="Name Board"
+            <TextBlock x:Name="Content" Text="Name Board"
             Foreground="{StaticResource textColor5}"
             FontFamily="Montserrat"
             FontSize="15"

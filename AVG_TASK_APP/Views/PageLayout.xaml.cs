@@ -152,8 +152,8 @@ namespace AVG_TASK_APP.Views
 
         private void WorkspaceRadioButton_Click(object sender, RoutedEventArgs e)
         {
-            BoardView boardView = new BoardView();
-            areaUserControl.Children.Add(boardView);
+            BoardUserControl boardUserControl = new BoardUserControl();
+            areaUserControl.Children.Add(boardUserControl);
         }
     }
 }

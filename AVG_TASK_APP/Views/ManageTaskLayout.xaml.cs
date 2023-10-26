@@ -117,7 +117,8 @@ namespace AVG_TASK_APP.Views
 
         private void btnItemSetting_Click(object sender, RoutedEventArgs e)
         {
-
+            ContactTaskUI contactTaskUI = new ContactTaskUI();
+            contactTaskUI.Show();
         }
 
         private void btnMenuItemAddMember_Click(object sender, RoutedEventArgs e)
