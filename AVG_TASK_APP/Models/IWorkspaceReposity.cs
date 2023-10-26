@@ -18,7 +18,7 @@ namespace AVG_TASK_APP.Models
         Workspace GetByCode(string code);
         Workspace GetById(int id);
         bool AddUserToWorkspace(Workspace workspace, UserModel user);
-        IEnumerable<Workspace> GetAll();
-        IEnumerable<Workspace> GetAllForUser();
+        IEnumerable<Workspace> GetAll(string sort = "desc");
+        IEnumerable<Workspace> GetAllForUser(string sort = "desc");
     }
 }

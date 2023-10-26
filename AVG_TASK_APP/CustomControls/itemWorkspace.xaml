@@ -6,6 +6,7 @@
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:AVG_TASK_APP.CustomControls"
              mc:Ignorable="d" Width="400" Height="222"
+            xmlns:viewModels ="clr-namespace:AVG_TASK_APP.ViewModels"
              x:Name="userControl">
     <StackPanel x:Name="workpace" Orientation="Vertical">
         <!--// Services //-->
@@ -20,10 +21,11 @@
                     <ColumnDefinition Width="70"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBox Visibility="Collapsed" x:Name="idWorkspace" Text="{Binding ItemIdWorkspace, UpdateSourceTrigger=PropertyChanged}"/>
                     <fa:IconImage Icon="Book" Width="20" Style="{StaticResource menuButtonIcon}"/>
-                    <TextBlock Text="" x:Name="nameWorkspace" Style="{StaticResource menuButtonText}"/>
+                    <TextBlock Text="{Binding ItemNameWorkspace}" x:Name="nameWorkspace" Style="{StaticResource menuButtonText}"/>
                 </StackPanel>
-                <fa:IconImage Name="iconMenu" Width="20" Grid.Column="1" Icon="CaretDown" Style="{StaticResource menuButtonIcon}"/>
+                <fa:IconImage Name="iconMenu" Width="20" Grid.Column="1" Icon="CaretDown" Foreground="{StaticResource textColor2}"/>
             </Grid>
         </RadioButton>
 

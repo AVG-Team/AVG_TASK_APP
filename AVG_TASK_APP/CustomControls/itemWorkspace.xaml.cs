@@ -1,5 +1,6 @@
 ﻿using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.ViewModels;
 using AVG_TASK_APP.Views;
 using FontAwesome.WPF;
 using System;
@@ -26,23 +27,19 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class itemWorkspace : UserControl
     {
-        PageLayout pageLayout;
-        ManageTaskLayout manageTaskLayout;
-        IWorkspaceReposity workspaceReposity = new WorkspaceReposity();
-        public int idWorkspace;
-
         public itemWorkspace(int idWorkspaceDB)
         {
+            ItemWorkspaceViewModel viewModel = new ItemWorkspaceViewModel();
+            DataContext = viewModel;
+
             InitializeComponent();
-            pageLayout = new PageLayout();
-            manageTaskLayout = new ManageTaskLayout();
             userControl.Height = 50;
             StackPanel stackPanel = itemMenuWorkspace;
             stackPanel.Visibility = Visibility.Collapsed;
 
-            this.idWorkspace = idWorkspaceDB;
-            Workspace workspace = workspaceReposity.GetById(idWorkspace);
-            nameWorkspace.Text = workspace.Name;
+            idWorkspace.Text = idWorkspaceDB.ToString();
+
+            nameWorkspace.Text = viewModel.getName();
 
             iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretUp;
         }
@@ -69,8 +66,17 @@ namespace AVG_TASK_APP.CustomControls
         private void btnItemBoard_Click(object sender, RoutedEventArgs e)
         {
             BoardView boardView = new BoardView();
-            pageLayout.Close();
+            ManageTaskLayout manageTaskLayout = new ManageTaskLayout();
             manageTaskLayout.Show();
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window is PageLayout)
+                {
+                    window.Close();
+                    return;
+                }
+            }
         }
 
         private void btnItemMember_Click(object sender, RoutedEventArgs e)

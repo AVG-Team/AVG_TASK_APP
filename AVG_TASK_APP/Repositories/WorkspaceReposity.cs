@@ -72,12 +72,12 @@ namespace AVG_TASK_APP.Repositories
             return workspace;
         }
 
-        public IEnumerable<Workspace> GetAll()
+        public IEnumerable<Workspace> GetAll(string sort = "desc")
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Workspace> GetAllForUser()
+        public IEnumerable<Workspace> GetAllForUser(string sort = "desc")
         {
             var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
             if (identity == null)
@@ -89,9 +89,14 @@ namespace AVG_TASK_APP.Repositories
             var dbContext = DbContext();
             var workspaces = dbContext.UserWorkspaces
                                 .Where(s => s.Id_User == id)
-                                .Select(s => s.Workspace)
-                                .ToList();
-            return workspaces;
+                                .Select(s => s.Workspace);
+
+            if(sort.Equals("desc"))
+            {
+                return workspaces.OrderByDescending(s => s.Created_At).ToList();
+            }
+
+            return workspaces.OrderBy(s => s.Created_At).ToList();
         }
 
         public bool AddUserToWorkspace(Workspace workspace, UserModel user)
