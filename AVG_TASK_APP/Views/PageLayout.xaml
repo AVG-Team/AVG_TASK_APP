@@ -17,7 +17,6 @@
         Background="{StaticResource backColor}"
         AllowsTransparency="True"
         MouseDown="Window_MouseDown"
-        PreviewMouseDown="Window_PreviewMouseDown"
         Loaded="Window_Loaded">
     <Window.DataContext>
         <viewModels:PageLayoutViewModel/>
@@ -51,9 +50,7 @@
                                         Orientation="Horizontal"
                                         Margin="0,0,15,0"
                                         FlowDirection="RightToLeft"
-                                        Background="Transparent"
-                                        MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
-                                        MouseEnter="pnlControlBar_MouseEnter">
+                                        Background="Transparent">
 
                                 <Button x:Name="btnClose"
                                         BorderThickness="0"
@@ -125,7 +122,7 @@
                                     HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="Center"
                                          VerticalAlignment="Center">
-                                <TextBox x:Name="txtUsername"
+                                <TextBox x:Name="txtSearch"
                                          Text="Search"
                                          FontFamily="Montserrat"
                                          FontSize="13"
@@ -139,9 +136,8 @@
                                          VerticalContentAlignment="Center"
                                          Margin="0,20,30,0"
                                          Padding="20,0,0,0"
-                                         MouseDown="txtUsername_MouseDown"
-                                         GotFocus="txtUsername_GotFocus"
-                                         LostFocus="txtUsername_LostFocus">
+                                         GotFocus="txtSearch_GotFocus"
+                                         LostFocus="txtSearch_LostFocus">
                                     <TextBox.Background>
                                         <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Icons/icons8-search-16.png"
                                                      Stretch="None"
@@ -241,7 +237,7 @@
                                 <!-- Button -->
                                 <Grid Grid.Row="1">
                                     <StackPanel Orientation="Vertical">
-                                        <RadioButton x:Name="WorkspaceRadioButton" Click="WorkspaceRadioButton_Click" Style="{StaticResource menuButton}"
+                                        <RadioButton x:Name="BoardRadioButton" Click="BoardRadioButton_Click" Style="{StaticResource menuButton}"
                                          Tag="{StaticResource color6}"
                                          IsChecked="True">
                                             <StackPanel Orientation="Horizontal">
