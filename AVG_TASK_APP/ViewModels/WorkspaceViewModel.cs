@@ -103,7 +103,7 @@ namespace AVG_TASK_APP.ViewModels
 
         public WorkspaceViewModel()
         {
-            workspaceReposity = new WorkspaceReposity();
+            workspaceReposity = new WorkspaceRepository();
             ContinueCommand = new ViewModelCommand(ExcuteCreateWorkspaceCommand, CanExcuteCreateWorkspaceCommand);
         }
 

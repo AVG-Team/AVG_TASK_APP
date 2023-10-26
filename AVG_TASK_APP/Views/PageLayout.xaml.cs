@@ -26,7 +26,7 @@ namespace AVG_TASK_APP.Views
     public partial class PageLayout : Window
     {
         private int _count = 1;
-        WorkspaceReposity workspaceReposity = new WorkspaceReposity();
+        WorkspaceRepository workspaceReposity = new WorkspaceRepository();
 
         public PageLayout()
         {

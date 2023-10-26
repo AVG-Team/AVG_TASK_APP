@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace AVG_TASK_APP.Repositories
 {
-    public class WorkspaceReposity : RepositoryBase, IWorkspaceReposity
+    public class WorkspaceRepository : RepositoryBase, IWorkspaceReposity
     {
         public AppDbContext DbContext()
         {

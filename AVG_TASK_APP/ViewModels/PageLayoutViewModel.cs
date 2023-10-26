@@ -53,7 +53,7 @@ namespace AVG_TASK_APP.ViewModels
         public PageLayoutViewModel()
         {
             userRepository = new UserRepository();
-            workspaceReposity = new WorkspaceReposity();
+            workspaceReposity = new WorkspaceRepository();
             currentUserAccount = new UserAccount();
             PageLayoutLoaded = new ViewModelCommand(ExcuteLoadedCommand);
             CreateWorkSpaceCommand = new ViewModelCommand(ExcuteCreateWorkspaceCommand);

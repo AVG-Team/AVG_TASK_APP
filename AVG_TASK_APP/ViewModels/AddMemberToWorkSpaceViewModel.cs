@@ -113,7 +113,7 @@ namespace AVG_TASK_APP.ViewModels
         public AddMemberToWorkSpaceViewModel()
         {
             userRepository = new UserRepository();
-            workspaceReposity = new WorkspaceReposity();
+            workspaceReposity = new WorkspaceRepository();
             InvitationCommand = new ViewModelCommand(ExcuteInvitationCommand, CanExcuteInvitationCommand);
         }
 

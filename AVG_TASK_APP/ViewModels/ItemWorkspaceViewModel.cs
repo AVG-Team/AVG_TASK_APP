@@ -27,7 +27,7 @@ namespace AVG_TASK_APP.ViewModels
 
         public ItemWorkspaceViewModel()
         {
-            workspaceReposity = new WorkspaceReposity();
+            workspaceReposity = new WorkspaceRepository();
         }
 
         public string getName()
