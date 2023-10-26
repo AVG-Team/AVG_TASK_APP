@@ -27,6 +27,7 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class itemWorkspace : UserControl
     {
+
         public itemWorkspace(int idWorkspaceDB)
         {
             ItemWorkspaceViewModel viewModel = new ItemWorkspaceViewModel();
@@ -65,18 +66,10 @@ namespace AVG_TASK_APP.CustomControls
 
         private void btnItemBoard_Click(object sender, RoutedEventArgs e)
         {
-            BoardView boardView = new BoardView();
-            ManageTaskLayout manageTaskLayout = new ManageTaskLayout();
-            manageTaskLayout.Show();
-
-            foreach (Window window in Application.Current.Windows)
-            {
-                if (window is PageLayout)
-                {
-                    window.Close();
-                    return;
-                }
-            }
+            PageLayout pageLayout = (PageLayout)Window.GetWindow(this);
+            pageLayout.areaUserControl.Children.Clear();
+            BoardUserControl boardView = new BoardUserControl();
+            pageLayout.areaUserControl.Children.Add(boardView);
         }
 
         private void btnItemMember_Click(object sender, RoutedEventArgs e)
