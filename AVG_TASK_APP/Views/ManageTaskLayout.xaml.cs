@@ -144,8 +144,8 @@ namespace AVG_TASK_APP.Views
 
         private void BoardRadioButton_Click(object sender, RoutedEventArgs e)
         {
-            itemWorkspace itemWorkspace = new itemWorkspace();
-            areaManageTask.Children.Add(itemWorkspace);
+            //itemWorkspace itemWorkspace = new itemWorkspace();
+            //areaManageTask.Children.Add(itemWorkspace);
         }
 
         private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)

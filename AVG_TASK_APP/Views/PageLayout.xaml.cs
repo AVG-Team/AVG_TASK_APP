@@ -14,6 +14,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AVG_TASK_APP.Models;
+using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.ViewModels;
 
 namespace AVG_TASK_APP.Views
 {
@@ -31,9 +34,6 @@ namespace AVG_TASK_APP.Views
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            itemWorkspace itemWorkspace = new itemWorkspace();
-            menuWorkspace.Children.Add(itemWorkspace.userControl);
-
             BoardView boardView = new BoardView();
             areaUserControl.Children.Add(boardView);
         }
@@ -42,8 +42,8 @@ namespace AVG_TASK_APP.Views
         {
             if (!txtSearch.IsMouseOver)
             {
-                txtSearch.Width = 150;  // Thu hẹp TextBox
-                btnMinimize.Focus();    // Loại bỏ focus từ TextBox
+                txtSearch.Width = 150;  
+                btnMinimize.Focus();   
             }
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
@@ -58,7 +58,7 @@ namespace AVG_TASK_APP.Views
         {
             Application.Current.Shutdown();
         }
-
+        
         private void btnCreateWorkspace_Click(object sender, RoutedEventArgs e)
         {
             CreateWorkspaceView createWorkspaceView = new CreateWorkspaceView();

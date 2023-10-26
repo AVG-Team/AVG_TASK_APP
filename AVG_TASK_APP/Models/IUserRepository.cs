@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic.Devices;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -19,6 +20,7 @@ namespace AVG_TASK_APP.Models
         byte[] GenerateSalt();
         UserModel GetById(int id);
         UserModel GetByEmail(string email);
+        IEnumerable<UserModel> GetByContainEmail(string email);
         IEnumerable<UserModel> GetAll();
         bool verifyAccount(string username , SecureString password);
         bool verifyAccount(string username , String password);

@@ -1,4 +1,7 @@
-﻿using AVG_TASK_APP.Views;
+﻿using AVG_TASK_APP.Models;
+using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.ViewModels;
+using AVG_TASK_APP.Views;
 using FontAwesome.WPF;
 using System;
 using System.Collections.Generic;
@@ -24,12 +27,21 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class itemWorkspace : UserControl
     {
-        public itemWorkspace()
+
+        public itemWorkspace(int idWorkspaceDB)
         {
+            ItemWorkspaceViewModel viewModel = new ItemWorkspaceViewModel();
+            DataContext = viewModel;
+
             InitializeComponent();
             userControl.Height = 50;
             StackPanel stackPanel = itemMenuWorkspace;
             stackPanel.Visibility = Visibility.Collapsed;
+
+            idWorkspace.Text = idWorkspaceDB.ToString();
+
+            nameWorkspace.Text = viewModel.getName();
+
             iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretUp;
         }
 

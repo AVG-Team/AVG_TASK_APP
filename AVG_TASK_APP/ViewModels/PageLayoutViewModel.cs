@@ -1,7 +1,10 @@
-﻿using AVG_TASK_APP.Models;
+﻿using AVG_TASK_APP.CustomControls;
+using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Views;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Mail;
 using System.Runtime.InteropServices;
@@ -10,22 +13,83 @@ using System.Security.Claims;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace AVG_TASK_APP.ViewModels
 {
     public class PageLayoutViewModel : ViewModelBase
     {
+        private IWorkspaceReposity workspaceReposity;
 
         private UserAccount currentUserAccount;
         private IUserRepository userRepository;
+
         private string _userAccountName;
         private string _userAccountImage;
+
+        private ObservableCollection<itemWorkspace> _workspaces;
+
+        public ObservableCollection<itemWorkspace> Workspaces
+        {
+            get 
+            {
+                if(_workspaces == null)
+                {
+                    _workspaces = new ObservableCollection<itemWorkspace>();
+                }
+                return _workspaces;
+
+            }
+            set
+            {
+                _workspaces = value;
+                OnPropertyChanged(nameof(Workspaces));
+            }
+        }
+
+        public ICommand PageLayoutLoaded { get;  }
+        public ICommand CreateWorkSpaceCommand { get; }
 
         public PageLayoutViewModel()
         {
             userRepository = new UserRepository();
+            workspaceReposity = new WorkspaceReposity();
             currentUserAccount = new UserAccount();
+            PageLayoutLoaded = new ViewModelCommand(ExcuteLoadedCommand);
+            CreateWorkSpaceCommand = new ViewModelCommand(ExcuteCreateWorkspaceCommand);
             LoadCurrentUserData();
+        }
+
+        private void ExcuteCreateWorkspaceCommand(object obj)
+        {
+            CreateWorkspaceView createWorkspaceView = new CreateWorkspaceView();
+
+            createWorkspaceView.ShowDialog();
+            if (createWorkspaceView.Visibility == Visibility.Visible)
+            {
+                loadItemWorkspace();
+            }
+        }
+
+        private void ExcuteLoadedCommand(object obj)
+        {
+            loadItemWorkspace();
+        }
+
+        private void loadItemWorkspace()
+        {
+            Workspaces = new ObservableCollection<itemWorkspace>();
+
+            List<Workspace> workspaces = (List<Workspace>)workspaceReposity.GetAllForUser();
+            if(! workspaces.Any() )
+            {
+                return;
+            }
+            foreach (Workspace workspace in workspaces)
+            {
+                itemWorkspace itemWorkspace = new itemWorkspace(workspace.Id);
+                Workspaces.Add(itemWorkspace.userControl);
+            }
         }
 
         public string UserAccountName
