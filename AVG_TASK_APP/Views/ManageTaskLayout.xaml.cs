@@ -1,4 +1,5 @@
 ﻿using AVG_TASK_APP.CustomControls;
+using AVG_TASK_APP.Repositories;
 using FontAwesome.WPF;
 using Microsoft.Win32;
 using System;
@@ -27,26 +28,28 @@ namespace AVG_TASK_APP.Views
     public partial class ManageTaskLayout : Window
     {
 
+        private TableRepository tableRepository = new TableRepository();
 
         public ManageTaskLayout()
         {
             InitializeComponent();
 
+        }
 
-            ManageTaskUserControl manageTaskUserControl = new ManageTaskUserControl();
-            areaManageTask.Children.Add(manageTaskUserControl);
-
-
+        private void loadItemTable()
+        {
+            listBoards.Children.Clear();
+            List<Table> tables = (List<Table>)tableRepository.GetAllForWorkspace();
+            foreach (Table table in tables)
+            {
+                RadioButtonBoard radioButtonBoard = new RadioButtonBoard(table.Id);
+            }
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
-        }
-
-        private void pnlControlBar_MouseEnter(object sender, MouseEventArgs e)
-        {
-
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -57,11 +60,6 @@ namespace AVG_TASK_APP.Views
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
-        }
-
-        private void pnlControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
 
         private void btnMenuHeader_Click(object sender, RoutedEventArgs e)
@@ -77,41 +75,6 @@ namespace AVG_TASK_APP.Views
             contextMenu.PlacementTarget = stackPanel;
             contextMenu.IsOpen = true;
             e.Handled = true;
-
-        }
-
-        private void btnAddMember_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnCreateWorkspace_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnMenu_Click(object sender, RoutedEventArgs e)
-        {
-            StackPanel stackPanel = itemMenuWorkspace;
-            if (stackPanel.Visibility == Visibility.Collapsed)
-            {
-                stackPanel.Visibility = Visibility.Visible;
-                iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretDown;
-            }
-            else
-            {
-                stackPanel.Visibility = Visibility.Collapsed;
-                iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretUp;
-            }
-        }
-
-        private void btnItemMember_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnItemBoard_Click(object sender, RoutedEventArgs e)
-        {
 
         }
 
@@ -211,11 +174,26 @@ namespace AVG_TASK_APP.Views
 
             foreach (Window window in Application.Current.Windows)
             {
-                if (! (window is LoginView))
+                if (!(window is LoginView))
                 {
                     window.Close();
                 }
             }
+        }
+
+        private void btnItemMember_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCreateTable_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddMember_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

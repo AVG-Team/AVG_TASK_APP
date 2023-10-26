@@ -8,7 +8,7 @@ using AVG_TASK_APP.Views;
 using System.Security;
 using System.Windows;
 using System.Windows.Input;
-
+using AVG_TASK_APP.Repositories.Interface;
 
 namespace AVG_TASK_APP.ViewModels
 {

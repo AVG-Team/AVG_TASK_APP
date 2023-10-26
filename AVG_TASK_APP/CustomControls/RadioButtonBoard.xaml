@@ -3,10 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:AVG_TASK_APP.CustomControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <RadioButton x:Name="itemBoard"
+             Style="{StaticResource workspaceMenuButton}"
+             Tag="{StaticResource color6}"
+             IsChecked="False">
+        <StackPanel Orientation="Horizontal"
+                VerticalAlignment="Center">
+            <fa:IconImage Icon="Table" Style="{StaticResource menuButtonIcon}"/>
+            <TextBlock Text="Board" x:Name="nameTable" Style="{StaticResource menuButtonText}"/>
+        </StackPanel>
+    </RadioButton>
 </UserControl>

@@ -1,5 +1,6 @@
 ﻿using AVG_TASK_APP.Migration;
 using AVG_TASK_APP.Models;
+using AVG_TASK_APP.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

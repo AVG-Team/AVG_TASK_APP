@@ -47,10 +47,7 @@
                             Margin="0,0,15,0"
                             Grid.Row="0"
                             FlowDirection="RightToLeft"
-                            Background="Transparent"
-                            MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
-                            MouseEnter="pnlControlBar_MouseEnter">
-
+                            Background="Transparent">
                     <Button x:Name="btnClose"
                             BorderThickness="0"
                             Content="X"
@@ -341,7 +338,8 @@
                                 </Ellipse>
                             </Border>
 
-                            <TextBlock Text="Name Workspace"
+                            <TextBlock 
+                                       Text="Name Workspace"
                                        Foreground="{StaticResource color6}"
                                        FontSize="22"
                                        FontWeight="SemiBold"
@@ -410,7 +408,7 @@
                                 </StackPanel>
                             </RadioButton>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Your Workspace" 
+                                <TextBlock Text="Your Tables" 
                                            Foreground="{StaticResource textColor2}" 
                                            FontSize="16"
                                            FontWeight="Medium"
@@ -419,7 +417,7 @@
                                            Width="160" 
                                            Margin="30,0,0,0"
                                            HorizontalAlignment="Left"/>
-                                <Button x:Name="btnCreateWorkspace"
+                                <Button x:Name="btnCreateTable"
                                         Style="{StaticResource menuButton2}"
                                         Content="+"
                                         VerticalAlignment="Center"
@@ -428,70 +426,18 @@
                                         FontFamily="Montserrat"
                                         Cursor="Hand"
                                         Margin="70,0,0,0"
-                                        Click="btnCreateWorkspace_Click"></Button>
+                                        Click="btnCreateTable_Click"></Button>
                             </StackPanel>
 
-                            <RadioButton x:Name="btnMenu"
-                                         Style="{StaticResource workspaceMenuButton}"
-                                         Tag="{StaticResource color6}"
-                                         Click="btnMenu_Click">
-                                <StackPanel Orientation="Horizontal">
-                                    <fa:IconImage Icon="Book" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Name Workspace" Style="{StaticResource menuButtonText}"/>
-                                    <fa:IconImage Name="iconMenu"  Icon="CaretDown" Margin="90,0,0,0" Style="{StaticResource menuButtonIcon}"/>
-                                </StackPanel>
-                            </RadioButton>
+
 
 
                             <!--// Services //-->
 
-                            <StackPanel x:Name="itemMenuWorkspace"
-                                        Orientation="Vertical"
-                                        Margin="20,0,0,0">
-                                <RadioButton x:Name="btnItemBoard"
-                                             Style="{StaticResource workspaceMenuButton}"
-                                             Tag="{StaticResource color6}"
-                                              IsChecked="False"
-                                             Click="btnItemBoard_Click">
-                                    <StackPanel Orientation="Horizontal"
-                                                VerticalAlignment="Center">
-                                        <fa:IconImage Icon="Table" Style="{StaticResource menuButtonIcon}"/>
-                                        <TextBlock Text="Board" Style="{StaticResource menuButtonText}"/>
-                                    </StackPanel>
-                                </RadioButton>
-                                <RadioButton x:Name="rdbtnItemMember"
-                                             Style="{StaticResource workspaceMenuButton}"
-                                             Tag="{StaticResource color6}"
-                                              IsChecked="False"
-                                             Click="BoardRadioButton_Click">
-                                    <StackPanel Orientation="Horizontal"
-                                                VerticalAlignment="Center">
-                                        <fa:IconImage Icon="Users" Style="{StaticResource menuButtonIcon}"/>
-                                        <TextBlock Text="Member" Style="{StaticResource menuButtonText}"/>
-                                        <Button x:Name="btnMenuItemAddMember"
-                                                Style="{StaticResource menuButton2}"
-                                                Content="+"
-                                                VerticalAlignment="Center"
-                                                Foreground="{StaticResource textButtonColor}"
-                                                FontSize="20"
-                                                FontFamily="Montserrat"
-                                                Cursor="Hand"
-                                                Margin="110,0,0,0"
-                                                Click="btnMenuItemAddMember_Click"></Button>
-                                    </StackPanel>
-                                </RadioButton>
-                                <RadioButton x:Name="btnItemSetting"
-                                            Style="{StaticResource workspaceMenuButton}"
-                                            Tag="{StaticResource color6}"
-                                            IsChecked="False"
-                                            Click="btnItemSetting_Click">
-                                    <StackPanel Orientation="Horizontal"
-                                                VerticalAlignment="Center">
-                                        <fa:IconImage Icon="Gear" Style="{StaticResource menuButtonIcon}"/>
-                                        <TextBlock Text="Setting" Style="{StaticResource menuButtonText}"/>
-                                    </StackPanel>
-                                </RadioButton>
+                            <StackPanel x:Name="listBoards"
+                                        Orientation="Vertical">
                             </StackPanel>
+
                         </StackPanel>
                     </Grid>
                 </Grid>
