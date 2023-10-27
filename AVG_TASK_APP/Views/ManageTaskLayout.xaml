@@ -498,7 +498,12 @@
             </Border>
             <!-- Menu Button End-->
             <Grid Grid.Column="1" x:Name="areaManageTaskSet" HorizontalAlignment="Center">
-                <Grid Width="1200" x:Name="areaManageTask" HorizontalAlignment="Right"></Grid>
+                <Grid Width="1200" x:Name="areaManageTask" HorizontalAlignment="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="667*"/>
+                        <ColumnDefinition Width="533*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

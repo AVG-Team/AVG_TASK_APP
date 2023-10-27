@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-        xmlns:viewmodels="clr-namespace:AVG_TASK_APP.ViewModels"
+        xmlns:viewmodels ="clr-namespace:AVG_TASK_APP.ViewModels"
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
         mc:Ignorable="d"
         WindowStyle="None"
@@ -13,9 +13,9 @@
         Title="Create Workspace" Height="520" Width="800"
     Background="{StaticResource panelColor}">
 
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <viewmodels:WorkspaceViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
