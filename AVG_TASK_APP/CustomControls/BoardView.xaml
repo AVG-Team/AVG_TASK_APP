@@ -55,11 +55,10 @@
                                 Margin="40,10,0,10">
                             
                         </StackPanel>
-                        <ScrollViewer Style="{StaticResource FavsScrollViewer}" FlowDirection="RightToLeft"
+                        <ScrollViewer Margin="40,10,0,0" Style="{StaticResource FavsScrollViewer}" FlowDirection="LeftToRight"
                   ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
                             Grid.Row="1">
                             <StackPanel Orientation="Horizontal"
-                                    Margin="40,10,0,0"
                                     x:Name="workspaceStackPanel">
 
                             </StackPanel>
