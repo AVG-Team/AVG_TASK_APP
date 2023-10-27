@@ -1,4 +1,7 @@
-﻿using AVG_TASK_APP.Views;
+﻿using AVG_TASK_APP.Models;
+using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.ViewModels;
+using AVG_TASK_APP.Views;
 using FontAwesome.WPF;
 using System;
 using System.Collections.Generic;
@@ -24,16 +27,21 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class itemWorkspace : UserControl
     {
-        PageLayout pageLayout;
-        ManageTaskLayout manageTaskLayout;
-        public itemWorkspace()
+
+        public itemWorkspace(int idWorkspaceDB)
         {
+            ItemWorkspaceViewModel viewModel = new ItemWorkspaceViewModel();
+            DataContext = viewModel;
+
             InitializeComponent();
-            pageLayout = new PageLayout();
-            manageTaskLayout = new ManageTaskLayout();
             userControl.Height = 50;
             StackPanel stackPanel = itemMenuWorkspace;
             stackPanel.Visibility = Visibility.Collapsed;
+
+            idWorkspace.Text = idWorkspaceDB.ToString();
+
+            nameWorkspace.Text = viewModel.getName();
+
             iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretUp;
         }
 
@@ -58,9 +66,10 @@ namespace AVG_TASK_APP.CustomControls
 
         private void btnItemBoard_Click(object sender, RoutedEventArgs e)
         {
-            BoardView boardView = new BoardView();
-            pageLayout.Close();
-            manageTaskLayout.Show();
+            PageLayout pageLayout = (PageLayout)Window.GetWindow(this);
+            pageLayout.areaUserControl.Children.Clear();
+            BoardUserControl boardView = new BoardUserControl();
+            pageLayout.areaUserControl.Children.Add(boardView);
         }
 
         private void btnItemMember_Click(object sender, RoutedEventArgs e)

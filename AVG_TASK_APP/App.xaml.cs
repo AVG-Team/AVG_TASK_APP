@@ -1,4 +1,5 @@
-﻿using AVG_TASK_APP.Models;
+﻿using AVG_TASK_APP.CustomControls;
+using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Views;
 using Microsoft.Win32;
@@ -74,7 +75,7 @@ namespace AVG_TASK_APP
             Thread.CurrentPrincipal = principal;
             AppDomain.CurrentDomain.SetThreadPrincipal(principal);
 
-            PageLayout layout = new PageLayout();
+            ManageTaskLayout layout = new ManageTaskLayout();
             layout.Show();
         }
     }

@@ -143,11 +143,11 @@ namespace AVG_TASK_APP.ViewModels
                     // Tạo principal mới nếu chưa tồn tại
                     var identity = new ClaimsIdentity(new[]
                     {
-        new Claim(ClaimTypes.Name, user.Name),
-        new Claim("Email", user.Email),
-        new Claim("Id", user.Id.ToString()),
-        new Claim("Level", user.Level.ToString()),
-    }, "ApplicationCookie");
+                        new Claim(ClaimTypes.Name, user.Name),
+                        new Claim("Email", user.Email),
+                        new Claim("Id", user.Id.ToString()),
+                        new Claim("Level", user.Level.ToString()),
+                    }, "ApplicationCookie");
 
                     var principal = new ClaimsPrincipal(identity);
                     Thread.CurrentPrincipal = principal;

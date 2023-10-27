@@ -54,7 +54,13 @@ namespace AVG_TASK_APP.Repositories
 
         public IEnumerable<UserModel> GetAll()
         {
-            throw new NotImplementedException();
+            var connection = GetConnection();
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+            optionsBuilder.UseMySql(connection, serverVersion);
+
+            var dbContext = new AppDbContext(optionsBuilder.Options);
+            return dbContext.Users.ToList();
         }
 
         public UserModel GetByEmail(string email)
@@ -157,18 +163,34 @@ namespace AVG_TASK_APP.Repositories
 
             var dbContext = new AppDbContext(optionsBuilder.Options);
 
-            if (dbContext.Users.FirstOrDefault(x => x.Email == username) == null)
+            UserModel user = dbContext.Users.FirstOrDefault(x => x.Email == username);
+            if (user == null)
             {
                 return false;
             }
 
-            byte[] salt = dbContext.Users.FirstOrDefault(x => x.Email == username).Salt;
+            byte[] salt = user.Salt;
 
-            if (!password.Equals(dbContext.Users.FirstOrDefault(x => x.Email == username).Password))
+            if (!password.Equals(user.Password))
             {
                 return false;
             }
             return true;
+        }
+
+        public IEnumerable<UserModel> GetByContainEmail(string email)
+        {
+            List<UserModel> users = null;
+            var connection = GetConnection();
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+            optionsBuilder.UseMySql(connection, serverVersion);
+
+            var dbContext = new AppDbContext(optionsBuilder.Options);
+
+            users = dbContext.Users.Where(s => s.Email.Contains(email)).ToList();
+
+            return users;
         }
     }
 }
