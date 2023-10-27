@@ -4,22 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Net;
-using System.Runtime.InteropServices;
-using System.Security;
 using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Xml.Linq;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace AVG_TASK_APP.Repositories
 {
@@ -40,9 +27,10 @@ namespace AVG_TASK_APP.Repositories
             IUserRepository userRepository = new UserRepository();
 
             var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
-            int id = int.Parse(identity.FindFirst("Id").ToString());
+            int id = int.Parse(identity.Claims.FirstOrDefault(s => s.Type == "Id").Value);
 
             dbContext.Workspaces.Add(workspace);
+            dbContext.SaveChanges();
             UserWorkspace userWorkspace = new UserWorkspace()
             {
                 Id_User = id,
@@ -84,14 +72,64 @@ namespace AVG_TASK_APP.Repositories
             return workspace;
         }
 
-        public IEnumerable<Workspace> GetAll()
+        public IEnumerable<Workspace> GetAll(string sort = "desc")
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Workspace> GetAllForUser()
+        public IEnumerable<Workspace> GetAllForUser(string sort = "desc")
         {
-            throw new NotImplementedException();
+            var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
+            if (identity == null)
+            {
+                return null;
+            }
+
+            int id = int.Parse(identity.Claims.FirstOrDefault(s => s.Type == "Id").Value);
+            var dbContext = DbContext();
+            var workspaces = dbContext.UserWorkspaces
+                                .Where(s => s.Id_User == id)
+                                .Select(s => s.Workspace);
+
+            if(sort.Equals("desc"))
+            {
+                return workspaces.OrderByDescending(s => s.Created_At).ToList();
+            }
+
+            return workspaces.OrderBy(s => s.Created_At).ToList();
+        }
+
+        public bool AddUserToWorkspace(Workspace workspace, UserModel user)
+        {
+            try
+            {
+                var dbContext = DbContext();
+
+                if (dbContext.UserWorkspaces.FirstOrDefault(x => x.Id_Workspace == workspace.Id && x.Id_User == user.Id) != null)
+                    return false;
+                UserWorkspace userWorkspace = new UserWorkspace()
+                {
+                    Id_User = user.Id,
+                    Id_Workspace = workspace.Id,
+                    Role = 0,
+                };
+
+                dbContext.UserWorkspaces.Add(userWorkspace);
+                dbContext.SaveChanges();
+
+                return true;
+            } catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public Workspace GetById(int id)
+        {
+            var dbContext = DbContext();
+            var workspace = dbContext.Workspaces
+                .FirstOrDefault(s => s.Id == id);
+            return workspace;
         }
     }
 }

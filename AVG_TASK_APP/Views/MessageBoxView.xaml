@@ -79,7 +79,7 @@
                 </Grid>
 
                 <TextBlock x:Name="txtMessage"
-                  Text="hehe"
+                  Text=""
                    VerticalAlignment="Center"
                   FontFamily="Montserrat"
                   FontSize="13"

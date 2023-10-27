@@ -268,11 +268,13 @@
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                   
-                                <RichTextBox Width='500' Height="200" FontSize="14" FontWeight="Medium" FontFamily="Montserrat" MouseDoubleClick="RichTextBox_MouseDoubleClick">
+
+                                <RichTextBox Width='500' Height="200" FontSize="14" FontWeight="Medium" FontFamily="Montserrat" MouseDoubleClick="RichTextBox_MouseDoubleClick" Padding="10">
                                     <RichTextBox.Template>
-                                        <ControlTemplate>
-                                            <Border Background="{StaticResource color6}" CornerRadius="10" BorderThickness="0"/>
+                                        <ControlTemplate >
+                                            <Border Background="{StaticResource color6}" CornerRadius="10" BorderThickness="0">
+                                                <ScrollViewer x:Name="PART_ContentHost"/>
+                                            </Border>
                                         </ControlTemplate>
                                     </RichTextBox.Template>
                                 </RichTextBox>
@@ -390,8 +392,10 @@
                                 </Ellipse>
                                 <RichTextBox  Width="620" Tag="">
                                     <RichTextBox.Template>
-                                        <ControlTemplate>
-                                            <Border CornerRadius="10" BorderThickness="0" Background="{StaticResource color6}"/>
+                                        <ControlTemplate >
+                                            <Border Background="{StaticResource color6}" CornerRadius="10" BorderThickness="0">
+                                                <ScrollViewer x:Name="PART_ContentHost"/>
+                                            </Border>
                                         </ControlTemplate>
                                     </RichTextBox.Template>
                                 </RichTextBox>

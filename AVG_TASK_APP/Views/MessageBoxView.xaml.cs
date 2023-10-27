@@ -21,6 +21,8 @@ namespace AVG_TASK_APP.Views
     /// </summary>
     public partial class MessageBoxView : Window
     {
+        public bool dialogResult = false;
+
         public MessageBoxView()
         {
             InitializeComponent();
@@ -39,9 +41,10 @@ namespace AVG_TASK_APP.Views
         {
 
         }
-        public void ProcessFault(string message, int code)
-        {
 
+        public void Show(string message, int code = 0)
+        {
+            btnCancel.Visibility = Visibility.Collapsed;
             //notification
            if(code == 0)
            {
@@ -64,14 +67,39 @@ namespace AVG_TASK_APP.Views
             }
         }
 
+        public void DialogResultShow(string message, int code = 0)
+        {
+            //notification
+            if (code == 0)
+            {
+                txtTitle.Text = "Notification";
+                txtMessage.Text = message;
+                this.Show();
+            }
+            else if (code == 1) //error
+            {
+                txtTitle.Text = "Error";
+                txtMessage.Text = message;
+                btnOk.Visibility = Visibility.Collapsed;
+                this.Show();
+            }
+            else //warning
+            {
+                txtTitle.Text = "Warning";
+                txtMessage.Text = message;
+                this.Show();
+            }
+        }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            dialogResult = false;
+            this.Close();
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-
+            dialogResult = true;
+            this.Close();
         }
     }
 }
