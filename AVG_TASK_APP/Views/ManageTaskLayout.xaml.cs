@@ -255,5 +255,11 @@ namespace AVG_TASK_APP.Views
                 }
             }
         }
+
+        private void Notifies_Click(object sender, RoutedEventArgs e)
+        {
+            NotifiesUserControl notify = new NotifiesUserControl();
+            areaManageTask.Children.Add(notify);
+        }
     }
 }

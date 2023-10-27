@@ -243,10 +243,12 @@
                             <fa:IconImage Icon="QuestionCircle" Height="20" Width="20"/>
                         </Button>
 
-                        <Button Background="Transparent"
+                        <Button x:Name="Notifies"
+                                Background="Transparent"
                                 Width="30" Height="30"
                                 BorderThickness="0"
-                                Style="{StaticResource menuButtonHeader}">
+                                Style="{StaticResource menuButtonHeader}"
+                                Click="Notifies_Click">
                             <fa:IconImage Icon="Bell" Height="20" Width="20"/>
                         </Button>
 
