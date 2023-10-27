@@ -1,5 +1,6 @@
 ﻿using AVG_TASK_APP.CustomControls;
 using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.ViewModels;
 using FontAwesome.WPF;
 using Microsoft.Win32;
 using System;
@@ -30,6 +31,7 @@ namespace AVG_TASK_APP.Views
 
         private TableRepository tableRepository = new TableRepository();
         private WorkspaceRepository workspaceRepository = new WorkspaceRepository();
+        private ManageTaskUserControlViewModel manageTaskUserControlViewModel = new ManageTaskUserControlViewModel();
 
         public ManageTaskLayout()
         {
@@ -49,7 +51,17 @@ namespace AVG_TASK_APP.Views
             {
                 RadioButtonBoard radioButtonBoard = new RadioButtonBoard(item.Id);
                 listBoards.Children.Add(radioButtonBoard);
+                radioButtonBoard.itemTable_Click += ItemTable_Click;
             }
+        }
+
+        private void ItemTable_Click(object? sender, EventArgs e)
+        {
+            RadioButtonBoard radioButtonBoard = sender as RadioButtonBoard;
+            this.areaManageTask.Children.Clear();
+            int idTable = int.Parse(radioButtonBoard.idTable.Text);
+            ManageTaskUserControl manageTaskUserControl = new ManageTaskUserControl(idTable);
+            this.areaManageTask.Children.Add(manageTaskUserControl);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

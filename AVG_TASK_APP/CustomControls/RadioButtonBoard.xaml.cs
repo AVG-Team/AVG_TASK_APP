@@ -22,9 +22,13 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class RadioButtonBoard : UserControl
     {
-        private RadioButtonBoardViewModel viewModel = new RadioButtonBoardViewModel();
+        private RadioButtonBoardViewModel viewModel;
+
+        public event EventHandler itemTable_Click;
+
         public RadioButtonBoard(int idTable)
         {
+            viewModel = new RadioButtonBoardViewModel();
             DataContext = viewModel;
 
             InitializeComponent();
@@ -37,10 +41,9 @@ namespace AVG_TASK_APP.CustomControls
             this.nameTable.SetBinding(TextBlock.TextProperty, nameTableBinding);
         }
 
-        private void itemBoard_Click(object sender, RoutedEventArgs e)
+        private void itemBoard_Click(object sender, EventArgs e)
         {
-            ManageTaskLayout manageTaskLayout = new ManageTaskLayout();
-            manageTaskLayout.areaManageTask.Children.Add(new ManageTaskUserControl());
+            itemTable_Click?.Invoke(this, EventArgs.Empty);
         }
     }
 }

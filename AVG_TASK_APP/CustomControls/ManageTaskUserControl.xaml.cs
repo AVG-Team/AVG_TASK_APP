@@ -1,4 +1,5 @@
 ﻿using AVG_TASK_APP.Models;
+using AVG_TASK_APP.ViewModels;
 using AVG_TASK_APP.Views;
 using C1.WPF.Core;
 using System;
@@ -26,12 +27,20 @@ namespace AVG_TASK_APP.CustomControls
     {
         private List<UserControl> _listCard = new List<UserControl>();
         private List<ListBox> listBoxes = new List<ListBox>();
+        private ManageTaskUserControlViewModel viewModel = new ManageTaskUserControlViewModel();
 
         private C1DragDropManager _dd;
 
-        public ManageTaskUserControl()
+        public ManageTaskUserControl(int idTable)
         {
             InitializeComponent();
+
+            DataContext = viewModel;
+
+            viewModel.getNameTable(idTable);
+
+            var nameTableBinding = new Binding("NameTable");
+            this.NameTable.SetBinding(TextBlock.TextProperty, nameTableBinding);
 
             _dd = new C1DragDropManager();
 

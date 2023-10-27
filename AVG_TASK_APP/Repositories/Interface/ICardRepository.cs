@@ -13,7 +13,7 @@ namespace AVG_TASK_APP.Repositories.Interface
         void Update(Card card);
         void Remove(Card card);
         Card GetById(int idCard);
-        IEnumerable<Card> GetAll();
-        IEnumerable<Card> GetAllForTable(int idTable);
+        IEnumerable<Card> GetAll(string sort = "desc");
+        IEnumerable<Card> GetAllForTable(int idTable, string sort = "desc");
     }
 }
