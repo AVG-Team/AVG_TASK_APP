@@ -1,5 +1,6 @@
 ﻿using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.Repositories.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace AVG_TASK_APP.ViewModels
     public class BoardViewModel : ViewModelBase
     {
         private IWorkspaceReposity workspaceReposity = new WorkspaceReposity();
+        private ITableRepository tableRepository = new TableRepository();
 
         public BoardViewModel() { }
 
@@ -20,6 +22,11 @@ namespace AVG_TASK_APP.ViewModels
             if (workspaces == null)
                 return -1;
             return workspaces.FirstOrDefault().Id;
+        }
+
+        public List<Table> GetTables(int idWorkspace)
+        {
+            return (List<Table>)tableRepository.GetAllForWorkspace(idWorkspace);
         }
     }
 }

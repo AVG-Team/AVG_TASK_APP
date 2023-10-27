@@ -1,4 +1,5 @@
-﻿using AVG_TASK_APP.ViewModels;
+﻿using AVG_TASK_APP.Models;
+using AVG_TASK_APP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -36,8 +36,12 @@ namespace AVG_TASK_APP.CustomControls
             YourWorkspaceUserControl yourWorkspace = new YourWorkspaceUserControl(idWorkspace);
             workspaceInfo.Children.Add(yourWorkspace);
 
-            btnBoard btnBoard = new btnBoard();
-            workspaceStackPanel.Children.Add(btnBoard);
+            List<Table> tables = viewModel.GetTables(idWorkspace);
+            foreach (Table table in tables)
+            {
+                btnBoard btnBoard = new btnBoard(table.Id, table.Name);
+                workspaceStackPanel.Children.Add(btnBoard);
+            }
         }
     }
 }

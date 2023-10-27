@@ -52,7 +52,8 @@ namespace AVG_TASK_APP.Repositories
 
         public void Remove(Workspace workspace)
         {
-            dbContext.Workspaces.Remove(workspace);
+            workspace.Deleted_At = DateTime.Now;
+            dbContext.Workspaces.Update(workspace);
             dbContext.SaveChanges();
         }
 
@@ -90,10 +91,10 @@ namespace AVG_TASK_APP.Repositories
 
             if(sort.Equals("desc"))
             {
-                return workspaces.OrderByDescending(s => s.Created_At).ToList();
+                return workspaces.Where(s => s.Deleted_At == null).OrderByDescending(s => s.Created_At).ToList();
             }
 
-            return workspaces.OrderBy(s => s.Created_At).ToList();
+            return workspaces.Where(s => s.Deleted_At == null).OrderBy(s => s.Created_At).ToList();
         }
 
         public bool AddUserToWorkspace(Workspace workspace, UserModel user)

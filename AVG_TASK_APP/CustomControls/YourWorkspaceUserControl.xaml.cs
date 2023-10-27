@@ -21,7 +21,7 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class YourWorkspaceUserControl : UserControl
     {
-        public YourWorkspaceUserControl(int  idWorkspace)
+        public YourWorkspaceUserControl(int idWorkspace)
         {
             YourWorkspaceViewModel viewModel = new YourWorkspaceViewModel();
             DataContext = viewModel;
