@@ -122,7 +122,9 @@ namespace AVG_TASK_APP.ViewModels
             var isValidUser = userRepository.verifyAccount(Username, Password);
             if (isValidUser)
             {
+                
                 MessageBoxView msb = new MessageBoxView();
+                msb.Show("Add successfully");
 
                 UserModel user = userRepository.GetByEmail(Username);
                 var currentPrincipal = Thread.CurrentPrincipal as ClaimsPrincipal;

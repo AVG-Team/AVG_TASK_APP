@@ -140,7 +140,7 @@ namespace AVG_TASK_APP.ViewModels
 
                 workspaceReposity.Add(workspace);
                 MessageBoxView msb = new MessageBoxView();
-                msb.Show("Add Workspace Successfully");
+                msb.Show("Add Successfully");
 
                 foreach (Window window in Application.Current.Windows)
                 {
