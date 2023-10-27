@@ -23,22 +23,35 @@
             </Grid>
             <Grid Grid.Row="1">
                 <StackPanel Orientation="Vertical">
-                    <Border>
+                    <Border Margin="10,0,10,0" CornerRadius="10" Background="#f1f2f4"  BorderThickness="1">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Text="Hello"/>
-                        </Grid>
-                    </Border>
-                    <Border>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="Hello"/>
+                            <Grid Grid.Row="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse Width="40" Height="40"  Margin="10,0,0,0">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="\Resources\Images\OIP.jpg"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        
+                                    </Grid>
+                                    <TextBlock Margin="10,10,0,0" Text="Nguyen Mai Bao Huy"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                                    <TextBlock Margin="50,0,0,0" Text="Added you"/>
+                                    <TextBlock Margin="30,6,0,0" Text="Oct 20 at 1:42 AM" FontSize="5"/>
+                                </StackPanel>
+                            </Grid>
                         </Grid>
                     </Border>
                 </StackPanel>
