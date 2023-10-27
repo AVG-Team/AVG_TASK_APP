@@ -116,7 +116,7 @@
                 <!-- Control Bar End -->
 
                 <!-- Menu sidebar Begin-->
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" MouseDown="starList_Click">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="400"/>
@@ -194,34 +194,8 @@
 
 
                             <!--// Main Menu - Recent//-->
-                            <MenuItem Header="Stared"
+                            <MenuItem x:Name="starList" Header="Stared"
                                       Template="{StaticResource Menu_SubMenu_Template}" >
-                                <!--// Music Submenu - All Songs //-->
-                                <MenuItem Header="All Songs"
-                                          Template="{StaticResource Item_Template}">
-                                    <TextBlock Text="Current Workspace"
-                                               FontFamily="Montserrat"
-                                               FontSize="12"
-                                               FontWeight="Light"/>
-                                </MenuItem>
-
-                                <!--// Music Submenu - Albums //-->
-
-                                <MenuItem Header="Albums"
-                                          Template="{StaticResource Item_Template}">
-                                </MenuItem>
-
-                                <!--// Music Submenu - Artists //-->
-
-                                <MenuItem Header="Artists"
-                                          Template="{StaticResource Item_Template}">
-                                </MenuItem>
-
-                                <!--// Music Submenu - Playlists //-->
-
-                                <MenuItem Header="Playlists"
-                                          Template="{StaticResource Item_Template}">
-                                </MenuItem>
 
                             </MenuItem>
 
