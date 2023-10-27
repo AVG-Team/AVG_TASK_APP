@@ -28,11 +28,12 @@ namespace AVG_TASK_APP.Repositories
         {
             IUserRepository userRepository = new UserRepository();
 
+            AppDbContext dbContextTmp = dbContext;
             var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
             int id = int.Parse(identity.Claims.FirstOrDefault(s => s.Type == "Id").Value);
 
-            dbContext.Workspaces.Add(workspace);
-            dbContext.SaveChanges();
+            dbContextTmp.Workspaces.Add(workspace);
+            dbContextTmp.SaveChanges();
             UserWorkspace userWorkspace = new UserWorkspace()
             {
                 Id_User = id,
@@ -40,21 +41,23 @@ namespace AVG_TASK_APP.Repositories
                 Role = 1,
             };
 
-            dbContext.UserWorkspaces.Add(userWorkspace);
-            dbContext.SaveChanges();
+            dbContextTmp.UserWorkspaces.Add(userWorkspace);
+            dbContextTmp.SaveChanges();
         }
 
         public void Update(Workspace workspace)
         {
-            dbContext.Workspaces.Update(workspace);
-            dbContext.SaveChanges();
+            AppDbContext dbContextTmp = dbContext;
+            dbContextTmp.Workspaces.Update(workspace);
+            dbContextTmp.SaveChanges();
         }
 
         public void Remove(Workspace workspace)
         {
+            AppDbContext dbContextTmp = dbContext;
             workspace.Deleted_At = DateTime.Now;
-            dbContext.Workspaces.Update(workspace);
-            dbContext.SaveChanges();
+            dbContextTmp.Workspaces.Update(workspace);
+            dbContextTmp.SaveChanges();
         }
 
         public Workspace GetByNameForUser(string name, UserModel user)

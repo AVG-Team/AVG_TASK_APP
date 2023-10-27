@@ -49,6 +49,7 @@ namespace AVG_TASK_APP.ViewModels
 
         public ICommand PageLayoutLoaded { get;  }
         public ICommand CreateWorkSpaceCommand { get; }
+        public ICommand ShowInformationUserCommand { get; }
 
         public PageLayoutViewModel()
         {
@@ -57,6 +58,7 @@ namespace AVG_TASK_APP.ViewModels
             currentUserAccount = new UserAccount();
             PageLayoutLoaded = new ViewModelCommand(ExcuteLoadedCommand);
             CreateWorkSpaceCommand = new ViewModelCommand(ExcuteCreateWorkspaceCommand);
+            ShowInformationUserCommand = new ViewModelCommand(ExcuteCreateWorkspaceCommand);
             LoadCurrentUserData();
         }
 
@@ -78,7 +80,7 @@ namespace AVG_TASK_APP.ViewModels
 
         private void loadItemWorkspace()
         {
-            Workspaces = new ObservableCollection<itemWorkspace>();
+           Workspaces = new ObservableCollection<itemWorkspace>();
 
             List<Workspace> workspaces = (List<Workspace>)workspaceReposity.GetAllForUser();
             if(! workspaces.Any() )
@@ -118,11 +120,13 @@ namespace AVG_TASK_APP.ViewModels
             if (identity != null)
             {
                 currentUserAccount.Id = int.Parse(identity.Claims.FirstOrDefault(s => s.Type == "Id").Value);
-                currentUserAccount.Name = identity.Name;
-                currentUserAccount.Email = identity.Claims.FirstOrDefault(s => s.Type == "Email").Value;
-                currentUserAccount.Level = int.Parse(identity.Claims.FirstOrDefault(s => s.Type == "Level").Value);
+                UserModel userTmp = userRepository.GetById(currentUserAccount.Id);
+                currentUserAccount.Name = userTmp.Name;
+                currentUserAccount.Email = userTmp.Email;
+                currentUserAccount.Level = userTmp.Level;
 
                 UserAccountName = currentUserAccount.Name;
+
                 if (currentUserAccount.Level == 0)
                 {
                     UserAccountImage = "/AVG_TASK_APP;component/Resources/Images/OIP.jpg";
@@ -132,7 +136,7 @@ namespace AVG_TASK_APP.ViewModels
                     UserAccountImage = "/AVG_TASK_APP;component/Resources/Images/ADMIN.png";
                 }
 
-                string email = Thread.CurrentPrincipal.Identity.Name;
+                string email = userTmp.Email;
             }
             else
             {

@@ -240,7 +240,7 @@
                                                 Background="{StaticResource backColor}"
                                                 CornerRadius="100"
                                                 HorizontalAlignment="Left"
-                                                Margin="20 -50 0 30" MouseDown="Border_MouseDown">
+                                                Margin="20 -50 0 30" MouseDown="Avatar_MouseDown">
                                             <Ellipse>
                                                 <Ellipse.Fill>
                                                     <ImageBrush ImageSource="{Binding UserAccountImage}"/>
