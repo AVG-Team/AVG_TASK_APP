@@ -283,11 +283,14 @@
                                                     Command="{Binding CreateWorkSpaceCommand}"
                                                     />
                                         </StackPanel>
-                                        <StackPanel x:Name="menuWorkspace"
-                                                    Orientation="Vertical">
-                                            <ItemsControl ItemsSource="{Binding Workspaces}">
-                                                
-                                            </ItemsControl>
+                                        <StackPanel x:Name="menuWorkspace" Orientation="Vertical">
+                                            <ScrollViewer Margin="10,0,0,0" Padding="10" Style="{StaticResource FavsScrollViewer}"
+ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible" FlowDirection="RightToLeft"
+          Grid.Row="1" Name="PART_VerticalScrollBar" Height="325">
+                                                <ItemsControl ItemsSource="{Binding Workspaces}" FlowDirection="LeftToRight">
+
+                                                </ItemsControl>
+                                            </ScrollViewer>
                                         </StackPanel>
 
                                     </StackPanel>
