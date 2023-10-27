@@ -1,4 +1,5 @@
 ﻿using AVG_TASK_APP.Models;
+using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.ViewModels;
 using AVG_TASK_APP.Views;
 using C1.WPF.Core;
@@ -27,16 +28,23 @@ namespace AVG_TASK_APP.CustomControls
     {
         private List<UserControl> _listCard = new List<UserControl>();
         private List<ListBox> listBoxes = new List<ListBox>();
-        private ManageTaskUserControlViewModel viewModel = new ManageTaskUserControlViewModel();
+        private ManageTaskUserControlViewModel viewModel;
+        private CardRepository cardRepository;
+        private TaskRepository taskRepository;
 
         private C1DragDropManager _dd;
+        private int idTableCurrent = 0;
 
         public ManageTaskUserControl(int idTable)
         {
             InitializeComponent();
 
-            DataContext = viewModel;
+            viewModel = new ManageTaskUserControlViewModel();
+            cardRepository = new CardRepository();
+            taskRepository = new TaskRepository();
 
+            DataContext = viewModel;
+            idTableCurrent = idTable;
             viewModel.getNameTable(idTable);
 
             var nameTableBinding = new Binding("NameTable");
@@ -44,60 +52,66 @@ namespace AVG_TASK_APP.CustomControls
 
             _dd = new C1DragDropManager();
 
-            for (int i = 1; i <= 5; i++)
+            _dd.DragDrop += _dd_DragDrop;
+        }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            var cards = cardRepository.GetAllForTable(idTableCurrent);
+            foreach (var item in cards)
             {
-                CardUserControl cardUserControl = new CardUserControl(idTable);
+                CardUserControl cardUserControl = new CardUserControl(item.Id);
                 areaCard.Children.Add(cardUserControl);
+                cardUserControl.Tag = item.Id;
                 _listCard.Add(cardUserControl);
             }
+
             foreach (CardUserControl card in _listCard)
             {
                 _dd.RegisterDropTarget(card.lb, true);
+                card.lb.Tag = card.Tag;
                 listBoxes.Add(card.lb);
             }
-
-            //foreach (ListBox lb in listBoxes)
-            //{
-            //    foreach (Person p in Person.Generate(5))
-            //    {
-            //        Button button = new Button();
-
-            //        var border = new Border();
-            //        border.BorderBrush = Brushes.Black;
-            //        border.CornerRadius = new CornerRadius(10);
-            //        border.Background = Brushes.White;
-            //        border.Height = 40;
-            //        border.Width = 180;
-            //        border.Margin.Bottom.Equals(10);
-
-
-            //        var element = new ContentPresenter();
-            //        element.Content = p.Name;
-            //        element.MouseLeftButtonUp += personElement_MouseEnter;
-            //        element.VerticalAlignment = VerticalAlignment.Center;
-            //        element.HorizontalAlignment = HorizontalAlignment.Center;
-
-            //        border.Child = element;
-            //        lb.Items.Add(border);
-
-            //        _dd.RegisterDragSource(border, DragDropEffect.Move, ModifierKeys.None);
-
-
-            //        _dd.DragThreshold = 5;
-
-
-            //        border.MouseDown += (s, e) =>
-            //        {
-            //            e.Handled = true;
-            //        };
-            //    }
-            //}
-            _dd.DragDrop += _dd_DragDrop;
+            LoadItem();
         }
 
-        private void Button_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void LoadItem()
         {
-            throw new NotImplementedException();
+            foreach (ListBox lb in listBoxes)
+            {
+                int idCard = int.Parse(lb.Tag.ToString());
+                foreach (Models.Task task in taskRepository.GetAllForCard(idCard))
+                {
+
+                    var border = new Border();
+                    border.BorderBrush = Brushes.Black;
+                    border.CornerRadius = new CornerRadius(10);
+                    border.Background = Brushes.White;
+                    border.Height = 40;
+                    border.Width = 180;
+                    border.Margin.Bottom.Equals(10);
+
+
+                    var element = new ContentPresenter();
+                    element.Content = task.Name;
+                    element.MouseLeftButtonUp += personElement_MouseEnter;
+                    element.VerticalAlignment = VerticalAlignment.Center;
+                    element.HorizontalAlignment = HorizontalAlignment.Center;
+
+                    border.Child = element;
+                    lb.Items.Add(border);
+
+                    _dd.RegisterDragSource(border, DragDropEffect.Move, ModifierKeys.None);
+
+
+                    _dd.DragThreshold = 5;
+
+
+                    border.MouseDown += (s, e) =>
+                    {
+                        e.Handled = true;
+                    };
+                }
+            }
         }
 
         private void _dd_DragDrop(object source, DragDropEventArgs e)
@@ -130,6 +144,7 @@ namespace AVG_TASK_APP.CustomControls
                 }
             }
         }
+
 
         private int GetDropIndex(DragDropEventArgs e, ListBox? target)
         {
@@ -185,5 +200,7 @@ namespace AVG_TASK_APP.CustomControls
                 }
             }
         }
+
+
     }
 }

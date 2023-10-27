@@ -24,18 +24,24 @@ namespace AVG_TASK_APP.CustomControls
         public ListBox lb { get { return _list; } }
         private CardUserControlViewModel viewModel;
 
-        public CardUserControl(int idTable)
+        public CardUserControl(int idCard)
         {
             InitializeComponent();
 
             viewModel = new CardUserControlViewModel();
             DataContext = viewModel;
 
-            viewModel.getNameCard(idTable);
+            viewModel.getNameCard(idCard);
+            viewModel.IdCard = idCard;
 
 
-            var cardNameBinding = new Binding("NameCard");
-            this.nameCard.SetBinding(TextBlock.TextProperty, cardNameBinding);
+
+
+            var nameCardBinding = new Binding("NameCard");
+            var idCardBinding = new Binding("IdCard");
+
+            this.nameCard.SetBinding(TextBlock.TextProperty, nameCardBinding);
+            this._list.SetBinding(UidProperty, idCardBinding);
         }
     }
 }

@@ -446,9 +446,9 @@
                 </Grid>
             </Border>
             <!-- Menu Button End-->
-            <Grid Grid.Column="1" x:Name="areaManageTaskSet" HorizontalAlignment="Center">
-                <Grid Width="1200" x:Name="areaManageTask" HorizontalAlignment="Right"></Grid>
-            </Grid>
+            <StackPanel Grid.Column="1" x:Name="areaManageTask">
+
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

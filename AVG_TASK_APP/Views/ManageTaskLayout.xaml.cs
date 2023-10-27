@@ -39,14 +39,14 @@ namespace AVG_TASK_APP.Views
 
             loadItemTable();
 
-            nameWorkspace.Text = workspaceRepository.GetById(2).Name;
+            nameWorkspace.Text = workspaceRepository.GetById(116).Name;
 
         }
 
         private void loadItemTable()
         {
             listBoards.Children.Clear();
-            List<Models.Table> tables = (List<Models.Table>)tableRepository.GetAllForWorkspace(2);
+            List<Models.Table> tables = (List<Models.Table>)tableRepository.GetAllForWorkspace(116);
             foreach (Models.Table item in tables)
             {
                 RadioButtonBoard radioButtonBoard = new RadioButtonBoard(item.Id);
@@ -138,7 +138,7 @@ namespace AVG_TASK_APP.Views
         private void MoveControlButton_Click(object sender, RoutedEventArgs e)
         {
             gridLeft.Width = new GridLength(15);
-            areaManageTaskSet.HorizontalAlignment = HorizontalAlignment.Center;
+            /*areaManageTaskSet.HorizontalAlignment = HorizontalAlignment.Center;*/
             areaManageTask.Width = 1520;
         }
 
