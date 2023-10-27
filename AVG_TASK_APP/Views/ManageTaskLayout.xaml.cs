@@ -29,20 +29,26 @@ namespace AVG_TASK_APP.Views
     {
 
         private TableRepository tableRepository = new TableRepository();
+        private WorkspaceRepository workspaceRepository = new WorkspaceRepository();
 
         public ManageTaskLayout()
         {
             InitializeComponent();
+
+            loadItemTable();
+
+            nameWorkspace.Text = workspaceRepository.GetById(2).Name;
 
         }
 
         private void loadItemTable()
         {
             listBoards.Children.Clear();
-            List<Table> tables = (List<Table>)tableRepository.GetAllForWorkspace();
-            foreach (Table table in tables)
+            List<Models.Table> tables = (List<Models.Table>)tableRepository.GetAllForWorkspace(2);
+            foreach (Models.Table item in tables)
             {
-                RadioButtonBoard radioButtonBoard = new RadioButtonBoard(table.Id);
+                RadioButtonBoard radioButtonBoard = new RadioButtonBoard(item.Id);
+                listBoards.Children.Add(radioButtonBoard);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using AVG_TASK_APP.ViewModels;
+using AVG_TASK_APP.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,16 +22,25 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class RadioButtonBoard : UserControl
     {
-        public RadioButtonBoard(int idWorkspaceDb)
+        private RadioButtonBoardViewModel viewModel = new RadioButtonBoardViewModel();
+        public RadioButtonBoard(int idTable)
         {
-            RadioButtonBoardViewModel viewModel = new RadioButtonBoardViewModel();
             DataContext = viewModel;
 
             InitializeComponent();
 
-            this.Tag = idWorkspaceDb;
+            this.idTable.Text = idTable.ToString();
 
-            nameTable.Text = viewModel.getName();
+            viewModel.getName();
+
+            var nameTableBinding = new Binding("NameTable");
+            this.nameTable.SetBinding(TextBlock.TextProperty, nameTableBinding);
+        }
+
+        private void itemBoard_Click(object sender, RoutedEventArgs e)
+        {
+            ManageTaskLayout manageTaskLayout = new ManageTaskLayout();
+            manageTaskLayout.areaManageTask.Children.Add(new ManageTaskUserControl());
         }
     }
 }

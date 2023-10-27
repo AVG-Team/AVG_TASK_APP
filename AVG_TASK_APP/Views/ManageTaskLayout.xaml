@@ -338,7 +338,7 @@
                                 </Ellipse>
                             </Border>
 
-                            <TextBlock 
+                            <TextBlock x:Name="nameWorkspace"
                                        Text="Name Workspace"
                                        Foreground="{StaticResource color6}"
                                        FontSize="22"
@@ -434,8 +434,11 @@
 
                             <!--// Services //-->
 
-                            <StackPanel x:Name="listBoards"
-                                        Orientation="Vertical">
+                            <StackPanel  x:Name="listBoards" 
+                                Orientation="Vertical">
+                                <ItemsControl>
+
+                                </ItemsControl>
                             </StackPanel>
 
                         </StackPanel>

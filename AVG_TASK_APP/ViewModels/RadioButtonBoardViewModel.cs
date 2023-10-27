@@ -1,11 +1,13 @@
 ﻿using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Repositories.Interface;
+using AVG_TASK_APP.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace AVG_TASK_APP.ViewModels
 {
@@ -13,9 +15,10 @@ namespace AVG_TASK_APP.ViewModels
     {
         private ITableRepository tableRepository;
 
-        private int _idTable;
+        private string _idTable;
+        private string _nameTable;
 
-        public int IdTable
+        public string IdTable
         {
             get { return _idTable; }
             set
@@ -25,15 +28,31 @@ namespace AVG_TASK_APP.ViewModels
             }
         }
 
+        public string NameTable
+        {
+            get { return _nameTable; }
+            set
+            {
+                _nameTable = value;
+                OnPropertyChanged(nameof(NameTable));
+            }
+        }
+
+
         public RadioButtonBoardViewModel()
         {
             tableRepository = new TableRepository();
+
         }
 
-        public string getName()
+
+
+        public void getName()
         {
-            Table table = tableRepository.GetById(IdTable);
-            return table.Name;
+            int idTable = int.Parse(IdTable);
+            Table table = tableRepository.GetById(idTable);
+
+            NameTable = table.Name;
         }
     }
 }
