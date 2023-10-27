@@ -46,7 +46,7 @@ namespace AVG_TASK_APP.CustomControls
 
             for (int i = 1; i <= 5; i++)
             {
-                CardUserControl cardUserControl = new CardUserControl();
+                CardUserControl cardUserControl = new CardUserControl(idTable);
                 areaCard.Children.Add(cardUserControl);
                 _listCard.Add(cardUserControl);
             }

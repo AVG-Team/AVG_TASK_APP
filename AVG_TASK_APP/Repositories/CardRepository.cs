@@ -52,7 +52,7 @@ namespace AVG_TASK_APP.Repositories
 
         public Card GetById(int idCard)
         {
-            throw new NotImplementedException();
+            return dbContext.Cards.Where(s => s.Id == idCard).FirstOrDefault();
         }
 
         public void Remove(Card card)

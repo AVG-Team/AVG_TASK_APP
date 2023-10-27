@@ -12,7 +12,6 @@ namespace AVG_TASK_APP.ViewModels
         private TableRepository tableRepository;
         private CardRepository cardRepository;
         private string _nameTable;
-        public string _idTableCurrent;
 
         public string NameTable
         {
