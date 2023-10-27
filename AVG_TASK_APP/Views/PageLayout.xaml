@@ -175,7 +175,7 @@
                                 <Button Background="Transparent"
                                          Width="30" Height="30"
                                          BorderThickness="0">
-                                    <fa:IconImage Icon="Bell" Height="20" Width="20"/>
+                                    <fa:IconImage Icon="Bell" Height="20" Width="20" MouseDown="IconImage_MouseDown"/>
                                     <Button.Style>
                                         <Style TargetType="Button">
                                             <Style.Triggers>

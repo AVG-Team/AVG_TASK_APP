@@ -109,5 +109,10 @@ namespace AVG_TASK_APP.Views
             BoardView boardView = new BoardView();
             areaUserControl.Children.Add(boardView);
         }
+
+        private void IconImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
