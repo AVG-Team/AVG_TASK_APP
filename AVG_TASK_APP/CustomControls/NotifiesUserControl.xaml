@@ -15,7 +15,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <StackPanel Margin="10,20,0,0" Orientation="Vertical">
+                <StackPanel Margin="10,30,0,0" Orientation="Vertical">
                     <TextBlock Text="Notifications" FontSize="30"/>
                     <Separator Width="380" Margin="10,30,0,10" Height="20" Background="Black"
                        HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
@@ -23,37 +23,279 @@
             </Grid>
             <Grid Grid.Row="1">
                 <StackPanel Orientation="Vertical">
-                    <Border Margin="10,0,10,0" CornerRadius="10" Background="#f1f2f4"  BorderThickness="1">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <StackPanel Orientation="Horizontal">
-                                    <Ellipse Width="40" Height="40"  Margin="10,0,0,0">
-                                        <Ellipse.Fill>
-                                            <ImageBrush ImageSource="\Resources\Images\OIP.jpg"/>
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-                                        
-                                    </Grid>
-                                    <TextBlock Margin="10,10,0,0" Text="Nguyen Mai Bao Huy"/>
-                                </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Margin="10,10,00,0" CornerRadius="10" Background="#f1f2f4"  BorderThickness="4">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="40" Height="40"  Margin="10,0,0,0">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="\Resources\Images\OIP.jpg"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                        </Grid>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Margin="10,10,0,0" Text="Nguyen Mai Bao Huy"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock  Margin="10,5,50,10" Text="Added you"/>
+                                                <TextBlock Margin="10,7,50,10"  Text="Oct 20 at 1:42 AM" FontSize="10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Row="1">
+
+                                </Grid>
                             </Grid>
-                            <Grid Grid.Row="1">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                                    <TextBlock Margin="50,0,0,0" Text="Added you"/>
-                                    <TextBlock Margin="30,6,0,0" Text="Oct 20 at 1:42 AM" FontSize="5"/>
-                                </StackPanel>
+                        </Border>
+                        <fa:IconImage Margin="20,0,0,0" Width="15" Height="15" Icon="thumbtack" Foreground="{StaticResource color5}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Margin="10,10,00,0" CornerRadius="10" Background="#f1f2f4"  BorderThickness="4">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="40" Height="40"  Margin="10,0,0,0">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="\Resources\Images\OIP.jpg"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                        </Grid>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Margin="10,10,0,0" Text="Nguyen Mai Bao Huy"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock  Margin="10,5,50,10" Text="Added you"/>
+                                                <TextBlock Margin="10,7,50,10"  Text="Oct 20 at 1:42 AM" FontSize="10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Row="1">
+
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </Border>
+                        </Border>
+                        <fa:IconImage Margin="20,0,0,0" Width="15" Height="15" Icon="thumbtack" Foreground="{StaticResource color5}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Margin="10,10,00,0" CornerRadius="10" Background="#f1f2f4"  BorderThickness="4">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="40" Height="40"  Margin="10,0,0,0">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="\Resources\Images\OIP.jpg"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                        </Grid>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Margin="10,10,0,0" Text="Nguyen Mai Bao Huy"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock  Margin="10,5,50,10" Text="Added you"/>
+                                                <TextBlock Margin="10,7,50,10"  Text="Oct 20 at 1:42 AM" FontSize="10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Row="1">
+
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <fa:IconImage Margin="20,0,0,0" Width="15" Height="15" Icon="thumbtack" Foreground="{StaticResource color5}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Margin="10,10,00,0" CornerRadius="10" Background="#f1f2f4"  BorderThickness="4">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="40" Height="40"  Margin="10,0,0,0">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="\Resources\Images\OIP.jpg"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                        </Grid>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Margin="10,10,0,0" Text="Nguyen Mai Bao Huy"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock  Margin="10,5,50,10" Text="Added you"/>
+                                                <TextBlock Margin="10,7,50,10"  Text="Oct 20 at 1:42 AM" FontSize="10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Row="1">
+
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <fa:IconImage Margin="20,0,0,0" Width="15" Height="15" Icon="thumbtack" Foreground="{StaticResource color5}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Margin="10,10,00,0" CornerRadius="10" Background="#f1f2f4"  BorderThickness="4">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="40" Height="40"  Margin="10,0,0,0">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="\Resources\Images\OIP.jpg"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                        </Grid>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Margin="10,10,0,0" Text="Nguyen Mai Bao Huy"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock  Margin="10,5,50,10" Text="Added you"/>
+                                                <TextBlock Margin="10,7,50,10"  Text="Oct 20 at 1:42 AM" FontSize="10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Row="1">
+
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <fa:IconImage Margin="20,0,0,0" Width="15" Height="15" Icon="thumbtack" Foreground="{StaticResource color5}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Margin="10,10,00,0" CornerRadius="10" Background="#f1f2f4"  BorderThickness="4">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="40" Height="40"  Margin="10,0,0,0">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="\Resources\Images\OIP.jpg"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                        </Grid>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Margin="10,10,0,0" Text="Nguyen Mai Bao Huy"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock  Margin="10,5,50,10" Text="Added you"/>
+                                                <TextBlock Margin="10,7,50,10"  Text="Oct 20 at 1:42 AM" FontSize="10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Row="1">
+
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <fa:IconImage Margin="20,0,0,0" Width="15" Height="15" Icon="thumbtack" Foreground="{StaticResource color5}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Margin="10,10,00,0" CornerRadius="10" Background="#f1f2f4"  BorderThickness="4">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="40" Height="40"  Margin="10,0,0,0">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="\Resources\Images\OIP.jpg"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                        </Grid>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Margin="10,10,0,0" Text="Nguyen Mai Bao Huy"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock  Margin="10,5,50,10" Text="Added you"/>
+                                                <TextBlock Margin="10,7,50,10"  Text="Oct 20 at 1:42 AM" FontSize="10"/>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Row="1">
+
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <fa:IconImage Margin="20,0,0,0" Width="15" Height="15" Icon="thumbtack" Foreground="{StaticResource color5}"/>
+                    </StackPanel>
+
                 </StackPanel>
             </Grid>
         </Grid>
