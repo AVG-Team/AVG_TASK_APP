@@ -17,6 +17,10 @@ using System.Windows.Shapes;
 using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.ViewModels;
+using Microsoft.Win32;
+using System.Reflection;
+using System.Security.Claims;
+using System.Threading;
 
 namespace AVG_TASK_APP.Views
 {
@@ -108,6 +112,50 @@ namespace AVG_TASK_APP.Views
         {
             BoardView boardView = new BoardView();
             areaUserControl.Children.Add(boardView);
+        }
+
+        private void btnUserMenu_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+
+            // Get the button and check for nulls
+
+            if (button == null || button.ContextMenu == null)
+                return;
+            // Set the placement target of the ContextMenu to the button
+            button.ContextMenu.PlacementTarget = button;
+            button.ContextMenu.FlowDirection = FlowDirection.LeftToRight;
+            // Open the ContextMenu
+            button.ContextMenu.IsOpen = true;
+        }
+
+        private void itemMenuLogout(object sender, RoutedEventArgs e)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var registryKey = Registry.CurrentUser.OpenSubKey("Software\\" + assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title + "\\Login", true);
+
+            registryKey.SetValue("Username", String.Empty);
+            registryKey.SetValue("Password", String.Empty);
+
+            var currentPrincipal = Thread.CurrentPrincipal as ClaimsPrincipal;
+            if (currentPrincipal != null)
+            {
+                foreach (var identity in currentPrincipal.Identities)
+                {
+                    identity.Claims.ToList().ForEach(c => identity.RemoveClaim(c));
+                }
+            }
+
+            LoginView login = new LoginView();
+            login.Show();
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (!(window is LoginView))
+                {
+                    window.Close();
+                }
+            }
         }
     }
 }

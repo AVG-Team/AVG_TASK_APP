@@ -189,6 +189,25 @@
                                     </Button.Style>
                                 </Button>
 
+                                <Button x:Name="btnUserMenu"
+                                Width="40" Height="40" 
+                                Background="Transparent" 
+                                BorderThickness="0" 
+                                Style="{StaticResource menuButtonHeader}"
+                                ContextMenuService.IsEnabled="False"
+                                Click="btnUserMenu_Click">
+                                    <Ellipse Width="40"
+                                     Height="40">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <Button.ContextMenu>
+                                        <ContextMenu x:Name="context" Placement="Bottom" Background="Transparent" >
+                                            <MenuItem Header="Logout" Click="itemMenuLogout" />
+                                        </ContextMenu>
+                                    </Button.ContextMenu>
+                                </Button>
                             </StackPanel>
                         </StackPanel>
 
