@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AVG_TASK_APP.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,20 +22,22 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class BoardView : System.Windows.Controls.UserControl
     {
+        private BoardViewModel viewModel;
         public BoardView()
         {
+            viewModel = new BoardViewModel();
+            DataContext = viewModel;
             InitializeComponent();
         }
 
         private void BoardView_Loaded(object sender, RoutedEventArgs e)
         {
+            int idWorkspace = viewModel.getIdWorkspaceRecently();
+            YourWorkspaceUserControl yourWorkspace = new YourWorkspaceUserControl(idWorkspace);
+            workspaceInfo.Children.Add(yourWorkspace);
+
             btnBoard btnBoard = new btnBoard();
             workspaceStackPanel.Children.Add(btnBoard);
-
-
-
         }
-
-
     }
 }

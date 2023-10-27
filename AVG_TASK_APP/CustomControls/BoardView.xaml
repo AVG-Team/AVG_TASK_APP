@@ -49,10 +49,10 @@
                             <RowDefinition Height="55"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <StackPanel x:Name="Workspace" 
+                        <StackPanel x:Name="workspaceInfo" 
                                 Grid.Row="0"
                                 Margin="40,10,0,10">
-                            <local:YourWorkspaceUserControl/>
+                            
                         </StackPanel>
                         <StackPanel Orientation="Horizontal"
                                     Margin="40,10,0,0"

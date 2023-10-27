@@ -12,18 +12,20 @@ namespace AVG_TASK_APP.Repositories
 {
     public class WorkspaceReposity : RepositoryBase, IWorkspaceReposity
     {
-        public AppDbContext DbContext()
+        private AppDbContext dbContext
         {
-            var connection = GetConnection();
-            var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
-            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseMySql(connection, serverVersion);
+            get
+            {
+                var connection = GetConnection();
+                var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
+                var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+                optionsBuilder.UseMySql(connection, serverVersion);
 
-            return new AppDbContext(optionsBuilder.Options);
+                return new AppDbContext(optionsBuilder.Options);
+            }
         }
         public void Add(Workspace workspace)
         {
-            var dbContext = DbContext();
             IUserRepository userRepository = new UserRepository();
 
             var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
@@ -44,21 +46,18 @@ namespace AVG_TASK_APP.Repositories
 
         public void Update(Workspace workspace)
         {
-            var dbContext = DbContext();
             dbContext.Workspaces.Update(workspace);
             dbContext.SaveChanges();
         }
 
         public void Remove(Workspace workspace)
         {
-            var dbContext = DbContext();
             dbContext.Workspaces.Remove(workspace);
             dbContext.SaveChanges();
         }
 
         public Workspace GetByNameForUser(string name, UserModel user)
         {
-            var dbContext = DbContext();
             var workspace = dbContext.Workspaces
                 .FirstOrDefault(s => s.Name == name && s.UserWorkspaces.Any(t => t.User == user));
             return workspace;
@@ -66,7 +65,6 @@ namespace AVG_TASK_APP.Repositories
 
         public Workspace GetByCode(string code)
         {
-            var dbContext = DbContext();
             var workspace = dbContext.Workspaces
                 .FirstOrDefault(s => s.Code == code);
             return workspace;
@@ -86,7 +84,6 @@ namespace AVG_TASK_APP.Repositories
             }
 
             int id = int.Parse(identity.Claims.FirstOrDefault(s => s.Type == "Id").Value);
-            var dbContext = DbContext();
             var workspaces = dbContext.UserWorkspaces
                                 .Where(s => s.Id_User == id)
                                 .Select(s => s.Workspace);
@@ -103,7 +100,6 @@ namespace AVG_TASK_APP.Repositories
         {
             try
             {
-                var dbContext = DbContext();
 
                 if (dbContext.UserWorkspaces.FirstOrDefault(x => x.Id_Workspace == workspace.Id && x.Id_User == user.Id) != null)
                     return false;
@@ -126,10 +122,16 @@ namespace AVG_TASK_APP.Repositories
 
         public Workspace GetById(int id)
         {
-            var dbContext = DbContext();
             var workspace = dbContext.Workspaces
                 .FirstOrDefault(s => s.Id == id);
             return workspace;
+        }
+
+        public IEnumerable<UserModel> GetUsersForWorkspace(int idWorkspace)
+        {
+            return dbContext.UserWorkspaces
+                  .Where(s => s.Id_Workspace == idWorkspace)
+                  .Select(x => x.User).ToList();
         }
     }
 }
