@@ -176,5 +176,13 @@ namespace AVG_TASK_APP.CustomControls
                 }
             }
         }
+
+        private void ButtonStar_Click(object sender, RoutedEventArgs e)
+        {
+            if (iconStart.Foreground == Brushes.Black)
+                iconStart.Foreground = Brushes.Orange;
+            else
+                iconStart.Foreground = Brushes.Black;
+        }
     }
 }
