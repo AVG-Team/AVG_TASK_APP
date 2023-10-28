@@ -27,7 +27,7 @@ namespace AVG_TASK_APP.CustomControls
 
         private void Recently_Loaded(object sender, RoutedEventArgs e)
         {
-            recentLyPanel.Children.Add(new btnBoard());
+            recentLyPanel.Children.Add(new btnBoard(1, "11"));
             
         }
 

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:AVG_TASK_APP.CustomControls"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              Background="{StaticResource backColor}"
              d:DesignHeight="784" d:DesignWidth="1136" Loaded="BoardView_Loaded">
@@ -49,17 +50,19 @@
                             <RowDefinition Height="55"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <StackPanel x:Name="Workspace" 
+                        <StackPanel x:Name="workspaceInfo" 
                                 Grid.Row="0"
                                 Margin="40,10,0,10">
-                            <local:YourWorkspaceUserControl/>
+                            
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="40,10,0,0"
-                                    Grid.Row="1"
+                        <ScrollViewer Margin="40,10,0,0" Style="{StaticResource FavsScrollViewer}" FlowDirection="LeftToRight"
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                            Grid.Row="1">
+                            <StackPanel Orientation="Horizontal"
                                     x:Name="workspaceStackPanel">
 
-                        </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
                     </Grid>
 
                 </Grid>

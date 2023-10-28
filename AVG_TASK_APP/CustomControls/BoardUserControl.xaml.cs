@@ -23,16 +23,17 @@ namespace AVG_TASK_APP.CustomControls
         public BoardUserControl()
         {
             InitializeComponent();         
-            btnBoard board1 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
-            board1.Content.Text = "Add";
-            btnBoard board2 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
-            btnBoard board3 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
-            btnBoard board4 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
-            btnBoard board5 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
-            btnBoard board6 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
-            btnBoard board7 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
-            btnBoard board8 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
-            btnBoard board9 = new btnBoard() { Margin = new Thickness(10, 0, 0, 0), };
+            btnBoard board1 = new btnBoard(1, "10") { Margin = new Thickness(10, 0, 0, 0), };
+            board1.content.Text = "Add";
+            btnBoard board2 = new btnBoard(2, "12") { Margin = new Thickness(10, 0, 0, 0), };
+            btnBoard board3 = new btnBoard(3, "14") { Margin = new Thickness(10, 0, 0, 0), };
+            btnBoard board4 = new btnBoard(4, "15") { Margin = new Thickness(10, 0, 0, 0), };
+            btnBoard board5 = new btnBoard(5, "15") { Margin = new Thickness(10, 0, 0, 0), };
+            btnBoard board6 = new btnBoard(6, "17") { Margin = new Thickness(10, 0, 0, 0), };
+            btnBoard board7 = new btnBoard(7, "18") { Margin = new Thickness(10, 0, 0, 0), };
+            btnBoard board8 = new btnBoard(8, "19") { Margin = new Thickness(10, 0, 0, 0), };
+            btnBoard board9 = new btnBoard(9, "20") { Margin = new Thickness(10, 0, 0, 0), };
+
             boards.Add(board1);
             boards.Add(board2);
             boards.Add(board3);
@@ -44,7 +45,7 @@ namespace AVG_TASK_APP.CustomControls
             boards.Add(board9);
             for (int i = 0; i < boards.Count(); i++)
             {
-                btnBoard board = new btnBoard();
+                btnBoard board = new btnBoard(i + 10, i + " AVG");
 
                 // Set the margin for each button
                 board.Margin = new Thickness(5); // Adjust as needed
@@ -74,8 +75,8 @@ namespace AVG_TASK_APP.CustomControls
 
         private void AddNewButton()
         {
-            btnBoard newBoard = new btnBoard() { Margin = new Thickness(10, 0, 0, 0) };
-            newBoard.Content.Text = "New"; // Set content for the new button
+            btnBoard newBoard = new btnBoard(1, "123") { Margin = new Thickness(10, 0, 0, 0) };
+            newBoard.content.Text = "New"; // Set content for the new button
             areaBoard.Children.Add(newBoard);
         }
         private void txtFind_MouseDown(object sender, MouseButtonEventArgs e)
