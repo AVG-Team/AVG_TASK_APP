@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AVG_TASK_APP.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace AVG_TASK_APP.CustomControls
         public  NotifiesUserControl()
         {
             InitializeComponent();
+            DataContext = new NotifyViewModel();
             NotifyItem notifyItem1 = new NotifyItem();
             NotifyItem notifyItem2 = new NotifyItem();
             NotifyItem notifyItem3 = new NotifyItem();

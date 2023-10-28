@@ -35,11 +35,21 @@
 
                             </Grid>
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Margin="10,10,0,0" Text="Nguyen Mai Bao Huy"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock  Margin="10,5,50,10" Text="Added you"/>
-                                    <TextBlock Margin="10,7,50,10"  Text="Oct 20 at 1:42 AM" FontSize="10"/>
-                                </StackPanel>
+
+                                <ItemsControl x:Name="NotificationsList" ItemsSource="{Binding NotifyViewModelCollection}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBlock Margin="10,10,0,0" Text="{Binding UserName}" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Margin="10,5,50,10" Text="{Binding NotifyContent}" />
+                                                    <TextBlock Margin="10,7,50,10" Text="{Binding NotifyCreatedAt}" FontSize="10" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
                             </StackPanel>
 
                         </StackPanel>

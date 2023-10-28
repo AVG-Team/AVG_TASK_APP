@@ -28,8 +28,6 @@
             <Grid Grid.Row="1">
                 <StackPanel x:Name="ListNotifies" Orientation="Vertical" >
                    
-                   
-
                 </StackPanel>
             </Grid>
         </Grid>
