@@ -137,9 +137,9 @@ namespace AVG_TASK_APP.Views
 
         private void MoveControlButton_Click(object sender, RoutedEventArgs e)
         {
-            gridLeft.Width = new GridLength(15);
+            /*gridLeft.Width = new GridLength(15);*/
             /*areaManageTaskSet.HorizontalAlignment = HorizontalAlignment.Center;*/
-            areaManageTask.Width = 1520;
+            /*areaManageTask.Width = 1520;*/
         }
 
         private void btnUserMenu_Click(object sender, RoutedEventArgs e)
@@ -166,8 +166,8 @@ namespace AVG_TASK_APP.Views
 
         private void boderLeft_MouseMove(object sender, MouseEventArgs e)
         {
-            gridLeft.Width = new GridLength(320);
-            areaManageTask.Width = 1220;
+            /*  gridLeft.Width = new GridLength(320);*/
+            /* areaManageTask.Width = 1220;*/
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
