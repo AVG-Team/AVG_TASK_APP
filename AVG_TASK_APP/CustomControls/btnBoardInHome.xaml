@@ -43,15 +43,16 @@
                     Margin="10,0,0,0"
                     BorderThickness="0">
                     <Border.Background>
-                        <ImageBrush Stretch="Fill" ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
+                        <ImageBrush Stretch="Fill" x:Name="imageBtn" ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
                     </Border.Background>
                 </Border>
                 <StackPanel Orientation="Vertical" Margin="10,0,0,0">
-                    <TextBlock Text="Name Table" 
+                    <TextBox Visibility="Collapsed" Text="{Binding idTable}" x:Name="idTable" />
+                    <TextBlock Text="Name Table" x:Name="nameTable"
                            FontSize="20"
                            FontWeight="Bold"
                            Margin="0,0,0,8"/>
-                    <TextBlock Text="Name WorkSpace" 
+                    <TextBlock Text="Name WorkSpace" x:Name="nameWorkspace"
                            FontSize="10"
                            Margin="0,0,0,8"/>
                 </StackPanel>
