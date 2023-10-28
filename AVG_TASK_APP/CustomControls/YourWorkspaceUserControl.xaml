@@ -15,11 +15,12 @@
 
         <StackPanel Grid.Column="0" 
                     Orientation="Horizontal">
+            <TextBox Visibility="Collapsed" Name="idWorkspace" Text="{Binding IdWorkspace, UpdateSourceTrigger=PropertyChanged}"/>
             <fa:IconImage Icon="Book"
                            Foreground="{StaticResource color9}"/>
             <TextBlock Text="Name Workspace" 
                        Foreground="{StaticResource textColor5}" 
-                       FontSize="18"
+                       FontSize="18" x:Name="nameWorkspace"
                        FontWeight="Medium"
                        VerticalAlignment="Center"
                        FontFamily="Montserrat"
@@ -49,13 +50,12 @@
             </Button>
 
             <Button Style="{StaticResource filterButton}"
-                    
-                    Width="110">
+                    Width="150">
                 <StackPanel Orientation="Horizontal">
                     <fa:IconImage Icon="User"
                      Stretch="Fill"
                      Style="{StaticResource filterButtonIcon}"/>
-                    <TextBlock Text="Members"
+                    <TextBlock Text="( 0 ) Members" x:Name="countMember"
                                Foreground="{StaticResource color6}"
                                FontFamily="Montserrat"
                                FontSize="15"

@@ -17,6 +17,10 @@ using System.Windows.Shapes;
 using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.ViewModels;
+using Microsoft.Win32;
+using System.Reflection;
+using System.Security.Claims;
+using System.Threading;
 
 namespace AVG_TASK_APP.Views
 {
@@ -26,7 +30,6 @@ namespace AVG_TASK_APP.Views
     public partial class PageLayout : Window
     {
         private int _count = 1;
-        WorkspaceReposity workspaceReposity = new WorkspaceReposity();
 
         public PageLayout()
         {
@@ -39,16 +42,7 @@ namespace AVG_TASK_APP.Views
             BoardView boardView = new BoardView();
             areaUserControl.Children.Add(boardView);
         }
-        public void loadItemWorkspace()
-        {
-            menuWorkspace.Children.Clear();
-            List<Workspace> workspaces = (List<Workspace>)workspaceReposity.GetAllForUser();
-            foreach (Workspace workspace in workspaces)
-            {
-                itemWorkspace itemWorkspace = new itemWorkspace(workspace.Id);
-                menuWorkspace.Children.Add(itemWorkspace.userControl);
-            }
-        }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (!txtSearch.IsMouseOver)
@@ -70,15 +64,10 @@ namespace AVG_TASK_APP.Views
             Application.Current.Shutdown();
         }
 
-        private void btnCreateWorkspace_Click(object sender, RoutedEventArgs e)
-        {
-            loadItemWorkspace();
-        }
-
         private void txtSearch_GotFocus(object sender, RoutedEventArgs e)
         {
-            txtSearch.Text = ""; // Xóa nội dung mặc định khi bấm vào
-            txtSearch.Width = 300; // Kích thước mới khi TextBox nhận focus
+            txtSearch.Text = ""; 
+            txtSearch.Width = 300;
 
         }
 
@@ -86,15 +75,21 @@ namespace AVG_TASK_APP.Views
         {
             if (string.IsNullOrEmpty(txtSearch.Text))
             {
-                txtSearch.Text = "Search..."; // Đặt lại nội dung mặc định nếu không có gì được nhập
+                txtSearch.Text = "Search...";
             }
-            txtSearch.Width = 150;  // Thu hẹp TextBox khi nó mất focus
+            txtSearch.Width = 150;
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Avatar_MouseDown(object sender, MouseButtonEventArgs e)
         {
             UserInformationUi userInformationUi = new UserInformationUi();
             userInformationUi.ShowDialog();
+            if (userInformationUi.Visibility == Visibility.Visible)
+            {
+                PageLayout pageLayout = new PageLayout();
+                pageLayout.Show();
+                this.Close();
+            }
         }
 
         private void HomeRadioButton_Click(object sender, RoutedEventArgs e)
@@ -108,6 +103,50 @@ namespace AVG_TASK_APP.Views
         {
             BoardView boardView = new BoardView();
             areaUserControl.Children.Add(boardView);
+        }
+
+        private void btnUserMenu_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+
+            // Get the button and check for nulls
+
+            if (button == null || button.ContextMenu == null)
+                return;
+            // Set the placement target of the ContextMenu to the button
+            button.ContextMenu.PlacementTarget = button;
+            button.ContextMenu.FlowDirection = FlowDirection.LeftToRight;
+            // Open the ContextMenu
+            button.ContextMenu.IsOpen = true;
+        }
+
+        private void itemMenuLogout(object sender, RoutedEventArgs e)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var registryKey = Registry.CurrentUser.OpenSubKey("Software\\" + assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title + "\\Login", true);
+
+            registryKey.SetValue("Username", String.Empty);
+            registryKey.SetValue("Password", String.Empty);
+
+            var currentPrincipal = Thread.CurrentPrincipal as ClaimsPrincipal;
+            if (currentPrincipal != null)
+            {
+                foreach (var identity in currentPrincipal.Identities)
+                {
+                    identity.Claims.ToList().ForEach(c => identity.RemoveClaim(c));
+                }
+            }
+
+            LoginView login = new LoginView();
+            login.Show();
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (!(window is LoginView))
+                {
+                    window.Close();
+                }
+            }
         }
     }
 }

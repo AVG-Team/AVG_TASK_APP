@@ -127,7 +127,6 @@ namespace AVG_TASK_APP.ViewModels
 
         private void ExcuteCreateWorkspaceCommand(object obj)
         {
-            string email = Thread.CurrentPrincipal.Identity.Name;
             try
             {
                 Workspace workspace = new Workspace()

@@ -133,8 +133,6 @@ namespace AVG_TASK_APP.ViewModels
                     var identity = currentPrincipal.Identities.First(); // Lấy identity đầu tiên
                                                                         // Xóa claims hiện có và thêm claims mới
                     identity.Claims.ToList().ForEach(c => identity.RemoveClaim(c));
-                    identity.AddClaim(new Claim(ClaimTypes.Name, user.Name));
-                    identity.AddClaim(new Claim("Email", user.Email));
                     identity.AddClaim(new Claim("Id", user.Id.ToString()));
                     identity.AddClaim(new Claim("Level", user.Level.ToString()));
                 }
@@ -143,8 +141,6 @@ namespace AVG_TASK_APP.ViewModels
                     // Tạo principal mới nếu chưa tồn tại
                     var identity = new ClaimsIdentity(new[]
                     {
-                        new Claim(ClaimTypes.Name, user.Name),
-                        new Claim("Email", user.Email),
                         new Claim("Id", user.Id.ToString()),
                         new Claim("Level", user.Level.ToString()),
                     }, "ApplicationCookie");
