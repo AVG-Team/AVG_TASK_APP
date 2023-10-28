@@ -174,7 +174,7 @@
 
                                 <Button Background="Transparent"
                                          Width="30" Height="30"
-                                         BorderThickness="0">
+                                         BorderThickness="0" Click="Button_Click">
                                     <fa:IconImage Icon="Bell" Height="20" Width="20" MouseDown="IconImage_MouseDown"/>
                                     <Button.Style>
                                         <Style TargetType="Button">
@@ -211,6 +211,7 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="90"/>
                                     <RowDefinition Height="*"/>
+                                    <RowDefinition Height="0"/>
                                 </Grid.RowDefinitions>
                                 <!-- user icon -->
                                 <Grid Grid.Row="0">
@@ -298,6 +299,9 @@
                         <!-- Content Begin -->
                         <Grid x:Name="areaUserControl" Grid.Column="1">
                             
+                        </Grid>
+                        <Grid x:Name="areaUserNotify" Grid.Column="2">
+
                         </Grid>
                     </Grid>
                 </Grid>

@@ -15,21 +15,13 @@ using System.Windows.Shapes;
 namespace AVG_TASK_APP.CustomControls
 {
     /// <summary>
-    /// Interaction logic for NotifiesUserControl.xaml
+    /// Interaction logic for NotifyItem.xaml
     /// </summary>
-    public partial class NotifiesUserControl : UserControl
+    public partial class NotifyItem : UserControl
     {
-        public  NotifiesUserControl()
+        public NotifyItem()
         {
             InitializeComponent();
-            NotifyItem notifyItem1 = new NotifyItem();
-            NotifyItem notifyItem2 = new NotifyItem();
-            NotifyItem notifyItem3 = new NotifyItem();
-            ListNotifies.Children.Add(notifyItem1);
-            ListNotifies.Children.Add(notifyItem2);
-            ListNotifies.Children.Add(notifyItem3);
         }
-        
-
     }
 }
