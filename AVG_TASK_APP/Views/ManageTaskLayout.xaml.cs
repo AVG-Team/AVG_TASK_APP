@@ -1,4 +1,6 @@
 ﻿using AVG_TASK_APP.CustomControls;
+using AVG_TASK_APP.Models;
+using AVG_TASK_APP.Repositories;
 using FontAwesome.WPF;
 using Microsoft.Win32;
 using System;
@@ -18,6 +20,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace AVG_TASK_APP.Views
 {
@@ -26,7 +29,7 @@ namespace AVG_TASK_APP.Views
     /// </summary>
     public partial class ManageTaskLayout : Window
     {
-
+        private List<ManageTaskUserControl> recentList = new List<ManageTaskUserControl>();
 
         public ManageTaskLayout()
         {
@@ -35,7 +38,11 @@ namespace AVG_TASK_APP.Views
 
             ManageTaskUserControl manageTaskUserControl = new ManageTaskUserControl();
             areaManageTask.Children.Add(manageTaskUserControl);
-
+            DispatcherTimer updateTimer = new DispatcherTimer();
+            updateTimer.Interval = TimeSpan.FromSeconds(1);
+            updateTimer.Tick += UpdateRecentList;
+            updateTimer.Start();
+          
 
         }
 
@@ -215,6 +222,44 @@ namespace AVG_TASK_APP.Views
                 {
                     window.Close();
                 }
+            }
+        }
+
+        private void UpdateRecentList(object sender, EventArgs e)
+        {
+            recentLists.Items.Clear();
+
+            WorkspaceReposity workspaceReposity = new WorkspaceReposity();
+            var workspaces = workspaceReposity.GetAllForUser();
+
+
+            foreach (var item in workspaces)
+            {
+                MenuItem menuItem = new MenuItem();
+                menuItem.Header =  item.Name;
+                //menuItem.Tag = item.Id;
+                menuItem.Template = FindResource("Item_Template") as ControlTemplate;
+                bool itemExists = false;
+
+                /*
+                 * 1 tiem : id and name
+                 * id ẩn đi visualbility collaspe
+                 *  
+                 *
+                 */
+                 foreach(MenuItem existingItem in recentLists.Items)
+                {
+                    if (existingItem.Header != null && existingItem.Header.ToString() == menuItem.Header.ToString()) 
+                    {
+                        itemExists = true;
+                        break;
+                    }
+                }
+                 if (!itemExists)
+                {
+                    recentLists.Items.Add(menuItem);
+                }
+
             }
         }
     }

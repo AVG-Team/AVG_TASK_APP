@@ -16,7 +16,18 @@
         Background="{StaticResource backColor}"
         AllowsTransparency="True"
         MouseDown="Window_MouseDown">
+    <Window.Resources>
+        <!-- ... Các resources khác ... -->
+        <ControlTemplate x:Key="Item_Template">
+            <StackPanel Orientation="Horizontal" Width="170" >
+                <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}" Margin="10,0" Visibility="Collapsed"/>
+                <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Header}" Margin="10,0"/>
+            </StackPanel>
+        </ControlTemplate>
+    </Window.Resources>
+
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
@@ -114,14 +125,14 @@
                     </Button>
                 </StackPanel>
                 <!-- Control Bar End -->
-
+                  
                 <!-- Menu sidebar Begin-->
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="400"/>
                     </Grid.ColumnDefinitions>
-
+                    
                     <StackPanel Grid.Column="0"
                                 Orientation="Horizontal"
                                 FlowDirection="LeftToRight"
@@ -163,11 +174,13 @@
                                 </MenuItem>
 
                             </MenuItem>
-
+                           
                             <!--// Main Menu - Recent//-->
-                            <MenuItem Header="Recent" 
-                                      Template="{StaticResource Menu_SubMenu_Template}" >
-                                <!--// Music Submenu - All Songs //-->
+                            <MenuItem x:Name="recentLists" Header="Recent" 
+                                      Template="{StaticResource Menu_SubMenu_Template}">
+                                     
+                                    <!--// Music Submenu - All Songs //-->
+
                                 <MenuItem Header="All Songs"
                                           Template="{StaticResource Menu_SubMenu2_Template}">
                                 </MenuItem>
@@ -193,8 +206,8 @@
                             </MenuItem>
 
 
-                            <!--// Main Menu - Recent//-->
-                            <MenuItem Header="Stared"
+                            <!--// Main Menu - Start//-->
+                            <MenuItem x:Name="starList" Header="Stared"
                                       Template="{StaticResource Menu_SubMenu_Template}" >
                                 <!--// Music Submenu - All Songs //-->
                                 <MenuItem Header="All Songs"
@@ -206,7 +219,7 @@
                                 </MenuItem>
 
                                 <!--// Music Submenu - Albums //-->
-
+    
                                 <MenuItem Header="Albums"
                                           Template="{StaticResource Item_Template}">
                                 </MenuItem>
