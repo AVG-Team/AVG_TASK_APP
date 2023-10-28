@@ -189,6 +189,25 @@
                                     </Button.Style>
                                 </Button>
 
+                                <Button x:Name="btnUserMenu"
+                                Width="40" Height="40" 
+                                Background="Transparent" 
+                                BorderThickness="0" 
+                                Style="{StaticResource menuButtonHeader}"
+                                ContextMenuService.IsEnabled="False"
+                                Click="btnUserMenu_Click">
+                                    <Ellipse Width="40"
+                                     Height="40">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <Button.ContextMenu>
+                                        <ContextMenu x:Name="context" Placement="Bottom" Background="Transparent" >
+                                            <MenuItem Header="Logout" Click="itemMenuLogout" />
+                                        </ContextMenu>
+                                    </Button.ContextMenu>
+                                </Button>
                             </StackPanel>
                         </StackPanel>
 
@@ -221,7 +240,7 @@
                                                 Background="{StaticResource backColor}"
                                                 CornerRadius="100"
                                                 HorizontalAlignment="Left"
-                                                Margin="20 -50 0 30" MouseDown="Border_MouseDown">
+                                                Margin="20 -50 0 30" MouseDown="Avatar_MouseDown">
                                             <Ellipse>
                                                 <Ellipse.Fill>
                                                     <ImageBrush ImageSource="{Binding UserAccountImage}"/>
@@ -283,11 +302,14 @@
                                                     Command="{Binding CreateWorkSpaceCommand}"
                                                     />
                                         </StackPanel>
-                                        <StackPanel x:Name="menuWorkspace"
-                                                    Orientation="Vertical">
-                                            <ItemsControl ItemsSource="{Binding Workspaces}">
-                                                
-                                            </ItemsControl>
+                                        <StackPanel x:Name="menuWorkspace" Orientation="Vertical">
+                                            <ScrollViewer Margin="10,0,0,0" Padding="10" Style="{StaticResource FavsScrollViewer}"
+ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible" FlowDirection="RightToLeft"
+          Grid.Row="1" Name="PART_VerticalScrollBar" Height="325">
+                                                <ItemsControl ItemsSource="{Binding Workspaces}" FlowDirection="LeftToRight">
+
+                                                </ItemsControl>
+                                            </ScrollViewer>
                                         </StackPanel>
 
                                     </StackPanel>

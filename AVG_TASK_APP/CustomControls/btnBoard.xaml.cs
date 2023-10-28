@@ -17,13 +17,16 @@ using System.Windows.Shapes;
 namespace AVG_TASK_APP.CustomControls
 {
     /// <summary>
-    /// Interaction logic for btnBoard.xaml
+    /// Interaction logic for btnBoard.xamls
     /// </summary>
     public partial class btnBoard : UserControl
     {
-        public btnBoard()
+        public btnBoard(int id, string name)
         {
             InitializeComponent();
+
+            idBtnBoard.Text = id.ToString();
+            content.Text = name;
         }
 
         private void buttonBoard_MouseMove(object sender, MouseEventArgs e)

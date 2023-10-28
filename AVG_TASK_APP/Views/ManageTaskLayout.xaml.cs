@@ -3,6 +3,7 @@ using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.ViewModels;
 using FontAwesome.WPF;
 using Microsoft.Win32;
+using Org.BouncyCastle.Utilities.IO.Pem;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,6 +21,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace AVG_TASK_APP.Views
 {
@@ -125,8 +127,6 @@ namespace AVG_TASK_APP.Views
 
         private void BoardRadioButton_Click(object sender, RoutedEventArgs e)
         {
-            //itemWorkspace itemWorkspace = new itemWorkspace();
-            //areaManageTask.Children.Add(itemWorkspace);
         }
 
         private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
@@ -212,6 +212,41 @@ namespace AVG_TASK_APP.Views
         private void btnAddMember_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void starList_Click(object sender, RoutedEventArgs e) {
+        }
+
+        private void UpdateStarListMenu(object sender, EventArgs e)
+        {
+            // Clear existing items
+            starList.Items.Clear();
+
+            foreach (ManageTaskUserControl i in manageTaskUserControls)
+            {
+                if (i.iconStart.Foreground == Brushes.Orange)
+                {
+                    MenuItem item = new MenuItem();
+                    item.Header = i.HeaderBoard.Text;
+                    item.Template = FindResource("Item_Template") as ControlTemplate;
+                    bool itemExists = false;
+
+                    // Check if an item with the same Header already exists
+                    foreach (MenuItem existingItem in starList.Items)
+                    {
+                        if (existingItem.Header != null && existingItem.Header.ToString() == item.Header.ToString())
+                        {
+                            itemExists = true;
+                            break;
+                        }
+                    }
+
+                    if (!itemExists)
+                    {
+                        starList.Items.Add(item);
+                    }
+                }
+            }
         }
     }
 }

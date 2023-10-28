@@ -66,8 +66,6 @@ namespace AVG_TASK_APP
             UserModel user = userRepository.GetByEmail(username);
             var identity = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name, user.Name),
-                new Claim("Email", user.Email),
                 new Claim("Id", user.Id.ToString()),
                 new Claim("Level", user.Level.ToString()),
             }, "ApplicationCookie");

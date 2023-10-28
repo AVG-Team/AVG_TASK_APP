@@ -20,6 +20,7 @@ namespace AVG_TASK_APP.Repositories.Interface
         Workspace GetById(int id);
         bool AddUserToWorkspace(Workspace workspace, UserModel user);
         IEnumerable<Workspace> GetAll(string sort = "desc");
+        IEnumerable<UserModel> GetUsersForWorkspace(int idWorkspace);
         IEnumerable<Workspace> GetAllForUser(string sort = "desc");
     }
 }

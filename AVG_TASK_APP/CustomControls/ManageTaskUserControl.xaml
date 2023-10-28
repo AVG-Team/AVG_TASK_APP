@@ -28,6 +28,9 @@
                             Margin="25,0,0,0"
                             Grid.Row="0"
                             VerticalAlignment="Center">
+                    <TextBlock 
+                        x:Name="HeaderBoard"
+                        Text="Name Board"
                     <TextBlock x:Name="NameTable"
                                Text="{Binding NameTable}"
                                FontSize="25"
@@ -36,10 +39,10 @@
                                Foreground="{StaticResource textColor3}"
                                VerticalAlignment="Center"
                                Margin="0,0,15,0"/>
-                    <Button Background="Transparent"
+                    <Button x:Name="ButtonStar"  Background="Transparent"
                             Width="40" Height="40"
-                            BorderThickness="0">
-                        <fa:IconImage Icon="Star" Height="25" Width="25"/>
+                            BorderThickness="0" Click="ButtonStar_Click">
+                        <fa:IconImage Foreground="Orange" x:Name="iconStart" Icon="Star" Height="25" Width="25"/>
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Style.Triggers>
