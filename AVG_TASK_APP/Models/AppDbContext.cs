@@ -46,7 +46,7 @@ namespace AVG_TASK_APP.Migration
             modelBuilder.ApplyConfiguration(new CommentConfiguration());
         }
 
-        public DbSet <UserModel>Users { get; set; }
+        public DbSet<UserModel> Users { get; set; }
         public DbSet<Notify> Notifies { get; set; }
         public DbSet<Workspace> Workspaces { get; set; }
         public DbSet<UserWorkspace> UserWorkspaces { get; set; }
@@ -55,6 +55,7 @@ namespace AVG_TASK_APP.Migration
         public DbSet<Card> Cards { get; set; }
         public DbSet<MiniTask> MiniTasks { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Models.Task> Tasks { get; set; }
     }
 
 }

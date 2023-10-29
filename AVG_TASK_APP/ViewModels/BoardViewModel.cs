@@ -11,7 +11,7 @@ namespace AVG_TASK_APP.ViewModels
 {
     public class BoardViewModel : ViewModelBase
     {
-        private IWorkspaceReposity workspaceReposity = new WorkspaceReposity();
+        private IWorkspaceRepository workspaceReposity = new WorkspaceRepository();
         private ITableRepository tableRepository = new TableRepository();
 
         public BoardViewModel() { }

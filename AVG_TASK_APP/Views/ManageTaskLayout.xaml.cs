@@ -1,4 +1,6 @@
 ﻿using AVG_TASK_APP.CustomControls;
+using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.ViewModels;
 using FontAwesome.WPF;
 using Microsoft.Win32;
 using Org.BouncyCastle.Utilities.IO.Pem;
@@ -28,30 +30,45 @@ namespace AVG_TASK_APP.Views
     /// </summary>
     public partial class ManageTaskLayout : Window
     {
+        private TableRepository tableRepository = new TableRepository();
+        private WorkspaceRepository workspaceRepository = new WorkspaceRepository();
+        private ManageTaskUserControlViewModel manageTaskUserControlViewModel = new ManageTaskUserControlViewModel();
 
-        private List<ManageTaskUserControl> manageTaskUserControls = new List<ManageTaskUserControl>();
-        public ManageTaskUserControl manageTaskUserControl;
-        private DispatcherTimer updateTimer;
         public ManageTaskLayout()
         {
             InitializeComponent();
-            manageTaskUserControl = new ManageTaskUserControl();
-            areaManageTask.Children.Add(manageTaskUserControl);
-            manageTaskUserControls.Add(manageTaskUserControl);
-            updateTimer = new DispatcherTimer();
-            updateTimer.Interval = TimeSpan.FromSeconds(1); // Update every 5 seconds (adjust as needed)
-            updateTimer.Tick += UpdateStarListMenu;
-            updateTimer.Start();
+
+            loadItemTable();
+
+            nameWorkspace.Text = workspaceRepository.GetById(116).Name;
+
+        }
+
+        private void loadItemTable()
+        {
+            listBoards.Children.Clear();
+            List<Models.Table> tables = (List<Models.Table>)tableRepository.GetAllForWorkspace(116);
+            foreach (Models.Table item in tables)
+            {
+                RadioButtonBoard radioButtonBoard = new RadioButtonBoard(item.Id);
+                listBoards.Children.Add(radioButtonBoard);
+                radioButtonBoard.itemTable_Click += ItemTable_Click;
+            }
+        }
+
+        private void ItemTable_Click(object? sender, EventArgs e)
+        {
+            RadioButtonBoard radioButtonBoard = sender as RadioButtonBoard;
+            this.areaManageTask.Children.Clear();
+            int idTable = int.Parse(radioButtonBoard.idTable.Text);
+            ManageTaskUserControl manageTaskUserControl = new ManageTaskUserControl(idTable);
+            this.areaManageTask.Children.Add(manageTaskUserControl);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
-        }
-
-        private void pnlControlBar_MouseEnter(object sender, MouseEventArgs e)
-        {
-
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -62,11 +79,6 @@ namespace AVG_TASK_APP.Views
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
-        }
-
-        private void pnlControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
 
         private void btnMenuHeader_Click(object sender, RoutedEventArgs e)
@@ -82,41 +94,6 @@ namespace AVG_TASK_APP.Views
             contextMenu.PlacementTarget = stackPanel;
             contextMenu.IsOpen = true;
             e.Handled = true;
-
-        }
-
-        private void btnAddMember_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnCreateWorkspace_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnMenu_Click(object sender, RoutedEventArgs e)
-        {
-            StackPanel stackPanel = itemMenuWorkspace;
-            if (stackPanel.Visibility == Visibility.Collapsed)
-            {
-                stackPanel.Visibility = Visibility.Visible;
-                iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretDown;
-            }
-            else
-            {
-                stackPanel.Visibility = Visibility.Collapsed;
-                iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretUp;
-            }
-        }
-
-        private void btnItemMember_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnItemBoard_Click(object sender, RoutedEventArgs e)
-        {
 
         }
 
@@ -159,9 +136,9 @@ namespace AVG_TASK_APP.Views
 
         private void MoveControlButton_Click(object sender, RoutedEventArgs e)
         {
-            gridLeft.Width = new GridLength(15);
-            areaManageTaskSet.HorizontalAlignment = HorizontalAlignment.Center;
-            areaManageTask.Width = 1520;
+            /*gridLeft.Width = new GridLength(15);*/
+            /*areaManageTaskSet.HorizontalAlignment = HorizontalAlignment.Center;*/
+            /*areaManageTask.Width = 1520;*/
         }
 
         private void btnUserMenu_Click(object sender, RoutedEventArgs e)
@@ -188,8 +165,8 @@ namespace AVG_TASK_APP.Views
 
         private void boderLeft_MouseMove(object sender, MouseEventArgs e)
         {
-            gridLeft.Width = new GridLength(320);
-            areaManageTask.Width = 1220;
+            /*  gridLeft.Width = new GridLength(320);*/
+            /* areaManageTask.Width = 1220;*/
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -214,46 +191,62 @@ namespace AVG_TASK_APP.Views
 
             foreach (Window window in Application.Current.Windows)
             {
-                if (! (window is LoginView))
+                if (!(window is LoginView))
                 {
                     window.Close();
                 }
             }
         }
 
-        private void starList_Click(object sender, RoutedEventArgs e) {
+        private void btnItemMember_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCreateTable_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddMember_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void starList_Click(object sender, RoutedEventArgs e)
+        {
         }
 
         private void UpdateStarListMenu(object sender, EventArgs e)
         {
-            // Clear existing items
-            starList.Items.Clear();
+            /* // Clear existing items
+             starList.Items.Clear();
 
-            foreach (ManageTaskUserControl i in manageTaskUserControls)
-            {
-                if (i.iconStart.Foreground == Brushes.Orange)
-                {
-                    MenuItem item = new MenuItem();
-                    item.Header = i.HeaderBoard.Text;
-                    item.Template = FindResource("Item_Template") as ControlTemplate;
-                    bool itemExists = false;
+             foreach (ManageTaskUserControl i in manageTaskUserControls)
+             {
+                 if (i.iconStart.Foreground == Brushes.Orange)
+                 {
+                     MenuItem item = new MenuItem();
+                     item.Header = i.NameTable.Text;
+                     item.Template = FindResource("Item_Template") as ControlTemplate;
+                     bool itemExists = false;
 
-                    // Check if an item with the same Header already exists
-                    foreach (MenuItem existingItem in starList.Items)
-                    {
-                        if (existingItem.Header != null && existingItem.Header.ToString() == item.Header.ToString())
-                        {
-                            itemExists = true;
-                            break;
-                        }
-                    }
+                     // Check if an item with the same Header already exists
+                     foreach (MenuItem existingItem in starList.Items)
+                     {
+                         if (existingItem.Header != null && existingItem.Header.ToString() == item.Header.ToString())
+                         {
+                             itemExists = true;
+                             break;
+                         }
+                     }
 
-                    if (!itemExists)
-                    {
-                        starList.Items.Add(item);
-                    }
-                }
-            }
+                     if (!itemExists)
+                     {
+                         starList.Items.Add(item);
+                     }
+                 }
+             }*/
         }
 
         private void Notifies_Click(object sender, RoutedEventArgs e)

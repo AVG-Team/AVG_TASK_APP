@@ -1,5 +1,6 @@
 ﻿using AVG_TASK_APP.Migration;
 using AVG_TASK_APP.Models;
+using AVG_TASK_APP.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
@@ -10,7 +11,7 @@ using System.Threading;
 
 namespace AVG_TASK_APP.Repositories
 {
-    public class WorkspaceReposity : RepositoryBase, IWorkspaceReposity
+    public class WorkspaceRepository : RepositoryBase, IWorkspaceRepository
     {
         private AppDbContext dbContext
         {
@@ -92,7 +93,7 @@ namespace AVG_TASK_APP.Repositories
                                 .Where(s => s.Id_User == id)
                                 .Select(s => s.Workspace);
 
-            if(sort.Equals("desc"))
+            if (sort.Equals("desc"))
             {
                 return workspaces.Where(s => s.Deleted_At == null).OrderByDescending(s => s.Created_At).ToList();
             }
@@ -118,7 +119,8 @@ namespace AVG_TASK_APP.Repositories
                 dbContext.SaveChanges();
 
                 return true;
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return false;
             }

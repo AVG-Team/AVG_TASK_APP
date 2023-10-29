@@ -7,7 +7,7 @@ using AVG_TASK_APP.Models;
 
 namespace AVG_TASK_APP.Repositories.Interface
 {
-    public interface ITableRepository
+    internal interface ITableRepository
     {
         void Add(Table table);
         void Update(Table table);
@@ -20,3 +20,4 @@ namespace AVG_TASK_APP.Repositories.Interface
         IEnumerable<Table> GetAllForUser(string sort = "desc");
     }
 }
+

@@ -2,6 +2,7 @@
 using AVG_TASK_APP.DataAccess;
 using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.Repositories.Interface;
 using AVG_TASK_APP.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
@@ -84,8 +85,8 @@ namespace AVG_TASK_APP
             Thread.CurrentPrincipal = principal;
             AppDomain.CurrentDomain.SetThreadPrincipal(principal);
 
-            PageLayout layout = new PageLayout();
-            layout.Show();
+            ManageTaskLayout manageTaskLayout = new ManageTaskLayout();
+            manageTaskLayout.Show();
         }
     }
 }
