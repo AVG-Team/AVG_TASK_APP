@@ -11,6 +11,7 @@ namespace AVG_TASK_APP.ViewModels
     {
         private string _nameCard;
         private int _idCard;
+        private int _idTask;
         private CardRepository cardRepository;
 
         public string NameCard
@@ -37,6 +38,19 @@ namespace AVG_TASK_APP.ViewModels
             {
                 _idCard = value;
                 OnPropertyChanged(nameof(IdCard));
+            }
+        }
+
+        public int IdTask
+        {
+            get
+            {
+                return _idTask;
+            }
+            set
+            {
+                _idTask = value;
+                OnPropertyChanged(nameof(IdTask));
             }
         }
 

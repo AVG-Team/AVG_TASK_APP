@@ -13,7 +13,7 @@ namespace AVG_TASK_APP.Repositories.Interface
         void Update(Table table);
         void Remove(Table table);
         Table GetById(int idTable);
-        IEnumerable<Table> GetAll();
-        IEnumerable<Table> GetAllForWorkspace(int idWorkspace);
+        IEnumerable<Table> GetAll(string sort = "desc");
+        IEnumerable<Table> GetAllForWorkspace(int idWorkspace, string sort = "desc");
     }
 }

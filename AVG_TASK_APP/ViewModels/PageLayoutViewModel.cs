@@ -20,7 +20,7 @@ namespace AVG_TASK_APP.ViewModels
 {
     public class PageLayoutViewModel : ViewModelBase
     {
-        private IWorkspaceReposity workspaceReposity;
+        private IWorkspaceRepository workspaceReposity;
 
         private UserAccount currentUserAccount;
         private IUserRepository userRepository;
@@ -32,9 +32,9 @@ namespace AVG_TASK_APP.ViewModels
 
         public ObservableCollection<itemWorkspace> Workspaces
         {
-            get 
+            get
             {
-                if(_workspaces == null)
+                if (_workspaces == null)
                 {
                     _workspaces = new ObservableCollection<itemWorkspace>();
                 }
@@ -48,7 +48,7 @@ namespace AVG_TASK_APP.ViewModels
             }
         }
 
-        public ICommand PageLayoutLoaded { get;  }
+        public ICommand PageLayoutLoaded { get; }
         public ICommand CreateWorkSpaceCommand { get; }
         public ICommand ShowInformationUserCommand { get; }
 
@@ -81,10 +81,10 @@ namespace AVG_TASK_APP.ViewModels
 
         private void loadItemWorkspace()
         {
-           Workspaces = new ObservableCollection<itemWorkspace>();
+            Workspaces = new ObservableCollection<itemWorkspace>();
 
             List<Workspace> workspaces = (List<Workspace>)workspaceReposity.GetAllForUser();
-            if(! workspaces.Any() )
+            if (!workspaces.Any())
             {
                 return;
             }

@@ -26,6 +26,7 @@ namespace AVG_TASK_APP.Repositories
 
         public void Add(Models.Task task)
         {
+            AppDbContext dbContextTemp = dbContext;
             dbContext.Tasks.Add(task);
             dbContext.SaveChanges();
         }
@@ -47,14 +48,16 @@ namespace AVG_TASK_APP.Repositories
 
         public void Remove(Models.Task task)
         {
-            dbContext.Tasks.Remove(task);
-            dbContext.SaveChanges();
+            AppDbContext dbContextTemp = dbContext;
+            dbContextTemp.Tasks.Remove(task);
+            dbContextTemp.SaveChanges();
         }
 
         public void Update(Models.Task task)
         {
-            dbContext.Tasks.Update(task);
-            dbContext.SaveChanges();
+            AppDbContext dbContextTemp = dbContext;
+            dbContextTemp.Tasks.Update(task);
+            dbContextTemp.SaveChanges();
         }
     }
 }

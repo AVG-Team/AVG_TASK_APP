@@ -28,7 +28,7 @@ namespace AVG_TASK_APP.ViewModels
         private ObservableCollection<ItemMenuSearch> _menuSearch;
 
         private IUserRepository userRepository;
-        private IWorkspaceReposity workspaceReposity;
+        private IWorkspaceRepository workspaceReposity;
 
         public List<UserModel> Users { get; set; }
 
@@ -95,7 +95,7 @@ namespace AVG_TASK_APP.ViewModels
 
         public string ValueEmail
         {
-            get 
+            get
             {
                 return _valueEmail;
             }
@@ -208,14 +208,14 @@ namespace AVG_TASK_APP.ViewModels
 
             }
             int tmp12312 = int.Parse(IdWorkspace);
-            if (string.IsNullOrWhiteSpace(EmailUsers) || EmailUsers.Length < 3 ||! validDataEmail || int.Parse(IdWorkspace) == -1)
+            if (string.IsNullOrWhiteSpace(EmailUsers) || EmailUsers.Length < 3 || !validDataEmail || int.Parse(IdWorkspace) == -1)
                 validData = false;
             else
                 validData = true;
             return validData;
         }
 
-        private void processAdd(string email , int idWorkspace)
+        private void processAdd(string email, int idWorkspace)
         {
             UserModel user = userRepository.GetByEmail(email);
             if (user == null)
@@ -240,14 +240,15 @@ namespace AVG_TASK_APP.ViewModels
                     {
                         processAdd(email, int.Parse(IdWorkspace));
                         isSuccess = true;
-                    } catch (Exception ex)
+                    }
+                    catch (Exception ex)
                     {
                         isSuccess = false;
                         ErrorMessage += " Email " + email + " Error Unknown, Please Again";
                     }
                 }
             }
-            if(isSuccess)
+            if (isSuccess)
             {
                 MessageBoxView msb = new MessageBoxView();
                 msb.Show("Add Successfully");

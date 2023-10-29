@@ -407,14 +407,19 @@
 
 
                             <!--// Services //-->
-
-                            <StackPanel  x:Name="listBoards" 
+                            <ScrollViewer Margin="10,10,0,0" Style="{StaticResource FavsScrollViewer}"
+                                       Height="600"
+                                       FlowDirection="LeftToRight"
+                                       ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                                       ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                        Grid.Row="1">
+                                <StackPanel  x:Name="listBoards" 
                                 Orientation="Vertical">
-                                <ItemsControl>
+                                    <ItemsControl>
 
-                                </ItemsControl>
-                            </StackPanel>
-
+                                    </ItemsControl>
+                                </StackPanel>
+                            </ScrollViewer>
                         </StackPanel>
                     </Grid>
                 </Grid>

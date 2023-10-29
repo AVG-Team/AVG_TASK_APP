@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AVG_TASK_APP.Repositories.Interface
 {
-    interface IWorkspaceReposity
+    interface IWorkspaceRepository
     {
         void Add(Workspace workspace);
         void Update(Workspace workspace);

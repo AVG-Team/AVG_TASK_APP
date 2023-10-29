@@ -24,6 +24,8 @@ namespace AVG_TASK_APP.CustomControls
         public ListBox lb { get { return _list; } }
         private CardUserControlViewModel viewModel;
 
+        public EventHandler btnCreateTask_Click;
+
         public CardUserControl(int idCard)
         {
             InitializeComponent();
@@ -42,6 +44,11 @@ namespace AVG_TASK_APP.CustomControls
 
             this.nameCard.SetBinding(TextBlock.TextProperty, nameCardBinding);
             this._list.SetBinding(UidProperty, idCardBinding);
+        }
+
+        private void ButtonCreateTask_Click(object sender, RoutedEventArgs e)
+        {
+            btnCreateTask_Click?.Invoke(this, EventArgs.Empty);
         }
     }
 }

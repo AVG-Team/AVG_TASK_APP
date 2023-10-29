@@ -62,6 +62,7 @@ namespace AVG_TASK_APP.CustomControls
                 CardUserControl cardUserControl = new CardUserControl(item.Id);
                 areaCard.Children.Add(cardUserControl);
                 cardUserControl.Tag = item.Id;
+                cardUserControl.btnCreateTask_Click += CardUserControl_btnCreateTask_Click;
                 _listCard.Add(cardUserControl);
             }
 
@@ -74,11 +75,18 @@ namespace AVG_TASK_APP.CustomControls
             LoadItem();
         }
 
+        private void CardUserControl_btnCreateTask_Click(object? sender, EventArgs e)
+        {
+
+        }
+
         private void LoadItem()
         {
+
             foreach (ListBox lb in listBoxes)
             {
                 int idCard = int.Parse(lb.Tag.ToString());
+
                 foreach (Models.Task task in taskRepository.GetAllForCard(idCard))
                 {
 
@@ -93,12 +101,15 @@ namespace AVG_TASK_APP.CustomControls
 
                     var element = new ContentPresenter();
                     element.Content = task.Name;
+                    element.Tag = task.Id;
                     element.MouseLeftButtonUp += personElement_MouseEnter;
                     element.VerticalAlignment = VerticalAlignment.Center;
                     element.HorizontalAlignment = HorizontalAlignment.Center;
 
                     border.Child = element;
+                    border.Tag = task.Id;
                     lb.Items.Add(border);
+                    /*cardUserControl.Card.Height = cardUserControl.Card.Height + 50;*/
 
                     _dd.RegisterDragSource(border, DragDropEffect.Move, ModifierKeys.None);
 
@@ -113,7 +124,6 @@ namespace AVG_TASK_APP.CustomControls
                 }
             }
         }
-
         private void _dd_DragDrop(object source, DragDropEventArgs e)
         {
             // get object being dragged
@@ -125,6 +135,18 @@ namespace AVG_TASK_APP.CustomControls
                 {
                     ListBox sourceParent = lb;
                     ListBox target = e.DropTarget as ListBox;
+
+                    int itemId = (int)((Border)sourceElement).Tag;
+                    int idCardParent = (int)lb.Tag;
+                    int idCardTarget = (int)target.Tag;
+
+                    // find task existed in database by id 
+
+                    var currentTask = taskRepository.GetById(itemId);
+
+                    // update task
+                    currentTask.Id_Card = idCardTarget;
+                    taskRepository.Update(currentTask);
                     // get index into target
                     int index = GetDropIndex(e, target);
                     // adjust index
@@ -139,11 +161,13 @@ namespace AVG_TASK_APP.CustomControls
                             return;
                     }
                     // remove from original position, insert into new position
+
                     sourceParent.Items.Remove(sourceElement);
                     target.Items.Insert(index, sourceElement);
                 }
             }
         }
+
 
 
         private int GetDropIndex(DragDropEventArgs e, ListBox? target)

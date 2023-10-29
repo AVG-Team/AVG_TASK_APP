@@ -28,9 +28,6 @@
                             Margin="25,0,0,0"
                             Grid.Row="0"
                             VerticalAlignment="Center">
-                    <TextBlock 
-                        x:Name="HeaderBoard"
-                        Text="Name Board"
                     <TextBlock x:Name="NameTable"
                                Text="{Binding NameTable}"
                                FontSize="25"
@@ -109,14 +106,20 @@
             </Grid>
         </Border>
 
-
-        <StackPanel x:Name="areaCard"
+        <ScrollViewer Margin="10,10,0,0" Style="{StaticResource FavsScrollViewer}"
+                      Height="820"
+                      FlowDirection="LeftToRight"
+                      ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+          Grid.Row="1">
+            <StackPanel x:Name="areaCard"
                     Grid.Row="1" 
                     Orientation="Horizontal"
                     VerticalAlignment="Top"
                     Margin="25 40 25 0">
 
-        </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
         <StackPanel Grid.Row="1" HorizontalAlignment="Right">
             <customcontrol:MenuBoard_UserControl Visibility="Collapsed" x:Name="menuBoardControl"  Width="350" Height="650" />
         </StackPanel>

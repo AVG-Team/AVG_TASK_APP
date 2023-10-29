@@ -12,7 +12,7 @@ namespace AVG_TASK_APP.ViewModels
 {
     public class ItemWorkspaceViewModel : ViewModelBase
     {
-        private IWorkspaceReposity workspaceReposity;
+        private IWorkspaceRepository workspaceReposity;
 
         private string _itemIdWorkspace;
 

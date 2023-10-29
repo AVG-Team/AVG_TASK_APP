@@ -30,14 +30,21 @@ namespace AVG_TASK_APP.Repositories
             dbContext.SaveChanges();
         }
 
-        public IEnumerable<Table> GetAll()
+        public IEnumerable<Table> GetAll(string sort = "desc")
         {
-            return dbContext.Tables.ToList();
+            if (sort.Equals("desc"))
+                return dbContext.Tables.OrderByDescending(s => s.Created_At).ToList();
+            else
+                return dbContext.Tables.OrderBy(s => s.Created_At).ToList();
         }
 
-        public IEnumerable<Table> GetAllForWorkspace(int idWorkspace)
+
+        public IEnumerable<Table> GetAllForWorkspace(int idWorkspace, string sort = "desc")
         {
-            return dbContext.Tables.Where(s => s.Id_Workspace == idWorkspace).ToList();
+            if (sort.Equals("desc"))
+                return dbContext.Tables.Where(s => s.Id_Workspace == idWorkspace).OrderByDescending(s => s.Created_At).ToList();
+            else
+                return dbContext.Tables.Where(s => s.Id_Workspace == idWorkspace).OrderBy(s => s.Created_At).ToList();
         }
 
         public Table GetById(int idTable)

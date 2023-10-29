@@ -30,7 +30,6 @@ namespace AVG_TASK_APP.Views
     /// </summary>
     public partial class ManageTaskLayout : Window
     {
-
         private TableRepository tableRepository = new TableRepository();
         private WorkspaceRepository workspaceRepository = new WorkspaceRepository();
         private ManageTaskUserControlViewModel manageTaskUserControlViewModel = new ManageTaskUserControlViewModel();
@@ -214,39 +213,40 @@ namespace AVG_TASK_APP.Views
 
         }
 
-        private void starList_Click(object sender, RoutedEventArgs e) {
+        private void starList_Click(object sender, RoutedEventArgs e)
+        {
         }
 
         private void UpdateStarListMenu(object sender, EventArgs e)
         {
-            // Clear existing items
-            starList.Items.Clear();
+            /* // Clear existing items
+             starList.Items.Clear();
 
-            foreach (ManageTaskUserControl i in manageTaskUserControls)
-            {
-                if (i.iconStart.Foreground == Brushes.Orange)
-                {
-                    MenuItem item = new MenuItem();
-                    item.Header = i.HeaderBoard.Text;
-                    item.Template = FindResource("Item_Template") as ControlTemplate;
-                    bool itemExists = false;
+             foreach (ManageTaskUserControl i in manageTaskUserControls)
+             {
+                 if (i.iconStart.Foreground == Brushes.Orange)
+                 {
+                     MenuItem item = new MenuItem();
+                     item.Header = i.NameTable.Text;
+                     item.Template = FindResource("Item_Template") as ControlTemplate;
+                     bool itemExists = false;
 
-                    // Check if an item with the same Header already exists
-                    foreach (MenuItem existingItem in starList.Items)
-                    {
-                        if (existingItem.Header != null && existingItem.Header.ToString() == item.Header.ToString())
-                        {
-                            itemExists = true;
-                            break;
-                        }
-                    }
+                     // Check if an item with the same Header already exists
+                     foreach (MenuItem existingItem in starList.Items)
+                     {
+                         if (existingItem.Header != null && existingItem.Header.ToString() == item.Header.ToString())
+                         {
+                             itemExists = true;
+                             break;
+                         }
+                     }
 
-                    if (!itemExists)
-                    {
-                        starList.Items.Add(item);
-                    }
-                }
-            }
+                     if (!itemExists)
+                     {
+                         starList.Items.Add(item);
+                     }
+                 }
+             }*/
         }
     }
 }

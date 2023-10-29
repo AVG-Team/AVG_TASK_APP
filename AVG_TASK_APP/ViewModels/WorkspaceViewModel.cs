@@ -27,7 +27,7 @@ namespace AVG_TASK_APP.ViewModels
         private string _code;
         private bool _isViewVisible = true;
 
-        private IWorkspaceReposity workspaceReposity;
+        private IWorkspaceRepository workspaceReposity;
 
         public string WorkspaceName
         {
@@ -54,7 +54,7 @@ namespace AVG_TASK_APP.ViewModels
             OnPropertyChanged(nameof(WorkspaceName));
         }
 
-        public bool IsCheckedPublic 
+        public bool IsCheckedPublic
         {
             get => _isCheckedPublic;
             set
