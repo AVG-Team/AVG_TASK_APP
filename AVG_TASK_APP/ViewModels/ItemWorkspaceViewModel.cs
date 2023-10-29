@@ -1,6 +1,7 @@
 ﻿using AVG_TASK_APP.CustomControls;
 using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.Repositories.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace AVG_TASK_APP.ViewModels
 {
     public class ItemWorkspaceViewModel : ViewModelBase
     {
-        private IWorkspaceReposity workspaceReposity;
+        private IWorkspaceRepository workspaceReposity;
 
         private string _itemIdWorkspace;
 
@@ -27,7 +28,7 @@ namespace AVG_TASK_APP.ViewModels
 
         public ItemWorkspaceViewModel()
         {
-            workspaceReposity = new WorkspaceReposity();
+            workspaceReposity = new WorkspaceRepository();
         }
 
         public string getName()

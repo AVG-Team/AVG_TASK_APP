@@ -1,6 +1,7 @@
 ﻿using AVG_TASK_APP.CustomControls;
 using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.Repositories.Interface;
 using AVG_TASK_APP.Views;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace AVG_TASK_APP.ViewModels
 {
     public class PageLayoutViewModel : ViewModelBase
     {
-        private IWorkspaceReposity workspaceReposity;
+        private IWorkspaceRepository workspaceReposity;
 
         private UserAccount currentUserAccount;
         private IUserRepository userRepository;
@@ -31,9 +32,9 @@ namespace AVG_TASK_APP.ViewModels
 
         public ObservableCollection<itemWorkspace> Workspaces
         {
-            get 
+            get
             {
-                if(_workspaces == null)
+                if (_workspaces == null)
                 {
                     _workspaces = new ObservableCollection<itemWorkspace>();
                 }
@@ -47,14 +48,14 @@ namespace AVG_TASK_APP.ViewModels
             }
         }
 
-        public ICommand PageLayoutLoaded { get;  }
+        public ICommand PageLayoutLoaded { get; }
         public ICommand CreateWorkSpaceCommand { get; }
         public ICommand ShowInformationUserCommand { get; }
 
         public PageLayoutViewModel()
         {
             userRepository = new UserRepository();
-            workspaceReposity = new WorkspaceReposity();
+            workspaceReposity = new WorkspaceRepository();
             currentUserAccount = new UserAccount();
             PageLayoutLoaded = new ViewModelCommand(ExcuteLoadedCommand);
             CreateWorkSpaceCommand = new ViewModelCommand(ExcuteCreateWorkspaceCommand);
@@ -80,10 +81,10 @@ namespace AVG_TASK_APP.ViewModels
 
         private void loadItemWorkspace()
         {
-           Workspaces = new ObservableCollection<itemWorkspace>();
+            Workspaces = new ObservableCollection<itemWorkspace>();
 
             List<Workspace> workspaces = (List<Workspace>)workspaceReposity.GetAllForUser();
-            if(! workspaces.Any() )
+            if (!workspaces.Any())
             {
                 return;
             }

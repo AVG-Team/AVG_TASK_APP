@@ -1,5 +1,6 @@
 ﻿using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.Repositories.Interface;
 using AVG_TASK_APP.Views;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -54,7 +55,7 @@ namespace AVG_TASK_APP.ViewModels
             }
         }
 
-        public string Name 
+        public string Name
         {
             get
             {
@@ -172,7 +173,7 @@ namespace AVG_TASK_APP.ViewModels
 
         private bool CheckRepeatPassword(SecureString password, SecureString repeatPassword)
         {
-            if(password == null || repeatPassword == null) return false;
+            if (password == null || repeatPassword == null) return false;
             IntPtr unmanagedString = IntPtr.Zero;
             unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(password);
             string passwordTmp = Marshal.PtrToStringUni(unmanagedString);
@@ -193,13 +194,13 @@ namespace AVG_TASK_APP.ViewModels
                 UserCurrent.Name = Name;
                 isChange = true;
             }
-            
-            if(Phone != UserCurrent.PhoneNumber)
+
+            if (Phone != UserCurrent.PhoneNumber)
             {
                 UserCurrent.PhoneNumber = Phone;
                 isChange = true;
-            }    
-            if(CheckRepeatPassword(Password, RepeatPassword) && ! userRepository.verifyAccount(Email, Password))
+            }
+            if (CheckRepeatPassword(Password, RepeatPassword) && !userRepository.verifyAccount(Email, Password))
             {
                 isChange = true;
                 byte[] salt = userRepository.GenerateSalt();

@@ -1,5 +1,6 @@
 ﻿using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.Repositories.Interface;
 using AVG_TASK_APP.Views;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace AVG_TASK_APP.ViewModels
         private string _code;
         private bool _isViewVisible = true;
 
-        private IWorkspaceReposity workspaceReposity;
+        private IWorkspaceRepository workspaceReposity;
 
         public string WorkspaceName
         {
@@ -53,7 +54,7 @@ namespace AVG_TASK_APP.ViewModels
             OnPropertyChanged(nameof(WorkspaceName));
         }
 
-        public bool IsCheckedPublic 
+        public bool IsCheckedPublic
         {
             get => _isCheckedPublic;
             set
@@ -103,7 +104,7 @@ namespace AVG_TASK_APP.ViewModels
 
         public WorkspaceViewModel()
         {
-            workspaceReposity = new WorkspaceReposity();
+            workspaceReposity = new WorkspaceRepository();
             ContinueCommand = new ViewModelCommand(ExcuteCreateWorkspaceCommand, CanExcuteCreateWorkspaceCommand);
         }
 
