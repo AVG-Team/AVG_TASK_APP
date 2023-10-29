@@ -20,9 +20,29 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class btnBoardInHome : UserControl
     {
-        public btnBoardInHome()
+        public btnBoardInHome(int idTable, string nameTable, string nameWorkspace, int role)
         {
             InitializeComponent();
+            this.idTable.Text = idTable.ToString();
+
+            if(nameTable.Length > 22)
+            {
+                nameTable = nameTable.Substring(15)+"...";
+            }
+            this.nameTable.Text = nameTable;
+
+            if (nameWorkspace.Length > 22)
+            {
+                nameWorkspace = nameWorkspace.Substring(15) + "...";
+            }
+            this.nameWorkspace.Text = nameWorkspace;
+
+            ImageSource imageSource;
+            string relativePath = "pack://application:,,,/AVG_TASK_APP;component/Resources/Images/OIP.jpg";
+            if (role != 0)
+                relativePath = "pack://application:,,,/AVG_TASK_APP;component/Resources/Images/ADMIN.png";
+            imageSource = new BitmapImage(new Uri(relativePath, UriKind.RelativeOrAbsolute));
+            imageBtn.ImageSource = imageSource;
         }
     }
 }
