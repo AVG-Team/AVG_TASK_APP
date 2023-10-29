@@ -1,4 +1,5 @@
 ﻿using AVG_TASK_APP.Migration;
+using AVG_TASK_APP.Models;
 using AVG_TASK_APP.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace AVG_TASK_APP.CustomControls
 {
@@ -24,7 +26,7 @@ namespace AVG_TASK_APP.CustomControls
     public partial class NotifyItem : UserControl
     {
         public AppDbContext context;
-        public NotifyItem()
+        public NotifyItem(int id)
         {
             InitializeComponent();
             // Create DbContextOptions with your MySQL connection string and options
@@ -39,13 +41,13 @@ namespace AVG_TASK_APP.CustomControls
             var viewModel = new NotifyViewModel();
 
             // Populate the NotifyViewModelCollection with data
-            viewModel.NotifyViewModelCollection = LoadData(); // Implement this method to load your data
+            viewModel.NotifyViewModelCollection = LoadData(id); // Implement this method to load your data
 
             // Set the DataContext of your view to the viewModel
             DataContext = viewModel;
         }
 
-        private ObservableCollection<NotifyViewModel> LoadData()
+        private ObservableCollection<NotifyViewModel> LoadData(int id)
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
             .UseMySql("Server=103.200.23.139;Database=ntddevte_avg_task;Uid=ntddevte_hung;Pwd=AVGTASK2023;ConvertZeroDateTime=True;", new MySqlServerVersion(new Version(8, 0, 23))) // Replace with your actual MySQL connection string
@@ -57,16 +59,14 @@ namespace AVG_TASK_APP.CustomControls
                 var notifies = context.Notifies.Include(n => n.User).ToList();
 
                 // Create NotifyViewModel instances and add them to the collection
-                foreach (var notify in notifies)
+                var viewModel = new NotifyViewModel
                 {
-                    var viewModel = new NotifyViewModel
-                    {
-                        UserName = notify.User.Name,
-                        NotifyContent = notify.Content,
-                        NotifyCreatedAt = notify.Created_At
-                    };
+                    UserName = notifies[id].User.Name,
+                    NotifyContent = notifies[id].Content,
+                    NotifyCreatedAt = notifies[id].Created_At
+                };
                     data.Add(viewModel);
-                }
+
             }
 
             return data;

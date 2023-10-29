@@ -319,7 +319,7 @@ ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollB
                         </Border>
                         <!-- Menu Button End-->
                         <!-- Content Begin -->
-                        <Grid x:Name="areaUserControl" Grid.Column="1">
+                        <Grid x:Name="areaUserControl" Grid.Column="1" HorizontalAlignment="Left">
                             
                         </Grid>
                         <Grid x:Name="areaUserNotify" Grid.Column="2">

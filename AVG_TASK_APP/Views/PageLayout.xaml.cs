@@ -157,7 +157,7 @@ namespace AVG_TASK_APP.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NotifiesUserControl notifiesUserControl = new NotifiesUserControl();
-            areaUserNotify.Width = 400;
+            areaUserNotify.Width = 200;
             areaUserNotify.Height = 650;
             areaUserNotify.HorizontalAlignment = HorizontalAlignment.Center;
             areaUserNotify.VerticalAlignment = VerticalAlignment.Top;
