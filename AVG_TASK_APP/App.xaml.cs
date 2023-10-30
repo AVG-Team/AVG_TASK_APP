@@ -74,7 +74,7 @@ namespace AVG_TASK_APP
             Thread.CurrentPrincipal = principal;
             AppDomain.CurrentDomain.SetThreadPrincipal(principal);
 
-            ManageTaskLayout manageTaskLayout = new ManageTaskLayout();
+            PageLayout manageTaskLayout = new PageLayout();
             manageTaskLayout.Show();
         }
     }
