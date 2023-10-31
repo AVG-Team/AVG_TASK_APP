@@ -126,6 +126,14 @@ namespace AVG_TASK_APP.ViewModels
         {
             _contentNotify = contentNotify;
         }
+        public void setIdNotify(int idNotify)
+        {
+            _idNotify = idNotify;
+        }
+        public void setPin(int idNotify, int Pin)
+        {
+            _pin = Pin;
+        }
 
 
     }

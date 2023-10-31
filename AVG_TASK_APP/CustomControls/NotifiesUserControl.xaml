@@ -12,6 +12,9 @@
              mc:Ignorable="d" 
         d:DesignHeight="650" d:DesignWidth="400"
         Background="Transparent" Loaded="UserControl_Loaded">
+    <UserControl.DataContext>
+        <viewmodels:UserInformationViewModel/>
+    </UserControl.DataContext>
     <Border CornerRadius="20" Background="White" BorderBrush="Black" BorderThickness="1">
         <Grid>
             <Grid.RowDefinitions>
@@ -21,8 +24,10 @@
             <Grid Grid.Row="0">
                 <StackPanel Margin="20,30,0,0" Orientation="Horizontal">
                     <TextBlock Text="Notifications" FontSize="30"/>
+                    <TextBlock x:Name="userLevel" Visibility="Collapsed" Text="{Binding Level}" FontSize="30"/>
                     <Button     x:Name="ButtonCreateNotify"
-                                 Margin="80,0,0,20" Height="30" Width="100"
+                                Visibility="Collapsed" 
+                                Margin="140,0,0,20" Height="30" Width="100"
                                  Style="{StaticResource menuButtonHeader}"
                                  Tag="{StaticResource textColor6}"
                                  Click="ButtonCreateNotify_Click">

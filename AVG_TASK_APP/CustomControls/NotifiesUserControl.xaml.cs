@@ -23,6 +23,7 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Options;
 using AVG_TASK_APP.DataAccess;
 using AVG_TASK_APP.Repositories.Interface;
+using AVG_TASK_APP.Views;
 
 namespace AVG_TASK_APP.CustomControls
 {
@@ -39,6 +40,10 @@ namespace AVG_TASK_APP.CustomControls
             InitializeComponent();
             // Assuming you have a NotifyRepository to access your data
             notifyRepository = new NotifyRepository();
+            if(int.Parse(userLevel.Text) == 2)
+            {
+                ButtonCreateNotify.Visibility = Visibility.Visible;
+            }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -54,7 +59,8 @@ namespace AVG_TASK_APP.CustomControls
 
         private void ButtonCreateNotify_Click(object sender, RoutedEventArgs e)
         {
-
+            FormCreateNotify formCreateNotify = new FormCreateNotify();
+            formCreateNotify.Show();
         }
     }
 

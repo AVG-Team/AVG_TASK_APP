@@ -4,20 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         xmlns:viewmodels="clr-namespace:AVG_TASK_APP.ViewModels"
         xmlns:customcontrols="clr-namespace:AVG_TASK_APP.CustomControls"
-        mc:Ignorable="d"
-        Title="LoginView" Height="600" Width="900"
+        Title="Form Create Notify" Height="600" Width="900"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True">
-        <Window.DataContext>
-            <viewmodels:UserInformationViewModel/>
-        </Window.DataContext>
-        <Window.Resources>
+    <Window.DataContext>
+        <viewmodels:UserInformationViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
         </Window.Resources>
     <Grid>
@@ -65,7 +65,6 @@
                                             Cursor="Hand"
                                             Grid.Column="2"
                                             Margin="0,60,0,0"
-                                            Click="btnChangeAvatar_Click_1"
                                             >
 
                                         <Button.Style>
@@ -156,7 +155,6 @@
                                      FontFamily="Montserrat"
                                      Cursor="Hand"
                                      Grid.Column="2"
-                                    Click="btnCancel_Click"
                                     >
                                 <Button.Style>
                                     <Style TargetType="Button">
@@ -184,12 +182,13 @@
                         <Grid Grid.Row="1" >
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,60,0,0">
-                                    <TextBlock Text="Full Name"
+                                    <TextBlock Text="Name"
                                        Foreground="{StaticResource textColor1}"
                                        FontSize="18"
                                        FontWeight="Medium"
                                        FontFamily="Montserrat"
                                        Margin="0,6,10,0"/>
+                                    <TextBlock x:Name="IdUserTextBlock" Text="{Binding Id}" Visibility="Collapsed"/>
                                     <TextBox x:Name="txtUsername"
                                              Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
                                              FontFamily="Montserrat"
@@ -212,101 +211,24 @@
 
                                     </TextBox>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0">
-                                    <TextBlock Text="Email"
-                                               Foreground="{StaticResource textColor1}"
-                                               FontSize="18"
-                                               FontWeight="Medium"
-                                               FontFamily="Montserrat"
-                                               Margin="0,6,10,0"/>
-                                    <TextBox x:Name="txtEmail"
-                                             Text="{Binding Email , UpdateSourceTrigger=PropertyChanged}"
-                                             FontFamily="Montserrat"
-                                             FontSize="13"
-                                             Width="300"
-                                             FontWeight="Medium"
-                                             Foreground="{StaticResource textColor1}"
-                                             CaretBrush="{StaticResource color5}"
-                                             BorderBrush="{StaticResource color3}"
-                                             BorderThickness="0,0,0,1" IsEnabled="False"
-                                             Height="28" IsReadOnly="True"
-                                             VerticalContentAlignment="Center"
-                                             Margin="50,3,0,0"
-                                             Padding="20,0,0,0">
-                                        <TextBox.Background>
-                                            <ImageBrush 
-                                                        ImageSource="\AVG_TASK_APP;component\Resources\Icons\mail.png"
-                                                        Stretch="None"
-                                                        AlignmentX="Left"/>
-                                        </TextBox.Background>
-
-                                    </TextBox>
+                                <StackPanel Orientation="Horizontal">
+                                    <RichTextBox x:Name="ContentNotifyTextBlock" Margin="40,20,0,0" Width='500' Height="200" FontSize="14" FontWeight="Medium" FontFamily="Montserrat"  Padding="10">
+                                        <RichTextBox.Template>
+                                            <ControlTemplate>
+                                                <Border Background="{StaticResource color6}" CornerRadius="10" BorderThickness="2" BorderBrush="Black">
+                                                    <ScrollViewer x:Name="PART_ContentHost">
+                                                    </ScrollViewer>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </RichTextBox.Template>
+                                    </RichTextBox>
+                                    <Button x:Name="PinButton" Click="PinButton_Click" Style="{StaticResource btnIcon}" Margin="20,20,0,0">
+                                        <fa:IconImage x:Name="Pin" Margin="0,-10,0,0" Width="20" Height="25" Icon="thumbtack" Foreground="{StaticResource color5}"
+                                        Stretch="UniformToFill"></fa:IconImage>
+                                    </Button>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0">
-                                    <TextBlock Text="Phone"
-                                               Foreground="{StaticResource textColor1}"
-                                               FontSize="18"
-                                               FontWeight="Medium"
-                                               FontFamily="Montserrat"
-                                               Margin="0,6,10,0"/>
-                                    <TextBox x:Name="txtPhone"
-                                             Text="{Binding Phone , UpdateSourceTrigger=PropertyChanged}"
-                                             FontFamily="Montserrat"
-                                             FontSize="13"
-                                             Width="300"
-                                             FontWeight="Medium"
-                                             Foreground="{StaticResource textColor1}"
-                                             CaretBrush="{StaticResource color5}"
-                                             BorderBrush="{StaticResource color3}"
-                                             BorderThickness="0,0,0,1"
-                                             Height="28"
-                                             VerticalContentAlignment="Center"
-                                             Margin="40,3,0,0"
-                                             Padding="20,0,0,0">
-                                        <TextBox.Background>
-                                            <ImageBrush ImageSource="/Resources/Icons/phone-icon.png"
-                                                        Stretch="None"
-                                                        AlignmentX="Left"/>
-                                        </TextBox.Background>
-
-                                    </TextBox>
-                                </StackPanel>
-                                <Separator Opacity="0.3" Margin="30,35,30,35" Height="0.8" Background="{StaticResource color7}"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                    <TextBlock Text="Password"
-                                               Foreground="{StaticResource textColor1}"
-                                               FontSize="18"
-                                               FontWeight="Medium"
-                                               FontFamily="Montserrat"
-                                               Margin="0,0,15,0"/>
-                                    <customcontrols:BindablePasswordBox
-                                                Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                Height="28" Width="300"
-                                                Margin="10,0,0,0">
-                                    </customcontrols:BindablePasswordBox>
-
-                                </StackPanel>
-                                <StackPanel Margin="0,35,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                    <Grid Width="600">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="395"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Repeat Password"
-                                                   HorizontalAlignment="Right"
-                                                   Foreground="{StaticResource textColor1}"
-                                                   FontSize="18" Grid.Column="0"
-                                                   FontWeight="Medium"
-                                                   FontFamily="Montserrat"
-                                                   Margin="0,0,15,0"/>
-                                        <customcontrols:BindablePasswordBox
-                                            HorizontalAlignment="Left"
-                                                    Password="{Binding RepeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                    Height="28" Width="300" Grid.Column="1"
-                                                    >
-                                        </customcontrols:BindablePasswordBox>
-                                    </Grid>
-                                </StackPanel>
+                                
+                                 
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0">
                                     <Button x:Name="btnCancel"
                                             BorderThickness="0"
@@ -317,8 +239,7 @@
                                             FontFamily="Montserrat"
                                             Cursor="Hand"
                                             Grid.Column="2"
-                                            Margin="20,30,0,0"
-                                            Click="btnCancel_Click" >
+                                            Margin="20,30,0,0" >
 
                                         <Button.Style>
                                             <Style TargetType="Button">
@@ -354,16 +275,11 @@
                                     Cursor="Hand"
                                     Grid.Column="2"
                                     Margin="40,30,0,0"
->
+                                    Click="btnSave_Click">
 
                                         <Button.Style>
                                             <Style TargetType="Button">
                                                 <Setter Property="Background" Value="{StaticResource buttonColor}"/>
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="{StaticResource hoverButtonColor}"/>
-                                                    </Trigger>
-                                                </Style.Triggers>
                                             </Style>
                                         </Button.Style>
 
