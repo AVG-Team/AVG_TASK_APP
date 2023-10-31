@@ -38,7 +38,7 @@ namespace AVG_TASK_APP.Repositories
 
         public IEnumerable<Models.Task> GetAllForCard(int idCard)
         {
-            return dbContext.Tasks.Where(s => s.Id_Card == idCard).ToList();
+            return dbContext.Tasks.Where(s => s.Id_Card == idCard && s.Deleted_At == null).ToList();
         }
 
         public Models.Task GetById(int idTask)
@@ -48,9 +48,10 @@ namespace AVG_TASK_APP.Repositories
 
         public void Remove(Models.Task task)
         {
-            AppDbContext dbContextTemp = dbContext;
-            dbContextTemp.Tasks.Remove(task);
-            dbContextTemp.SaveChanges();
+            AppDbContext dbContextTmp = dbContext;
+            task.Deleted_At = DateTime.Now;
+            dbContextTmp.Tasks.Update(task);
+            dbContextTmp.SaveChanges();
         }
 
         public void Update(Models.Task task)

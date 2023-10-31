@@ -107,7 +107,7 @@
         </Border>
 
         <ScrollViewer Margin="10,10,0,0" Style="{StaticResource FavsScrollViewer}"
-                      Height="820"
+                      Height="780"
                       FlowDirection="LeftToRight"
                       ScrollViewer.HorizontalScrollBarVisibility="Visible" 
                       ScrollViewer.VerticalScrollBarVisibility="Visible"
