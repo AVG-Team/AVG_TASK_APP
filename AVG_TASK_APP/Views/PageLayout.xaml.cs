@@ -30,6 +30,7 @@ namespace AVG_TASK_APP.Views
     public partial class PageLayout : Window
     {
         private int _count = 1;
+        private bool isUserNotifyVisible = false;
 
         public PageLayout()
         {
@@ -156,12 +157,26 @@ namespace AVG_TASK_APP.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NotifiesUserControl notifiesUserControl = new NotifiesUserControl();
-            areaUserNotify.Width = 200;
-            areaUserNotify.Height = 650;
-            areaUserNotify.HorizontalAlignment = HorizontalAlignment.Center;
-            areaUserNotify.VerticalAlignment = VerticalAlignment.Top;
-            areaUserNotify.Children.Add(notifiesUserControl);
+
+            if (isUserNotifyVisible)
+            {
+                // If it's currently visible, collapse it
+                areaUserNotify.Children.Clear();
+                areaUserNotify.Visibility = Visibility.Collapsed;
+                isUserNotifyVisible = false;
+            }
+            else
+            {
+                // If it's not visible, create and show it
+                NotifiesUserControl notifiesUserControl = new NotifiesUserControl();
+                areaUserNotify.Width = 500;
+                areaUserNotify.Height = 650;
+                areaUserNotify.HorizontalAlignment = HorizontalAlignment.Center;
+                areaUserNotify.VerticalAlignment = VerticalAlignment.Top;
+                areaUserNotify.Children.Add(notifiesUserControl);
+                areaUserNotify.Visibility = Visibility.Visible;
+                isUserNotifyVisible = true;
+            }
         }
     }
 }

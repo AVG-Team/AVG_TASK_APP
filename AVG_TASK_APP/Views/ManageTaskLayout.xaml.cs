@@ -33,7 +33,7 @@ namespace AVG_TASK_APP.Views
         private TableRepository tableRepository = new TableRepository();
         private WorkspaceRepository workspaceRepository = new WorkspaceRepository();
         private ManageTaskUserControlViewModel manageTaskUserControlViewModel = new ManageTaskUserControlViewModel();
-
+        private bool isUserNotifyVisible = false;
         public ManageTaskLayout()
         {
             InitializeComponent();
@@ -251,8 +251,25 @@ namespace AVG_TASK_APP.Views
 
         private void Notifies_Click(object sender, RoutedEventArgs e)
         {
-            NotifiesUserControl notify = new NotifiesUserControl();
-            areaManageTask.Children.Add(notify);
+            if (isUserNotifyVisible)
+            {
+                // If it's currently visible, collapse it
+                areaManageNotify.Children.Clear();
+                areaManageNotify.Visibility = Visibility.Collapsed;
+                isUserNotifyVisible = false;
+            }
+            else
+            {
+                // If it's not visible, create and show it
+                NotifiesUserControl notifiesUserControl = new NotifiesUserControl();
+                areaManageNotify.Width = 500;
+                areaManageNotify.Height = 450;
+                areaManageNotify.HorizontalAlignment = HorizontalAlignment.Left;
+                areaManageNotify.VerticalAlignment = VerticalAlignment.Top;
+                areaManageNotify.Children.Add(notifiesUserControl);
+                areaManageNotify.Visibility = Visibility.Visible;
+                isUserNotifyVisible = true;
+            }
         }
     }
 }

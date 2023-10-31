@@ -427,8 +427,24 @@
                 </Grid>
             </Border>
             <!-- Menu Button End-->
-            <Grid x:Name="areaManageTask" Grid.Column="1">
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0"/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="areaManageTask" Grid.Column="0">
+                    
+                </Grid>
+                <StackPanel Grid.Column="0" HorizontalAlignment="Right">
+                    <Grid Margin="0,0,20,0" x:Name="areaManageNotify">
+                        
+                    </Grid>
+                </StackPanel>
+                
+
+
             </Grid>
+                    
         </Grid>
     </Grid>
 </Window>

@@ -17,6 +17,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using MySql.Data.MySqlClient;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Options;
+using AVG_TASK_APP.DataAccess;
+using AVG_TASK_APP.Repositories.Interface;
+
 namespace AVG_TASK_APP.CustomControls
 {
     /// <summary>
@@ -24,34 +31,31 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class NotifiesUserControl : UserControl
     {
+        private NotifyItem notifyItem;
+        private INotifyRepository notifyRepository;
+
         public  NotifiesUserControl()
         {
             InitializeComponent();
-            string connectionString = "Server=103.200.23.139;Database=ntddevte_avg_task;Uid=ntddevte_hung;Pwd=AVGTASK2023;";
-            string tableName = "Notifies";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                using (MySqlCommand command = new MySqlCommand($"SELECT COUNT(*) FROM {tableName}", connection))
-                {
-                    int count = Convert.ToInt32(command.ExecuteScalar());
-                    for (int i = 0; i < count; i++)
-                    {
-                        NotifyItem notifyItem = new NotifyItem(i);
-                        ListNotifies.Children.Add(notifyItem);
-                    }
-                }
-            }
-
-            
-
-/*            NotifyItem notifyItem2 = new NotifyItem(1);
-            NotifyItem notifyItem3 = new NotifyItem(2);
-            ListNotifies.Children.Add(notifyItem1);
-            ListNotifies.Children.Add(notifyItem2);
-            ListNotifies.Children.Add(notifyItem3);*/
+            // Assuming you have a NotifyRepository to access your data
+            notifyRepository = new NotifyRepository();
         }
-        
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<Notify> notifyData = (List<Notify>)notifyRepository.GetAll();
+
+            foreach ( Notify notify in notifyData)
+            {
+                var notifyItem = new NotifyItem(notify.Id);
+                ListNotifies.Children.Add(notifyItem);
+            }
+        }
+
+        private void ButtonCreateNotify_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
+
 }

@@ -1,33 +1,61 @@
 ﻿using AVG_TASK_APP.Migration;
+using AVG_TASK_APP.Repositories.Interface;
+using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using AVG_TASK_APP.Models;
 
 namespace AVG_TASK_APP.DataAccess
 {
-    public class NotifyRepository
+    public class NotifyRepository : RepositoryBase, INotifyRepository
     {
-        private readonly AppDbContext _context;
-
-        public NotifyRepository(AppDbContext context)
+        private AppDbContext dbContext
         {
-            _context = context;
+
+            get
+            {
+                var connection = GetConnection();
+                var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
+                var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+                optionsBuilder.UseMySql(connection, serverVersion);
+
+                return new AppDbContext(optionsBuilder.Options);
+            }
         }
 
-        public List<NotifyViewModel> GetNotifies()
+        public void Add(Notify notify)
         {
-            var notifies = _context.Notifies.Include(n => n.User).ToList();
+            AppDbContext dbContextTmp = dbContext;
+            dbContextTmp.Notifies.Add(notify);
+            dbContextTmp.SaveChanges();
+        }
 
-            var notifyViewModels = notifies.Select(notify => new NotifyViewModel
-            {
-                UserName = notify.User.Name,
-                NotifyContent = notify.Content,
-                NotifyCreatedAt = notify.Created_At
-                // Add other properties if needed
-            }).ToList();
+        public IEnumerable<Notify> GetAll()
+        {
+            return dbContext.Notifies.OrderByDescending(s => s.Created_At).OrderByDescending(x => x.Pin).ToList();
+        }
+        public Notify GetById(int id)
+        {
+            return dbContext.Notifies.FirstOrDefault(s => s.Id == id);
+        }
 
-            return notifyViewModels;
+        public UserModel GetUserCreated(int id)
+        {
+            int idUser = dbContext.Notifies.FirstOrDefault(s => s.Id == id).Id_User;
+            return dbContext.Users.FirstOrDefault(s => s.Id == idUser);
+        }
+
+        public void Remove(Notify notify)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Notify notify)
+        {
+            throw new NotImplementedException();
         }
     }
 }

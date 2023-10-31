@@ -1,22 +1,8 @@
 ﻿using AVG_TASK_APP.Migration;
-using AVG_TASK_APP.Models;
 using AVG_TASK_APP.ViewModels;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace AVG_TASK_APP.CustomControls
 {
@@ -25,51 +11,41 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class NotifyItem : UserControl
     {
+        private int currentId;
         public AppDbContext context;
+        private bool isOrange = false;
+        NotifyItemViewModel viewModel;
+
         public NotifyItem(int id)
         {
-            InitializeComponent();
-            // Create DbContextOptions with your MySQL connection string and options
-            var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseMySql("Server=103.200.23.139;Database=ntddevte_avg_task;Uid=ntddevte_hung;Pwd=AVGTASK2023;ConvertZeroDateTime=True;", new MySqlServerVersion(new Version(8, 0, 23))) // Replace with your actual MySQL connection string
-                .Options;
-
-            // Initialize the context using the options
-            context = new AppDbContext(options);
-
-            // Create an instance of your NotifyViewModel
-            var viewModel = new NotifyViewModel();
-
-            // Populate the NotifyViewModelCollection with data
-            viewModel.NotifyViewModelCollection = LoadData(id); // Implement this method to load your data
-
-            // Set the DataContext of your view to the viewModel
+            viewModel = new NotifyItemViewModel();
             DataContext = viewModel;
-        }
+            InitializeComponent();
 
-        private ObservableCollection<NotifyViewModel> LoadData(int id)
+            idNotify.Text = id.ToString();
+            loadData(id);
+        }
+        
+        private void loadData(int id)
         {
-            var options = new DbContextOptionsBuilder<AppDbContext>()
-            .UseMySql("Server=103.200.23.139;Database=ntddevte_avg_task;Uid=ntddevte_hung;Pwd=AVGTASK2023;ConvertZeroDateTime=True;", new MySqlServerVersion(new Version(8, 0, 23))) // Replace with your actual MySQL connection string
-            .Options;
-            ObservableCollection<NotifyViewModel> data = new ObservableCollection<NotifyViewModel>();
-
-            using (AppDbContext context = new AppDbContext(options)) // Replace with your actual DbContext
+            NameUser.Text = viewModel.getNameUser();
+            ContentNotify.Text = viewModel.getContentNotify(id);
+            CreatedAt.Text = viewModel.getCreatedAt(id).ToString("dd/MM/yyyy HH:mm:ss");
+            if(viewModel.getNotifyPin(id) == 1)
             {
-                var notifies = context.Notifies.Include(n => n.User).ToList();
-
-                // Create NotifyViewModel instances and add them to the collection
-                var viewModel = new NotifyViewModel
-                {
-                    UserName = notifies[id].User.Name,
-                    NotifyContent = notifies[id].Content,
-                    NotifyCreatedAt = notifies[id].Created_At
-                };
-                    data.Add(viewModel);
-
+                changeColor();
             }
-
-            return data;
         }
+        private void changeColor()
+        {
+            if (Pin.Foreground == Brushes.Orange)
+            {
+                Pin.Foreground = (Brush)FindResource("color5");
+            }
+            if (Pin.Foreground == (Brush)FindResource("color5"))
+            {
+                Pin.Foreground = Brushes.Orange;
+            }
+        }        
     }
 }
