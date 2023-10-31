@@ -1,4 +1,5 @@
-﻿using AVG_TASK_APP.Models;
+﻿using AVG_TASK_APP.Migration;
+using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.ViewModels;
 using AVG_TASK_APP.Views;
@@ -34,6 +35,7 @@ namespace AVG_TASK_APP.CustomControls
 
         private C1DragDropManager _dd;
         private int idTableCurrent = 0;
+        private int idTaskCurrent = 0;
 
         public ManageTaskUserControl(int idTable)
         {
@@ -53,10 +55,14 @@ namespace AVG_TASK_APP.CustomControls
             _dd = new C1DragDropManager();
 
             _dd.DragDrop += _dd_DragDrop;
+
+
         }
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+
+        public void Reload()
         {
             var cards = cardRepository.GetAllForTable(idTableCurrent);
+            areaCard.Children.Clear();
             foreach (var item in cards)
             {
                 CardUserControl cardUserControl = new CardUserControl(item.Id);
@@ -75,18 +81,24 @@ namespace AVG_TASK_APP.CustomControls
             LoadItem();
         }
 
+        public void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Reload();
+        }
+
         private void CardUserControl_btnCreateTask_Click(object? sender, EventArgs e)
         {
 
         }
 
-        private void LoadItem()
+        public void LoadItem()
         {
 
             foreach (ListBox lb in listBoxes)
             {
+                lb.Items.Clear();
                 int idCard = int.Parse(lb.Tag.ToString());
-
+                taskRepository = new TaskRepository();
                 foreach (Models.Task task in taskRepository.GetAllForCard(idCard))
                 {
 
@@ -108,6 +120,7 @@ namespace AVG_TASK_APP.CustomControls
 
                     border.Child = element;
                     border.Tag = task.Id;
+                    border.MouseLeftButtonDown += Border_MouseLeftButtonDown;
                     lb.Items.Add(border);
                     /*cardUserControl.Card.Height = cardUserControl.Card.Height + 50;*/
 
@@ -123,7 +136,20 @@ namespace AVG_TASK_APP.CustomControls
                     };
                 }
             }
+
         }
+
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            UIElement element = sender as UIElement;
+            idTaskCurrent = (int)((Border)element).Tag;
+            ContactTaskUI contactTaskUI = new ContactTaskUI(idTaskCurrent, this);
+            contactTaskUI.Show();
+
+
+        }
+
         private void _dd_DragDrop(object source, DragDropEventArgs e)
         {
             // get object being dragged
@@ -184,8 +210,6 @@ namespace AVG_TASK_APP.CustomControls
 
         private void personElement_MouseEnter(object sender, MouseButtonEventArgs e)
         {
-            ContactTaskUI contactTaskUI = new ContactTaskUI();
-            contactTaskUI.Show();
         }
 
         private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
