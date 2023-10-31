@@ -64,14 +64,14 @@ namespace AVG_TASK_APP.Repositories
         public Workspace GetByNameForUser(string name, UserModel user)
         {
             var workspace = dbContext.Workspaces
-                .FirstOrDefault(s => s.Name == name && s.UserWorkspaces.Any(t => t.User == user));
+                .FirstOrDefault(s => s.Name == name && s.Deleted_At == null && s.UserWorkspaces.Any(t => t.User == user));
             return workspace;
         }
 
         public Workspace GetByCode(string code)
         {
             var workspace = dbContext.Workspaces
-                .FirstOrDefault(s => s.Code == code);
+                .FirstOrDefault(s => s.Code == code && s.Deleted_At == null);
             return workspace;
         }
 
@@ -129,7 +129,7 @@ namespace AVG_TASK_APP.Repositories
         public Workspace GetById(int id)
         {
             var workspace = dbContext.Workspaces
-                .FirstOrDefault(s => s.Id == id);
+                .FirstOrDefault(s => s.Id == id && s.Deleted_At == null);
             return workspace;
         }
 
