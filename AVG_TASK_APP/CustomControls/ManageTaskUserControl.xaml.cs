@@ -56,12 +56,13 @@ namespace AVG_TASK_APP.CustomControls
 
             _dd.DragDrop += _dd_DragDrop;
 
-           
+
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        public void Reload()
         {
             var cards = cardRepository.GetAllForTable(idTableCurrent);
+            areaCard.Children.Clear();
             foreach (var item in cards)
             {
                 CardUserControl cardUserControl = new CardUserControl(item.Id);
@@ -78,6 +79,11 @@ namespace AVG_TASK_APP.CustomControls
                 listBoxes.Add(card.lb);
             }
             LoadItem();
+        }
+
+        public void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Reload();
         }
 
         private void CardUserControl_btnCreateTask_Click(object? sender, EventArgs e)
@@ -130,7 +136,7 @@ namespace AVG_TASK_APP.CustomControls
                     };
                 }
             }
-            
+
         }
 
 
@@ -138,13 +144,10 @@ namespace AVG_TASK_APP.CustomControls
         {
             UIElement element = sender as UIElement;
             idTaskCurrent = (int)((Border)element).Tag;
-            ContactTaskUI contactTaskUI = new ContactTaskUI(idTaskCurrent,idTableCurrent);
+            ContactTaskUI contactTaskUI = new ContactTaskUI(idTaskCurrent, this);
             contactTaskUI.Show();
 
-            if(contactTaskUI.Visibility == Visibility.Visible)
-            {
-                this.LoadItem();
-            }
+
         }
 
         private void _dd_DragDrop(object source, DragDropEventArgs e)

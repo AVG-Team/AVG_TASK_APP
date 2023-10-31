@@ -18,14 +18,16 @@ namespace AVG_TASK_APP.Views
         public event EventHandler remove_Click;
         private int idTaskCurrent;
         private int idTableCurrent;
+        ManageTaskUserControl manageTaskUserControl;
         private TaskRepository taskRepository;
-        public ContactTaskUI(int idTask , int idTable)
+        public ContactTaskUI(int idTask, ManageTaskUserControl userControl)
         {
             InitializeComponent();
             taskRepository = new TaskRepository();
 
             idTaskCurrent = idTask;
-            idTableCurrent = idTable;
+            manageTaskUserControl = userControl;
+
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -57,9 +59,15 @@ namespace AVG_TASK_APP.Views
         {
             Models.Task task = taskRepository.GetById(idTaskCurrent);
             taskRepository.Remove(task);
-            
-            
+
+
             this.Close();
+
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            manageTaskUserControl.Reload();
         }
     }
 }
