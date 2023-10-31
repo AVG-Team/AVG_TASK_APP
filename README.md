@@ -610,11 +610,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
 	<tr>
 		<td align="center" valign="top">
-				<img loading="lazy" width="150" height="150" src="https://github.com/foxminchan.png?s=150">
+				<img loading="lazy" width="150" height="150" src="https://github.com/baohuy2k3.png?s=150">
         <br>
-        <a href="https://github.com/foxminchan">Xuan Nhan</a>
+        <a href="https://github.com/baohuy2k3">Huynguyen</a>
         <p>
-          <a href="https://github.com/HutechCJ/ProfioApp/commits?author=foxminchan" title="Developer">💻</a>
+          <a href="#" title="Developer">💻</a>
           <a href="#docs" title="Documentation">📖</a>
           <a href="#infra" title="Infrastructure">🚇</a>
           <a href="#tool" title="Tools">🔧</a>
