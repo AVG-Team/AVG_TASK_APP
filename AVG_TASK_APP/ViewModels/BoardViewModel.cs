@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace AVG_TASK_APP.ViewModels
 {
@@ -14,19 +15,19 @@ namespace AVG_TASK_APP.ViewModels
         private IWorkspaceReposity workspaceReposity = new WorkspaceReposity();
         private ITableRepository tableRepository = new TableRepository();
 
-        public BoardViewModel() { }
 
-        public int getIdWorkspaceRecently()
+        public BoardViewModel()
         {
-            var workspaces = workspaceReposity.GetAllForUser();
-            if (workspaces == null)
-                return -1;
-            return workspaces.FirstOrDefault().Id;
         }
 
-        public List<Table> GetTables(int idWorkspace)
+        public List<Workspace> GetWorkspacesRecently()
         {
-            return (List<Table>)tableRepository.GetAllForWorkspace(idWorkspace);
+            return (List<Workspace>)workspaceReposity.GetAllForUser().Take(2).ToList();
+        }
+
+        public List<Table> GetTablesRecently()
+        {
+            return (List<Table>)tableRepository.GetAllForUser().Take(4).ToList();
         }
     }
 }
