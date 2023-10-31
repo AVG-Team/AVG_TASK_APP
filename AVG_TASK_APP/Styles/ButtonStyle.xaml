@@ -39,7 +39,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <Style x:Key="menuButtonSearch" TargetType="RadioButton">
         <!--Normal button style-->
         <Setter Property="Height" Value="50"/>
@@ -180,6 +180,7 @@
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
+
 
 
     <!-- Control bar button -->

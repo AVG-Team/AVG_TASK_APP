@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AVG_TASK_APP.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,10 +22,33 @@ namespace AVG_TASK_APP.CustomControls
     public partial class CardUserControl : UserControl
     {
         public ListBox lb { get { return _list; } }
+        private CardUserControlViewModel viewModel;
 
-        public CardUserControl()
+        public EventHandler btnCreateTask_Click;
+
+        public CardUserControl(int idCard)
         {
             InitializeComponent();
+
+            viewModel = new CardUserControlViewModel();
+            DataContext = viewModel;
+
+            viewModel.getNameCard(idCard);
+            viewModel.IdCard = idCard;
+
+
+
+
+            var nameCardBinding = new Binding("NameCard");
+            var idCardBinding = new Binding("IdCard");
+
+            this.nameCard.SetBinding(TextBlock.TextProperty, nameCardBinding);
+            this._list.SetBinding(UidProperty, idCardBinding);
+        }
+
+        private void ButtonCreateTask_Click(object sender, RoutedEventArgs e)
+        {
+            btnCreateTask_Click?.Invoke(this, EventArgs.Empty);
         }
     }
 }

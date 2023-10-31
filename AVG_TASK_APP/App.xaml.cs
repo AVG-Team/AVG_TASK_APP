@@ -1,6 +1,7 @@
 ﻿using AVG_TASK_APP.CustomControls;
 using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.Repositories.Interface;
 using AVG_TASK_APP.Views;
 using Microsoft.Win32;
 using MySqlConnector;
@@ -73,8 +74,8 @@ namespace AVG_TASK_APP
             Thread.CurrentPrincipal = principal;
             AppDomain.CurrentDomain.SetThreadPrincipal(principal);
 
-            PageLayout layout = new PageLayout();
-            layout.Show();
+            PageLayout manageTaskLayout = new PageLayout();
+            manageTaskLayout.Show();
         }
     }
 }

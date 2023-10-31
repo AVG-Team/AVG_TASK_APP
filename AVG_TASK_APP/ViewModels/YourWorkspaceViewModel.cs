@@ -16,7 +16,8 @@ namespace AVG_TASK_APP.ViewModels
 
         private string _idWorkspace;
 
-        public string IdWorkspace { 
+        public string IdWorkspace
+        {
             get => _idWorkspace;
             set { _idWorkspace = value; OnPropertyChanged(nameof(IdWorkspace)); }
         }

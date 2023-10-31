@@ -39,7 +39,6 @@ namespace AVG_TASK_APP.Repositories
             else
                 return dbContext.Tables.OrderBy(s => s.Created_At).ToList();
         }
-
         public IEnumerable<Table> GetAllForUser(string sort = "desc")
         {
             var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
@@ -64,7 +63,7 @@ namespace AVG_TASK_APP.Repositories
         public IEnumerable<Table> GetAllForWorkspace(int idWorkspace, string sort = "desc")
         {
             if (sort.Equals("desc"))
-                return dbContext.Tables.Where(s => s.Id_Workspace == idWorkspace).OrderByDescending(s =>s.Created_At).ToList();
+                return dbContext.Tables.Where(s => s.Id_Workspace == idWorkspace).OrderByDescending(s => s.Created_At).ToList();
             else
                 return dbContext.Tables.Where(s => s.Id_Workspace == idWorkspace).OrderBy(s => s.Created_At).ToList();
         }
@@ -101,3 +100,4 @@ namespace AVG_TASK_APP.Repositories
         }
     }
 }
+
