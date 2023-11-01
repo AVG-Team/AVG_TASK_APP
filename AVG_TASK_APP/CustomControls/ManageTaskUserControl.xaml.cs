@@ -87,7 +87,6 @@ namespace AVG_TASK_APP.CustomControls
         }
         public void CreateCardView_btnCreateCard_Click(string nameNewCard)
         {
-            //lấy đc id card cuối cùng, ta sẽ cộng 1 để có 1 new card ?
 
             Models.Card newCard = new Models.Card();
             newCard.Name = nameNewCard;
