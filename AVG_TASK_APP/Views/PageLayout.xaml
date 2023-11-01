@@ -130,11 +130,11 @@
                             <StackPanel HorizontalAlignment="Center"
                                          VerticalAlignment="Center">
                                 <TextBox x:Name="txtSearch"
-                                         Text="Search"
+                                         Text="{Binding ValueSearch, UpdateSourceTrigger=PropertyChanged}"
                                          FontFamily="Montserrat"
                                          FontSize="13"
                                          FontWeight="Medium"
-                                         Foreground="{StaticResource textColor1}"
+                                         Foreground="{StaticResource color3}"
                                          CaretBrush="{StaticResource color5}"
                                          BorderBrush="{StaticResource color3}"
                                          BorderThickness="0,0,0,1"
@@ -144,26 +144,26 @@
                                          Margin="0,20,30,0"
                                          Padding="20,0,0,0"
                                          GotFocus="txtSearch_GotFocus"
-                                         LostFocus="txtSearch_LostFocus">
+                                         LostFocus="txtSearch_LostFocus" PreviewKeyUp="txtSearch_PreviewKeyUp">
                                     <TextBox.Background>
                                         <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Icons/icons8-search-16.png"
                                                      Stretch="None"
                                                      AlignmentX="Left"/>
                                     </TextBox.Background>
                                 </TextBox>
-                                <Popup x:Name="areaMenu"
-                                         IsOpen="{Binding IsOpen, UpdateSourceTrigger=PropertyChanged}"
-                                         PlacementTarget="{Binding ElementName=txtEmail}" >
-                                    <StackPanel Width="300" Height="200" Orientation="Horizontal" Margin="0,5,0,0">
+                                <Popup x:Name="areaMenuSearch" AllowsTransparency="True"
+                                               IsOpen="{Binding IsOpenSearch, UpdateSourceTrigger=PropertyChanged}"
+                                               PlacementTarget="{Binding ElementName=txtSearch}" >      
+                                    <StackPanel Width="300" Height="200" Background="Transparent" Orientation="Horizontal" Margin="0,5,0,0">
                                         <Border CornerRadius="10" 
-                                                Width="300" Height="200"
-                                                BorderThickness="1"
-                                                BorderBrush="{StaticResource color6}" 
-                                                Background="{StaticResource color6}">
+                                                  Width="300" Height="200"
+                                                  BorderThickness="0.5"
+                                                  BorderBrush="{StaticResource color8}" 
+                                                  Background="{StaticResource color6}">
                                             <StackPanel Orientation="Vertical">
-                                                <ListBox x:Name="_list" Height="200"
-                                                        Margin="0,5,0,0" ItemsSource="{Binding MenuSearch, UpdateSourceTrigger=PropertyChanged}"
-                                                        Background="Transparent" BorderThickness="0">
+                                                <ListBox x:Name="_listSearch" Height="200"
+                                                          Margin="0,5,0,0" ItemsSource="{Binding MenuSearchBoard, UpdateSourceTrigger=PropertyChanged}"
+                                                          Background="Transparent" BorderThickness="0">
                                                 </ListBox>
                                             </StackPanel>
                                         </Border>

@@ -19,11 +19,11 @@
                     </Ellipse.Fill>
                 </Ellipse>
             </Border>
-            <TextBlock x:Name="txtNameUser" FontFamily="Montserrat"
+            <TextBlock x:Name="txtContent" FontFamily="Montserrat"
                        Foreground="{StaticResource textColor3}"
                        VerticalAlignment="Center" FontSize="18" Margin="10,0,0,0"
                                 Text = "" />
-            <TextBlock x:Name="txtEmailUser" Visibility="Collapsed" />
+            <TextBlock x:Name="txtValue" Visibility="Collapsed" />
         </StackPanel>
     </RadioButton>
 </UserControl>

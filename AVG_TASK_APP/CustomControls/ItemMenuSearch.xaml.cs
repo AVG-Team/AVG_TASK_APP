@@ -20,16 +20,17 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class ItemMenuSearch : UserControl
     {
-        public string Email { get { return txtEmailUser.Text; } }
-        public ItemMenuSearch(string email, string nameUser, int levelUser)
+        public string Value { get { return txtValue.Text; } }
+
+        public ItemMenuSearch(string value, string content, int levelUser)
         {
             InitializeComponent();
-            txtNameUser.Text = nameUser;
-            txtEmailUser.Text = email;
+            txtContent.Text = content;
+            txtValue.Text = value;
 
             ImageSource imageSource;
             string relativePath = "pack://application:,,,/AVG_TASK_APP;component/Resources/Images/OIP.jpg";
-            if (levelUser != 0)
+            if (levelUser > 0)
                 relativePath = "pack://application:,,,/AVG_TASK_APP;component/Resources/Images/ADMIN.png";
             imageSource = new BitmapImage(new Uri(relativePath, UriKind.RelativeOrAbsolute));
             imageUser.ImageSource = imageSource;

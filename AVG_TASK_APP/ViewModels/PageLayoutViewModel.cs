@@ -3,6 +3,7 @@ using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Repositories.Interface;
 using AVG_TASK_APP.Views;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,9 +25,20 @@ namespace AVG_TASK_APP.ViewModels
 
         private UserAccount currentUserAccount;
         private IUserRepository userRepository;
+        private ITableRepository tableRepository;
 
         private string _userAccountName;
         private string _userAccountImage;
+
+        #region searchInit
+        private string _txtSearch;
+        private bool _isOpenSearch;
+
+        public ObservableCollection<ItemMenuSearch> SelectedItems { get; set; } = new ObservableCollection<ItemMenuSearch>();
+
+        private ObservableCollection<ItemMenuSearch> _menuSearchBoard;
+
+        #endregion
 
         private ObservableCollection<itemWorkspace> _workspaces;
 
@@ -47,6 +59,46 @@ namespace AVG_TASK_APP.ViewModels
                 OnPropertyChanged(nameof(Workspaces));
             }
         }
+        #region Search Init
+        public ObservableCollection<ItemMenuSearch> MenuSearchBoard
+        {
+            get
+            {
+                if (_menuSearchBoard == null)
+                {
+                    _menuSearchBoard = new ObservableCollection<ItemMenuSearch>();
+                }
+                return _menuSearchBoard;
+            }
+            set
+            {
+                _menuSearchBoard = value;
+                OnPropertyChanged(nameof(MenuSearchBoard));
+            }
+        }
+
+        public bool IsOpenSearch
+        {
+            get { return _isOpenSearch; }
+            set
+            {
+                _isOpenSearch = value;
+                OnPropertyChanged(nameof(IsOpenSearch));
+            }
+        }
+
+        public string ValueSearch
+        {
+            get { return _txtSearch; }
+            set
+            {
+                _txtSearch = value;
+                OnPropertyChanged(nameof(ValueSearch));
+                UpdateSearch();
+            }
+        }
+
+        #endregion
 
         public ICommand PageLayoutLoaded { get; }
         public ICommand CreateWorkSpaceCommand { get; }
@@ -55,13 +107,60 @@ namespace AVG_TASK_APP.ViewModels
         public PageLayoutViewModel()
         {
             userRepository = new UserRepository();
+            tableRepository = new TableRepository();
             workspaceReposity = new WorkspaceRepository();
             currentUserAccount = new UserAccount();
             PageLayoutLoaded = new ViewModelCommand(ExcuteLoadedCommand);
             CreateWorkSpaceCommand = new ViewModelCommand(ExcuteCreateWorkspaceCommand);
             ShowInformationUserCommand = new ViewModelCommand(ExcuteCreateWorkspaceCommand);
+
             LoadCurrentUserData();
         }
+
+        private void UpdateSearch()
+        {
+            ObservableCollection<ItemMenuSearch> menuTmp = new ObservableCollection<ItemMenuSearch>();
+
+            IsOpenSearch = true;
+            if (MenuSearchBoard != null)
+                MenuSearchBoard.Clear();
+
+            string search = ValueSearch.Trim();
+
+            List<Table> tables = (search.Length == 0) ? (List<Table>)tableRepository.GetAllForUser() : (List<Table>)tableRepository.GetByContainName(search);
+
+            if (tables == null)
+                return;
+
+            foreach (Table table in tables)
+            {
+                int role = tableRepository.GetRole(table.Id);
+                ItemMenuSearch itemMenuSearch = new ItemMenuSearch(table.Id.ToString(), table.Name, role);
+                itemMenuSearch.PreviewMouseDown += ItemMenuSearch_PreviewMouseDown;
+                menuTmp.Add(itemMenuSearch);
+            }
+
+            MenuSearchBoard = menuTmp;
+        }
+
+        private void ItemMenuSearch_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ItemMenuSearch item = sender as ItemMenuSearch;
+            int idTable = int.Parse(item.Value);
+            ManageTaskLayout manage = new ManageTaskLayout(idTable);
+            manage.Show();
+
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window is PageLayout)
+                {
+                    window.Close();
+                }
+            }
+        }
+
+        #region Create Workspace
 
         private void ExcuteCreateWorkspaceCommand(object obj)
         {
@@ -132,7 +231,7 @@ namespace AVG_TASK_APP.ViewModels
                 {
                     UserAccountImage = "/AVG_TASK_APP;component/Resources/Images/OIP.jpg";
                 }
-                else if (currentUserAccount.Level == 1)
+                else
                 {
                     UserAccountImage = "/AVG_TASK_APP;component/Resources/Images/ADMIN.png";
                 }
@@ -156,5 +255,6 @@ namespace AVG_TASK_APP.ViewModels
                 return;
             }
         }
+        #endregion
     }
 }

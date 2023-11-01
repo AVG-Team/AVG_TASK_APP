@@ -32,15 +32,27 @@ namespace AVG_TASK_APP.CustomControls
 
         private void BoardView_Loaded(object sender, RoutedEventArgs e)
         {
-            int idWorkspace = viewModel.getIdWorkspaceRecently();
-            YourWorkspaceUserControl yourWorkspace = new YourWorkspaceUserControl(idWorkspace);
-            workspaceInfo.Children.Add(yourWorkspace);
+            loadTablesRecently();
+            loadWorkspacesRecently();
+        }
 
-            List<Table> tables = viewModel.GetTables(idWorkspace);
+        private void loadWorkspacesRecently()
+        {
+            List<Workspace> workspaceList = viewModel.GetWorkspacesRecently();
+            foreach (Workspace workspace in workspaceList)
+            {
+                YourWorkspaceUserControl yourWorkspace = new YourWorkspaceUserControl(workspace.Id);
+                workspaces.Children.Add(yourWorkspace);
+            }
+        }
+
+        private void loadTablesRecently()
+        {
+            List<Table> tables = viewModel.GetTablesRecently();
             foreach (Table table in tables)
             {
                 btnBoard btnBoard = new btnBoard(table.Id, table.Name);
-                workspaceStackPanel.Children.Add(btnBoard);
+                tableListRecently.Children.Add(btnBoard);
             }
         }
     }

@@ -32,6 +32,8 @@ namespace AVG_TASK_APP.Views
         private int _count = 1;
         private bool isUserNotifyVisible = false;
 
+        private PageLayoutViewModel viewModel;
+
         public PageLayout()
         {
             InitializeComponent();
@@ -79,6 +81,8 @@ namespace AVG_TASK_APP.Views
                 txtSearch.Text = "Search...";
             }
             txtSearch.Width = 150;
+
+            areaMenuSearch.IsOpen = false;
         }
 
         private void Avatar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -176,6 +180,20 @@ namespace AVG_TASK_APP.Views
                 areaUserNotify.Children.Add(notifiesUserControl);
                 areaUserNotify.Visibility = Visibility.Visible;
                 isUserNotifyVisible = true;
+            }
+            }
+
+        private void txtSearch_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtSearch.Text.Length == 0)
+            {
+                areaMenuSearch.IsOpen = false;
+                return;
+            }
+
+            if (e.Key == Key.Back || e.Key == Key.Delete)
+            {
+                areaMenuSearch.IsOpen = false;
             }
         }
     }

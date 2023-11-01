@@ -32,6 +32,7 @@
                 <Image Source="/AVG_TASK_APP;component/Resources/Icons/logo-avg-task.png"
                        Margin="0,-5,0,0"
                        Height="80" StretchDirection="Both"
+                       MouseLeftButtonDown="Image_MouseLeftButtonDown"
                        Cursor="Hand"/>
             </StackPanel>
 
@@ -251,7 +252,8 @@
                         </Button>
 
                         <Border CornerRadius="10" BorderThickness="1" BorderBrush="{StaticResource color3}" Height="40" Width="170" Margin="16,0,0,0">
-                            <TextBox x:Name="txtUsername"
+                            <TextBox Text="{Binding ValueSearch, UpdateSourceTrigger=PropertyChanged}" 
+                                    x:Name="txtSearch"
                                      FontFamily="Montserrat"
                                      FontSize="13"
                                      FontWeight="Medium"
@@ -265,16 +267,32 @@
                                      Height="40"
                                      Margin="0,0,10,0"
                                      Padding="20,0,0,0"
-                                     FlowDirection="LeftToRight">
+                                     FlowDirection="LeftToRight" LostFocus="txtSearch_LostFocus" PreviewKeyUp="txtSearch_PreviewKeyUp" GotFocus="txtSearch_GotFocus">
                                 <TextBox.Background>
                                     <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Icons/icons8-search-16.png"
                                                 Stretch="None"
                                                 AlignmentX="Left"/>
                                 </TextBox.Background>
-
                             </TextBox>
                         </Border>
-
+                        <Popup x:Name="areaMenuSearch" AllowsTransparency="true"
+                               IsOpen="{Binding IsOpenSearch, UpdateSourceTrigger=PropertyChanged}"
+                               PlacementTarget="{Binding ElementName=txtSearch}" >
+                            <StackPanel Width="300" Height="200" Orientation="Horizontal" Margin="0,5,0,0">
+                                <Border CornerRadius="10" 
+                                                  Width="300" Height="200"
+                                                  BorderThickness="0.5"
+                                                  BorderBrush="{StaticResource color8}" 
+                                                  Background="{StaticResource color6}">
+                                    <StackPanel Orientation="Vertical">
+                                        <ListBox x:Name="_listSearch" Height="200" FlowDirection="LeftToRight"
+                                                          Margin="0,5,0,0" ItemsSource="{Binding MenuSearchBoard, UpdateSourceTrigger=PropertyChanged}"
+                                                          Background="Transparent" BorderThickness="0">
+                                        </ListBox>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Popup>
                     </StackPanel>
                 </Grid>
 
@@ -316,7 +334,7 @@
                             </Border>
 
                             <TextBlock x:Name="nameWorkspace"
-                                       Text="Name Workspace"
+                                       Text="{Binding NameWorkspace}"
                                        Foreground="{StaticResource color6}"
                                        FontSize="22"
                                        FontWeight="SemiBold"
