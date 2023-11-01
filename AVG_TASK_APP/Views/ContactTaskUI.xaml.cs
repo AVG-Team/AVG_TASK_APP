@@ -6,7 +6,10 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AVG_TASK_APP.Views
 {
@@ -27,7 +30,9 @@ namespace AVG_TASK_APP.Views
 
             idTaskCurrent = idTask;
             manageTaskUserControl = userControl;
-
+            txtDescription.IsEnabled = false;
+            btnSaveDescription.Visibility = Visibility.Collapsed;
+            btnCancel.Visibility = Visibility.Collapsed;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -37,7 +42,7 @@ namespace AVG_TASK_APP.Views
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void TextBox_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
@@ -45,14 +50,11 @@ namespace AVG_TASK_APP.Views
 
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void RichTextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            btnSaveDescription.Visibility = Visibility.Visible;
+            btnCancel.Visibility = Visibility.Visible;
+            txtDescription.IsEnabled = true;
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
@@ -68,6 +70,40 @@ namespace AVG_TASK_APP.Views
         private void Window_Closed(object sender, EventArgs e)
         {
             manageTaskUserControl.Reload();
+        }
+
+        private void btnSaveDescription_Click(object sender, RoutedEventArgs e)
+        {
+            Models.Task updateTask = taskRepository.GetById(idTaskCurrent);
+
+            string textDescription = new TextRange(txtDescription.Document.ContentStart, txtDescription.Document.ContentEnd).Text;
+         
+             updateTask.Description = textDescription;
+            
+            taskRepository.Update(updateTask);
+
+            txtDescription.IsEnabled = false;
+            btnSaveDescription.Visibility = Visibility.Collapsed;
+            btnCancel.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            btnSaveDescription.Visibility = Visibility.Visible;
+            btnCancel.Visibility = Visibility.Visible;
+            txtDescription.IsEnabled = true;
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            btnSaveDescription.Visibility = Visibility.Collapsed;
+            btnCancel.Visibility = Visibility.Collapsed;
+            txtDescription.IsEnabled = false;
+        }
+
+        private void txtDescription_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            
         }
     }
 }
