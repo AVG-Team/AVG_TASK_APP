@@ -52,9 +52,11 @@ namespace AVG_TASK_APP.CustomControls
             btnCreateTask_Click?.Invoke(this, EventArgs.Empty);
         }
 
-        private void menuCard_Click(object sender, RoutedEventArgs e)
+        private void MenuCard_Click(object sender, RoutedEventArgs e)
         {
-            btnMenuCard_Click?.Invoke(this, EventArgs.Empty);
+
+
+
         }
     }
 }

@@ -68,7 +68,7 @@ namespace AVG_TASK_APP.CustomControls
         {
             PageLayout pageLayout = (PageLayout)Window.GetWindow(this);
             pageLayout.areaUserControl.Children.Clear();
-            BoardUserControl boardView = new BoardUserControl();
+            BoardUserControl boardView = new BoardUserControl(int.Parse(idWorkspace.Text));
             pageLayout.areaUserControl.Children.Add(boardView);
         }
 

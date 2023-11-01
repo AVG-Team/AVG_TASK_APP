@@ -168,8 +168,8 @@ namespace AVG_TASK_APP.ViewModels
         private void ItemMenuSearch_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             ItemMenuSearch item = (ItemMenuSearch)sender;
-            string emailTmp = item.Email;
-            ValueEmail += item.Email + ";";
+            string emailTmp = item.Value;
+            ValueEmail += item.Value + ";";
             EmailUsers = ValueEmail;
             IsOpen = false;
         }

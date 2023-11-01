@@ -18,6 +18,7 @@ namespace AVG_TASK_APP.Repositories.Interface
         IEnumerable<Table> GetAll(string sort = "desc");
         IEnumerable<Table> GetAllForWorkspace(int idWorkspace, string sort = "desc");
         IEnumerable<Table> GetAllForUser(string sort = "desc");
+        IEnumerable<Table> GetByContainName(string name, string sort = "desc");
     }
 }
 

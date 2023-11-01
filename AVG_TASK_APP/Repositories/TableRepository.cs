@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace AVG_TASK_APP.Repositories
 {
@@ -28,16 +29,17 @@ namespace AVG_TASK_APP.Repositories
         }
         public void Add(Table table)
         {
-            dbContext.Tables.Add(table);
-            dbContext.SaveChanges();
+            AppDbContext dbContextTemp = dbContext;
+            dbContextTemp.Tables.Add(table);
+            dbContextTemp.SaveChanges();
         }
 
         public IEnumerable<Table> GetAll(string sort = "desc")
         {
             if (sort.Equals("desc"))
-                return dbContext.Tables.OrderByDescending(s => s.Created_At).ToList();
+                return dbContext.Tables.Where(s => s.Deleted_At == null).OrderByDescending(s => s.Created_At).ToList();
             else
-                return dbContext.Tables.OrderBy(s => s.Created_At).ToList();
+                return dbContext.Tables.Where(s => s.Deleted_At == null).OrderBy(s => s.Created_At).ToList();
         }
         public IEnumerable<Table> GetAllForUser(string sort = "desc")
         {
@@ -63,20 +65,20 @@ namespace AVG_TASK_APP.Repositories
         public IEnumerable<Table> GetAllForWorkspace(int idWorkspace, string sort = "desc")
         {
             if (sort.Equals("desc"))
-                return dbContext.Tables.Where(s => s.Id_Workspace == idWorkspace).OrderByDescending(s => s.Created_At).ToList();
+                return dbContext.Tables.Where(s => s.Id_Workspace == idWorkspace && s.Deleted_At == null).OrderByDescending(s => s.Created_At).ToList();
             else
-                return dbContext.Tables.Where(s => s.Id_Workspace == idWorkspace).OrderBy(s => s.Created_At).ToList();
+                return dbContext.Tables.Where(s => s.Id_Workspace == idWorkspace && s.Deleted_At == null).OrderBy(s => s.Created_At).ToList();
         }
 
         public Table GetById(int idTable)
         {
-            return dbContext.Tables.Where(s => s.Id == idTable).FirstOrDefault();
+            return dbContext.Tables.Where(s => s.Id == idTable && s.Deleted_At == null).FirstOrDefault();
         }
 
         public Workspace GetWorkspace(int idTable)
         {
             int idWorkspace = dbContext.Tables.FirstOrDefault(s => s.Id == idTable).Id_Workspace;
-            return dbContext.Workspaces.FirstOrDefault(s => s.Id == idWorkspace);
+            return dbContext.Workspaces.FirstOrDefault(s => s.Id == idWorkspace && s.Deleted_At == null);
         }
 
         public int GetRole(int idTable)
@@ -97,6 +99,14 @@ namespace AVG_TASK_APP.Repositories
         {
             dbContext.Tables.Update(table);
             dbContext.SaveChanges();
+        }
+
+        public IEnumerable<Table> GetByContainName(string name, string sort = "desc")
+        {
+            List<Table> tables = null;
+            tables = dbContext.Tables.Where(s => s.Name.Contains(name) && s.Deleted_At == null).ToList();
+
+            return tables;
         }
     }
 }

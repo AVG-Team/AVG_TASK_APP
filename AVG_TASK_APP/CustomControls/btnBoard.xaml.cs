@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Query;
+﻿using AVG_TASK_APP.Views;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,14 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class btnBoard : UserControl
     {
+        public event EventHandler btnBoard_Click;
+
         public btnBoard(int id, string name)
         {
             InitializeComponent();
 
             idBtnBoard.Text = id.ToString();
+            string nameSort = name.Length > 10 ? name.Substring(0, 7) + "..." : name;
             content.Text = name;
         }
 
@@ -77,6 +81,25 @@ namespace AVG_TASK_APP.CustomControls
         private void ButtonBoard_Loaded(object sender, RoutedEventArgs e)
         {
             btnStar.Visibility = Visibility.Collapsed;
+        }
+
+        private void buttonBoard_Click(object sender, EventArgs e)
+        {
+
+
+            int idTable = int.Parse(idBtnBoard.Text);
+
+            ManageTaskLayout manage = new ManageTaskLayout(idTable);
+            manage.Show();
+
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window is PageLayout)
+                {
+                    window.Close();
+                }
+            }
         }
     }
 }

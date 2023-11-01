@@ -11,7 +11,9 @@ namespace AVG_TASK_APP.ViewModels
 {
     public class YourWorkspaceViewModel : ViewModelBase
     {
-        private IWorkspaceRepository workspaceReposity;
+        private IWorkspaceRepository workspaceRepository;
+        private ITableRepository tableRepository;
+
         private string _idWorkspace;
 
         public string IdWorkspace
@@ -22,17 +24,24 @@ namespace AVG_TASK_APP.ViewModels
 
         public YourWorkspaceViewModel()
         {
-            workspaceReposity = new WorkspaceRepository();
+            workspaceRepository = new WorkspaceRepository();
+            tableRepository = new TableRepository();
         }
 
         public string getName()
         {
-            return workspaceReposity.GetById(int.Parse(IdWorkspace)).Name;
+            string name = workspaceRepository.GetById(int.Parse(IdWorkspace)).Name;
+            return name.Length > 14 ? name.Substring(0, 10) + "..." : name;
         }
 
         public int countMember()
         {
-            return workspaceReposity.GetUsersForWorkspace(int.Parse(IdWorkspace)).Count();
+            return workspaceRepository.GetUsersForWorkspace(int.Parse(IdWorkspace)).Count();
+        }
+
+        public List<Table> GetTables()
+        {
+            return (List<Table>)tableRepository.GetAllForWorkspace(int.Parse(IdWorkspace));
         }
     }
 }
