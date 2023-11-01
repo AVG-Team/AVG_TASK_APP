@@ -32,6 +32,7 @@
                 <Image Source="/AVG_TASK_APP;component/Resources/Icons/logo-avg-task.png"
                        Margin="0,-5,0,0"
                        Height="80" StretchDirection="Both"
+                       MouseLeftButtonDown="Image_MouseLeftButtonDown"
                        Cursor="Hand"/>
             </StackPanel>
 
@@ -313,7 +314,7 @@
                             </Border>
 
                             <TextBlock x:Name="nameWorkspace"
-                                       Text="Name Workspace"
+                                       Text="{Binding NameWorkspace}"
                                        Foreground="{StaticResource color6}"
                                        FontSize="22"
                                        FontWeight="SemiBold"

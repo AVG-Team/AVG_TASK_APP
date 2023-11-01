@@ -1,5 +1,7 @@
 ﻿using AVG_TASK_APP.Models;
+using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.ViewModels;
+using AVG_TASK_APP.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +23,13 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class YourWorkspaceUserControl : UserControl
     {
+        private TableRepository tableRepository;
         public YourWorkspaceUserControl(int idWorkspace)
         {
             YourWorkspaceViewModel viewModel = new YourWorkspaceViewModel();
             DataContext = viewModel;
+
+            tableRepository = new TableRepository();
 
             InitializeComponent();
 
@@ -36,8 +41,14 @@ namespace AVG_TASK_APP.CustomControls
             foreach (Table table in tables)
             {
                 btnBoard btnBoard = new btnBoard(table.Id, table.Name);
+                btnBoard.btnBoard_Click += BtnBoard_btnBoard_Click;
                 workspaceStackPanel.Children.Add(btnBoard);
             }
+        }
+
+        private void BtnBoard_btnBoard_Click(object? sender, EventArgs e)
+        {
+
         }
     }
 }
