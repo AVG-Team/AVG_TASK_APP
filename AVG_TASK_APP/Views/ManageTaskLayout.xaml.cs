@@ -60,6 +60,9 @@ namespace AVG_TASK_APP.Views
 
             loadItemTable();
 
+            ManageTaskUserControl manageTaskUserControl = new ManageTaskUserControl(idTableCurrent);
+            this.areaManageTask.Children.Add(manageTaskUserControl);
+
         }
 
         private void loadItemTable()
@@ -120,7 +123,7 @@ namespace AVG_TASK_APP.Views
 
         private void btnItemSetting_Click(object sender, RoutedEventArgs e)
         {
-        
+
         }
 
         private void btnMenuItemAddMember_Click(object sender, RoutedEventArgs e)

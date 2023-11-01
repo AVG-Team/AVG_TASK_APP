@@ -217,7 +217,7 @@
                                     <Ellipse Width="40"
                                      Height="40">
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
+                                            <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Images/ADMIN.png"/>
                                         </Ellipse.Fill>
                                     </Ellipse>
                                     <Button.ContextMenu>
