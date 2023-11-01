@@ -41,7 +41,7 @@ namespace AVG_TASK_APP.CustomControls
             foreach (Table table in tables)
             {
                 btnBoard btnBoard = new btnBoard(table.Id, table.Name);
-               
+
                 workspaceStackPanel.Children.Add(btnBoard);
             }
         }
