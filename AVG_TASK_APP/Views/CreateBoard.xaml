@@ -156,7 +156,7 @@
                            Foreground="{StaticResource textColor2}"
                            Margin="0,25,0,5"/>
                         <StackPanel Orientation="Horizontal">
-                            <RadioButton GroupName="public" IsChecked="{Binding IsCheckedPublic, UpdateSourceTrigger=PropertyChanged}"
+                            <RadioButton  GroupName="public" IsChecked="{Binding IsCheckedPublic, UpdateSourceTrigger=PropertyChanged}"
                                             Margin="10" x:Name="radioVisibility">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Public" Foreground="LightGray"/>
@@ -175,13 +175,20 @@
                            FontWeight="Medium"
                            Foreground="{StaticResource textColor2}"
                            Margin="0,25,0,5"/>
-                        <ComboBox x:Name="txtWorkspace"         
-                                 FontSize="12"
-                                 Height="25"
-                                 VerticalContentAlignment="Center"
-                                 Foreground="{StaticResource textColor3}"
-                                 Background="{StaticResource color6}">
-                        </ComboBox>
+                        <Border Background="#ececec" CornerRadius="4" BorderThickness="2" BorderBrush="#ececec">
+                            <ComboBox x:Name="cbWorkspace"         
+                             FontSize="12"
+                             Height="25"
+                             VerticalContentAlignment="Center"
+                             Foreground="{StaticResource textColor3}"
+                             Background="{StaticResource color6}"
+                             Margin="10,0,10,0"
+                             BorderThickness="0"
+                             ItemsSource="{Binding NameWorkspace}"       
+                             >
+                            </ComboBox>
+                        </Border>
+                        
 
                         <Button x:Name="btnCreate"
                                 Content="Create"
