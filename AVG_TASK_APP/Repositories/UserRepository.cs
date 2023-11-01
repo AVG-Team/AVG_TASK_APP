@@ -1,5 +1,6 @@
 ﻿using AVG_TASK_APP.Migration;
 using AVG_TASK_APP.Models;
+using AVG_TASK_APP.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,23 +16,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace AVG_TASK_APP.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
+        private AppDbContext dbContext
+        {
+            get
+            {
+                var connection = GetConnection();
+                var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
+                var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+                optionsBuilder.UseMySql(connection, serverVersion);
+
+                return new AppDbContext(optionsBuilder.Options);
+            }
+        }
+
         public void Add(UserModel userModel)
         {
-            var connection = GetConnection();
-            var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
-            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseMySql(connection, serverVersion);
+            AppDbContext dbContextTmp = dbContext;
 
-            var dbContext = new AppDbContext(optionsBuilder.Options);
-
-            dbContext.Users.Add(userModel);
-            dbContext.SaveChanges();
+            dbContextTmp.Users.Add(userModel);
+            dbContextTmp.SaveChanges();
         }
 
         public bool AuthenticateUser(NetworkCredential credential)
@@ -54,39 +64,40 @@ namespace AVG_TASK_APP.Repositories
 
         public IEnumerable<UserModel> GetAll()
         {
-            throw new NotImplementedException();
+            return dbContext.Users.ToList();
         }
 
         public UserModel GetByEmail(string email)
         {
             if (email == null)
                 return null;
-            UserModel user = null;
 
-            var connection = GetConnection();
-            var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
-            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseMySql(connection, serverVersion);
-
-            var dbContext = new AppDbContext(optionsBuilder.Options);
-
-            user = dbContext.Users.FirstOrDefault(x => x.Email == email);
-            return user;
+            return dbContext.Users.FirstOrDefault(x => x.Email == email);
         }
 
         public UserModel GetById(int id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+                return null;
+
+            return dbContext.Users.FirstOrDefault(x => x.Id == id);
         }
 
         public void Remove(int id)
         {
-            throw new NotImplementedException();
+            AppDbContext dbContextTmp = dbContext;
+
+            UserModel userModel = GetById(id);
+            dbContextTmp.Users.Remove(userModel);
+            dbContextTmp.SaveChanges();
         }
 
         public void Update(UserModel userModel)
         {
-            throw new NotImplementedException();
+            AppDbContext dbContextTmp = dbContext;
+
+            dbContextTmp.Users.Update(userModel);
+            dbContextTmp.SaveChanges();
         }
 
         public void check()
@@ -127,13 +138,6 @@ namespace AVG_TASK_APP.Repositories
 
         public bool verifyAccount(string username, SecureString password)
         {
-            var connection = GetConnection();
-            var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
-            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseMySql(connection, serverVersion);
-
-            var dbContext = new AppDbContext(optionsBuilder.Options);
-
             if (dbContext.Users.FirstOrDefault(x => x.Email == username) == null)
             {
                 return false;
@@ -150,25 +154,28 @@ namespace AVG_TASK_APP.Repositories
 
         public bool verifyAccount(string username, String password)
         {
-            var connection = GetConnection();
-            var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
-            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseMySql(connection, serverVersion);
-
-            var dbContext = new AppDbContext(optionsBuilder.Options);
-
-            if (dbContext.Users.FirstOrDefault(x => x.Email == username) == null)
+            UserModel user = dbContext.Users.FirstOrDefault(x => x.Email == username);
+            if (user == null)
             {
                 return false;
             }
 
-            byte[] salt = dbContext.Users.FirstOrDefault(x => x.Email == username).Salt;
+            byte[] salt = user.Salt;
 
-            if (!password.Equals(dbContext.Users.FirstOrDefault(x => x.Email == username).Password))
+            if (!password.Equals(user.Password))
             {
                 return false;
             }
             return true;
+        }
+
+        public IEnumerable<UserModel> GetByContainEmail(string email)
+        {
+            List<UserModel> users = null;
+
+            users = dbContext.Users.Where(s => s.Email.Contains(email)).ToList();
+
+            return users;
         }
     }
 }

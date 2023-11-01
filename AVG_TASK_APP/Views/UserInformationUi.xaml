@@ -13,6 +13,12 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True">
+    <Window.DataContext>
+        <viewmodels:UserInformationViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </Window.Resources>
     <Grid>
         <Border CornerRadius="30">
             <Border CornerRadius="30"
@@ -45,11 +51,10 @@
                                 <StackPanel Orientation="Vertical" Grid.Row="1">
                                     <Ellipse Width="200" Height="200" Margin="10,0,10,0">
                                         <Ellipse.Fill>
-                                            <ImageBrush x:Name="AvatarImage" ImageSource="\AVG_TASK_APP;component\Resources\Images\OIP.jpg"/>
+                                            <ImageBrush x:Name="AvatarImage" ImageSource="{Binding UserAvatar}"/>
                                         </Ellipse.Fill>
                                     </Ellipse>
-                                    <Button x:Name="btnChangeAvatar"
-                                            Command="{Binding LoginCommand}"
+                                    <Button Visibility="Collapsed" x:Name="btnChangeAvatar"
                                             BorderThickness="0"
                                             Content="Change avatar"
                                             Foreground="{StaticResource textButtonColor}"
@@ -178,14 +183,14 @@
                         <Grid Grid.Row="1" >
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,60,0,0">
-                                    <TextBlock Text="Username"
+                                    <TextBlock Text="Full Name"
                                        Foreground="{StaticResource textColor1}"
                                        FontSize="18"
                                        FontWeight="Medium"
                                        FontFamily="Montserrat"
                                        Margin="0,6,10,0"/>
                                     <TextBox x:Name="txtUsername"
-                                             Text="{Binding Username , UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
                                              FontFamily="Montserrat"
                                              FontSize="13"
                                              Width="300"
@@ -207,35 +212,6 @@
                                     </TextBox>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0">
-                                    <TextBlock Text="Password"
-                                               Foreground="{StaticResource textColor1}"
-                                               FontSize="18"
-                                               FontWeight="Medium"
-                                               FontFamily="Montserrat"
-                                               Margin="0,6,10,0"/>
-                                    <TextBox x:Name="txtPassword"
-                                             Text="{Binding Username , UpdateSourceTrigger=PropertyChanged}"
-                                             FontFamily="Montserrat"
-                                             FontSize="13"
-                                             Width="300"
-                                             FontWeight="Medium"
-                                             Foreground="{StaticResource textColor1}"
-                                             CaretBrush="{StaticResource color5}"
-                                             BorderBrush="{StaticResource color3}"
-                                             BorderThickness="0,0,0,1"
-                                             Height="28"
-                                             VerticalContentAlignment="Center"
-                                             Margin="15,3,0,0"
-                                             Padding="20,0,0,0">
-                                        <TextBox.Background>
-                                            <ImageBrush ImageSource="/Resources/Icons/key-icon.png"
-                                                        Stretch="None"
-                                                        AlignmentX="Left"/>
-                                        </TextBox.Background>
-
-                                    </TextBox>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0">
                                     <TextBlock Text="Email"
                                                Foreground="{StaticResource textColor1}"
                                                FontSize="18"
@@ -243,7 +219,7 @@
                                                FontFamily="Montserrat"
                                                Margin="0,6,10,0"/>
                                     <TextBox x:Name="txtEmail"
-                                             Text="{Binding Username , UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding Email , UpdateSourceTrigger=PropertyChanged}"
                                              FontFamily="Montserrat"
                                              FontSize="13"
                                              Width="300"
@@ -251,8 +227,8 @@
                                              Foreground="{StaticResource textColor1}"
                                              CaretBrush="{StaticResource color5}"
                                              BorderBrush="{StaticResource color3}"
-                                             BorderThickness="0,0,0,1"
-                                             Height="28"
+                                             BorderThickness="0,0,0,1" IsEnabled="False"
+                                             Height="28" IsReadOnly="True"
                                              VerticalContentAlignment="Center"
                                              Margin="50,3,0,0"
                                              Padding="20,0,0,0">
@@ -273,7 +249,7 @@
                                                FontFamily="Montserrat"
                                                Margin="0,6,10,0"/>
                                     <TextBox x:Name="txtPhone"
-                                             Text="{Binding Username , UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding Phone , UpdateSourceTrigger=PropertyChanged}"
                                              FontFamily="Montserrat"
                                              FontSize="13"
                                              Width="300"
@@ -294,9 +270,44 @@
 
                                     </TextBox>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,100,0,0">
+                                <Separator Opacity="0.3" Margin="30,35,30,35" Height="0.8" Background="{StaticResource color7}"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <TextBlock Text="Password"
+                                               Foreground="{StaticResource textColor1}"
+                                               FontSize="18"
+                                               FontWeight="Medium"
+                                               FontFamily="Montserrat"
+                                               Margin="0,0,15,0"/>
+                                    <customcontrols:BindablePasswordBox
+                                                Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                Height="28" Width="300"
+                                                Margin="10,0,0,0">
+                                    </customcontrols:BindablePasswordBox>
+
+                                </StackPanel>
+                                <StackPanel Margin="0,35,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                    <Grid Width="600">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="395"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Repeat Password"
+                                                   HorizontalAlignment="Right"
+                                                   Foreground="{StaticResource textColor1}"
+                                                   FontSize="18" Grid.Column="0"
+                                                   FontWeight="Medium"
+                                                   FontFamily="Montserrat"
+                                                   Margin="0,0,15,0"/>
+                                        <customcontrols:BindablePasswordBox
+                                            HorizontalAlignment="Left"
+                                                    Password="{Binding RepeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Height="28" Width="300" Grid.Column="1"
+                                                    >
+                                        </customcontrols:BindablePasswordBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0">
                                     <Button x:Name="btnCancel"
-                                            Command="{Binding LoginCommand}"
                                             BorderThickness="0"
                                             Content="Cancel"
                                             Foreground="{StaticResource textButtonColor}"
@@ -306,8 +317,7 @@
                                             Cursor="Hand"
                                             Grid.Column="2"
                                             Margin="20,30,0,0"
-                                            Click="btnCancel_Click"
-                                            >
+                                            Click="btnCancel_Click" >
 
                                         <Button.Style>
                                             <Style TargetType="Button">
@@ -333,7 +343,7 @@
                                     </Button>
 
                                     <Button x:Name="btnSave"
-                                    Command="{Binding LoginCommand}"
+                                    Command="{Binding SaveCommand}"
                                     BorderThickness="0"
                                     Content="Save"
                                     Foreground="{StaticResource textButtonColor}"

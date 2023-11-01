@@ -40,6 +40,41 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="menuButtonSearch" TargetType="RadioButton">
+        <!--Normal button style-->
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Margin" Value="-5,0,0,5"/>
+        <Setter Property="Background" Value="{StaticResource textColor2}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border Background="{TemplateBinding Background}"
+                        BorderThickness="4,0,0,0"
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!--Button Style on hover-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Margin" Value="0,0,0,5"/>
+                <Setter Property="Background" Value="{StaticResource color5}"/>
+                <Setter Property="Foreground" Value="{StaticResource titleColor}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource color1}"/>
+            </Trigger>
+            <!--Activated button style-->
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Margin" Value="0,0,0,5"/>
+                <Setter Property="Background" Value="{StaticResource color2}"/>
+                <Setter Property="Foreground" Value="{StaticResource color1}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource color1}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="menuButton1" TargetType="RadioButton">
         <!--Normal button style-->
         <Setter Property="Height" Value="50"/>
@@ -145,6 +180,7 @@
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
+
 
 
     <!-- Control bar button -->

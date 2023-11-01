@@ -1,6 +1,10 @@
-﻿using AVG_TASK_APP.Models;
+﻿using AVG_TASK_APP.CustomControls;
+using AVG_TASK_APP.DataAccess;
+using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.Repositories.Interface;
 using AVG_TASK_APP.Views;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
 using MySqlConnector;
 using System;
@@ -24,6 +28,15 @@ namespace AVG_TASK_APP
     public partial class App : Application
     {
         private IUserRepository userRepository;
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // Other services...
+
+            services.AddScoped<NotifyRepository>();
+
+            // Add your DbContext configuration here.
+        }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -64,8 +77,6 @@ namespace AVG_TASK_APP
             UserModel user = userRepository.GetByEmail(username);
             var identity = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name, user.Name),
-                new Claim("Email", user.Email),
                 new Claim("Id", user.Id.ToString()),
                 new Claim("Level", user.Level.ToString()),
             }, "ApplicationCookie");
@@ -74,8 +85,9 @@ namespace AVG_TASK_APP
             Thread.CurrentPrincipal = principal;
             AppDomain.CurrentDomain.SetThreadPrincipal(principal);
 
-            PageLayout layout = new PageLayout();
-            layout.Show();
+
+            PageLayout page = new PageLayout();
+            page.Show();
         }
     }
 }

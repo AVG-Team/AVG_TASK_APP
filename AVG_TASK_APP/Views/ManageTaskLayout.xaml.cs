@@ -1,6 +1,9 @@
 ﻿using AVG_TASK_APP.CustomControls;
+using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.ViewModels;
 using FontAwesome.WPF;
 using Microsoft.Win32;
+using Org.BouncyCastle.Utilities.IO.Pem;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +21,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace AVG_TASK_APP.Views
 {
@@ -26,27 +30,60 @@ namespace AVG_TASK_APP.Views
     /// </summary>
     public partial class ManageTaskLayout : Window
     {
+        private TableRepository tableRepository = new TableRepository();
+        private WorkspaceRepository workspaceRepository = new WorkspaceRepository();
+        private ManageTaskUserControlViewModel manageTaskUserControlViewModel = new ManageTaskUserControlViewModel();
+        private ManageTaskLayoutViewModel viewModel;
+        private int idTableCurrent;
+        private int idWorkspaceCurrent;
 
+        private bool isUserNotifyVisible = false;
 
-        public ManageTaskLayout()
+        public ManageTaskLayout(int idTable)
         {
             InitializeComponent();
+            viewModel = new ManageTaskLayoutViewModel();
+            idTableCurrent = idTable;
 
+            DataContext = viewModel;
 
-            ManageTaskUserControl manageTaskUserControl = new ManageTaskUserControl();
-            areaManageTask.Children.Add(manageTaskUserControl);
+            DataContext = viewModel;
+            idTableCurrent = idTable;
+            idWorkspaceCurrent = tableRepository.GetWorkspace(idTable).Id;
+            viewModel.getNameWorkspace(idTable);
 
+            var nameWorkspaceBinding = new Binding("NameWorkspace");
+            this.nameWorkspace.SetBinding(TextBlock.TextProperty, nameWorkspaceBinding);
 
+            loadItemTable();
+
+        }
+
+        private void loadItemTable()
+        {
+            listBoards.Children.Clear();
+            List<Models.Table> tables = (List<Models.Table>)tableRepository.GetAllForWorkspace(idWorkspaceCurrent);
+            foreach (Models.Table item in tables)
+            {
+                RadioButtonBoard radioButtonBoard = new RadioButtonBoard(item.Id);
+                listBoards.Children.Add(radioButtonBoard);
+                radioButtonBoard.itemTable_Click += ItemTable_Click;
+            }
+        }
+
+        private void ItemTable_Click(object? sender, EventArgs e)
+        {
+            RadioButtonBoard radioButtonBoard = sender as RadioButtonBoard;
+            this.areaManageTask.Children.Clear();
+            int idTable = int.Parse(radioButtonBoard.idTable.Text);
+            ManageTaskUserControl manageTaskUserControl = new ManageTaskUserControl(idTable);
+            this.areaManageTask.Children.Add(manageTaskUserControl);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
-        }
-
-        private void pnlControlBar_MouseEnter(object sender, MouseEventArgs e)
-        {
-
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -57,11 +94,6 @@ namespace AVG_TASK_APP.Views
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
-        }
-
-        private void pnlControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
 
         private void btnMenuHeader_Click(object sender, RoutedEventArgs e)
@@ -80,44 +112,9 @@ namespace AVG_TASK_APP.Views
 
         }
 
-        private void btnAddMember_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnCreateWorkspace_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnMenu_Click(object sender, RoutedEventArgs e)
-        {
-            StackPanel stackPanel = itemMenuWorkspace;
-            if (stackPanel.Visibility == Visibility.Collapsed)
-            {
-                stackPanel.Visibility = Visibility.Visible;
-                iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretDown;
-            }
-            else
-            {
-                stackPanel.Visibility = Visibility.Collapsed;
-                iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretUp;
-            }
-        }
-
-        private void btnItemMember_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnItemBoard_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btnItemSetting_Click(object sender, RoutedEventArgs e)
         {
-
+        
         }
 
         private void btnMenuItemAddMember_Click(object sender, RoutedEventArgs e)
@@ -143,8 +140,6 @@ namespace AVG_TASK_APP.Views
 
         private void BoardRadioButton_Click(object sender, RoutedEventArgs e)
         {
-            itemWorkspace itemWorkspace = new itemWorkspace();
-            areaManageTask.Children.Add(itemWorkspace);
         }
 
         private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
@@ -155,9 +150,9 @@ namespace AVG_TASK_APP.Views
 
         private void MoveControlButton_Click(object sender, RoutedEventArgs e)
         {
-            gridLeft.Width = new GridLength(15);
-            areaManageTaskSet.HorizontalAlignment = HorizontalAlignment.Center;
-            areaManageTask.Width = 1520;
+            /*gridLeft.Width = new GridLength(15);*/
+            /*areaManageTaskSet.HorizontalAlignment = HorizontalAlignment.Center;*/
+            /*areaManageTask.Width = 1520;*/
         }
 
         private void btnUserMenu_Click(object sender, RoutedEventArgs e)
@@ -184,8 +179,8 @@ namespace AVG_TASK_APP.Views
 
         private void boderLeft_MouseMove(object sender, MouseEventArgs e)
         {
-            gridLeft.Width = new GridLength(320);
-            areaManageTask.Width = 1220;
+            /*  gridLeft.Width = new GridLength(320);*/
+            /* areaManageTask.Width = 1220;*/
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -210,11 +205,128 @@ namespace AVG_TASK_APP.Views
 
             foreach (Window window in Application.Current.Windows)
             {
-                if (! (window is LoginView))
+                if (!(window is LoginView))
                 {
                     window.Close();
                 }
             }
+        }
+
+        private void btnItemMember_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCreateTable_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddMember_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void starList_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void UpdateStarListMenu(object sender, EventArgs e)
+        {
+            /* // Clear existing items
+             starList.Items.Clear();
+
+             foreach (ManageTaskUserControl i in manageTaskUserControls)
+             {
+                 if (i.iconStart.Foreground == Brushes.Orange)
+                 {
+                     MenuItem item = new MenuItem();
+                     item.Header = i.NameTable.Text;
+                     item.Template = FindResource("Item_Template") as ControlTemplate;
+                     bool itemExists = false;
+
+                     // Check if an item with the same Header already exists
+                     foreach (MenuItem existingItem in starList.Items)
+                     {
+                         if (existingItem.Header != null && existingItem.Header.ToString() == item.Header.ToString())
+                         {
+                             itemExists = true;
+                             break;
+                         }
+                     }
+
+                     if (!itemExists)
+                     {
+                         starList.Items.Add(item);
+                     }
+                 }
+             }*/
+        }
+
+        private void Notifies_Click(object sender, RoutedEventArgs e)
+        {
+            if (isUserNotifyVisible)
+            {
+                // If it's currently visible, collapse it
+                areaManageNotify.Children.Clear();
+                areaManageNotify.Visibility = Visibility.Collapsed;
+                isUserNotifyVisible = false;
+            }
+            else
+            {
+                // If it's not visible, create and show it
+                NotifiesUserControl notifiesUserControl = new NotifiesUserControl();
+                areaManageNotify.Width = 500;
+                areaManageNotify.Height = 450;
+                areaManageNotify.HorizontalAlignment = HorizontalAlignment.Left;
+                areaManageNotify.VerticalAlignment = VerticalAlignment.Top;
+                areaManageNotify.Children.Add(notifiesUserControl);
+                areaManageNotify.Visibility = Visibility.Visible;
+                isUserNotifyVisible = true;
+            }
+        }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                PageLayout pageLayout = new PageLayout();
+                pageLayout.Show();
+
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window is ManageTaskLayout)
+                    {
+                        window.Close();
+                    }
+                }
+            }
+
+
+        }
+
+        private void txtSearch_LostFocus(object sender, RoutedEventArgs e)
+        {
+            areaMenuSearch.IsOpen = false;
+        }
+
+        private void txtSearch_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtSearch.Text.Length == 0)
+            {
+                areaMenuSearch.IsOpen = false;
+                return;
+            }
+
+            if (e.Key == Key.Back || e.Key == Key.Delete)
+            {
+                areaMenuSearch.IsOpen = false;
+            }
+        }
+
+        private void txtSearch_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtSearch.Text = "";
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using Microsoft.VisualBasic.Devices;
+﻿using AVG_TASK_APP.Models;
+using Microsoft.VisualBasic.Devices;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,7 +9,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AVG_TASK_APP.Models
+namespace AVG_TASK_APP.Repositories.Interface
 {
     interface IUserRepository
     {
@@ -19,9 +21,10 @@ namespace AVG_TASK_APP.Models
         byte[] GenerateSalt();
         UserModel GetById(int id);
         UserModel GetByEmail(string email);
+        IEnumerable<UserModel> GetByContainEmail(string email);
         IEnumerable<UserModel> GetAll();
-        bool verifyAccount(string username , SecureString password);
-        bool verifyAccount(string username , String password);
+        bool verifyAccount(string username, SecureString password);
+        bool verifyAccount(string username, string password);
 
     }
 }

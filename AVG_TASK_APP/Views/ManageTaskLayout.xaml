@@ -32,6 +32,7 @@
                 <Image Source="/AVG_TASK_APP;component/Resources/Icons/logo-avg-task.png"
                        Margin="0,-5,0,0"
                        Height="80" StretchDirection="Both"
+                       MouseLeftButtonDown="Image_MouseLeftButtonDown"
                        Cursor="Hand"/>
             </StackPanel>
 
@@ -47,10 +48,7 @@
                             Margin="0,0,15,0"
                             Grid.Row="0"
                             FlowDirection="RightToLeft"
-                            Background="Transparent"
-                            MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
-                            MouseEnter="pnlControlBar_MouseEnter">
-
+                            Background="Transparent">
                     <Button x:Name="btnClose"
                             BorderThickness="0"
                             Content="X"
@@ -116,7 +114,7 @@
                 <!-- Control Bar End -->
 
                 <!-- Menu sidebar Begin-->
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" MouseDown="starList_Click">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="400"/>
@@ -194,34 +192,8 @@
 
 
                             <!--// Main Menu - Recent//-->
-                            <MenuItem Header="Stared"
+                            <MenuItem x:Name="starList" Header="Stared"
                                       Template="{StaticResource Menu_SubMenu_Template}" >
-                                <!--// Music Submenu - All Songs //-->
-                                <MenuItem Header="All Songs"
-                                          Template="{StaticResource Item_Template}">
-                                    <TextBlock Text="Current Workspace"
-                                               FontFamily="Montserrat"
-                                               FontSize="12"
-                                               FontWeight="Light"/>
-                                </MenuItem>
-
-                                <!--// Music Submenu - Albums //-->
-
-                                <MenuItem Header="Albums"
-                                          Template="{StaticResource Item_Template}">
-                                </MenuItem>
-
-                                <!--// Music Submenu - Artists //-->
-
-                                <MenuItem Header="Artists"
-                                          Template="{StaticResource Item_Template}">
-                                </MenuItem>
-
-                                <!--// Music Submenu - Playlists //-->
-
-                                <MenuItem Header="Playlists"
-                                          Template="{StaticResource Item_Template}">
-                                </MenuItem>
 
                             </MenuItem>
 
@@ -257,8 +229,9 @@
                                 </Ellipse.Fill>
                             </Ellipse>
                             <Button.ContextMenu>
-                                <ContextMenu x:Name="context" Placement="Bottom" Background="Transparent" >
-                                    <MenuItem Header="Logout" Click="MenuItem_Click" />
+                                <ContextMenu x:Name="context" Placement="Bottom" Style="{StaticResource Context-Menu}">
+                                    <MenuItem Header="Logout" Click="MenuItem_Click"
+                                              Template="{StaticResource Item_Template_ContextMenu}"/>
                                 </ContextMenu>
                             </Button.ContextMenu>
                         </Button>
@@ -269,15 +242,18 @@
                             <fa:IconImage Icon="QuestionCircle" Height="20" Width="20"/>
                         </Button>
 
-                        <Button Background="Transparent"
+                        <Button x:Name="Notifies"
+                                Background="Transparent"
                                 Width="30" Height="30"
                                 BorderThickness="0"
-                                Style="{StaticResource menuButtonHeader}">
+                                Style="{StaticResource menuButtonHeader}"
+                                Click="Notifies_Click">
                             <fa:IconImage Icon="Bell" Height="20" Width="20"/>
                         </Button>
 
                         <Border CornerRadius="10" BorderThickness="1" BorderBrush="{StaticResource color3}" Height="40" Width="170" Margin="16,0,0,0">
-                            <TextBox x:Name="txtUsername"
+                            <TextBox Text="{Binding ValueSearch, UpdateSourceTrigger=PropertyChanged}" 
+                                    x:Name="txtSearch"
                                      FontFamily="Montserrat"
                                      FontSize="13"
                                      FontWeight="Medium"
@@ -291,16 +267,32 @@
                                      Height="40"
                                      Margin="0,0,10,0"
                                      Padding="20,0,0,0"
-                                     FlowDirection="LeftToRight">
+                                     FlowDirection="LeftToRight" LostFocus="txtSearch_LostFocus" PreviewKeyUp="txtSearch_PreviewKeyUp" GotFocus="txtSearch_GotFocus">
                                 <TextBox.Background>
                                     <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Icons/icons8-search-16.png"
                                                 Stretch="None"
                                                 AlignmentX="Left"/>
                                 </TextBox.Background>
-
                             </TextBox>
                         </Border>
-
+                        <Popup x:Name="areaMenuSearch" AllowsTransparency="true"
+                               IsOpen="{Binding IsOpenSearch, UpdateSourceTrigger=PropertyChanged}"
+                               PlacementTarget="{Binding ElementName=txtSearch}" >
+                            <StackPanel Width="300" Height="200" Orientation="Horizontal" Margin="0,5,0,0">
+                                <Border CornerRadius="10" 
+                                                  Width="300" Height="200"
+                                                  BorderThickness="0.5"
+                                                  BorderBrush="{StaticResource color8}" 
+                                                  Background="{StaticResource color6}">
+                                    <StackPanel Orientation="Vertical">
+                                        <ListBox x:Name="_listSearch" Height="200" FlowDirection="LeftToRight"
+                                                          Margin="0,5,0,0" ItemsSource="{Binding MenuSearchBoard, UpdateSourceTrigger=PropertyChanged}"
+                                                          Background="Transparent" BorderThickness="0">
+                                        </ListBox>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Popup>
                     </StackPanel>
                 </Grid>
 
@@ -309,7 +301,7 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="gridLeft" Width="320"/>
+                <ColumnDefinition  Width="320"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -341,14 +333,15 @@
                                 </Ellipse>
                             </Border>
 
-                            <TextBlock Text="Name Workspace"
+                            <TextBlock x:Name="nameWorkspace"
+                                       Text="{Binding NameWorkspace}"
                                        Foreground="{StaticResource color6}"
                                        FontSize="22"
                                        FontWeight="SemiBold"
                                        FontFamily="Montserrat"
                                        TextAlignment="Center"
                                        Margin=" 15 40 10 20"/>
-                            <Button x:Name="MoveControlButton" Background="Transparent" Click="MoveControlButton_Click"
+                            <!--<Button x:Name="MoveControlButton" Background="Transparent" Click="MoveControlButton_Click"
                                     Width="30"
                                     Height="30"
                                     BorderThickness="0">
@@ -368,7 +361,7 @@
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
-                            </Button>
+                            </Button>-->
 
                         </StackPanel>
                     </Grid>
@@ -410,7 +403,7 @@
                                 </StackPanel>
                             </RadioButton>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Your Workspace" 
+                                <TextBlock Text="Your Tables" 
                                            Foreground="{StaticResource textColor2}" 
                                            FontSize="16"
                                            FontWeight="Medium"
@@ -419,7 +412,7 @@
                                            Width="160" 
                                            Margin="30,0,0,0"
                                            HorizontalAlignment="Left"/>
-                                <Button x:Name="btnCreateWorkspace"
+                                <Button x:Name="btnCreateTable"
                                         Style="{StaticResource menuButton2}"
                                         Content="+"
                                         VerticalAlignment="Center"
@@ -428,78 +421,49 @@
                                         FontFamily="Montserrat"
                                         Cursor="Hand"
                                         Margin="70,0,0,0"
-                                        Click="btnCreateWorkspace_Click"></Button>
+                                        Click="btnCreateTable_Click"></Button>
                             </StackPanel>
 
-                            <RadioButton x:Name="btnMenu"
-                                         Style="{StaticResource workspaceMenuButton}"
-                                         Tag="{StaticResource color6}"
-                                         Click="btnMenu_Click">
-                                <StackPanel Orientation="Horizontal">
-                                    <fa:IconImage Icon="Book" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Name Workspace" Style="{StaticResource menuButtonText}"/>
-                                    <fa:IconImage Name="iconMenu"  Icon="CaretDown" Margin="90,0,0,0" Style="{StaticResource menuButtonIcon}"/>
-                                </StackPanel>
-                            </RadioButton>
+
 
 
                             <!--// Services //-->
+                            <ScrollViewer Margin="10,10,0,0" Style="{StaticResource FavsScrollViewer}"
+                                       Height="600"
+                                       FlowDirection="LeftToRight"
+                                       ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                                       ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                        Grid.Row="1">
+                                <StackPanel  x:Name="listBoards" 
+                                Orientation="Vertical">
+                                    <ItemsControl>
 
-                            <StackPanel x:Name="itemMenuWorkspace"
-                                        Orientation="Vertical"
-                                        Margin="20,0,0,0">
-                                <RadioButton x:Name="btnItemBoard"
-                                             Style="{StaticResource workspaceMenuButton}"
-                                             Tag="{StaticResource color6}"
-                                              IsChecked="False"
-                                             Click="btnItemBoard_Click">
-                                    <StackPanel Orientation="Horizontal"
-                                                VerticalAlignment="Center">
-                                        <fa:IconImage Icon="Table" Style="{StaticResource menuButtonIcon}"/>
-                                        <TextBlock Text="Board" Style="{StaticResource menuButtonText}"/>
-                                    </StackPanel>
-                                </RadioButton>
-                                <RadioButton x:Name="rdbtnItemMember"
-                                             Style="{StaticResource workspaceMenuButton}"
-                                             Tag="{StaticResource color6}"
-                                              IsChecked="False"
-                                             Click="BoardRadioButton_Click">
-                                    <StackPanel Orientation="Horizontal"
-                                                VerticalAlignment="Center">
-                                        <fa:IconImage Icon="Users" Style="{StaticResource menuButtonIcon}"/>
-                                        <TextBlock Text="Member" Style="{StaticResource menuButtonText}"/>
-                                        <Button x:Name="btnMenuItemAddMember"
-                                                Style="{StaticResource menuButton2}"
-                                                Content="+"
-                                                VerticalAlignment="Center"
-                                                Foreground="{StaticResource textButtonColor}"
-                                                FontSize="20"
-                                                FontFamily="Montserrat"
-                                                Cursor="Hand"
-                                                Margin="110,0,0,0"
-                                                Click="btnMenuItemAddMember_Click"></Button>
-                                    </StackPanel>
-                                </RadioButton>
-                                <RadioButton x:Name="btnItemSetting"
-                                            Style="{StaticResource workspaceMenuButton}"
-                                            Tag="{StaticResource color6}"
-                                            IsChecked="False"
-                                            Click="btnItemSetting_Click">
-                                    <StackPanel Orientation="Horizontal"
-                                                VerticalAlignment="Center">
-                                        <fa:IconImage Icon="Gear" Style="{StaticResource menuButtonIcon}"/>
-                                        <TextBlock Text="Setting" Style="{StaticResource menuButtonText}"/>
-                                    </StackPanel>
-                                </RadioButton>
-                            </StackPanel>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </ScrollViewer>
                         </StackPanel>
                     </Grid>
                 </Grid>
             </Border>
             <!-- Menu Button End-->
-            <Grid Grid.Column="1" x:Name="areaManageTaskSet" HorizontalAlignment="Center">
-                <Grid Width="1200" x:Name="areaManageTask" HorizontalAlignment="Right"></Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0"/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="areaManageTask" Grid.Column="0">
+
+                </Grid>
+                <StackPanel Grid.Column="0" HorizontalAlignment="Right">
+                    <Grid Margin="0,0,20,0" x:Name="areaManageNotify">
+
+                    </Grid>
+                </StackPanel>
+
+
+
             </Grid>
+
         </Grid>
     </Grid>
 </Window>

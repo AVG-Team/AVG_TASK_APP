@@ -14,6 +14,21 @@ namespace AVG_TASK_APP.Migration
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {
+
+        }
+        public class NotifyService
+        {
+            private readonly AppDbContext _context;
+
+            public NotifyService(AppDbContext context)
+            {
+                _context = context;
+            }
+
+            public int GetNotifyDataCount()
+            {
+                return _context.Notifies.Count();
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,7 +46,7 @@ namespace AVG_TASK_APP.Migration
             modelBuilder.ApplyConfiguration(new CommentConfiguration());
         }
 
-        public DbSet <UserModel>Users { get; set; }
+        public DbSet<UserModel> Users { get; set; }
         public DbSet<Notify> Notifies { get; set; }
         public DbSet<Workspace> Workspaces { get; set; }
         public DbSet<UserWorkspace> UserWorkspaces { get; set; }
@@ -40,5 +55,7 @@ namespace AVG_TASK_APP.Migration
         public DbSet<Card> Cards { get; set; }
         public DbSet<MiniTask> MiniTasks { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Models.Task> Tasks { get; set; }
     }
+
 }

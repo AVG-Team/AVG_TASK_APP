@@ -14,6 +14,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AVG_TASK_APP.Models;
+using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.ViewModels;
+using Microsoft.Win32;
+using System.Reflection;
+using System.Security.Claims;
+using System.Threading;
 
 namespace AVG_TASK_APP.Views
 {
@@ -23,38 +30,31 @@ namespace AVG_TASK_APP.Views
     public partial class PageLayout : Window
     {
         private int _count = 1;
+        private bool isUserNotifyVisible = false;
+
+        private PageLayoutViewModel viewModel;
 
         public PageLayout()
         {
             InitializeComponent();
         }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            itemWorkspace itemWorkspace = new itemWorkspace();
-            menuWorkspace.Children.Add(itemWorkspace.userControl);
 
             BoardView boardView = new BoardView();
             areaUserControl.Children.Add(boardView);
         }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (!txtUsername.IsMouseOver)
+            if (!txtSearch.IsMouseOver)
             {
-                txtUsername.Width = 150;  // Thu hẹp TextBox
-                btnMinimize.Focus();    // Loại bỏ focus từ TextBox
+                txtSearch.Width = 150;
+                btnMinimize.Focus();
             }
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
-        }
-
-        private void pnlControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void pnlControlBar_MouseEnter(object sender, MouseEventArgs e)
-        {
-
         }
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
@@ -67,107 +67,136 @@ namespace AVG_TASK_APP.Views
             Application.Current.Shutdown();
         }
 
-        private void btnCreateWorkspace_Click(object sender, RoutedEventArgs e)
+        private void txtSearch_GotFocus(object sender, RoutedEventArgs e)
         {
+            txtSearch.Text = "";
+            txtSearch.Width = 300;
 
-            CreateWorkspaceView createWorkspaceView = new CreateWorkspaceView();
-            createWorkspaceView.ShowDialog();
-            if (createWorkspaceView.Visibility == Visibility.Visible)
+        }
+
+        private void txtSearch_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtSearch.Text))
             {
-
-                itemWorkspace itemWorkspace = new itemWorkspace();
-                menuWorkspace.Children.Add(itemWorkspace.userControl);
-
+                txtSearch.Text = "Search...";
             }
+            txtSearch.Width = 150;
 
-
+            areaMenuSearch.IsOpen = false;
         }
 
-        private void btnMenu_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnItemBoard_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnItemMember_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnItemSetting_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RadioButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Border_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
-        private void btnContinue_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnGenerateCode_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void txtUsername_GotFocus(object sender, RoutedEventArgs e)
-        {
-            txtUsername.Text = ""; // Xóa nội dung mặc định khi bấm vào
-            txtUsername.Width = 300; // Kích thước mới khi TextBox nhận focus
-
-        }
-
-        private void txtUsername_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtUsername.Text))
-            {
-                txtUsername.Text = "Search..."; // Đặt lại nội dung mặc định nếu không có gì được nhập
-            }
-            txtUsername.Width = 150;  // Thu hẹp TextBox khi nó mất focus
-
-
-        }
-
-        private void Window_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void txtUsername_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Avatar_MouseDown(object sender, MouseButtonEventArgs e)
         {
             UserInformationUi userInformationUi = new UserInformationUi();
             userInformationUi.ShowDialog();
+            if (userInformationUi.Visibility == Visibility.Visible)
+            {
+                PageLayout pageLayout = new PageLayout();
+                pageLayout.Show();
+                this.Close();
+            }
         }
 
         private void HomeRadioButton_Click(object sender, RoutedEventArgs e)
         {
+            areaUserControl.Children.Clear();
             HomeView homeView = new HomeView();
             areaUserControl.Children.Add(homeView);
 
         }
 
-        private void WorkspaceRadioButton_Click(object sender, RoutedEventArgs e)
+        private void BoardRadioButton_Click(object sender, RoutedEventArgs e)
         {
-            BoardUserControl boardUserControl = new BoardUserControl();
-            areaUserControl.Children.Add(boardUserControl);
+            areaUserControl.Children.Clear();
+            BoardView boardView = new BoardView();
+            areaUserControl.Children.Add(boardView);
+        }
+
+        private void btnUserMenu_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+
+            // Get the button and check for nulls
+
+            if (button == null || button.ContextMenu == null)
+                return;
+            // Set the placement target of the ContextMenu to the button
+            button.ContextMenu.PlacementTarget = button;
+            button.ContextMenu.FlowDirection = FlowDirection.LeftToRight;
+            // Open the ContextMenu
+            button.ContextMenu.IsOpen = true;
+        }
+
+        private void itemMenuLogout(object sender, RoutedEventArgs e)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var registryKey = Registry.CurrentUser.OpenSubKey("Software\\" + assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title + "\\Login", true);
+
+            registryKey.SetValue("Username", String.Empty);
+            registryKey.SetValue("Password", String.Empty);
+
+            var currentPrincipal = Thread.CurrentPrincipal as ClaimsPrincipal;
+            if (currentPrincipal != null)
+            {
+                foreach (var identity in currentPrincipal.Identities)
+                {
+                    identity.Claims.ToList().ForEach(c => identity.RemoveClaim(c));
+                }
+            }
+
+            LoginView login = new LoginView();
+            login.Show();
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (!(window is LoginView))
+                {
+                    window.Close();
+                }
+            }
+        }
+
+        private void IconImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (isUserNotifyVisible)
+            {
+                // If it's currently visible, collapse it
+                areaUserNotify.Children.Clear();
+                areaUserNotify.Visibility = Visibility.Collapsed;
+                isUserNotifyVisible = false;
+            }
+            else
+            {
+                // If it's not visible, create and show it
+                NotifiesUserControl notifiesUserControl = new NotifiesUserControl();
+                areaUserNotify.Width = 500;
+                areaUserNotify.Height = 650;
+                areaUserNotify.HorizontalAlignment = HorizontalAlignment.Center;
+                areaUserNotify.VerticalAlignment = VerticalAlignment.Top;
+                areaUserNotify.Children.Add(notifiesUserControl);
+                areaUserNotify.Visibility = Visibility.Visible;
+                isUserNotifyVisible = true;
+            }
+        }
+
+        private void txtSearch_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtSearch.Text.Length == 0)
+            {
+                areaMenuSearch.IsOpen = false;
+                return;
+            }
+
+            if (e.Key == Key.Back || e.Key == Key.Delete)
+            {
+                areaMenuSearch.IsOpen = false;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.Repositories.Interface;
 using AVG_TASK_APP.Views;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace AVG_TASK_APP.ViewModels
         private string _code;
         private bool _isViewVisible = true;
 
-        private IWorkspaceReposity workspaceReposity;
+        private IWorkspaceRepository workspaceReposity;
 
         public string WorkspaceName
         {
@@ -53,7 +54,7 @@ namespace AVG_TASK_APP.ViewModels
             OnPropertyChanged(nameof(WorkspaceName));
         }
 
-        public bool IsCheckedPublic 
+        public bool IsCheckedPublic
         {
             get => _isCheckedPublic;
             set
@@ -103,15 +104,20 @@ namespace AVG_TASK_APP.ViewModels
 
         public WorkspaceViewModel()
         {
-            workspaceReposity = new WorkspaceReposity();
+            workspaceReposity = new WorkspaceRepository();
             ContinueCommand = new ViewModelCommand(ExcuteCreateWorkspaceCommand, CanExcuteCreateWorkspaceCommand);
+        }
+
+        private bool checkCodeExist(string code)
+        {
+            return workspaceReposity.GetByCode(code) == null ? false : true;
         }
 
         private bool CanExcuteCreateWorkspaceCommand(object obj)
         {
             bool validData = false;
             if (string.IsNullOrWhiteSpace(WorkspaceName) || WorkspaceName.Length < 3
-                || string.IsNullOrWhiteSpace(Code) || Code.Length < 3)
+                || string.IsNullOrWhiteSpace(Code) || Code.Length < 3 || checkCodeExist(Code))
             {
                 validData = false;
             }
@@ -122,10 +128,8 @@ namespace AVG_TASK_APP.ViewModels
 
         private void ExcuteCreateWorkspaceCommand(object obj)
         {
-            string email = Thread.CurrentPrincipal.Identity.Name;
-            //TODO: check user curent
-            //try
-            //{
+            try
+            {
                 Workspace workspace = new Workspace()
                 {
                     Name = WorkspaceName,
@@ -135,13 +139,14 @@ namespace AVG_TASK_APP.ViewModels
                 };
 
                 workspaceReposity.Add(workspace);
-                MessageBox.Show("Add Workspace Successfully");
+                MessageBoxView msb = new MessageBoxView();
+                msb.Show("Add Workspace Successfully");
 
                 foreach (Window window in Application.Current.Windows)
                 {
                     if (window is CreateWorkspaceView)
                     {
-                        AddMemberToWorkspace addMemberToWorkspace = new AddMemberToWorkspace();
+                        AddMemberToWorkspace addMemberToWorkspace = new AddMemberToWorkspace(workspace.Id);
                         window.Content = addMemberToWorkspace;
                         window.Width = addMemberToWorkspace.Width;
                         window.Height = addMemberToWorkspace.Height;
@@ -149,11 +154,11 @@ namespace AVG_TASK_APP.ViewModels
                         break;
                     }
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error Unknow, Please try again");
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Unknow, Please try again");
+            }
         }
     }
 }

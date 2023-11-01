@@ -13,8 +13,9 @@
         Background="Transparent"
         AllowsTransparency="True"
         Title="ContactUIWithTask" Height="800
-        " Width="900">
-    <Border CornerRadius="20" BorderThickness="0" Background="{StaticResource color5}">
+        " Width="900"
+        Closed="Window_Closed">
+    <Border  CornerRadius="20" BorderThickness="0" Background="{StaticResource color5}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
@@ -268,11 +269,13 @@
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                   
-                                <RichTextBox Width='500' Height="200" FontSize="14" FontWeight="Medium" FontFamily="Montserrat" MouseDoubleClick="RichTextBox_MouseDoubleClick">
+
+                                <RichTextBox Width='500' Height="200" FontSize="14" FontWeight="Medium" FontFamily="Montserrat" MouseDoubleClick="RichTextBox_MouseDoubleClick" Padding="10">
                                     <RichTextBox.Template>
-                                        <ControlTemplate>
-                                            <Border Background="{StaticResource color6}" CornerRadius="10" BorderThickness="0"/>
+                                        <ControlTemplate >
+                                            <Border Background="{StaticResource color6}" CornerRadius="10" BorderThickness="0">
+                                                <ScrollViewer x:Name="PART_ContentHost"/>
+                                            </Border>
                                         </ControlTemplate>
                                     </RichTextBox.Template>
                                 </RichTextBox>
@@ -390,8 +393,10 @@
                                 </Ellipse>
                                 <RichTextBox  Width="620" Tag="">
                                     <RichTextBox.Template>
-                                        <ControlTemplate>
-                                            <Border CornerRadius="10" BorderThickness="0" Background="{StaticResource color6}"/>
+                                        <ControlTemplate >
+                                            <Border Background="{StaticResource color6}" CornerRadius="10" BorderThickness="0">
+                                                <ScrollViewer x:Name="PART_ContentHost"/>
+                                            </Border>
                                         </ControlTemplate>
                                     </RichTextBox.Template>
                                 </RichTextBox>
@@ -700,8 +705,10 @@ Background="{TemplateBinding Background}">
                             FontWeight="Medium"
                             FontFamily="Montserrat"
                             Cursor="Hand"
+                            Click="btnRemove_Click"
+                            
                             Foreground="{StaticResource textColor2}"
-                            Margin="1,0,0,0" Click="btnAddUser_Click" Width="180" Height="50">
+                            Margin="1,0,0,0" Width="180" Height="50">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="180">
                                 <fa:IconImage Icon="X" Width="14" Foreground="{StaticResource textColor2}" Margin="20,0,10,0"></fa:IconImage>
                                 <TextBlock Text="Remove" FontSize="14"></TextBlock>
@@ -734,5 +741,5 @@ Background="{TemplateBinding Background}">
             <!---Body-->
         </Grid>
     </Border>
-    
+
 </Window>

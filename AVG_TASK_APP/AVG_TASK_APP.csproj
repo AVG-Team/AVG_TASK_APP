@@ -20,6 +20,7 @@
     <None Remove="Resources\Icons\R.png" />
     <None Remove="Resources\Icons\magnifying-glass.png" />
     <None Remove="Resources\Icons\user-icon.png" />
+    <None Remove="Resources\Images\ADMIN.png" />
     <None Remove="Resources\Images\background_Ws.jpg" />
     <None Remove="Resources\Images\backgroundworkspace.png" />
     <None Remove="Resources\Images\createwp.png" />
@@ -32,6 +33,7 @@
     <PackageReference Include="C1.WPF.Core" Version="6.0.20232.624" />
     <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.11">
       <PrivateAssets>all</PrivateAssets>
@@ -43,6 +45,7 @@
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />
     <PackageReference Include="MySqlConnector" Version="2.2.7" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+    <PackageReference Include="PresentationFramework" Version="4.6.0" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
@@ -59,6 +62,7 @@
     <Resource Include="Resources\Icons\phone-icon.png" />
     <Resource Include="Resources\Icons\magnifying-glass.png" />
     <Resource Include="Resources\Icons\user-icon.png" />
+    <Resource Include="Resources\Images\ADMIN.png" />
     <Resource Include="Resources\Images\background_Ws.jpg" />
     <Resource Include="Resources\Images\backgroundworkspace.png" />
     <Resource Include="Resources\Images\createwp.png" />

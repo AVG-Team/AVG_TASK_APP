@@ -5,11 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:AVG_TASK_APP.CustomControls"
-             xmlns:customcontrol="clr-namespace:AVG_TASK_APP.CustomControls"
-             
+             xmlns:customcontrol="clr-namespace:AVG_TASK_APP.CustomControls"    
              mc:Ignorable="d"
-             
-             d:DesignHeight="948" d:DesignWidth="2000">
+             d:DesignHeight="948" d:DesignWidth="1616"
+             Loaded="UserControl_Loaded">
     <Grid Margin="0,20,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -29,17 +28,18 @@
                             Margin="25,0,0,0"
                             Grid.Row="0"
                             VerticalAlignment="Center">
-                    <TextBlock Text="Name Board"
+                    <TextBlock x:Name="NameTable"
+                               Text="{Binding NameTable}"
                                FontSize="25"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                Foreground="{StaticResource textColor3}"
                                VerticalAlignment="Center"
                                Margin="0,0,15,0"/>
-                    <Button Background="Transparent"
+                    <Button x:Name="ButtonStar"  Background="Transparent"
                             Width="40" Height="40"
-                            BorderThickness="0">
-                        <fa:IconImage Icon="Star" Height="25" Width="25"/>
+                            BorderThickness="0" Click="ButtonStar_Click">
+                        <fa:IconImage Foreground="Orange" x:Name="iconStart" Icon="Star" Height="25" Width="25"/>
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Style.Triggers>
@@ -64,7 +64,8 @@
                             Width="30" Height="30"
                             BorderThickness="0"
                             >
-                        <fa:IconImage x:Name="MenuButton" Icon="Bars" Height="25" Width="25" MouseDown="MenuButton_MouseDown"/>
+                        <fa:IconImage x:Name="MenuButton" Icon="Bars" Height="25" Width="25"
+                                      MouseDown="MenuButton_MouseDown"/>
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Style.Triggers>
@@ -106,14 +107,20 @@
             </Grid>
         </Border>
 
-
-        <StackPanel x:Name="areaCard"
+        <ScrollViewer Margin="10,10,0,0" Style="{StaticResource FavsScrollViewer}"
+                      Height="780"
+                      FlowDirection="LeftToRight"
+                      ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+          Grid.Row="1">
+            <StackPanel x:Name="areaCard"
                     Grid.Row="1" 
                     Orientation="Horizontal"
                     VerticalAlignment="Top"
                     Margin="25 40 25 0">
-            
-        </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
         <StackPanel Grid.Row="1" HorizontalAlignment="Right">
             <customcontrol:MenuBoard_UserControl Visibility="Collapsed" x:Name="menuBoardControl"  Width="350" Height="650" />
         </StackPanel>

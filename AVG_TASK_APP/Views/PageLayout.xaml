@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
         xmlns:viewModels ="clr-namespace:AVG_TASK_APP.ViewModels"
         xmlns:customcontrols="clr-namespace:AVG_TASK_APP.CustomControls"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="HomeView"  
         Width="{x:Static SystemParameters.MaximizedPrimaryScreenWidth}" 
@@ -17,12 +18,17 @@
         Background="{StaticResource backColor}"
         AllowsTransparency="True"
         MouseDown="Window_MouseDown"
-        PreviewMouseDown="Window_PreviewMouseDown"
         Loaded="Window_Loaded">
     <Window.DataContext>
         <viewModels:PageLayoutViewModel/>
     </Window.DataContext>
-
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction
+             CommandParameter="{Binding}"
+             Command="{Binding PageLayoutLoaded}"/>
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
     <DockPanel>
         <Border >
             <Border Background="Transparent">
@@ -51,9 +57,7 @@
                                         Orientation="Horizontal"
                                         Margin="0,0,15,0"
                                         FlowDirection="RightToLeft"
-                                        Background="Transparent"
-                                        MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
-                                        MouseEnter="pnlControlBar_MouseEnter">
+                                        Background="Transparent">
 
                                 <Button x:Name="btnClose"
                                         BorderThickness="0"
@@ -125,12 +129,12 @@
                                     HorizontalAlignment="Center">
                             <StackPanel HorizontalAlignment="Center"
                                          VerticalAlignment="Center">
-                                <TextBox x:Name="txtUsername"
-                                         Text="Search"
+                                <TextBox x:Name="txtSearch"
+                                         Text="{Binding ValueSearch, UpdateSourceTrigger=PropertyChanged}"
                                          FontFamily="Montserrat"
                                          FontSize="13"
                                          FontWeight="Medium"
-                                         Foreground="{StaticResource textColor1}"
+                                         Foreground="{StaticResource color3}"
                                          CaretBrush="{StaticResource color5}"
                                          BorderBrush="{StaticResource color3}"
                                          BorderThickness="0,0,0,1"
@@ -139,15 +143,32 @@
                                          VerticalContentAlignment="Center"
                                          Margin="0,20,30,0"
                                          Padding="20,0,0,0"
-                                         MouseDown="txtUsername_MouseDown"
-                                         GotFocus="txtUsername_GotFocus"
-                                         LostFocus="txtUsername_LostFocus">
+                                         GotFocus="txtSearch_GotFocus"
+                                         LostFocus="txtSearch_LostFocus" PreviewKeyUp="txtSearch_PreviewKeyUp">
                                     <TextBox.Background>
                                         <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Icons/icons8-search-16.png"
                                                      Stretch="None"
                                                      AlignmentX="Left"/>
                                     </TextBox.Background>
                                 </TextBox>
+                                <Popup x:Name="areaMenuSearch" AllowsTransparency="True"
+                                               IsOpen="{Binding IsOpenSearch, UpdateSourceTrigger=PropertyChanged}"
+                                               PlacementTarget="{Binding ElementName=txtSearch}" >
+                                    <StackPanel Width="300" Height="200" Background="Transparent" Orientation="Horizontal" Margin="0,5,0,0">
+                                        <Border CornerRadius="10" 
+                                                  Width="300" Height="200"
+                                                  BorderThickness="0.5"
+                                                  BorderBrush="{StaticResource color8}" 
+                                                  Background="{StaticResource color6}">
+                                            <StackPanel Orientation="Vertical">
+                                                <ListBox x:Name="_listSearch" Height="200"
+                                                          Margin="0,5,0,0" ItemsSource="{Binding MenuSearchBoard, UpdateSourceTrigger=PropertyChanged}"
+                                                          Background="Transparent" BorderThickness="0">
+                                                </ListBox>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+                                </Popup>
                             </StackPanel>
                             <StackPanel Grid.Column="1" Orientation="Horizontal"
                                          HorizontalAlignment="Center"
@@ -171,8 +192,8 @@
 
                                 <Button Background="Transparent"
                                          Width="30" Height="30"
-                                         BorderThickness="0">
-                                    <fa:IconImage Icon="Bell" Height="20" Width="20"/>
+                                         BorderThickness="0" Click="Button_Click">
+                                    <fa:IconImage Icon="Bell" Height="20" Width="20" MouseDown="IconImage_MouseDown"/>
                                     <Button.Style>
                                         <Style TargetType="Button">
                                             <Style.Triggers>
@@ -186,6 +207,27 @@
                                     </Button.Style>
                                 </Button>
 
+                                <Button x:Name="btnUserMenu"
+                                Width="40" Height="40" 
+                                Background="Transparent" 
+                                BorderThickness="0" 
+                                Style="{StaticResource menuButtonHeader}"
+                                ContextMenuService.IsEnabled="False"
+                                Click="btnUserMenu_Click">
+                                    <Ellipse Width="40"
+                                     Height="40">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <Button.ContextMenu>
+                                        <ContextMenu x:Name="context" Placement="Bottom" Background="Transparent"
+                                                     Style="{StaticResource Context-Menu}">
+                                            <MenuItem Header="Logout" Click="itemMenuLogout"
+                                                      Template="{StaticResource Item_Template_ContextMenu}"/>
+                                        </ContextMenu>
+                                    </Button.ContextMenu>
+                                </Button>
                             </StackPanel>
                         </StackPanel>
 
@@ -208,6 +250,7 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="90"/>
                                     <RowDefinition Height="*"/>
+                                    <RowDefinition Height="0"/>
                                 </Grid.RowDefinitions>
                                 <!-- user icon -->
                                 <Grid Grid.Row="0">
@@ -218,7 +261,7 @@
                                                 Background="{StaticResource backColor}"
                                                 CornerRadius="100"
                                                 HorizontalAlignment="Left"
-                                                Margin="20 -50 0 30" MouseDown="Border_MouseDown">
+                                                Margin="20 -50 0 30" MouseDown="Avatar_MouseDown">
                                             <Ellipse>
                                                 <Ellipse.Fill>
                                                     <ImageBrush ImageSource="{Binding UserAccountImage}"/>
@@ -241,7 +284,7 @@
                                 <!-- Button -->
                                 <Grid Grid.Row="1">
                                     <StackPanel Orientation="Vertical">
-                                        <RadioButton x:Name="WorkspaceRadioButton" Click="WorkspaceRadioButton_Click" Style="{StaticResource menuButton}"
+                                        <RadioButton x:Name="BoardRadioButton" Click="BoardRadioButton_Click" Style="{StaticResource menuButton}"
                                          Tag="{StaticResource color6}"
                                          IsChecked="True">
                                             <StackPanel Orientation="Horizontal">
@@ -277,11 +320,17 @@
                                                     FontSize="20"
                                                     FontFamily="Montserrat"
                                                     Cursor="Hand"
-                                                    Click="btnCreateWorkspace_Click"></Button>
+                                                    Command="{Binding CreateWorkSpaceCommand}"
+                                                    />
                                         </StackPanel>
-                                        <StackPanel x:Name="menuWorkspace" 
-                                                    Orientation="Vertical">
+                                        <StackPanel x:Name="menuWorkspace" Orientation="Vertical">
+                                            <ScrollViewer Margin="10,0,0,0" Padding="10" Style="{StaticResource FavsScrollViewer}"
+ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible" FlowDirection="RightToLeft"
+          Grid.Row="1" Name="PART_VerticalScrollBar" Height="325">
+                                                <ItemsControl ItemsSource="{Binding Workspaces}" FlowDirection="LeftToRight">
 
+                                                </ItemsControl>
+                                            </ScrollViewer>
                                         </StackPanel>
 
                                     </StackPanel>
@@ -290,7 +339,10 @@
                         </Border>
                         <!-- Menu Button End-->
                         <!-- Content Begin -->
-                        <Grid x:Name="areaUserControl" Grid.Column="1">
+                        <Grid x:Name="areaUserControl" Grid.Column="1"  >
+
+                        </Grid>
+                        <Grid x:Name="areaUserNotify" Grid.Column="2" Margin="0,0,0,0" >
 
                         </Grid>
                     </Grid>

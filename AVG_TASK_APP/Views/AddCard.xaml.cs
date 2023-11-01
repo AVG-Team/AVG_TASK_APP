@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AVG_TASK_APP.CustomControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace AVG_TASK_APP.Views
     /// </summary>
     public partial class AddCard : Window
     {
-        public AddCard()
+        ManageTaskUserControl manageTaskUserControl;
+        public AddCard (int idTableCurrent, ManageTaskUserControl userControl)
         {
             InitializeComponent();
+            manageTaskUserControl = userControl;           
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -36,8 +39,9 @@ namespace AVG_TASK_APP.Views
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            ContactTaskUI contactTaskUI = new ContactTaskUI();
-            contactTaskUI.ShowDialog();
+            string nameNewCard = txtTitle.Text;
+            manageTaskUserControl.CreateCardView_btnCreateCard_Click(nameNewCard);
+            this.Close();
         }
 
     }
