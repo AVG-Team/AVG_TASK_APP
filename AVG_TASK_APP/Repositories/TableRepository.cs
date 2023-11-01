@@ -98,6 +98,11 @@ namespace AVG_TASK_APP.Repositories
             dbContext.Tables.Update(table);
             dbContext.SaveChanges();
         }
+
+        public IEnumerable<Table> GetByContainName(string name, string sort = "desc")
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

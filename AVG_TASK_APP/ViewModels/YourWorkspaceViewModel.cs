@@ -30,7 +30,8 @@ namespace AVG_TASK_APP.ViewModels
 
         public string getName()
         {
-            return workspaceRepository.GetById(int.Parse(IdWorkspace)).Name;
+            string name = workspaceRepository.GetById(int.Parse(IdWorkspace)).Name;
+            return name.Length > 14 ? name.Substring(0, 10) + "..." : name;
         }
 
         public int countMember()

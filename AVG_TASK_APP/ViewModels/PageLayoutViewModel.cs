@@ -27,6 +27,12 @@ namespace AVG_TASK_APP.ViewModels
 
         private string _userAccountName;
         private string _userAccountImage;
+        private string _txtSearch;
+        private bool _isOpenSearch;
+
+        public ObservableCollection<ItemMenuSearch> SelectedItems { get; set; } = new ObservableCollection<ItemMenuSearch>();
+
+        private ObservableCollection<ItemMenuSearch> _menuSearch;
 
         private ObservableCollection<itemWorkspace> _workspaces;
 
@@ -45,6 +51,16 @@ namespace AVG_TASK_APP.ViewModels
             {
                 _workspaces = value;
                 OnPropertyChanged(nameof(Workspaces));
+            }
+        }
+
+        public bool IsOpenSearch
+        {
+            get { return _isOpenSearch; }
+            set
+            {
+                _isOpenSearch = value;
+                OnPropertyChanged(nameof(IsOpenSearch));
             }
         }
 

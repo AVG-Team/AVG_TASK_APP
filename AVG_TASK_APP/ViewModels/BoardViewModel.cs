@@ -12,7 +12,7 @@ namespace AVG_TASK_APP.ViewModels
 {
     public class BoardViewModel : ViewModelBase
     {
-        private IWorkspaceRepository workspaceReposity = new WorkspaceRepository();
+        private IWorkspaceRepository workspaceRepository = new WorkspaceRepository();
         private ITableRepository tableRepository = new TableRepository();
 
 
@@ -22,12 +22,26 @@ namespace AVG_TASK_APP.ViewModels
 
         public List<Workspace> GetWorkspacesRecently()
         {
-            return (List<Workspace>)workspaceReposity.GetAllForUser().Take(2).ToList();
+            List<Workspace> workspaces = (List<Workspace>)workspaceRepository.GetAllForUser();
+            if(workspaces.Count == 0)
+                return null;
+            else if(workspaces.Count > 2) 
+            {
+                return workspaces.Take(2).ToList();
+            }
+            return workspaces.ToList();
         }
 
         public List<Table> GetTablesRecently()
         {
-            return (List<Table>)tableRepository.GetAllForUser().Take(4).ToList();
+            List<Table> tables = (List<Table>)tableRepository.GetAllForUser();
+            if (tables.Count == 0)
+                return null;
+            else if (tables.Count > 4)
+            {
+                return tables.Take(4).ToList();
+            }
+            return tables.ToList();
         }
     }
 }

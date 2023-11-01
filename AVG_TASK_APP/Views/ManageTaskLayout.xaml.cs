@@ -34,20 +34,24 @@ namespace AVG_TASK_APP.Views
         private WorkspaceRepository workspaceRepository = new WorkspaceRepository();
         private ManageTaskUserControlViewModel manageTaskUserControlViewModel = new ManageTaskUserControlViewModel();
 
-        public ManageTaskLayout()
+        private int idWorkspace { get; set; }
+
+        public ManageTaskLayout(int idWorkspace)
         {
             InitializeComponent();
 
+            this.idWorkspace = idWorkspace;
+
             loadItemTable();
 
-            nameWorkspace.Text = workspaceRepository.GetById(116).Name;
+            nameWorkspace.Text = workspaceRepository.GetById(idWorkspace).Name;
 
         }
 
         private void loadItemTable()
         {
             listBoards.Children.Clear();
-            List<Models.Table> tables = (List<Models.Table>)tableRepository.GetAllForWorkspace(116);
+            List<Models.Table> tables = (List<Models.Table>)tableRepository.GetAllForWorkspace(idWorkspace);
             foreach (Models.Table item in tables)
             {
                 RadioButtonBoard radioButtonBoard = new RadioButtonBoard(item.Id);

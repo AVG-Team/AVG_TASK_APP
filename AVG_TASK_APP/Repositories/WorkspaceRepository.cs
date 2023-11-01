@@ -103,6 +103,7 @@ namespace AVG_TASK_APP.Repositories
 
         public bool AddUserToWorkspace(Workspace workspace, UserModel user)
         {
+            AppDbContext dbContextTmp = dbContext;
             try
             {
 
@@ -115,8 +116,8 @@ namespace AVG_TASK_APP.Repositories
                     Role = 0,
                 };
 
-                dbContext.UserWorkspaces.Add(userWorkspace);
-                dbContext.SaveChanges();
+                dbContextTmp.UserWorkspaces.Add(userWorkspace);
+                dbContextTmp.SaveChanges();
 
                 return true;
             }

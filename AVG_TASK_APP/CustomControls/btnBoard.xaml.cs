@@ -26,6 +26,7 @@ namespace AVG_TASK_APP.CustomControls
             InitializeComponent();
 
             idBtnBoard.Text = id.ToString();
+            string nameSort = name.Length > 10 ? name.Substring(0, 7) + "..." : name;
             content.Text = name;
         }
 

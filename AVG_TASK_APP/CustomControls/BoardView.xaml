@@ -18,16 +18,19 @@
         <StackPanel Orientation="Vertical" Margin="0,50,0,0">
 
             <StackPanel x:Name="recently" Orientation="Vertical" Margin="30,0,0,0">
-                <TextBlock Text="Recently Created" 
-                                   Foreground="{StaticResource textColor5}" 
-                                   FontSize="18"
-                                   FontWeight="Bold"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Left"
-                                   FontFamily="Montserrat"
-                                    Margin="10,0,0,0"
-                                   Width="200"/>
-                <ScrollViewer Margin="40,10,0,0" Style="{StaticResource FavsScrollViewer}" FlowDirection="LeftToRight"
+                <StackPanel Orientation="Horizontal">
+                    <fa:IconImage Icon="Clock" Width="25" Foreground="{StaticResource color9}"/>
+                    <TextBlock Text="Recently Created" 
+                   Foreground="{StaticResource textColor5}" 
+                   FontSize="19"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   FontFamily="Montserrat"
+                    Margin="10,0,0,0"
+                   Width="200"/>
+                </StackPanel>
+                <ScrollViewer Margin="0,10,0,0" Style="{StaticResource FavsScrollViewer}" FlowDirection="LeftToRight"
                   ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
                             Grid.Row="1">
                     <StackPanel Orientation="Horizontal"

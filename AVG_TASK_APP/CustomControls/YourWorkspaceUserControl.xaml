@@ -6,10 +6,10 @@
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:AVG_TASK_APP.CustomControls"
              mc:Ignorable="d" 
-             d:DesignHeight="165" d:DesignWidth="900">
+             d:DesignHeight="170" d:DesignWidth="836">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="55"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="workspaceInfo" 
@@ -17,33 +17,28 @@
                                 Margin="40,10,0,10">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="220"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" 
                     Orientation="Horizontal">
                     <TextBox Visibility="Collapsed" Name="idWorkspace" Text="{Binding IdWorkspace, UpdateSourceTrigger=PropertyChanged}"/>
-                    <fa:IconImage Icon="Book"
-                           Foreground="{StaticResource color9}"/>
+                    <fa:IconImage Icon="Book" Width="20" Foreground="{StaticResource color9}"/>
                     <TextBlock Text="Name Workspace" 
                        Foreground="{StaticResource textColor5}" 
                        FontSize="18" x:Name="nameWorkspace"
                        FontWeight="Medium"
                        VerticalAlignment="Center"
                        FontFamily="Montserrat"
-                       Width="150" 
                        Margin="10,0,0,0"/>
 
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Left"
-                    Grid.Column="1"
-                    Margin="290,0,0,0">
-                    <Button Style="{StaticResource filterButton}"
-                    
-                    Width="80">
+                    HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Grid.Column="1">
+                    <Button Style="{StaticResource filterButton}" Width="90" Height="40">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Table"
                                   Stretch="Fill"
