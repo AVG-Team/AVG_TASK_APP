@@ -27,8 +27,9 @@ namespace AVG_TASK_APP.Repositories
 
         public void Add(Card card)
         {
-            dbContext.Cards.Add(card);
-            dbContext.SaveChanges();
+            AppDbContext dbContextTemp = dbContext;
+            dbContextTemp.Cards.Add(card);
+            dbContextTemp.SaveChanges();
         }
 
         public IEnumerable<Card> GetAll(string sort = "desc")
