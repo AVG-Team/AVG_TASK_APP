@@ -95,7 +95,7 @@ namespace AVG_TASK_APP.CustomControls
             cardRepository.Add(newCard);
 
             Reload();
-           
+
         }
         private void CardUserControl_btnCreateTask_Click(object? sender, EventArgs e)
         {
@@ -230,7 +230,7 @@ namespace AVG_TASK_APP.CustomControls
 
         private void addNameCardButton_Click(object sender, RoutedEventArgs e)
         {
-           AddCard addCard = new AddCard(idTableCurrent, this);
+            AddCard addCard = new AddCard(idTableCurrent, this);
             addCard.Show();
 
         }
@@ -248,7 +248,7 @@ namespace AVG_TASK_APP.CustomControls
 
         private void MenuButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-           
+
             if (menuBoardControl != null)
             {
                 if (menuBoardControl.Visibility == Visibility.Collapsed)
