@@ -8,7 +8,7 @@
         xmlns:customcontrols="clr-namespace:AVG_TASK_APP.CustomControls"
         xmlns:System="clr-namespace:System;assembly=System.Runtime" 
         mc:Ignorable="d"
-        Title="CreateBoard" Height="300" Width="700"
+        Title="CreateBoard" Height="400" Width="700"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -127,18 +127,38 @@
                            FontWeight="Medium"
                            FontFamily="Montserrat"
                            Margin="0,5,0,5"/>
-                        <TextBox x:Name="txtTitle"         
+                        <Border  Background="{StaticResource color6}" CornerRadius="4" BorderThickness="0" Height="20">
+                            <TextBox x:Name="txtTitle"         
                              FontFamily="Montserrat"
                              FontSize="12"
                              FontWeight="Medium"
                              Foreground="{StaticResource textColor2}"
                              CaretBrush="{StaticResource color6}"
                              BorderBrush="{StaticResource color3}"
-                             BorderThickness="0,0,0,1"
+                             BorderThickness="0,0,0,0"
                              Height="17"
                              VerticalContentAlignment="Center"
-                             Padding="10,0,0,0"/>
+                             Padding="10,0,0,0"
+                             Margin="10,0,10,0"/>
+                        </Border>
 
+                        <TextBlock Text="Workspace"
+                           FontSize="12"
+                           FontFamily="Montserrat"
+                           FontWeight="Medium"
+                           Foreground="{StaticResource textColor2}"
+                           Margin="0,25,0,5"/>
+                        <Border  Background="#ececec" CornerRadius="4" BorderThickness="0" Height="23">
+                            <ComboBox Margin="10,0,10,0"
+                             BorderThickness="0,0,0,0"
+                             FontSize="12"
+                             Height="25"
+                             VerticalContentAlignment="Center"
+                             Foreground="{StaticResource textColor3}"
+                             Background="{DynamicResource backColor}" >
+                            </ComboBox>
+                        </Border>
+                        
                         <TextBlock Text="Workspace"
                            FontSize="12"
                            FontFamily="Montserrat"
@@ -150,7 +170,7 @@
                                  Height="25"
                                  VerticalContentAlignment="Center"
                                  Foreground="{StaticResource textColor3}"
-                                 Background="{StaticResource color6}">
+                                 Background="{DynamicResource backColor}" >
                         </ComboBox>
                         
                         <Button x:Name="btnCreate"
