@@ -57,7 +57,7 @@ namespace AVG_TASK_APP.Views
 
             var nameWorkspaceBinding = new Binding("NameWorkspace");
             this.nameWorkspace.SetBinding(TextBlock.TextProperty, nameWorkspaceBinding);
-
+            updateRecently();
             loadItemTable();
 
             ManageTaskUserControl manageTaskUserControl = new ManageTaskUserControl(idTableCurrent);
@@ -332,6 +332,39 @@ namespace AVG_TASK_APP.Views
         private void txtSearch_GotFocus(object sender, RoutedEventArgs e)
         {
             txtSearch.Text = "";
+        }
+
+        private void updateRecently()
+        {
+            // Clear existing items
+            recentLists.Items.Clear();
+            var tables = tableRepository.GetAll();
+
+            foreach (var i in tables)
+            {
+                
+                MenuItem item = new MenuItem();
+                item.Header = i.Name;
+                item.Tag = i.Id;
+                item.Template = FindResource("Item_Template") as ControlTemplate;
+                bool itemExists = false;
+
+                // Check if an item with the same Header already exists
+                foreach (MenuItem existingItem in recentLists.Items)
+                {
+                    if (existingItem.Header != null && existingItem.Header.ToString() == item.Header.ToString())
+                    {
+                        itemExists = true;
+                        break;
+                    }
+                }
+
+                if (!itemExists)
+                {
+                    recentLists.Items.Add(item);
+                }
+              
+            }
         }
     }
 }
