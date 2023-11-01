@@ -33,7 +33,7 @@
                         <StackPanel Grid.Column="0">
                             <TextBlock  x:Name="nameCard"
                                 Text="{Binding NameCard}"
-                                
+                
                                 FontSize="16"
                                 FontWeight="Medium"
                                 Foreground="{StaticResource textColor4}"
@@ -41,10 +41,12 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1">
-                            <Button Background="Transparent"
+                            <Button  x:Name="menuCard"
+                                     Background="Transparent"
                                      Width="15" Height="15"
                                      BorderThickness="0"
                                      Margin="0,10,10,0"
+                                     Click="menuCard_Click"
                                      HorizontalAlignment="Right">
                                 <fa:IconImage Icon="Bars" Height="15" Width="15" Foreground="{StaticResource color8}"/>
                                 <Button.Style>
