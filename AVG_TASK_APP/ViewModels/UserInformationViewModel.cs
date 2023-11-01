@@ -29,7 +29,8 @@ namespace AVG_TASK_APP.ViewModels
         private SecureString _repeatPassword;
         private string _email;
         private string _phone;
-
+        private int _level;
+        private int _id;
         public string UserAvatar
         {
             get
@@ -94,6 +95,27 @@ namespace AVG_TASK_APP.ViewModels
             }
         }
 
+        public int Level
+        {
+            get { return _level; }
+            set
+            {
+                _level = value;
+                OnPropertyChanged(nameof(Level));
+            }
+        }
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                _id = value;
+                OnPropertyChanged(nameof(Id));
+            }
+        }
         public SecureString Password
         {
             get { return _password; }
@@ -226,6 +248,8 @@ namespace AVG_TASK_APP.ViewModels
             Name = UserCurrent.Name;
             Email = UserCurrent.Email;
             Phone = UserCurrent.PhoneNumber;
+            Level = UserCurrent.Level;
+            Id = UserCurrent.Id;
         }
     }
 }

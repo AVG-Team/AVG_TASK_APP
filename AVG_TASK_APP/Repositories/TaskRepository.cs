@@ -27,8 +27,8 @@ namespace AVG_TASK_APP.Repositories
         public void Add(Models.Task task)
         {
             AppDbContext dbContextTemp = dbContext;
-            dbContext.Tasks.Add(task);
-            dbContext.SaveChanges();
+            dbContextTemp.Tasks.Add(task);
+            dbContextTemp.SaveChanges();
         }
 
         public IEnumerable<Models.Task> GetAll()
