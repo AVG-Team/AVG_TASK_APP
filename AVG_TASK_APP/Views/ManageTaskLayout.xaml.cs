@@ -33,21 +33,34 @@ namespace AVG_TASK_APP.Views
         private TableRepository tableRepository = new TableRepository();
         private WorkspaceRepository workspaceRepository = new WorkspaceRepository();
         private ManageTaskUserControlViewModel manageTaskUserControlViewModel = new ManageTaskUserControlViewModel();
+        private ManageTaskLayoutViewModel viewModel;
+        private int idTableCurrent;
+        private int idWorkspaceCurrent;
 
-        public ManageTaskLayout()
+        public ManageTaskLayout(int idTable)
         {
             InitializeComponent();
+            viewModel = new ManageTaskLayoutViewModel();
+            idTableCurrent = idTable;
+
+            DataContext = viewModel;
+
+            DataContext = viewModel;
+            idTableCurrent = idTable;
+            idWorkspaceCurrent = tableRepository.GetWorkspace(idTable).Id;
+            viewModel.getNameWorkspace(idTable);
+
+            var nameWorkspaceBinding = new Binding("NameWorkspace");
+            this.nameWorkspace.SetBinding(TextBlock.TextProperty, nameWorkspaceBinding);
 
             loadItemTable();
-
-            nameWorkspace.Text = workspaceRepository.GetById(116).Name;
 
         }
 
         private void loadItemTable()
         {
             listBoards.Children.Clear();
-            List<Models.Table> tables = (List<Models.Table>)tableRepository.GetAllForWorkspace(116);
+            List<Models.Table> tables = (List<Models.Table>)tableRepository.GetAllForWorkspace(idWorkspaceCurrent);
             foreach (Models.Table item in tables)
             {
                 RadioButtonBoard radioButtonBoard = new RadioButtonBoard(item.Id);
@@ -247,6 +260,25 @@ namespace AVG_TASK_APP.Views
                      }
                  }
              }*/
+        }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                PageLayout pageLayout = new PageLayout();
+                pageLayout.Show();
+
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window is ManageTaskLayout)
+                    {
+                        window.Close();
+                    }
+                }
+            }
+
+
         }
     }
 }

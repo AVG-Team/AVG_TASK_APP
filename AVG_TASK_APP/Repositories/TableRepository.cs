@@ -28,8 +28,9 @@ namespace AVG_TASK_APP.Repositories
         }
         public void Add(Table table)
         {
-            dbContext.Tables.Add(table);
-            dbContext.SaveChanges();
+            AppDbContext dbContextTemp = dbContext;
+            dbContextTemp.Tables.Add(table);
+            dbContextTemp.SaveChanges();
         }
 
         public IEnumerable<Table> GetAll(string sort = "desc")

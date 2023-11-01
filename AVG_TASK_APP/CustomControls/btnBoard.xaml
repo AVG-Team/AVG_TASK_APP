@@ -10,6 +10,7 @@
     <Button x:Name="buttonBoard"
             MouseEnter="buttonBoard_MouseEnter"
             MouseLeave="buttonBoard_MouseLeave"
+            Click="buttonBoard_Click"
             Style="{StaticResource btnBoard}">
         <Button.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -17,7 +18,7 @@
                 <GradientStop Color="{StaticResource winBorderColor}" Offset="0.75"/>
             </LinearGradientBrush>
         </Button.Background>
-        
+
         <StackPanel Orientation="Vertical"
          Height="100"
          Width="200">
