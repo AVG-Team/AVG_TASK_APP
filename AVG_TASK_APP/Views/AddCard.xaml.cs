@@ -27,7 +27,7 @@ namespace AVG_TASK_APP.Views
             manageTaskUserControl = userControl;           
         }
 
-    private void btnClose_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
