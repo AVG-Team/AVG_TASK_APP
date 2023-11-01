@@ -37,6 +37,8 @@ namespace AVG_TASK_APP.Views
         private int idTableCurrent;
         private int idWorkspaceCurrent;
 
+        private bool isUserNotifyVisible = false;
+
         public ManageTaskLayout(int idTable)
         {
             InitializeComponent();

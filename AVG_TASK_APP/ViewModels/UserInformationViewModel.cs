@@ -153,7 +153,7 @@ namespace AVG_TASK_APP.ViewModels
                 {
                     UserAvatar = "/AVG_TASK_APP;component/Resources/Images/OIP.jpg";
                 }
-                else if (UserCurrent.Level == 1)
+                else
                 {
                     UserAvatar = "/AVG_TASK_APP;component/Resources/Images/ADMIN.png";
                 }

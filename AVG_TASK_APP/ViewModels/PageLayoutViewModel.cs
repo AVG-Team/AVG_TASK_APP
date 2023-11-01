@@ -231,7 +231,7 @@ namespace AVG_TASK_APP.ViewModels
                 {
                     UserAccountImage = "/AVG_TASK_APP;component/Resources/Images/OIP.jpg";
                 }
-                else if (currentUserAccount.Level == 1)
+                else
                 {
                     UserAccountImage = "/AVG_TASK_APP;component/Resources/Images/ADMIN.png";
                 }

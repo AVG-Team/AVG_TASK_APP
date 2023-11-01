@@ -182,11 +182,9 @@ namespace AVG_TASK_APP.Views
                 isUserNotifyVisible = true;
             }
             }
-        }
 
         private void txtSearch_PreviewKeyUp(object sender, KeyEventArgs e)
         {
-
             if (txtSearch.Text.Length == 0)
             {
                 areaMenuSearch.IsOpen = false;
