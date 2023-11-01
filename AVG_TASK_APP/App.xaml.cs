@@ -1,8 +1,10 @@
 ﻿using AVG_TASK_APP.CustomControls;
+using AVG_TASK_APP.DataAccess;
 using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Repositories.Interface;
 using AVG_TASK_APP.Views;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
 using MySqlConnector;
 using System;
@@ -26,6 +28,15 @@ namespace AVG_TASK_APP
     public partial class App : Application
     {
         private IUserRepository userRepository;
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // Other services...
+
+            services.AddScoped<NotifyRepository>();
+
+            // Add your DbContext configuration here.
+        }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -74,8 +85,8 @@ namespace AVG_TASK_APP
             Thread.CurrentPrincipal = principal;
             AppDomain.CurrentDomain.SetThreadPrincipal(principal);
 
-            ManageTaskLayout manageTaskLayout = new ManageTaskLayout();
-            manageTaskLayout.Show();
+            ManageTaskLayout manage = new ManageTaskLayout();
+            manage.Show();
         }
     }
 }

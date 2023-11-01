@@ -14,6 +14,21 @@ namespace AVG_TASK_APP.Migration
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {
+
+        }
+        public class NotifyService
+        {
+            private readonly AppDbContext _context;
+
+            public NotifyService(AppDbContext context)
+            {
+                _context = context;
+            }
+
+            public int GetNotifyDataCount()
+            {
+                return _context.Notifies.Count();
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -42,4 +57,5 @@ namespace AVG_TASK_APP.Migration
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Models.Task> Tasks { get; set; }
     }
+
 }

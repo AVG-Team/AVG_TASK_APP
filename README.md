@@ -1,3 +1,1 @@
-# AVG_TASK_APP
 
-# TẤT CẢ DO THẰNG HƯNG 

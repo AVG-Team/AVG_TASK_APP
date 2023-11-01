@@ -57,6 +57,7 @@ namespace AVG_TASK_APP.CustomControls
             _dd.DragDrop += _dd_DragDrop;
 
 
+
         }
 
         public void Reload()
@@ -69,6 +70,7 @@ namespace AVG_TASK_APP.CustomControls
                 areaCard.Children.Add(cardUserControl);
                 cardUserControl.Tag = item.Id;
                 cardUserControl.btnCreateTask_Click += CardUserControl_btnCreateTask_Click;
+                cardUserControl.btnMenuCard_Click += CardUserControl_btnMenuCard_Click;
                 _listCard.Add(cardUserControl);
             }
 
@@ -99,7 +101,15 @@ namespace AVG_TASK_APP.CustomControls
         }
         private void CardUserControl_btnCreateTask_Click(object? sender, EventArgs e)
         {
+            AddTask addTask = new AddTask((int)((CardUserControl)sender).Tag, idTableCurrent, this);
+            addTask.Show();
+            MessageBox.Show(((CardUserControl)sender).Tag.ToString());
+        }
 
+        private void CardUserControl_btnMenuCard_Click(object? sender, EventArgs e)
+        {
+            /*MenuCard_UserControl menuCard_UserControl = new MenuCard_UserControl();
+            areaCard.Children.Add(menuCard_UserControl);*/
         }
 
         public void LoadItem()
@@ -132,6 +142,7 @@ namespace AVG_TASK_APP.CustomControls
                     border.Child = element;
                     border.Tag = task.Id;
                     border.MouseLeftButtonDown += Border_MouseLeftButtonDown;
+
                     lb.Items.Add(border);
                     /*cardUserControl.Card.Height = cardUserControl.Card.Height + 50;*/
 
@@ -153,12 +164,13 @@ namespace AVG_TASK_APP.CustomControls
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            UIElement element = sender as UIElement;
-            idTaskCurrent = (int)((Border)element).Tag;
-            ContactTaskUI contactTaskUI = new ContactTaskUI(idTaskCurrent, this);
-            contactTaskUI.Show();
-
-
+            if (e.ClickCount == 2)
+            {
+                UIElement element = sender as UIElement;
+                idTaskCurrent = (int)((Border)element).Tag;
+                ContactTaskUI contactTaskUI = new ContactTaskUI(idTaskCurrent, this);
+                contactTaskUI.Show();
+            }
         }
 
         private void _dd_DragDrop(object source, DragDropEventArgs e)
