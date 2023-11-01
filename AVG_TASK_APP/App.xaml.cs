@@ -87,6 +87,7 @@ namespace AVG_TASK_APP
 
             PageLayout page = new PageLayout();
             page.Show();
+
         }
     }
 }

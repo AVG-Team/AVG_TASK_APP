@@ -229,8 +229,9 @@
                                 </Ellipse.Fill>
                             </Ellipse>
                             <Button.ContextMenu>
-                                <ContextMenu x:Name="context" Placement="Bottom" Background="Transparent" >
-                                    <MenuItem Header="Logout" Click="MenuItem_Click" />
+                                <ContextMenu x:Name="context" Placement="Bottom" Style="{StaticResource Context-Menu}">
+                                    <MenuItem Header="Logout" Click="MenuItem_Click"
+                                              Template="{StaticResource Item_Template_ContextMenu}"/>
                                 </ContextMenu>
                             </Button.ContextMenu>
                         </Button>
@@ -451,18 +452,18 @@
                     <ColumnDefinition Width="0"/>
                 </Grid.ColumnDefinitions>
                 <Grid x:Name="areaManageTask" Grid.Column="0">
-                    
+
                 </Grid>
                 <StackPanel Grid.Column="0" HorizontalAlignment="Right">
                     <Grid Margin="0,0,20,0" x:Name="areaManageNotify">
-                        
+
                     </Grid>
                 </StackPanel>
-                
+
 
 
             </Grid>
-                    
+
         </Grid>
     </Grid>
 </Window>

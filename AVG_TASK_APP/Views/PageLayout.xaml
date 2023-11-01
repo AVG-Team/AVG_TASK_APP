@@ -221,8 +221,10 @@
                                         </Ellipse.Fill>
                                     </Ellipse>
                                     <Button.ContextMenu>
-                                        <ContextMenu x:Name="context" Placement="Bottom" Background="Transparent" >
-                                            <MenuItem Header="Logout" Click="itemMenuLogout" />
+                                        <ContextMenu x:Name="context" Placement="Bottom" Background="Transparent"
+                                                     Style="{StaticResource Context-Menu}">
+                                            <MenuItem Header="Logout" Click="itemMenuLogout"
+                                                      Template="{StaticResource Item_Template_ContextMenu}"/>
                                         </ContextMenu>
                                     </Button.ContextMenu>
                                 </Button>
@@ -338,7 +340,7 @@ ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollB
                         <!-- Menu Button End-->
                         <!-- Content Begin -->
                         <Grid x:Name="areaUserControl" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0">
-                            
+
                         </Grid>
                         <Grid x:Name="areaUserNotify" Grid.Column="2" Margin="0,0,0,0">
 
