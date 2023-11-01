@@ -41,14 +41,9 @@ namespace AVG_TASK_APP.CustomControls
             foreach (Table table in tables)
             {
                 btnBoard btnBoard = new btnBoard(table.Id, table.Name);
-                btnBoard.btnBoard_Click += BtnBoard_btnBoard_Click;
+               
                 workspaceStackPanel.Children.Add(btnBoard);
             }
-        }
-
-        private void BtnBoard_btnBoard_Click(object? sender, EventArgs e)
-        {
-
         }
     }
 }

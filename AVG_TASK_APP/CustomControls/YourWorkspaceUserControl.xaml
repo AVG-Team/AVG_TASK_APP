@@ -17,11 +17,11 @@
                                 Margin="40,10,0,10">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="300"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0" 
+                <StackPanel Grid.Column="0"
                     Orientation="Horizontal">
                     <TextBox Visibility="Collapsed" Name="idWorkspace" Text="{Binding IdWorkspace, UpdateSourceTrigger=PropertyChanged}"/>
                     <fa:IconImage Icon="Book" Width="20" Foreground="{StaticResource color9}"/>

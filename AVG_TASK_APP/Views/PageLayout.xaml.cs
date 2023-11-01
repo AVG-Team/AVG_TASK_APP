@@ -69,7 +69,7 @@ namespace AVG_TASK_APP.Views
 
         private void txtSearch_GotFocus(object sender, RoutedEventArgs e)
         {
-            txtSearch.Text = ""; 
+            txtSearch.Text = "";
             txtSearch.Width = 300;
 
         }
@@ -99,6 +99,7 @@ namespace AVG_TASK_APP.Views
 
         private void HomeRadioButton_Click(object sender, RoutedEventArgs e)
         {
+            areaUserControl.Children.Clear();
             HomeView homeView = new HomeView();
             areaUserControl.Children.Add(homeView);
 
@@ -106,6 +107,7 @@ namespace AVG_TASK_APP.Views
 
         private void BoardRadioButton_Click(object sender, RoutedEventArgs e)
         {
+            areaUserControl.Children.Clear();
             BoardView boardView = new BoardView();
             areaUserControl.Children.Add(boardView);
         }
@@ -181,7 +183,7 @@ namespace AVG_TASK_APP.Views
                 areaUserNotify.Visibility = Visibility.Visible;
                 isUserNotifyVisible = true;
             }
-            }
+        }
 
         private void txtSearch_PreviewKeyUp(object sender, KeyEventArgs e)
         {
