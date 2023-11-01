@@ -107,17 +107,6 @@
                     </Button>
                 </Grid>
 
-                <StackPanel Grid.Row="1">
-                    <TextBlock HorizontalAlignment="Center" 
-                              Margin="0,8,0,0"
-                              FontSize="20"
-                              FontWeight="Medium"
-                              Foreground="{StaticResource color6}" 
-                              TextWrapping="Wrap" 
-                              Text="Create Board" 
-                              VerticalAlignment="Center"/>
-                </StackPanel>
-
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="400"/>
@@ -155,20 +144,46 @@
                            FontWeight="Medium"
                            Foreground="{StaticResource textColor2}"
                            Margin="0,25,0,5"/>
-                        <StackPanel Orientation="Horizontal">
-                            <RadioButton  GroupName="public" IsChecked="{Binding IsCheckedPublic, UpdateSourceTrigger=PropertyChanged}"
-                                            Margin="10" x:Name="radioVisibility">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Public" Foreground="LightGray"/>
-                                </StackPanel>
-                            </RadioButton>
-                            <RadioButton x:Name="radioInvisibility" GroupName="public" IsChecked="{Binding IsCheckedNotPublic, UpdateSourceTrigger=PropertyChanged}"
-                                              Margin="100,10,10,10">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Private" Foreground="LightGray"/>
-                                </StackPanel>
-                            </RadioButton>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <StackPanel Width="186">
+                                <RadioButton  GroupName="public" IsChecked="{Binding IsCheckedPublic, UpdateSourceTrigger=PropertyChanged}"
+                                              Margin="10" x:Name="radioVisibility">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Public" Foreground="LightGray"/>
+                                    </StackPanel>
+                                </RadioButton>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Right">
+                                <RadioButton x:Name="radioInvisibility" GroupName="public" IsChecked="{Binding IsCheckedNotPublic, UpdateSourceTrigger=PropertyChanged}"
+                                             Margin="10">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Private" Foreground="LightGray"/>
+                                    </StackPanel>
+                                </RadioButton>
+                            </StackPanel>
+                            
                         </StackPanel>
+                        <TextBlock Text="Code board"
+                                   Foreground="{StaticResource textColor2}"
+                                   FontSize="12"
+                                   FontWeight="Medium"
+                                   FontFamily="Montserrat"
+                                   Margin="0,5,0,5"/>
+                        <Border  Background="{StaticResource color6}" CornerRadius="4" BorderThickness="0" Height="20" >
+                            <TextBox x:Name="codeBoard"         
+                             FontFamily="Montserrat"
+                             FontSize="12"
+                             FontWeight="Medium"
+                             BorderThickness="0,0,0,0"
+                             Height="17"
+                             VerticalContentAlignment="Center"
+                             Padding="10,0,0,0"
+                             Margin="10,0,10,0"
+                             Foreground="Gray" 
+                             GotFocus="TextBox_GotFocus" 
+                             LostFocus="TextBox_LostFocus"
+                             Text="VD: AVG_Table_2023"/>
+                        </Border>
                         <TextBlock Text="Workspace"
                            FontSize="12"
                            FontFamily="Montserrat"

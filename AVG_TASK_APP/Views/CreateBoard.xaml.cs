@@ -5,6 +5,7 @@ using AVG_TASK_APP.ViewModels;
 using Microsoft.AspNetCore.Mvc.Razor.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,30 +62,26 @@ namespace AVG_TASK_APP.Views
                 messageBoxView.Show("Please not to leave blank");
                 return;
             }
+            bool pin = false;
             if (radioVisibility.IsChecked == true)
             {
-                Table table = new Table()
-                {
-                    Id_Workspace = (int)cbWorkspace.SelectedValue,
-                    Name = txtTitle.Text,
-                    Pin = false,
-                    Visible = true,
-                    Code = RandomCode(),
-                };
-                tableRepository.Add(table);
+                pin = true;
             }
-            else if(radioInvisibility.IsChecked == true)
+            else if (radioInvisibility.IsChecked == true)
             {
-                Table table = new Table()
-                {
-                    Id_Workspace = (int)cbWorkspace.SelectedValue,
-                    Name = txtTitle.Text,
-                    Pin = false,
-                    Visible = true,
-                    Code = RandomCode()
-                };
-                tableRepository.Add(table);
+                pin = false;
             }
+
+
+            Table table = new Table()
+            {
+                Id_Workspace = (int)cbWorkspace.SelectedValue,
+                Name = txtTitle.Text,
+                Pin = pin,
+                Visible = true,
+                Code = codeBoard.Text
+            };
+            tableRepository.Add(table);
             this.Close();
 
         }
@@ -97,7 +94,7 @@ namespace AVG_TASK_APP.Views
         private bool checkInput()
         {
             bool validData = false;
-            if (txtTitle.Text == "" || cbWorkspace.Text.Length <= 0 || (radioVisibility.IsChecked == false && radioInvisibility.IsChecked == false))
+            if (txtTitle.Text == "" || cbWorkspace.Text.Length <= 0 || (radioVisibility.IsChecked == false && radioInvisibility.IsChecked == false) || codeBoard.Text == "VD: AVG_Table_2023"|| !codeBoard.Text.Contains("AVG_Table_"))
             {
                 validData = false;
             }
@@ -106,6 +103,30 @@ namespace AVG_TASK_APP.Views
                 validData = true;
             }
             return validData;
+        }
+
+        private void codeBoard_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            codeBoard.Text = string.Empty;
+        }
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text == "VD: AVG_Table_2023")
+            {
+                textBox.Text = string.Empty;
+                textBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Text = "VD: AVG_Table_2023"; 
+                textBox.Foreground = Brushes.Gray;
+            }
         }
     }
 }
