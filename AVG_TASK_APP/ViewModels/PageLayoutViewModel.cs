@@ -29,12 +29,16 @@ namespace AVG_TASK_APP.ViewModels
 
         private string _userAccountName;
         private string _userAccountImage;
+
+        #region searchInit
         private string _txtSearch;
         private bool _isOpenSearch;
 
         public ObservableCollection<ItemMenuSearch> SelectedItems { get; set; } = new ObservableCollection<ItemMenuSearch>();
 
         private ObservableCollection<ItemMenuSearch> _menuSearchBoard;
+
+        #endregion
 
         private ObservableCollection<itemWorkspace> _workspaces;
 

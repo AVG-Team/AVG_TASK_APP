@@ -280,5 +280,29 @@ namespace AVG_TASK_APP.Views
 
 
         }
+
+        private void txtSearch_LostFocus(object sender, RoutedEventArgs e)
+        {
+            areaMenuSearch.IsOpen = false;
+        }
+
+        private void txtSearch_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtSearch.Text.Length == 0)
+            {
+                areaMenuSearch.IsOpen = false;
+                return;
+            }
+
+            if (e.Key == Key.Back || e.Key == Key.Delete)
+            {
+                areaMenuSearch.IsOpen = false;
+            }
+        }
+
+        private void txtSearch_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtSearch.Text = "";
+        }
     }
 }

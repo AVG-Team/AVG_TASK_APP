@@ -151,14 +151,14 @@
                                                      AlignmentX="Left"/>
                                     </TextBox.Background>
                                 </TextBox>
-                                <Popup x:Name="areaMenuSearch"
+                                <Popup x:Name="areaMenuSearch" AllowsTransparency="True"
                                                IsOpen="{Binding IsOpenSearch, UpdateSourceTrigger=PropertyChanged}"
                                                PlacementTarget="{Binding ElementName=txtSearch}" >      
-                                    <StackPanel Width="300" Height="200" Orientation="Horizontal" Margin="0,5,0,0">
+                                    <StackPanel Width="300" Height="200" Background="Transparent" Orientation="Horizontal" Margin="0,5,0,0">
                                         <Border CornerRadius="10" 
                                                   Width="300" Height="200"
-                                                  BorderThickness="1"
-                                                  BorderBrush="{StaticResource color6}" 
+                                                  BorderThickness="0.5"
+                                                  BorderBrush="{StaticResource color8}" 
                                                   Background="{StaticResource color6}">
                                             <StackPanel Orientation="Vertical">
                                                 <ListBox x:Name="_listSearch" Height="200"
