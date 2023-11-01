@@ -39,7 +39,7 @@
                               ScrollViewer.VerticalScrollBarVisibility="Visible" 
                               Name="PART_VerticalScrollBar"
                               FlowDirection="RightToLeft">
-                    <StackPanel FlowDirection="LeftToRight" Margin="-20,0,0,0" x:Name="ListNotifies" Orientation="Vertical" >
+                    <StackPanel FlowDirection="LeftToRight" Margin="-20,0,0,0" x:Name="listNotifies" Orientation="Vertical" >
 
                     </StackPanel>
                 </ScrollViewer>

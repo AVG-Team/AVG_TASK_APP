@@ -48,12 +48,13 @@ namespace AVG_TASK_APP.CustomControls
         }
         public void loadData()
         {
+            listNotifies.Children.Clear();
             List<Notify> notifyData = (List<Notify>)notifyRepository.GetAll();
 
             foreach (Notify notify in notifyData)
             {
                 var notifyItem = new NotifyItem(notify.Id);
-                ListNotifies.Children.Add(notifyItem);
+                listNotifies.Children.Add(notifyItem);
             }
         }
         private void ButtonCreateNotify_Click(object sender, RoutedEventArgs e)

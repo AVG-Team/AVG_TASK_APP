@@ -46,6 +46,13 @@ namespace AVG_TASK_APP.Views
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             string text = new TextRange(ContentNotifyTextBlock.Document.ContentStart, ContentNotifyTextBlock.Document.ContentEnd).Text;
+            
+            if(text.Length <= 0 )
+            { 
+                MessageBoxView messageBoxView = new MessageBoxView();
+                messageBoxView.Show("Please not to leave blank ");
+                return;
+            }
             int pin = 0;
             if (PinButton.IsChecked == true)
             {
