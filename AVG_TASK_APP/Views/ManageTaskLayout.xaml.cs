@@ -112,8 +112,7 @@ namespace AVG_TASK_APP.Views
 
         private void btnItemSetting_Click(object sender, RoutedEventArgs e)
         {
-            ContactTaskUI contactTaskUI = new ContactTaskUI();
-            contactTaskUI.Show();
+        
         }
 
         private void btnMenuItemAddMember_Click(object sender, RoutedEventArgs e)
@@ -260,6 +259,29 @@ namespace AVG_TASK_APP.Views
                      }
                  }
              }*/
+        }
+
+        private void Notifies_Click(object sender, RoutedEventArgs e)
+        {
+            if (isUserNotifyVisible)
+            {
+                // If it's currently visible, collapse it
+                areaManageNotify.Children.Clear();
+                areaManageNotify.Visibility = Visibility.Collapsed;
+                isUserNotifyVisible = false;
+            }
+            else
+            {
+                // If it's not visible, create and show it
+                NotifiesUserControl notifiesUserControl = new NotifiesUserControl();
+                areaManageNotify.Width = 500;
+                areaManageNotify.Height = 450;
+                areaManageNotify.HorizontalAlignment = HorizontalAlignment.Left;
+                areaManageNotify.VerticalAlignment = VerticalAlignment.Top;
+                areaManageNotify.Children.Add(notifiesUserControl);
+                areaManageNotify.Visibility = Visibility.Visible;
+                isUserNotifyVisible = true;
+            }
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

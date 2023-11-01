@@ -36,8 +36,7 @@ namespace AVG_TASK_APP.Views
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            ContactTaskUI contactTaskUI = new ContactTaskUI();
-            contactTaskUI.ShowDialog();
+            
         }
 
     }

@@ -25,6 +25,7 @@ namespace AVG_TASK_APP.CustomControls
         private CardUserControlViewModel viewModel;
 
         public EventHandler btnCreateTask_Click;
+        public EventHandler btnMenuCard_Click;
 
         public CardUserControl(int idCard)
         {
@@ -49,6 +50,13 @@ namespace AVG_TASK_APP.CustomControls
         private void ButtonCreateTask_Click(object sender, RoutedEventArgs e)
         {
             btnCreateTask_Click?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void MenuCard_Click(object sender, RoutedEventArgs e)
+        {
+
+
+
         }
     }
 }

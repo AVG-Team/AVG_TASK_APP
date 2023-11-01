@@ -1,4 +1,5 @@
-﻿using AVG_TASK_APP.Models;
+﻿using AVG_TASK_APP.Migration;
+using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.ViewModels;
 using AVG_TASK_APP.Views;
@@ -34,6 +35,7 @@ namespace AVG_TASK_APP.CustomControls
 
         private C1DragDropManager _dd;
         private int idTableCurrent = 0;
+        private int idTaskCurrent = 0;
 
         public ManageTaskUserControl(int idTable)
         {
@@ -53,16 +55,22 @@ namespace AVG_TASK_APP.CustomControls
             _dd = new C1DragDropManager();
 
             _dd.DragDrop += _dd_DragDrop;
+
+
+
         }
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+
+        public void Reload()
         {
             var cards = cardRepository.GetAllForTable(idTableCurrent);
+            areaCard.Children.Clear();
             foreach (var item in cards)
             {
                 CardUserControl cardUserControl = new CardUserControl(item.Id);
                 areaCard.Children.Add(cardUserControl);
                 cardUserControl.Tag = item.Id;
                 cardUserControl.btnCreateTask_Click += CardUserControl_btnCreateTask_Click;
+                cardUserControl.btnMenuCard_Click += CardUserControl_btnMenuCard_Click;
                 _listCard.Add(cardUserControl);
             }
 
@@ -75,18 +83,43 @@ namespace AVG_TASK_APP.CustomControls
             LoadItem();
         }
 
-        private void CardUserControl_btnCreateTask_Click(object? sender, EventArgs e)
+        public void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Reload();
+        }
+        public void CreateCardView_btnCreateCard_Click(string nameNewCard)
         {
 
+            Models.Card newCard = new Models.Card();
+            newCard.Name = nameNewCard;
+            newCard.Id_Table = idTableCurrent;
+            newCard.Created_At = DateTime.Now;
+            cardRepository.Add(newCard);
+
+            Reload();
+
+        }
+        private void CardUserControl_btnCreateTask_Click(object? sender, EventArgs e)
+        {
+            AddTask addTask = new AddTask((int)((CardUserControl)sender).Tag, idTableCurrent, this);
+            addTask.Show();
+            MessageBox.Show(((CardUserControl)sender).Tag.ToString());
         }
 
-        private void LoadItem()
+        private void CardUserControl_btnMenuCard_Click(object? sender, EventArgs e)
+        {
+            /*MenuCard_UserControl menuCard_UserControl = new MenuCard_UserControl();
+            areaCard.Children.Add(menuCard_UserControl);*/
+        }
+
+        public void LoadItem()
         {
 
             foreach (ListBox lb in listBoxes)
             {
+                lb.Items.Clear();
                 int idCard = int.Parse(lb.Tag.ToString());
-
+                taskRepository = new TaskRepository();
                 foreach (Models.Task task in taskRepository.GetAllForCard(idCard))
                 {
 
@@ -108,6 +141,8 @@ namespace AVG_TASK_APP.CustomControls
 
                     border.Child = element;
                     border.Tag = task.Id;
+                    border.MouseLeftButtonDown += Border_MouseLeftButtonDown;
+
                     lb.Items.Add(border);
                     /*cardUserControl.Card.Height = cardUserControl.Card.Height + 50;*/
 
@@ -123,7 +158,21 @@ namespace AVG_TASK_APP.CustomControls
                     };
                 }
             }
+
         }
+
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                UIElement element = sender as UIElement;
+                idTaskCurrent = (int)((Border)element).Tag;
+                ContactTaskUI contactTaskUI = new ContactTaskUI(idTaskCurrent, this);
+                contactTaskUI.Show();
+            }
+        }
+
         private void _dd_DragDrop(object source, DragDropEventArgs e)
         {
             // get object being dragged
@@ -184,8 +233,6 @@ namespace AVG_TASK_APP.CustomControls
 
         private void personElement_MouseEnter(object sender, MouseButtonEventArgs e)
         {
-            ContactTaskUI contactTaskUI = new ContactTaskUI();
-            contactTaskUI.Show();
         }
 
         private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -195,8 +242,9 @@ namespace AVG_TASK_APP.CustomControls
 
         private void addNameCardButton_Click(object sender, RoutedEventArgs e)
         {
-            AddCard addCard = new AddCard();
+            AddCard addCard = new AddCard(idTableCurrent, this);
             addCard.Show();
+
         }
 
         private void shareButton_Click(object sender, RoutedEventArgs e)
@@ -212,6 +260,7 @@ namespace AVG_TASK_APP.CustomControls
 
         private void MenuButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
+
             if (menuBoardControl != null)
             {
                 if (menuBoardControl.Visibility == Visibility.Collapsed)

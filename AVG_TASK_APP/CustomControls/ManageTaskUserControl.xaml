@@ -64,7 +64,8 @@
                             Width="30" Height="30"
                             BorderThickness="0"
                             >
-                        <fa:IconImage x:Name="MenuButton" Icon="Bars" Height="25" Width="25" MouseDown="MenuButton_MouseDown"/>
+                        <fa:IconImage x:Name="MenuButton" Icon="Bars" Height="25" Width="25"
+                                      MouseDown="MenuButton_MouseDown"/>
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Style.Triggers>
@@ -107,7 +108,7 @@
         </Border>
 
         <ScrollViewer Margin="10,10,0,0" Style="{StaticResource FavsScrollViewer}"
-                      Height="820"
+                      Height="780"
                       FlowDirection="LeftToRight"
                       ScrollViewer.HorizontalScrollBarVisibility="Visible" 
                       ScrollViewer.VerticalScrollBarVisibility="Visible"
