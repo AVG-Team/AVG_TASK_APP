@@ -40,26 +40,25 @@ namespace AVG_TASK_APP.CustomControls
             InitializeComponent();
             // Assuming you have a NotifyRepository to access your data
             notifyRepository = new NotifyRepository();
-            if(int.Parse(userLevel.Text) == 2)
-            {
-                ButtonCreateNotify.Visibility = Visibility.Visible;
-            }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            loadData();
+        }
+        public void loadData()
+        {
             List<Notify> notifyData = (List<Notify>)notifyRepository.GetAll();
 
-            foreach ( Notify notify in notifyData)
+            foreach (Notify notify in notifyData)
             {
                 var notifyItem = new NotifyItem(notify.Id);
                 ListNotifies.Children.Add(notifyItem);
             }
         }
-
         private void ButtonCreateNotify_Click(object sender, RoutedEventArgs e)
         {
-            FormCreateNotify formCreateNotify = new FormCreateNotify();
+            FormCreateNotify formCreateNotify = new FormCreateNotify(this);
             formCreateNotify.Show();
         }
     }

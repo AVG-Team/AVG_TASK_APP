@@ -35,7 +35,7 @@ namespace AVG_TASK_APP.DataAccess
 
         public IEnumerable<Notify> GetAll()
         {
-            return dbContext.Notifies.OrderByDescending(s => s.Created_At).OrderByDescending(x => x.Pin).ToList();
+            return dbContext.Notifies.OrderByDescending(s => s.Pin.ToString() + s.Created_At).ToList();
         }
         public Notify GetById(int id)
         {

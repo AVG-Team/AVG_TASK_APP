@@ -15,6 +15,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using System.Security.Claims;
+using System.Threading;
+using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.Repositories.Interface;
+using AVG_TASK_APP.CustomControls;
+
 namespace AVG_TASK_APP.Views
 {
     /// <summary>
@@ -22,48 +28,82 @@ namespace AVG_TASK_APP.Views
     /// </summary>
     public partial class FormCreateNotify : Window
     {
-        private bool isOrange = true; // Initial state
-        public FormCreateNotify()
+        private NotifyRepository notifyRepository;
+        private bool isCheck = true; // Initial state
+        NotifiesUserControl notifiesUserControl;
+        private int idCurrentUser;
+        public FormCreateNotify(NotifiesUserControl notifiesUserControl)
         {
+            notifyRepository = new NotifyRepository();
             InitializeComponent();
-        }
 
-        private void PinButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (isOrange)
-            {
-                Pin.Foreground = Brushes.Orange;
-            }
-            else
-            {
-                Pin.Foreground = (Brush)FindResource("color5");
-            }
-            isOrange = !isOrange;
+            var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
+            idCurrentUser = int.Parse(identity.Claims.FirstOrDefault(s => s.Type == "Id").Value);
+
+            this.notifiesUserControl = notifiesUserControl;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            NotifyRepository notifyRepository = new NotifyRepository();
-            Notify notify = new Notify();
-            List<Notify> notifyData = (List<Notify>)notifyRepository.GetAll();
-            int count = 0;
-            for (int i = 0; i < notifyData.Count; i++)
-            {
-                count++;
-            }
             string text = new TextRange(ContentNotifyTextBlock.Document.ContentStart, ContentNotifyTextBlock.Document.ContentEnd).Text;
-            notify.Id_User = count + 1;
-            notify.Content = text;
-            if (Pin.Foreground == Brushes.Orange)
+            int pin = 0;
+            if (PinButton.IsChecked == true)
             {
-                notify.Pin = 1;
+                pin = 1;
             }
-            else
+
+            Notify notify = new Notify()
             {
-                notify.Pin = 0;
-            }
-            notify.Id_User = int.Parse(IdUserTextBlock.Text.ToString());
+                Content = text,
+                Id_User = idCurrentUser,
+                Pin = pin,
+            };
+
             notifyRepository.Add(notify);
+            //thong bap
+
+            this.Close();
+        }
+
+        private void ContentNotifyTextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock placeholderContentNotify = ContentNotifyTextBlock.Template.FindName("PlaceholderContentNotify", ContentNotifyTextBlock) as TextBlock;
+            placeholderContentNotify.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            IUserRepository userRepository = new UserRepository();
+            int level = userRepository.GetById(idCurrentUser).Level;
+
+            if (level < 2)
+            {
+                MessageBoxView msb = new MessageBoxView();
+                msb.Show("Are you not allowed to access this !!!", 1);
+                this.Close();
+                return;
+            }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            notifiesUserControl.loadData();
         }
     }
 }

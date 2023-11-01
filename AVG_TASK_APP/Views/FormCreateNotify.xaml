@@ -8,15 +8,12 @@
         mc:Ignorable="d"
         xmlns:viewmodels="clr-namespace:AVG_TASK_APP.ViewModels"
         xmlns:customcontrols="clr-namespace:AVG_TASK_APP.CustomControls"
-        Title="Form Create Notify" Height="600" Width="900"
+        Title="Form Create Notify" Height="500" Width="600"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        AllowsTransparency="True">
-    <Window.DataContext>
-        <viewmodels:UserInformationViewModel/>
-    </Window.DataContext>
+        AllowsTransparency="True" Loaded="Window_Loaded" Closed="Window_Closed">
     <Window.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
         </Window.Resources>
@@ -27,79 +24,7 @@
             BorderBrush="{StaticResource borderColor}"
             Background="{StaticResource backColor}">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="300"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid Grid.Column="0">
-
-
-                        <Border CornerRadius="30 0 0 30"
-                                Background="{StaticResource color2}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="60"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="Account"
-                                           Foreground="{StaticResource textColor2}"
-                                             FontSize="20"
-                                             FontFamily="Montserrat"
-                                             Grid.Row="0"
-                                             HorizontalAlignment="Center"
-                                             VerticalAlignment="Center" />
-                                <StackPanel Orientation="Vertical" Grid.Row="1">
-                                    <Ellipse Width="200" Height="200" Margin="10,0,10,0">
-                                        <Ellipse.Fill>
-                                            <ImageBrush x:Name="AvatarImage" ImageSource="{Binding UserAvatar}"/>
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <Button Visibility="Collapsed" x:Name="btnChangeAvatar"
-                                            BorderThickness="0"
-                                            Content="Change avatar"
-                                            Foreground="{StaticResource textButtonColor}"
-                                            FontSize="12"
-                                            FontWeight="Medium"
-                                            FontFamily="Montserrat"
-                                            Cursor="Hand"
-                                            Grid.Column="2"
-                                            Margin="0,60,0,0"
-                                            >
-
-                                        <Button.Style>
-                                            <Style TargetType="Button">
-                                                <Setter Property="Background" Value="{StaticResource buttonColor}"/>
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="{StaticResource hoverButtonColor}"/>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-
-                                        <Button.Template>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border Width="150" Height="40"
-                                                        CornerRadius="20"
-                                                        Background="{TemplateBinding Background}">
-                                                    <ContentPresenter VerticalAlignment="Center"
-                                                                      HorizontalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Button.Template>
-                                    </Button>
-                                </StackPanel>
-
-                            </Grid>
-
-
-
-                        </Border>
-
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
@@ -111,11 +36,10 @@
                                 <ColumnDefinition Width="25"/>
                                 <ColumnDefinition Width="5"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Margin="0,0,0,0"  Foreground="{StaticResource textColor2}">
-                                        Hello
-                            </TextBlock>
+                        <TextBlock Margin="0,0,0,0" Foreground="{StaticResource textColor3}" Text="Create Notify" />
 
-                            <Button x:Name="btnMinimize"
+
+                        <Button x:Name="btnMinimize"
                                      BorderThickness="0"
                                      Content="-"
                                      Foreground="{StaticResource textButtonColor}"
@@ -123,6 +47,7 @@
                                      FontFamily="Montserrat"
                                      Cursor="Hand"
                                      Grid.Column="1"
+                                     Click="btnMinimize_Click"
                                      >
                                 <Button.Style>
                                     <Style TargetType="Button">
@@ -155,6 +80,7 @@
                                      FontFamily="Montserrat"
                                      Cursor="Hand"
                                      Grid.Column="2"
+                                    Click="btnClose_Click"
                                     >
                                 <Button.Style>
                                     <Style TargetType="Button">
@@ -179,124 +105,108 @@
                                 </Button.Template>
                             </Button>
                         </Grid>
-                        <Grid Grid.Row="1" >
-                            <StackPanel Orientation="Vertical">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,60,0,0">
-                                    <TextBlock Text="Name"
-                                       Foreground="{StaticResource textColor1}"
-                                       FontSize="18"
-                                       FontWeight="Medium"
-                                       FontFamily="Montserrat"
-                                       Margin="0,6,10,0"/>
-                                    <TextBlock x:Name="IdUserTextBlock" Text="{Binding Id}" Visibility="Collapsed"/>
-                                    <TextBox x:Name="txtUsername"
-                                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
-                                             FontFamily="Montserrat"
-                                             FontSize="13"
-                                             Width="300"
-                                             FontWeight="Medium"
-                                             Foreground="{StaticResource textColor1}"
-                                             CaretBrush="{StaticResource color5}"
-                                             BorderBrush="{StaticResource color3}"
-                                             BorderThickness="0,0,0,1"
-                                             Height="28"
-                                             VerticalContentAlignment="Center"
-                                             Margin="15,3,0,0"
-                                             Padding="20,0,0,0">
-                                        <TextBox.Background>
-                                            <ImageBrush ImageSource="/Resources/Icons/user-icon.png"
-                                                        Stretch="None"
-                                                        AlignmentX="Left"/>
-                                        </TextBox.Background>
+                    <Grid Grid.Row="1" >
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,30,0,0">
+                                <TextBlock Foreground="{StaticResource textColor5}"
+                                                FontSize="18"
+                                                FontWeight="Bold"
+                                                FontFamily="Montserrat"
+                                                Margin="0,6,10,0" Text="Add your content notify here"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
 
-                                    </TextBox>
+                                <RichTextBox x:Name="ContentNotifyTextBlock" Margin="15,20,0,0" Width='500' Height="200" FontSize="14" FontWeight="Medium" FontFamily="Montserrat"  Padding="10">
+                                    <RichTextBox.Template>
+                                        <ControlTemplate>
+                                            <Border Background="{StaticResource color6}" CornerRadius="10" BorderThickness="2" BorderBrush="Black">
+                                                <ScrollViewer x:Name="PART_ContentHost">
+
+                                                </ScrollViewer>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </RichTextBox.Template>
+                                </RichTextBox>
+                                <StackPanel Margin="20,20,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <CheckBox 
+                                                  x:Name="PinButton" 
+                                                  Margin="20,20,0,0"
+                                                  Height="30"
+                                                  HorizontalAlignment="Left"
+                                                  FontSize="18"
+                                                  Content="Do you want to pin your notify?"
+                                                  FontFamily="Montserrat" FontWeight="Bold"
+                                                  Foreground="{StaticResource textColor5}" />
+
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <RichTextBox x:Name="ContentNotifyTextBlock" Margin="40,20,0,0" Width='500' Height="200" FontSize="14" FontWeight="Medium" FontFamily="Montserrat"  Padding="10">
-                                        <RichTextBox.Template>
-                                            <ControlTemplate>
-                                                <Border Background="{StaticResource color6}" CornerRadius="10" BorderThickness="2" BorderBrush="Black">
-                                                    <ScrollViewer x:Name="PART_ContentHost">
-                                                    </ScrollViewer>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </RichTextBox.Template>
-                                    </RichTextBox>
-                                    <Button x:Name="PinButton" Click="PinButton_Click" Style="{StaticResource btnIcon}" Margin="20,20,0,0">
-                                        <fa:IconImage x:Name="Pin" Margin="0,-10,0,0" Width="20" Height="25" Icon="thumbtack" Foreground="{StaticResource color5}"
-                                        Stretch="UniformToFill"></fa:IconImage>
-                                    </Button>
-                                </StackPanel>
-                                
-                                 
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0">
-                                    <Button x:Name="btnCancel"
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
+                                <Button x:Name="btnCancel"
                                             BorderThickness="0"
                                             Content="Cancel"
                                             Foreground="{StaticResource textButtonColor}"
                                             FontSize="12"
-                                            FontWeight="Medium"
+                                            FontWeight="Bold"
                                             FontFamily="Montserrat"
                                             Cursor="Hand"
                                             Grid.Column="2"
-                                            Margin="20,30,0,0" >
+                                            Margin="20,30,0,0" 
+                                            Click="btnCancel_Click">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Background" Value="{StaticResource buttonColor1}"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource hoverButtonColor}"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
 
-                                        <Button.Style>
-                                            <Style TargetType="Button">
-                                                <Setter Property="Background" Value="{StaticResource buttonColor1}"/>
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="{StaticResource hoverButtonColor}"/>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-
-                                        <Button.Template>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border Width="150" Height="40"
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Width="150" Height="40"
                                                         CornerRadius="20"
                                                         Background="{TemplateBinding Background}">
-                                                    <ContentPresenter VerticalAlignment="Center"
+                                                <ContentPresenter VerticalAlignment="Center"
                                                                       HorizontalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Button.Template>
-                                    </Button>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
 
-                                    <Button x:Name="btnSave"
+                                <Button x:Name="btnSave"
                                     Command="{Binding SaveCommand}"
                                     BorderThickness="0"
                                     Content="Save"
                                     Foreground="{StaticResource textButtonColor}"
                                     FontSize="12"
-                                    FontWeight="Medium"
+                                    FontWeight="Bold"
                                     FontFamily="Montserrat"
                                     Cursor="Hand"
                                     Grid.Column="2"
                                     Margin="40,30,0,0"
                                     Click="btnSave_Click">
 
-                                        <Button.Style>
-                                            <Style TargetType="Button">
-                                                <Setter Property="Background" Value="{StaticResource buttonColor}"/>
-                                            </Style>
-                                        </Button.Style>
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Background" Value="{StaticResource buttonColor}"/>
+                                        </Style>
+                                    </Button.Style>
 
-                                        <Button.Template>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border Width="150" Height="40"
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Width="150" Height="40"
                                                 CornerRadius="20"
                                                 Background="{TemplateBinding Background}">
-                                                    <ContentPresenter VerticalAlignment="Center"
+                                                <ContentPresenter VerticalAlignment="Center"
                                                               HorizontalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Button.Template>
-                                    </Button>
-                                </StackPanel>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
                             </StackPanel>
-                        </Grid>
+                        </StackPanel>
                     </Grid>
                 </Grid>
             </Border>
