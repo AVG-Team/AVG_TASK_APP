@@ -6,7 +6,7 @@
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:AVG_TASK_APP.CustomControls"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="836">
+             d:DesignHeight="50" d:DesignWidth="800">
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -32,7 +32,8 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Left"
                     Grid.Column="1"
-                    Margin="290,0,0,0">
+
+                    Margin="200,0,0,0">
             <Button Style="{StaticResource filterButton}"
                     
                     Width="80">

@@ -240,10 +240,12 @@
                             <fa:IconImage Icon="QuestionCircle" Height="20" Width="20"/>
                         </Button>
 
-                        <Button Background="Transparent"
+                        <Button x:Name="Notifies"
+                                Background="Transparent"
                                 Width="30" Height="30"
                                 BorderThickness="0"
-                                Style="{StaticResource menuButtonHeader}">
+                                Style="{StaticResource menuButtonHeader}"
+                                Click="Notifies_Click">
                             <fa:IconImage Icon="Bell" Height="20" Width="20"/>
                         </Button>
 
@@ -425,8 +427,24 @@
                 </Grid>
             </Border>
             <!-- Menu Button End-->
-            <Grid x:Name="areaManageTask" Grid.Column="1">
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0"/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="areaManageTask" Grid.Column="0">
+                    
+                </Grid>
+                <StackPanel Grid.Column="0" HorizontalAlignment="Right">
+                    <Grid Margin="0,0,20,0" x:Name="areaManageNotify">
+                        
+                    </Grid>
+                </StackPanel>
+                
+
+
             </Grid>
+                    
         </Grid>
     </Grid>
 </Window>
