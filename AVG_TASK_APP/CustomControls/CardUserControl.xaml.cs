@@ -50,5 +50,12 @@ namespace AVG_TASK_APP.CustomControls
         {
             btnCreateTask_Click?.Invoke(this, EventArgs.Empty);
         }
+
+        private void MenuCard_Click(object sender, RoutedEventArgs e)
+        {
+            MenuCard_UserControl menuCard = new MenuCard_UserControl();
+            areaMenu.Children.Add(menuCard);
+
+        }
     }
 }

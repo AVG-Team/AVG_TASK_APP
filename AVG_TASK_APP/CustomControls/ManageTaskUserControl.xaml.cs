@@ -85,7 +85,19 @@ namespace AVG_TASK_APP.CustomControls
         {
             Reload();
         }
+        public void CreateCardView_btnCreateCard_Click(string nameNewCard)
+        {
+            //lấy đc id card cuối cùng, ta sẽ cộng 1 để có 1 new card ?
 
+            Models.Card newCard = new Models.Card();
+            newCard.Name = nameNewCard;
+            newCard.Id_Table = idTableCurrent;
+            newCard.Created_At = DateTime.Now;
+            cardRepository.Add(newCard);
+
+            Reload();
+           
+        }
         private void CardUserControl_btnCreateTask_Click(object? sender, EventArgs e)
         {
 
@@ -219,8 +231,9 @@ namespace AVG_TASK_APP.CustomControls
 
         private void addNameCardButton_Click(object sender, RoutedEventArgs e)
         {
-            AddCard addCard = new AddCard();
+           AddCard addCard = new AddCard(idTableCurrent, this);
             addCard.Show();
+
         }
 
         private void shareButton_Click(object sender, RoutedEventArgs e)
@@ -236,6 +249,7 @@ namespace AVG_TASK_APP.CustomControls
 
         private void MenuButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
+           
             if (menuBoardControl != null)
             {
                 if (menuBoardControl.Visibility == Visibility.Collapsed)

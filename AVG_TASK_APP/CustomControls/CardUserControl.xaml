@@ -41,10 +41,12 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1">
-                            <Button Background="Transparent"
+                            <Button x:Name="MenuCard"
+                                Background="Transparent"
                                      Width="15" Height="15"
                                      BorderThickness="0"
                                      Margin="0,10,10,0"
+                                    Click="MenuCard_Click"
                                      HorizontalAlignment="Right">
                                 <fa:IconImage Icon="Bars" Height="15" Width="15" Foreground="{StaticResource color8}"/>
                                 <Button.Style>
@@ -58,6 +60,9 @@
                                 </Button.Style>
                             </Button>
                         </StackPanel>
+                        <Grid x:Name="areaMenu" Grid.Column="1">
+                            
+                        </Grid>
                     </Grid>
 
                     <ListBox x:Name="_list"
