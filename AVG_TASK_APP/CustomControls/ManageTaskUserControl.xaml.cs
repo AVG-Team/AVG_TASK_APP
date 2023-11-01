@@ -1,12 +1,15 @@
 ﻿using AVG_TASK_APP.Migration;
 using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
+using AVG_TASK_APP.Repositories.Interface;
 using AVG_TASK_APP.ViewModels;
 using AVG_TASK_APP.Views;
 using C1.WPF.Core;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -32,6 +35,7 @@ namespace AVG_TASK_APP.CustomControls
         private ManageTaskUserControlViewModel viewModel;
         private CardRepository cardRepository;
         private TaskRepository taskRepository;
+        private ITableRepository tableRepository;
 
         private C1DragDropManager _dd;
         private int idTableCurrent = 0;
@@ -43,7 +47,8 @@ namespace AVG_TASK_APP.CustomControls
 
             viewModel = new ManageTaskUserControlViewModel();
             cardRepository = new CardRepository();
-            taskRepository = new TaskRepository();
+            taskRepository = new TaskRepository(); 
+            tableRepository = new TableRepository();
 
             DataContext = viewModel;
             idTableCurrent = idTable;
@@ -62,6 +67,11 @@ namespace AVG_TASK_APP.CustomControls
 
         public void Reload()
         {
+            bool pin = tableRepository.GetById(idTableCurrent).Pin;
+            if (pin)
+                iconStart.Foreground = Brushes.Orange;
+            else
+                iconStart.Foreground= Brushes.Black;
             var cards = cardRepository.GetAllForTable(idTableCurrent);
             areaCard.Children.Clear();
             foreach (var item in cards)
@@ -274,12 +284,31 @@ namespace AVG_TASK_APP.CustomControls
             }
         }
 
-        private void ButtonStar_Click(object sender, RoutedEventArgs e)
+        public void ButtonStar_Click(object sender, RoutedEventArgs e)
         {
             if (iconStart.Foreground == Brushes.Black)
+            {
                 iconStart.Foreground = Brushes.Orange;
+                Models.Table table = tableRepository.GetById(idTableCurrent);
+                table.Pin = true;
+                tableRepository.Update(table);
+            }
             else
+            {
                 iconStart.Foreground = Brushes.Black;
+                Models.Table table = tableRepository.GetById(idTableCurrent);
+                table.Pin = false;
+                tableRepository.Update(table);
+            }
+
+            foreach(Window window in Application.Current.Windows)
+            {
+                if(window is ManageTaskLayout)
+                {
+                    ManageTaskLayout layout = (ManageTaskLayout)window;
+                    layout.loadStart();
+                }
+            }
         }
     }
 }

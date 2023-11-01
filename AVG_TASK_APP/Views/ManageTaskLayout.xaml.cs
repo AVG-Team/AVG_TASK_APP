@@ -1,4 +1,6 @@
 ﻿using AVG_TASK_APP.CustomControls;
+using AVG_TASK_APP.DataAccess;
+using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.ViewModels;
 using FontAwesome.WPF;
@@ -9,6 +11,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Metadata;
 using System.Security.Claims;
 using System.Text;
 using System.Threading;
@@ -36,9 +39,9 @@ namespace AVG_TASK_APP.Views
         private ManageTaskLayoutViewModel viewModel;
         private int idTableCurrent;
         private int idWorkspaceCurrent;
-
+        private List<ManageTaskUserControl> manageTaskUserControls = new List<ManageTaskUserControl>();
         private bool isUserNotifyVisible = false;
-
+        ManageTaskUserControl temp;
         public ManageTaskLayout(int idTable)
         {
             InitializeComponent();
@@ -68,6 +71,9 @@ namespace AVG_TASK_APP.Views
                 RadioButtonBoard radioButtonBoard = new RadioButtonBoard(item.Id);
                 listBoards.Children.Add(radioButtonBoard);
                 radioButtonBoard.itemTable_Click += ItemTable_Click;
+                int idTable = int.Parse(radioButtonBoard.idTable.Text);
+                temp = new ManageTaskUserControl(idTable);
+                manageTaskUserControls.Add(temp);
             }
         }
 
@@ -229,38 +235,34 @@ namespace AVG_TASK_APP.Views
 
         private void starList_Click(object sender, RoutedEventArgs e)
         {
+            loadStart();
         }
-
-        private void UpdateStarListMenu(object sender, EventArgs e)
+        public void loadStart()
         {
-            /* // Clear existing items
-             starList.Items.Clear();
+            starList.Items.Clear();
 
-             foreach (ManageTaskUserControl i in manageTaskUserControls)
-             {
-                 if (i.iconStart.Foreground == Brushes.Orange)
-                 {
-                     MenuItem item = new MenuItem();
-                     item.Header = i.NameTable.Text;
-                     item.Template = FindResource("Item_Template") as ControlTemplate;
-                     bool itemExists = false;
+            List<Models.Table> tables = viewModel.getStarList();
+            foreach (var table in tables)
+            {
+                MenuItem item = new MenuItem();
+                item.Header = table.Name;
+                item.Template = FindResource("Item_Template") as ControlTemplate;
+                item.Click += (s, e) =>
+                {
+                    ManageTaskLayout manageTaskLayout = new ManageTaskLayout(table.Id);
+                    manageTaskLayout.Show();
 
-                     // Check if an item with the same Header already exists
-                     foreach (MenuItem existingItem in starList.Items)
-                     {
-                         if (existingItem.Header != null && existingItem.Header.ToString() == item.Header.ToString())
-                         {
-                             itemExists = true;
-                             break;
-                         }
-                     }
+                    foreach (Window window in Application.Current.Windows)
+                    {
+                        if (window is ManageTaskLayout && window != manageTaskLayout)
+                        {
+                            window.Close();
+                        }
+                    }
+                };
+                starList.Items.Add(item);
+            }
 
-                     if (!itemExists)
-                     {
-                         starList.Items.Add(item);
-                     }
-                 }
-             }*/
         }
 
         private void Notifies_Click(object sender, RoutedEventArgs e)
