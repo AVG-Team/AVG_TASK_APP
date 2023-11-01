@@ -55,6 +55,12 @@ namespace AVG_TASK_APP.Views
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
+            if (!checkInput())
+            {
+                MessageBoxView messageBoxView = new MessageBoxView();
+                messageBoxView.Show("Please not to leave blank");
+                return;
+            }
             if (radioVisibility.IsChecked == true)
             {
                 Table table = new Table()
@@ -88,5 +94,18 @@ namespace AVG_TASK_APP.Views
             return "AVG_" + rnd.Next();
         }
 
+        private bool checkInput()
+        {
+            bool validData = false;
+            if (txtTitle.Text == "" || cbWorkspace.Text.Length <= 0 || (radioVisibility.IsChecked == false && radioInvisibility.IsChecked == false))
+            {
+                validData = false;
+            }
+            else
+            { 
+                validData = true;
+            }
+            return validData;
+        }
     }
 }

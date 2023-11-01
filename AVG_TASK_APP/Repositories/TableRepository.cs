@@ -29,9 +29,20 @@ namespace AVG_TASK_APP.Repositories
         }
         public void Add(Table table)
         {
-            AppDbContext dbContextTemp = dbContext;
-            dbContextTemp.Tables.Add(table);
-            dbContextTemp.SaveChanges();
+            IUserRepository userRepository = new UserRepository();
+            AppDbContext dbContextTmp = dbContext;
+            var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
+            int id = int.Parse(identity.Claims.FirstOrDefault(s => s.Type == "Id").Value);
+            dbContextTmp.Tables.Add(table);
+            dbContextTmp.SaveChanges();
+            UserTable userTable = new UserTable()
+            {
+                Id_User = id,
+                Id_Table = table.Id,
+                Role = 1,
+            };
+            dbContextTmp.UserTables.Add(userTable);
+            dbContextTmp.SaveChanges();
         }
 
         public IEnumerable<Table> GetAll(string sort = "desc")
