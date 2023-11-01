@@ -163,7 +163,7 @@
                             </MenuItem>
 
                             <!--// Main Menu - Recent//-->
-                            <MenuItem Header="Recent" 
+                            <MenuItem x:Name="recentLists" Header="Recent" 
                                       Template="{StaticResource Menu_SubMenu_Template}" >
                                 <!--// Music Submenu - All Songs //-->
                                 <MenuItem Header="All Songs"
