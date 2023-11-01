@@ -151,6 +151,24 @@
                                                      AlignmentX="Left"/>
                                     </TextBox.Background>
                                 </TextBox>
+                                <Popup x:Name="areaMenu"
+                                         IsOpen="{Binding IsOpen, UpdateSourceTrigger=PropertyChanged}"
+                                         PlacementTarget="{Binding ElementName=txtEmail}" >
+                                    <StackPanel Width="300" Height="200" Orientation="Horizontal" Margin="0,5,0,0">
+                                        <Border CornerRadius="10" 
+                                                Width="300" Height="200"
+                                                BorderThickness="1"
+                                                BorderBrush="{StaticResource color6}" 
+                                                Background="{StaticResource color6}">
+                                            <StackPanel Orientation="Vertical">
+                                                <ListBox x:Name="_list" Height="200"
+                                                        Margin="0,5,0,0" ItemsSource="{Binding MenuSearch, UpdateSourceTrigger=PropertyChanged}"
+                                                        Background="Transparent" BorderThickness="0">
+                                                </ListBox>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+                                </Popup>
                             </StackPanel>
                             <StackPanel Grid.Column="1" Orientation="Horizontal"
                                          HorizontalAlignment="Center"
