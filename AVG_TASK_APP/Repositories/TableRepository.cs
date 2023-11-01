@@ -64,10 +64,21 @@ namespace AVG_TASK_APP.Repositories
 
         public IEnumerable<Table> GetAllForWorkspace(int idWorkspace, string sort = "desc")
         {
+            var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
+            if (identity == null)
+            {
+                return null;
+            }
+
+            int id = int.Parse(identity.Claims.FirstOrDefault(s => s.Type == "Id").Value);
+            var tables = dbContext.UserTables
+                                .Where(s => s.Id_User == id)
+                                .Select(s => s.Table).ToList();
+
             if (sort.Equals("desc"))
-                return dbContext.Tables.Where(s => s.Id_Workspace == idWorkspace && s.Deleted_At == null).OrderByDescending(s => s.Created_At).ToList();
+                return tables.Where(s => s.Id_Workspace == idWorkspace && s.Deleted_At == null).OrderByDescending(s => s.Created_At).ToList();
             else
-                return dbContext.Tables.Where(s => s.Id_Workspace == idWorkspace && s.Deleted_At == null).OrderBy(s => s.Created_At).ToList();
+                return tables.Where(s => s.Id_Workspace == idWorkspace && s.Deleted_At == null).OrderBy(s => s.Created_At).ToList();
         }
 
         public Table GetById(int idTable)
@@ -97,8 +108,9 @@ namespace AVG_TASK_APP.Repositories
 
         public void Update(Table table)
         {
-            dbContext.Tables.Update(table);
-            dbContext.SaveChanges();
+            AppDbContext dbContextTmp = dbContext;
+            dbContextTmp.Tables.Update(table);
+            dbContextTmp.SaveChanges();
         }
 
         public IEnumerable<Table> GetByContainName(string name, string sort = "desc")
