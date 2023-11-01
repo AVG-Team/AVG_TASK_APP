@@ -151,8 +151,11 @@ namespace AVG_TASK_APP.ViewModels
             if (users == null)
                 return;
 
-            if (users == null)
-                return;
+            List<UserModel> usersInWorkspace = (List<UserModel>)workspaceReposity.GetUsersForWorkspace(int.Parse(IdWorkspace));
+
+            users = users.Where(user => !usersInWorkspace.Any(u => u.Id == user.Id)).ToList();
+
+            if(users == null) return;
 
             foreach (UserModel user in users)
             {
