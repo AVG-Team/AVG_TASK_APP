@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace AVG_TASK_APP.Repositories
 {
@@ -101,7 +102,10 @@ namespace AVG_TASK_APP.Repositories
 
         public IEnumerable<Table> GetByContainName(string name, string sort = "desc")
         {
-            throw new NotImplementedException();
+            List<Table> tables = null;
+            tables = dbContext.Tables.Where(s => s.Name.Contains(name) && s.Deleted_At == null).ToList();
+
+            return tables;
         }
     }
 }

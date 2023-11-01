@@ -130,11 +130,11 @@
                             <StackPanel HorizontalAlignment="Center"
                                          VerticalAlignment="Center">
                                 <TextBox x:Name="txtSearch"
-                                         Text="Search"
+                                         Text="{Binding ValueSearch, UpdateSourceTrigger=PropertyChanged}"
                                          FontFamily="Montserrat"
                                          FontSize="13"
                                          FontWeight="Medium"
-                                         Foreground="{StaticResource textColor1}"
+                                         Foreground="{StaticResource color3}"
                                          CaretBrush="{StaticResource color5}"
                                          BorderBrush="{StaticResource color3}"
                                          BorderThickness="0,0,0,1"

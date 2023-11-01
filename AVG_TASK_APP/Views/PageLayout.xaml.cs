@@ -82,8 +82,6 @@ namespace AVG_TASK_APP.Views
             txtSearch.Width = 150;
 
             areaMenuSearch.IsOpen = false;
-            if (_listSearch.Items.Count > 0)
-                _listSearch.Items.Clear();
         }
 
         private void Avatar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -161,14 +159,12 @@ namespace AVG_TASK_APP.Views
             if (txtSearch.Text.Length == 0)
             {
                 areaMenuSearch.IsOpen = false;
-                _listSearch.Items.Clear();
                 return;
             }
 
             if (e.Key == Key.Back || e.Key == Key.Delete)
             {
                 areaMenuSearch.IsOpen = false;
-                _listSearch.Items.Clear();
             }
         }
     }
