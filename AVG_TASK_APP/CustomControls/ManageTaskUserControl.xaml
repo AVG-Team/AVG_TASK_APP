@@ -39,7 +39,7 @@
                     <Button x:Name="ButtonStar"  Background="Transparent"
                             Width="40" Height="40"
                             BorderThickness="0" Click="ButtonStar_Click">
-                        <fa:IconImage Foreground="Orange" x:Name="iconStart" Icon="Star" Height="25" Width="25"/>
+                        <fa:IconImage Foreground="Black" x:Name="iconStart" Icon="Star" Height="25" Width="25"/>
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Style.Triggers>
