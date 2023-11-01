@@ -320,7 +320,7 @@
                                        FontFamily="Montserrat"
                                        TextAlignment="Center"
                                        Margin=" 15 40 10 20"/>
-                            <Button x:Name="MoveControlButton" Background="Transparent" Click="MoveControlButton_Click"
+                            <!--<Button x:Name="MoveControlButton" Background="Transparent" Click="MoveControlButton_Click"
                                     Width="30"
                                     Height="30"
                                     BorderThickness="0">
@@ -340,7 +340,7 @@
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
-                            </Button>
+                            </Button>-->
 
                         </StackPanel>
                     </Grid>
