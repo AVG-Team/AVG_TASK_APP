@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:AVG_TASK_APP.CustomControls"
              mc:Ignorable="d" 
              Background="{StaticResource color6}"
+             Loaded="UserControl_Loaded"
              d:DesignHeight="784" d:DesignWidth="1200">
 
     <Grid>
@@ -131,5 +132,5 @@
                 </StackPanel>
             </Grid>
         </Grid>
-    </Grid> 
+    </Grid>
 </UserControl>

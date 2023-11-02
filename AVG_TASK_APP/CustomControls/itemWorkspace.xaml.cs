@@ -27,6 +27,8 @@ namespace AVG_TASK_APP.CustomControls
     /// </summary>
     public partial class itemWorkspace : UserControl
     {
+        private int idWorkspaceCurrent;
+        public event EventHandler itemWorkspace_Click;
 
         public itemWorkspace(int idWorkspaceDB)
         {
@@ -39,7 +41,7 @@ namespace AVG_TASK_APP.CustomControls
             stackPanel.Visibility = Visibility.Collapsed;
 
             idWorkspace.Text = idWorkspaceDB.ToString();
-
+            idWorkspaceCurrent = idWorkspaceDB;
             nameWorkspace.Text = viewModel.getName();
 
             iconMenu.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.CaretUp;
@@ -77,8 +79,10 @@ namespace AVG_TASK_APP.CustomControls
 
         }
 
-        private void btnItemSetting_Click(object sender, RoutedEventArgs e)
+        private void btnItemSetting_Click(object sender, EventArgs e)
         {
+            SettingView settingView = new SettingView(idWorkspaceCurrent);
+            settingView.ShowDialog();
 
         }
 
