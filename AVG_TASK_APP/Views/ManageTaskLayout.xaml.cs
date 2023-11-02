@@ -138,7 +138,7 @@ namespace AVG_TASK_APP.Views
         }
         private void buttonCreate_Click(object sender, RoutedEventArgs e)
         {
-            CreateBoard createBoard = new CreateBoard(idWorkspaceCurrent);
+            CreateBoard createBoard = new CreateBoard();
             createBoard.Show();
         }
 

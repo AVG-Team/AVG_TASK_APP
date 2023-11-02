@@ -112,7 +112,7 @@ access the table in one location."
                     <RadioButton x:Name="radioInvisibility" GroupName="public" IsChecked="{Binding IsCheckedNotPublic, UpdateSourceTrigger=PropertyChanged}"
                                 Margin="100,10,10,10">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Private" Foreground="LightGray"/>
+                            <TextBlock Text="Not public" Foreground="LightGray"/>
                         </StackPanel>
                     </RadioButton>
                 </StackPanel>
