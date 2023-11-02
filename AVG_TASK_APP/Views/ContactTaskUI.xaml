@@ -279,7 +279,8 @@
                                 <RichTextBox Width="500" Height="200" x:Name="description"
                                              FontSize="14" FontWeight="Medium"
                                              FontFamily="Montserrat"
-                                             Padding="10">
+                                             
+                                             Padding="10" MouseDoubleClick="description_MouseDoubleClick">
                                     <FlowDocument>
                                         <Paragraph>
                                             <Run Text="{Binding Description, Mode=TwoWay}" />

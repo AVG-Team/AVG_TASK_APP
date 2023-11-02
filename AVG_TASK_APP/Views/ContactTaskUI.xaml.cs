@@ -75,14 +75,21 @@ namespace AVG_TASK_APP.Views
         {
             btnSaveDescription.Visibility = Visibility.Collapsed;
             btnCancelDescription.Visibility = Visibility.Collapsed;
-            description.IsEnabled = false;
+            description.IsReadOnly = true;
         }
 
         private void btnCancelDescription_Click(object sender, RoutedEventArgs e)
         {
             btnSaveDescription.Visibility = Visibility.Collapsed;
             btnCancelDescription.Visibility = Visibility.Collapsed;
-            description.IsEnabled = false;
+            description.IsReadOnly = true;
+        }
+
+        private void description_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            btnSaveDescription.Visibility = Visibility.Visible;
+            btnCancelDescription.Visibility = Visibility.Visible;
+            description.IsReadOnly = false;
         }
     }
 }
