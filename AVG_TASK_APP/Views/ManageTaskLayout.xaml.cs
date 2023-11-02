@@ -338,6 +338,7 @@ namespace AVG_TASK_APP.Views
         {
             // Clear existing items
             recentLists.Items.Clear();
+            int count = 0;
             var tables = tableRepository.GetAll();
 
             foreach (var i in tables)
@@ -348,7 +349,8 @@ namespace AVG_TASK_APP.Views
                 item.Tag = i.Id;
                 item.Template = FindResource("Item_Template") as ControlTemplate;
                 bool itemExists = false;
-
+                count++;
+                if (count > 4) break;
                 // Check if an item with the same Header already exists
                 foreach (MenuItem existingItem in recentLists.Items)
                 {

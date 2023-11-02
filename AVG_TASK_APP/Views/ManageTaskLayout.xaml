@@ -164,33 +164,12 @@
 
                             <!--// Main Menu - Recent//-->
                             <MenuItem x:Name="recentLists" Header="Recent" 
-                                      Template="{StaticResource Menu_SubMenu_Template}" >
+                                    Template="{StaticResource Menu_SubMenu_Template}" >
                                 <!--// Music Submenu - All Songs //-->
-                                <MenuItem Header="All Songs"
-                                          Template="{StaticResource Menu_SubMenu2_Template}">
-                                </MenuItem>
 
-                                <!--// Music Submenu - Albums //-->
-
-                                <MenuItem Header="Albums"
-                                          Template="{StaticResource Menu_SubMenu2_Template}">
-                                </MenuItem>
-
-                                <!--// Music Submenu - Artists //-->
-
-                                <MenuItem Header="Artists"
-                                          Template="{StaticResource Menu_SubMenu2_Template}">
-                                </MenuItem>
-
-                                <!--// Music Submenu - Playlists //-->
-
-                                <MenuItem Header="Playlists"
-                                          Template="{StaticResource Menu_SubMenu2_Template}">
-                                </MenuItem>
 
                             </MenuItem>
-
-
+\
                             <!--// Main Menu - Recent//-->
                             <MenuItem x:Name="starList" Header="Stared" Click="starList_Click"
                                       Template="{StaticResource Menu_SubMenu_Template}" >
