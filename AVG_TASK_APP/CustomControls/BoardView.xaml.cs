@@ -44,4 +44,4 @@ namespace AVG_TASK_APP.CustomControls
             }
         }
     }
-}
+}  

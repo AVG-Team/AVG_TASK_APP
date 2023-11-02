@@ -26,7 +26,28 @@ namespace AVG_TASK_APP.ViewModels
 
         public List<Table> GetTables(int idWorkspace)
         {
-            return (List<Table>)tableRepository.GetAllForWorkspace(idWorkspace);
+            List<Workspace> workspaces = (List<Workspace>)workspaceRepository.GetAllForUser();
+            if(workspaces.Count == 0)
+                return null;
+            else if(workspaces.Count > 2) 
+            {
+                return workspaces.Take(2).ToList();
+            }
+            return workspaces.ToList();
+        }
+
+        public List<Table> GetTablesRecently()
+        {
+            List<Table> tables = (List<Table>)tableRepository.GetAllForUser();
+            if (tables.Count == 0)
+            {
+               
+            } 
+            else if (tables.Count > 4)
+            {
+                return tables.Take(4).ToList();
+            }
+            return tables.ToList();
         }
     }
 }

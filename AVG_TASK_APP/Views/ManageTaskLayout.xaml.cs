@@ -221,31 +221,131 @@ namespace AVG_TASK_APP.Views
             /* // Clear existing items
              starList.Items.Clear();
 
-             foreach (ManageTaskUserControl i in manageTaskUserControls)
-             {
-                 if (i.iconStart.Foreground == Brushes.Orange)
-                 {
-                     MenuItem item = new MenuItem();
-                     item.Header = i.NameTable.Text;
-                     item.Template = FindResource("Item_Template") as ControlTemplate;
-                     bool itemExists = false;
+            List<Models.Table> tables = viewModel.getStarList();
+            foreach (var table in tables)
+            {
+                MenuItem item = new MenuItem();
+                item.Header = table.Name;
+                item.Template = FindResource("Item_Template") as ControlTemplate;
+                item.Click += (s, e) =>
+                {
+                    ManageTaskLayout manageTaskLayout = new ManageTaskLayout(table.Id);
+                    manageTaskLayout.Show();
 
-                     // Check if an item with the same Header already exists
-                     foreach (MenuItem existingItem in starList.Items)
-                     {
-                         if (existingItem.Header != null && existingItem.Header.ToString() == item.Header.ToString())
-                         {
-                             itemExists = true;
-                             break;
-                         }
-                     }
+                    foreach (Window window in Application.Current.Windows)
+                    {
+                        if (window is ManageTaskLayout && window != manageTaskLayout)
+                        {
+                            window.Close();
+                        }
+                    }
+                };
+                starList.Items.Add(item);
+            }
 
-                     if (!itemExists)
-                     {
-                         starList.Items.Add(item);
-                     }
-                 }
-             }*/
+        }
+
+        private void Notifies_Click(object sender, RoutedEventArgs e)
+        {
+            if (isUserNotifyVisible)
+            {
+                // If it's currently visible, collapse it
+                areaManageNotify.Children.Clear();
+                areaManageNotify.Visibility = Visibility.Collapsed;
+                isUserNotifyVisible = false;
+            }
+            else
+            {
+                // If it's not visible, create and show it
+                NotifiesUserControl notifiesUserControl = new NotifiesUserControl();
+                areaManageNotify.Width = 500;
+                areaManageNotify.Height = 450;
+                areaManageNotify.HorizontalAlignment = HorizontalAlignment.Left;
+                areaManageNotify.VerticalAlignment = VerticalAlignment.Top;
+                areaManageNotify.Children.Add(notifiesUserControl);
+                areaManageNotify.Visibility = Visibility.Visible;
+                isUserNotifyVisible = true;
+            }
+        }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                PageLayout pageLayout = new PageLayout();
+                pageLayout.Show();
+
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window is ManageTaskLayout)
+                    {
+                        window.Close();
+                    }
+                }
+            }
+
+
+        }
+
+        private void txtSearch_LostFocus(object sender, RoutedEventArgs e)
+        {
+            areaMenuSearch.IsOpen = false;
+        }
+
+        private void txtSearch_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtSearch.Text.Length == 0)
+            {
+                areaMenuSearch.IsOpen = false;
+                return;
+            }
+
+            if (e.Key == Key.Back || e.Key == Key.Delete)
+            {
+                areaMenuSearch.IsOpen = false;
+            }
+        }
+
+        private void txtSearch_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtSearch.Text = "";
+        }
+
+        private void updateRecently()
+        {
+            // Clear existing items
+            listRecently.Children.Clear();
+            var tables = tableRepository.GetAll();
+            foreach (var i in tables)
+            {
+                
+                MenuItem item = new MenuItem();
+                item.Header = i.Name;
+                item.Tag = i.Id;
+                item.Template = FindResource("Item_Template") as ControlTemplate;
+                bool itemExists = false;
+                // Check if an item with the same Header already exists
+                foreach (MenuItem existingItem in listRecently.Children)
+                {
+                    if (existingItem.Header != null && existingItem.Header.ToString() == item.Header.ToString())
+                    {
+                        itemExists = true;
+                        break;
+                    }
+                }
+
+                if (!itemExists)
+                {
+                    listRecently.Children.Add(item);
+                }
+              
+            }
+
+        }
+
+        private void recentLists_Click(object sender, RoutedEventArgs e)
+        {
+            updateRecently();
         }
     }
 }

@@ -162,32 +162,22 @@
                             </MenuItem>
 
                             <!--// Main Menu - Recent//-->
-                            <MenuItem Header="Recent" 
-                                      Template="{StaticResource Menu_SubMenu_Template}" >
-                                <!--// Music Submenu - All Songs //-->
-                                <MenuItem Header="All Songs"
-                                          Template="{StaticResource Menu_SubMenu2_Template}">
-                                </MenuItem>
+                            <MenuItem  Header="Recent" 
+                                    Template="{StaticResource Menu_SubMenu_Template}" 
+                                      Click="recentLists_Click">
+                                <ScrollViewer Style="{StaticResource FavsScrollViewer}"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                                          ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                                          Name="PART_VerticalScrollBar"
+                                          FlowDirection="RightToLeft">          
+                                    <StackPanel FlowDirection="LeftToRight" x:Name="listRecently" Orientation="Vertical" >
 
-                                <!--// Music Submenu - Albums //-->
-
-                                <MenuItem Header="Albums"
-                                          Template="{StaticResource Menu_SubMenu2_Template}">
-                                </MenuItem>
-
-                                <!--// Music Submenu - Artists //-->
-
-                                <MenuItem Header="Artists"
-                                          Template="{StaticResource Menu_SubMenu2_Template}">
-                                </MenuItem>
-
-                                <!--// Music Submenu - Playlists //-->
-
-                                <MenuItem Header="Playlists"
-                                          Template="{StaticResource Menu_SubMenu2_Template}">
-                                </MenuItem>
-
+                                    </StackPanel>
+                                </ScrollViewer>
                             </MenuItem>
+                           
+
+
 
 
                             <!--// Main Menu - Recent//-->
