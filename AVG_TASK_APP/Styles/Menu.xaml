@@ -342,13 +342,13 @@
 
                 <!--// Menu Text //-->
 
-                <ContentPresenter x:Name="Header"
-                                  ContentSource="Header"
-                                  TextBlock.Foreground="{StaticResource textColor5}"
-                                  TextBlock.FontFamily="Montserrat"
-                                  TextBlock.FontSize="20"
-                                  Margin="5"
-                                  RecognizesAccessKey="True"/>
+                <ContentPresenter x:Name="Header" ContentSource="Header" VerticalAlignment="Center" Width="100" RecognizesAccessKey="True">
+                    <ContentPresenter.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" Foreground="{StaticResource textColor5}" FontFamily="Montserrat" FontSize="20" Margin="5" />
+                        </DataTemplate>
+                    </ContentPresenter.ContentTemplate>
+                </ContentPresenter>
             </StackPanel>
         </Border>
         <ControlTemplate.Triggers>
