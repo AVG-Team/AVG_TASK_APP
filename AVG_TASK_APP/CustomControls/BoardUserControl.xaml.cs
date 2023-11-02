@@ -1,6 +1,7 @@
 ﻿using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Repositories.Interface;
+using AVG_TASK_APP.Views;
 using FontAwesome.WPF;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System;
@@ -39,19 +40,24 @@ namespace AVG_TASK_APP.CustomControls
 
             this.idWorkspace = idWorkspace;
 
+            Reload();
+        }
+
+        public void Reload()
+        {
             loadDataWorkspace();
             loadBoard();
         }
-
         public void loadDataWorkspace()
         {
             Workspace workspace = workspaceRepository.GetById(idWorkspace);
             nameWorkspace.Text = workspace.Name;
-            if(workspace.Visible == true)
+            if (workspace.Visible == true)
             {
                 visibilityWorkspace.Text = "Public";
                 iconVisibilityWorkspace.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.Globe;
-            } else
+            }
+            else
             {
                 visibilityWorkspace.Text = "Private";
                 iconVisibilityWorkspace.Icon = (FontAwesome.Sharp.IconChar)FontAwesomeIcon.Lock;
@@ -108,6 +114,24 @@ namespace AVG_TASK_APP.CustomControls
             btnBoard newBoard = new btnBoard(1, "123") { Margin = new Thickness(10, 0, 0, 0) };
             newBoard.content.Text = "New";
             areaBoard.Children.Add(newBoard);
+        }
+
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+           
+
+        private void btnInvite_Click(object sender, RoutedEventArgs e)
+        {
+            AddMemberToWorkspace addMemberToWorkspace = new AddMemberToWorkspace(idWorkspace);
+            Window window = new CreateWorkspaceView();
+            window.Content = addMemberToWorkspace;
+            window.Width = addMemberToWorkspace.Width;
+            window.Height = addMemberToWorkspace.Height;
+            window.WindowStyle = WindowStyle.None;
+
+            window.Show();
+
         }
     }
 }

@@ -18,6 +18,7 @@
     <SolidColorBrush x:Key="color9" Color="#333333"/>
     <SolidColorBrush x:Key="color10" Color="#8a8a8a"/>
     <SolidColorBrush x:Key="color11" Color="#EE9A00"/>
+    <SolidColorBrush x:Key="color12" Color="Red" />
     <SolidColorBrush x:Key="hoverColor1" Color="#C62DAE"/>
     <SolidColorBrush x:Key="hoverColor2" Color="#278BEF"/>
     <SolidColorBrush x:Key="backColor" Color="#ffffff"/>

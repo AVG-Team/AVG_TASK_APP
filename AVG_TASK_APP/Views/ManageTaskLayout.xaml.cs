@@ -50,7 +50,6 @@ namespace AVG_TASK_APP.Views
 
             DataContext = viewModel;
 
-            DataContext = viewModel;
             idTableCurrent = idTable;
             idWorkspaceCurrent = tableRepository.GetWorkspace(idTable).Id;
             viewModel.getNameWorkspace(idTable);
@@ -128,8 +127,8 @@ namespace AVG_TASK_APP.Views
 
         private void btnMenuItemAddMember_Click(object sender, RoutedEventArgs e)
         {
-            AddMember addMember = new AddMember();
-            addMember.ShowDialog();
+            //AddMember addMember = new AddMember();
+            //addMember.ShowDialog();
         }
 
         private void ComboBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -138,7 +137,7 @@ namespace AVG_TASK_APP.Views
         }
         private void buttonCreate_Click(object sender, RoutedEventArgs e)
         {
-            CreateBoard createBoard = new CreateBoard();
+            CreateBoard createBoard = new CreateBoard(idWorkspaceCurrent);
             createBoard.Show();
         }
 

@@ -204,3 +204,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 		</td>
 	</tr>
 </table>
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

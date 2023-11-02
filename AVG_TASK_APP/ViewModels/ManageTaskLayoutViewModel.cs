@@ -109,7 +109,7 @@ namespace AVG_TASK_APP.ViewModels
         private void ItemMenuSearch_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             ItemMenuSearch item = sender as ItemMenuSearch;
-            int idTable = int.Parse(item.Value);
+            int idTable = int.Parse(item.txtValue.Text);
             ManageTaskLayout manage = new ManageTaskLayout(idTable);
             manage.Show();
 

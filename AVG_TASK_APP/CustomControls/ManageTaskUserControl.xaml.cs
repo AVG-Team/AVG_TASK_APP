@@ -259,13 +259,10 @@ namespace AVG_TASK_APP.CustomControls
 
         private void shareButton_Click(object sender, RoutedEventArgs e)
         {
-            ShareBoard shareBoard = new ShareBoard();
-            shareBoard.Show();
-        }
-
-        private void shareButton_Click_1(object sender, RoutedEventArgs e)
-        {
-
+            //ShareBoard shareBoard = new ShareBoard();
+            //shareBoard.Show();
+            AddMember addMember = new AddMember(idTableCurrent);
+            addMember.Show();
         }
 
         private void MenuButton_MouseDown(object sender, MouseButtonEventArgs e)

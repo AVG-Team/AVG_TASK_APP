@@ -18,6 +18,7 @@ namespace AVG_TASK_APP.Views
         public event EventHandler remove_Click;
         private int idTaskCurrent;
         private int idTableCurrent;
+
         ManageTaskUserControl manageTaskUserControl;
         private TaskRepository taskRepository;
         public ContactTaskUI(int idTask, ManageTaskUserControl userControl)
@@ -28,16 +29,12 @@ namespace AVG_TASK_APP.Views
             idTaskCurrent = idTask;
             manageTaskUserControl = userControl;
 
+            this.idTask.Text = idTask.ToString();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        private void btnAddUser_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void TextBox_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
@@ -60,7 +57,6 @@ namespace AVG_TASK_APP.Views
             Models.Task task = taskRepository.GetById(idTaskCurrent);
             taskRepository.Remove(task);
 
-
             this.Close();
 
         }
@@ -74,6 +70,32 @@ namespace AVG_TASK_APP.Views
         {
              SetDateTimeUI setDateTimeUI = new SetDateTimeUI(idTaskCurrent);
             setDateTimeUI.Show();
+
+        private void btnSaveDescription_Click(object sender, RoutedEventArgs e)
+        {
+            btnSaveDescription.Visibility = Visibility.Collapsed;
+            btnCancelDescription.Visibility = Visibility.Collapsed;
+            description.IsReadOnly = true;
+        }
+
+        private void btnCancelDescription_Click(object sender, RoutedEventArgs e)
+        {
+            btnSaveDescription.Visibility = Visibility.Collapsed;
+            btnCancelDescription.Visibility = Visibility.Collapsed;
+            description.IsReadOnly = true;
+        }
+
+        private void description_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            btnSaveDescription.Visibility = Visibility.Visible;
+            btnCancelDescription.Visibility = Visibility.Visible;
+            description.IsReadOnly = false;
+        }
+
+        private void btnChecklist_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxView msb = new MessageBoxView();
+            msb.Show("This feature is under development, please try again later. We apologize for this inconvenience");s
         }
     }
 }
