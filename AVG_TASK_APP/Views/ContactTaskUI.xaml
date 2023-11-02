@@ -563,7 +563,7 @@ Background="{TemplateBinding Background}">
                         </Button>
                     </StackPanel>
 
-                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Visibility="Collapsed">
                         <Button x:Name="btnChecklist"
                             BorderThickness="0"
                             FontSize="16"
