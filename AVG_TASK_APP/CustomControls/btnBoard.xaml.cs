@@ -89,6 +89,13 @@ namespace AVG_TASK_APP.CustomControls
 
             int idTable = int.Parse(idBtnBoard.Text);
 
+            if (idTable == -1)
+            {
+                CreateBoard createBoard = new CreateBoard();
+                createBoard.Show();
+                return;
+            }
+
             ManageTaskLayout manage = new ManageTaskLayout(idTable);
             manage.Show();
 

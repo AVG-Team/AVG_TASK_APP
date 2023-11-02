@@ -39,6 +39,7 @@ namespace AVG_TASK_APP.CustomControls
         private void loadWorkspacesRecently()
         {
             List<Workspace> workspaceList = viewModel.GetWorkspacesRecently();
+            if (workspaceList == null) return;
             foreach (Workspace workspace in workspaceList)
             {
                 YourWorkspaceUserControl yourWorkspace = new YourWorkspaceUserControl(workspace.Id);
@@ -49,6 +50,8 @@ namespace AVG_TASK_APP.CustomControls
         private void loadTablesRecently()
         {
             List<Table> tables = viewModel.GetTablesRecently();
+            if (tables == null)
+                return;
             foreach (Table table in tables)
             {
                 btnBoard btnBoard = new btnBoard(table.Id, table.Name);

@@ -84,19 +84,36 @@ namespace AVG_TASK_APP.CustomControls
 
                 if (areaBoard.Children.Count > 0 && areaBoard.Children[areaBoard.Children.Count - 1] is StackPanel rowStackPanel)
                 {
-                    btnTable.MouseDown += BtnTable_MouseDown;
                     rowStackPanel.Children.Add(btnTable);
                 }
 
                 i++;
             }
             btnBoard btnTableAdd = new btnBoard(-1, "Add New Table");
-            btnTableAdd.MouseDown += BtnTableAdd_MouseDown;
+
+            btnTableAdd.Margin = new Thickness(5);
+
+            if (i % 4 == 0)
+            {
+                StackPanel rowPanel = new StackPanel()
+                {
+                    Orientation = Orientation.Horizontal,
+                    Margin = new Thickness(0, 10, 0, 0),
+                };
+
+                areaBoard.Children.Add(rowPanel);
+            }
+
+            if (areaBoard.Children.Count > 0 && areaBoard.Children[areaBoard.Children.Count - 1] is StackPanel rowStackPanelAdd)
+            {
+                rowStackPanelAdd.Children.Add(btnTableAdd);
+            }
         }
 
         private void BtnTableAdd_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            throw new NotImplementedException();
+            CreateBoard createBoard = new CreateBoard();
+            createBoard.Show();
         }
 
         private void BtnTable_MouseDown(object sender, MouseButtonEventArgs e)
