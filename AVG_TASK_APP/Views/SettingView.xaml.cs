@@ -41,7 +41,6 @@ namespace AVG_TASK_APP.Views
             idWorkspaceCurrent = idWorkspace;
 
             pageLayoutViewModel = new PageLayoutViewModel();
-
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -148,6 +147,21 @@ namespace AVG_TASK_APP.Views
             txtNameWorkspace.Visibility = Visibility.Visible;
             txtNameWorkspace.Text = nameWorkspaceCurrent;
             txtNameWorkspace.Focus();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            PageLayout pageLayout = new PageLayout();
+            pageLayout.Show();
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if(window is PageLayout && window != pageLayout)
+                {
+                    window.Close();
+                    return;
+                }
+            }    
         }
     }
 }
