@@ -22,7 +22,7 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="0"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
@@ -123,21 +123,22 @@
                            FontWeight="Medium"
                            FontFamily="Montserrat"
                            Margin="0,5,0,5"/>
-                        <Border  Background="{StaticResource color6}" CornerRadius="4" BorderThickness="0" Height="20">
-                            <TextBox x:Name="txtTitle"         
+
+                        <TextBox x:Name="txtTitle"         
                              FontFamily="Montserrat"
                              FontSize="12"
                              FontWeight="Medium"
-                             Foreground="{StaticResource textColor3}"
+                             Foreground="{StaticResource textColor2}"
                              CaretBrush="{StaticResource color6}"
                              BorderBrush="{StaticResource color3}"
                              BorderThickness="0,0,0,0"
-                             Height="17"
+                             Height="30"
                              VerticalContentAlignment="Center"
                              Padding="10,0,0,0"
-                             Margin="10,0,10,0"/>
-                        </Border>
-
+                             Margin="10,0,10,0"
+                             Style="{StaticResource MyWaterMarkStyle}"
+                             Tag="Example: AVG Company"
+                             />
                         <TextBlock Text="Visibility"
                            FontSize="12"
                            FontFamily="Montserrat"
@@ -146,7 +147,7 @@
                            Margin="0,25,0,5"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <StackPanel Width="186">
-                                <RadioButton  GroupName="public" IsChecked="{Binding IsCheckedPublic, UpdateSourceTrigger=PropertyChanged}"
+                                <RadioButton  GroupName="public" IsChecked="True"
                                               Margin="10" x:Name="radioVisibility">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Public" Foreground="LightGray"/>
@@ -170,20 +171,20 @@
                                    FontFamily="Montserrat"
                                    Margin="0,5,0,5"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Border  Background="{StaticResource color6}" CornerRadius="4" BorderThickness="0" Height="20" Width="200">
-                                <TextBox x:Name="codeBoard"
-                                         IsReadOnly="True"
+
+                            <TextBox x:Name="codeBoard"
                                          FontFamily="Montserrat"
                                          FontSize="12"
                                          FontWeight="Medium"
-                                         BorderThickness="0,0,0,0"
-                                         Height="17"
+                                         Width="190"
                                          VerticalContentAlignment="Center"
                                          Padding="10,0,0,0"
                                          Margin="10,0,10,0"
-                                         Foreground="Gray" 
-                                         Text="VD: AVG_Table_2023"/>
-                            </Border>
+                                         Foreground="{StaticResource textColor2}"
+                                         Tag="VD: AVG_Table_2023"
+                                         Style="{StaticResource MyWaterMarkStyle}"                     
+                                     >
+                            </TextBox>
                             <Button x:Name="btnGenerateCode"
                                     BorderThickness="0"
                                     Foreground="{StaticResource textButtonColor}"
@@ -232,7 +233,7 @@
                              Background="{StaticResource color6}"
                              Margin="10,0,10,0"
                              BorderThickness="0"
-                             ItemsSource="{Binding NameWorkspace}"       
+                             ItemsSource="{Binding NameWorkspace}"  
                              >
                             </ComboBox>
                         </Border>
