@@ -18,6 +18,7 @@ namespace AVG_TASK_APP.Views
         public event EventHandler remove_Click;
         private int idTaskCurrent;
         private int idTableCurrent;
+
         ManageTaskUserControl manageTaskUserControl;
         private TaskRepository taskRepository;
         public ContactTaskUI(int idTask, ManageTaskUserControl userControl)
@@ -28,6 +29,7 @@ namespace AVG_TASK_APP.Views
             idTaskCurrent = idTask;
             manageTaskUserControl = userControl;
 
+            this.idTask.Text = idTask.ToString();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -60,7 +62,6 @@ namespace AVG_TASK_APP.Views
             Models.Task task = taskRepository.GetById(idTaskCurrent);
             taskRepository.Remove(task);
 
-
             this.Close();
 
         }
@@ -68,6 +69,20 @@ namespace AVG_TASK_APP.Views
         private void Window_Closed(object sender, EventArgs e)
         {
             manageTaskUserControl.Reload();
+        }
+
+        private void btnSaveDescription_Click(object sender, RoutedEventArgs e)
+        {
+            btnSaveDescription.Visibility = Visibility.Collapsed;
+            btnCancelDescription.Visibility = Visibility.Collapsed;
+            description.IsEnabled = false;
+        }
+
+        private void btnCancelDescription_Click(object sender, RoutedEventArgs e)
+        {
+            btnSaveDescription.Visibility = Visibility.Collapsed;
+            btnCancelDescription.Visibility = Visibility.Collapsed;
+            description.IsEnabled = false;
         }
     }
 }
