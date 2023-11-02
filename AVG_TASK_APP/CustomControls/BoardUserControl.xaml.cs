@@ -119,8 +119,8 @@ namespace AVG_TASK_APP.CustomControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-           
 
+        }
         private void btnInvite_Click(object sender, RoutedEventArgs e)
         {
             AddMemberToWorkspace addMemberToWorkspace = new AddMemberToWorkspace(idWorkspace);

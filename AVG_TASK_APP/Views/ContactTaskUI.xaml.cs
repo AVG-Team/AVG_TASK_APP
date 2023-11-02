@@ -68,8 +68,9 @@ namespace AVG_TASK_APP.Views
 
         private void btnDates_Click(object sender, RoutedEventArgs e)
         {
-             SetDateTimeUI setDateTimeUI = new SetDateTimeUI(idTaskCurrent);
+            SetDateTimeUI setDateTimeUI = new SetDateTimeUI(idTaskCurrent);
             setDateTimeUI.Show();
+        }
 
         private void btnSaveDescription_Click(object sender, RoutedEventArgs e)
         {
@@ -95,7 +96,7 @@ namespace AVG_TASK_APP.Views
         private void btnChecklist_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxView msb = new MessageBoxView();
-            msb.Show("This feature is under development, please try again later. We apologize for this inconvenience");s
+            msb.Show("This feature is under development, please try again later. We apologize for this inconvenience");
         }
     }
 }

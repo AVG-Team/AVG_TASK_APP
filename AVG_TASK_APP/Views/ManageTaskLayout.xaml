@@ -169,7 +169,6 @@
 
 
                             </MenuItem>
-\
                             <!--// Main Menu - Recent//-->
                             <MenuItem x:Name="starList" Header="Stared" Click="starList_Click"
                                       Template="{StaticResource Menu_SubMenu_Template}" >

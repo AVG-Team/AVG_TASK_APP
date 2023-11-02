@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace AVG_TASK_APP.CustomControls
+namespace AVG_TASK_APP.Views
 {
     /// <summary>
     /// Interaction logic for SetDateTimeUI.xaml
@@ -41,8 +41,8 @@ namespace AVG_TASK_APP.CustomControls
                 minuteComboBox.Items.Add(i.ToString("00"));
             }
             minuteComboBox.SelectedIndex = 1;
-            TaskRepository = new TaskRepository();  
-            currIdTask = idTask;    
+            TaskRepository = new TaskRepository();
+            currIdTask = idTask;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -68,7 +68,7 @@ namespace AVG_TASK_APP.CustomControls
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             Models.Task currTask = TaskRepository.GetById(currIdTask);
-            DateTime dateTime = DateTime.Now;   
+            DateTime dateTime = DateTime.Now;
             currTask.Deadline = txtDateStart.SelectedDate ?? dateTime.Date;
             TaskRepository.Update(currTask);
         }
