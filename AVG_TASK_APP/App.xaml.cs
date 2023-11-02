@@ -40,6 +40,13 @@ namespace AVG_TASK_APP
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            RepositoryBase repo = new RepositoryBase();
+            if(! repo.IsServerConnected())
+            {
+                MessageBoxView msb = new MessageBoxView();
+                msb.Show("Server connection error, please check your network connection and try again !!!");
+                return;
+            }
             userRepository = new UserRepository();
 
             var assembly = Assembly.GetExecutingAssembly();

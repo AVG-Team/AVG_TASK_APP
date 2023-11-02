@@ -173,6 +173,8 @@ namespace AVG_TASK_APP.ViewModels
 
         private void ExcuteRegisterCommand(object obj)
         {
+            MessageBoxView msb = new MessageBoxView();
+
             UserModel user = userRepository.GetByEmail(Username);
             if (user == null)
             {
@@ -192,7 +194,8 @@ namespace AVG_TASK_APP.ViewModels
                 };
 
                 userRepository.Add(newUser);
-                MessageBox.Show("Add Member Successfully");
+
+                msb.Show("Add Member Successfully");
 
                 LoginView loginView = new LoginView();
                 loginView.Show();
@@ -209,7 +212,7 @@ namespace AVG_TASK_APP.ViewModels
             else
             {
                 ErrorMessage = "*Email is exists";
-                MessageBox.Show(ErrorMessage);
+                msb.Show(ErrorMessage);
             }
         }
 

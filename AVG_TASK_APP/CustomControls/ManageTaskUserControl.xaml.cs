@@ -113,7 +113,6 @@ namespace AVG_TASK_APP.CustomControls
         {
             AddTask addTask = new AddTask((int)((CardUserControl)sender).Tag, idTableCurrent, this);
             addTask.Show();
-            MessageBox.Show(((CardUserControl)sender).Tag.ToString());
         }
 
         private void CardUserControl_btnMenuCard_Click(object? sender, EventArgs e)
