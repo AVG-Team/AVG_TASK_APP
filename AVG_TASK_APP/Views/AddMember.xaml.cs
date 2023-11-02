@@ -1,70 +1,57 @@
-﻿using AVG_TASK_APP.CustomControls;
-using AVG_TASK_APP.ViewModels;
+﻿using AVG_TASK_APP.ViewModels;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace AVG_TASK_APP.Views
 {
     /// <summary>
-    /// Interaction logic for AddMemberToWorkspace.xaml
+    /// Interaction logic for AddMember.xaml
     /// </summary>
-    public partial class AddMemberToWorkspace : Page
+    public partial class AddMember : Window
     {
         private MessageBoxView msb = new MessageBoxView();
 
-        private AddMemberToWorkSpaceViewModel viewModel;
-
-        public AddMemberToWorkspace(int idWorkspace)
+        public AddMember(int idTable)
         {
-            viewModel = new AddMemberToWorkSpaceViewModel();
-            DataContext = viewModel;
             InitializeComponent();
-
-            this.idWorkspace.Text = idWorkspace.ToString();
-        }
-
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            Window parent = Window.GetWindow(this);
-            parent.Close();
-        }
-
-        private void btnContinue_Click(object sender, RoutedEventArgs e)
-        {
+            this.idTable.Text = idTable.ToString();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Window parent = Window.GetWindow(this);
-            parent.Close();
+            this.Close();
         }
 
         private void txtEmail_LostFocus(object sender, RoutedEventArgs e)
         {
             areaMenu.IsOpen = false;
-            if(viewModel.MenuSearch != null)
-                viewModel.MenuSearch.Clear();
         }
 
-        private void txtEmail_PreviewKeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        private void txtEmail_PreviewKeyUp(object sender, KeyEventArgs e)
         {
             if (txtEmail.Text.Length == 0)
             {
                 areaMenu.IsOpen = false;
-                viewModel.MenuSearch.Clear();
                 valueEmail.Text = null;
                 return;
             }
-            if(e.Key == Key.Back || e.Key == Key.Delete)
+            if (e.Key == Key.Back || e.Key == Key.Delete)
             {
                 areaMenu.IsOpen = false;
-                viewModel.MenuSearch.Clear();
             }
             char lastChar = txtEmail.Text[txtEmail.Text.Length - 1];
+
             if (lastChar == ';')
             {
                 string[] tmp = txtEmail.Text.Split(";");
@@ -80,7 +67,7 @@ namespace AVG_TASK_APP.Views
 
             string tmp1 = txtEmail.Text.Trim();
 
-            if (tmp1.Contains(";"))
+            if(tmp1.Contains(";"))
             {
                 string[] emailParts = tmp1.Split(';');
                 string valueTmp = "";
@@ -94,10 +81,6 @@ namespace AVG_TASK_APP.Views
             }
 
             valueEmail.Text = null;
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
         }
     }
 }
