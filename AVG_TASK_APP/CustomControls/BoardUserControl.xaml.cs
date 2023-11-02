@@ -112,7 +112,7 @@ namespace AVG_TASK_APP.CustomControls
 
         private void BtnTableAdd_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            CreateBoard createBoard = new CreateBoard();
+            CreateBoard createBoard = new CreateBoard(idWorkspace);
             createBoard.Show();
         }
 

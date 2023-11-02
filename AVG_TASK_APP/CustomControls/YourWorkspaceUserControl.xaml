@@ -38,7 +38,7 @@
                 <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right" VerticalAlignment="Center"
                     Grid.Column="1">
-                    <Button Style="{StaticResource filterButton}" Width="90" Height="40">
+                    <Button x:Name="buttonLinkBoard" Click="buttonLinkBoard_Click" Style="{StaticResource filterButton}" Width="90" Height="40">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Table"
                                   Stretch="Fill"
