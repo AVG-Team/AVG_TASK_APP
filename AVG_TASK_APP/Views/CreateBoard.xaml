@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
         xmlns:viewmodels="clr-namespace:AVG_TASK_APP.ViewModels"
         xmlns:customcontrols="clr-namespace:AVG_TASK_APP.CustomControls"
-        xmlns:System="clr-namespace:System;assembly=System.Runtime" 
+        xmlns:System="clr-namespace:System;assembly=System.Runtime" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         Title="CreateBoard" Height="400" Width="700"
         WindowStyle="None"
@@ -169,21 +169,54 @@
                                    FontWeight="Medium"
                                    FontFamily="Montserrat"
                                    Margin="0,5,0,5"/>
-                        <Border  Background="{StaticResource color6}" CornerRadius="4" BorderThickness="0" Height="20" >
-                            <TextBox x:Name="codeBoard"         
-                             FontFamily="Montserrat"
-                             FontSize="12"
-                             FontWeight="Medium"
-                             BorderThickness="0,0,0,0"
-                             Height="17"
-                             VerticalContentAlignment="Center"
-                             Padding="10,0,0,0"
-                             Margin="10,0,10,0"
-                             Foreground="Gray" 
-                             GotFocus="TextBox_GotFocus" 
-                             LostFocus="TextBox_LostFocus"
-                             Text="VD: AVG_Table_2023"/>
-                        </Border>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Border  Background="{StaticResource color6}" CornerRadius="4" BorderThickness="0" Height="20" Width="200">
+                                <TextBox x:Name="codeBoard"
+                                         IsReadOnly="True"
+                                         FontFamily="Montserrat"
+                                         FontSize="12"
+                                         FontWeight="Medium"
+                                         BorderThickness="0,0,0,0"
+                                         Height="17"
+                                         VerticalContentAlignment="Center"
+                                         Padding="10,0,0,0"
+                                         Margin="10,0,10,0"
+                                         Foreground="Gray" 
+                                         Text="VD: AVG_Table_2023"/>
+                            </Border>
+                            <Button x:Name="btnGenerateCode"
+                                    BorderThickness="0"
+                                    Foreground="{StaticResource textButtonColor}"
+                                    FontSize="12"
+                                    FontWeight="Medium"
+                                    FontFamily="Montserrat"
+                                    Cursor="Hand"
+                                    Margin="20,0,0,0" Click="btnGenerateCode_Click">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="{StaticResource buttonColor}"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource hoverButtonColor}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <fa:IconImage Icon="Magic"/>
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Width="20" Height="20"
+                                                CornerRadius="5"
+                                                Background="{TemplateBinding Background}">
+                                            <ContentPresenter VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            
+                        </StackPanel>
+                        
                         <TextBlock Text="Workspace"
                            FontSize="12"
                            FontFamily="Montserrat"

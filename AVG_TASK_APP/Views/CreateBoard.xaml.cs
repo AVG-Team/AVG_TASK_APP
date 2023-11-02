@@ -18,7 +18,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Table = AVG_TASK_APP.Models.Table;
-
 namespace AVG_TASK_APP.Views
 {
     /// <summary>
@@ -34,7 +33,7 @@ namespace AVG_TASK_APP.Views
 
             workspaceRepository = new WorkspaceRepository();
 
-            List <Workspace> workspaces = (List<Workspace>)workspaceRepository.GetAllForUser();
+            List<Workspace> workspaces = (List<Workspace>)workspaceRepository.GetAllForUser();
 
             tableRepository = new TableRepository();
 
@@ -88,18 +87,18 @@ namespace AVG_TASK_APP.Views
         private string RandomCode()
         {
             Random rnd = new Random();
-            return "AVG_" + rnd.Next();
+            return "AVG_Table_" + rnd.Next();
         }
 
         private bool checkInput()
         {
             bool validData = false;
-            if (txtTitle.Text == "" || cbWorkspace.Text.Length <= 0 || (radioVisibility.IsChecked == false && radioInvisibility.IsChecked == false) || codeBoard.Text == "VD: AVG_Table_2023"|| !codeBoard.Text.Contains("AVG_Table_"))
+            if (string.IsNullOrWhiteSpace("txtTitle") || txtTitle.Text.Length < 3 || cbWorkspace.SelectedIndex == -1 || (radioVisibility.IsChecked == false && radioInvisibility.IsChecked == false) || string.IsNullOrWhiteSpace("codeBoard") || codeBoard.Text.Length < 3)
             {
                 validData = false;
             }
             else
-            { 
+            {
                 validData = true;
             }
             return validData;
@@ -109,24 +108,10 @@ namespace AVG_TASK_APP.Views
         {
             codeBoard.Text = string.Empty;
         }
-        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (textBox.Text == "VD: AVG_Table_2023")
-            {
-                textBox.Text = string.Empty;
-                textBox.Foreground = Brushes.Black;
-            }
-        }
 
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        private void btnGenerateCode_Click(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
-            if (string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = "VD: AVG_Table_2023"; 
-                textBox.Foreground = Brushes.Gray;
-            }
+            codeBoard.Text = RandomCode();
         }
     }
 }
