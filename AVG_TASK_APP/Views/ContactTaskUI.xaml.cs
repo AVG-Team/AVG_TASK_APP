@@ -69,5 +69,11 @@ namespace AVG_TASK_APP.Views
         {
             manageTaskUserControl.Reload();
         }
+
+        private void btnDates_Click(object sender, RoutedEventArgs e)
+        {
+             SetDateTimeUI setDateTimeUI = new SetDateTimeUI(idTaskCurrent);
+            setDateTimeUI.Show();
+        }
     }
 }
