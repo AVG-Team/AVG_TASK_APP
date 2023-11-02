@@ -37,6 +37,7 @@ namespace AVG_TASK_APP.Views
         public PageLayout()
         {
             InitializeComponent();
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

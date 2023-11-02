@@ -50,7 +50,6 @@ namespace AVG_TASK_APP.Views
 
             DataContext = viewModel;
 
-            DataContext = viewModel;
             idTableCurrent = idTable;
             idWorkspaceCurrent = tableRepository.GetWorkspace(idTable).Id;
             viewModel.getNameWorkspace(idTable);
