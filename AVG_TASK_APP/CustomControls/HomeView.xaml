@@ -72,24 +72,24 @@
                                 CornerRadius="20" Width="550" Height="100" Margin="0,20,0,0"
                                 BorderThickness="1" Background="{StaticResource color6}" Padding="20">
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="Name Task" Foreground="{StaticResource textColor3}"
+                                    <TextBlock Text="Complete task" Foreground="{StaticResource textColor3}"
                                        FontFamily="Montserrat" FontSize="20" Margin="0,0,0,10"/>
                                     <StackPanel Orientation="Horizontal">
                                         <fa:IconImage Icon="Comment" Foreground="{StaticResource color9}" Width="20" Opacity="0.6" Margin="0,0,5,0"/>
-                                        <TextBlock x:Name="countComment" Text="0" Opacity="0.8" Margin="0,3,0,0"/>
+                                        <TextBlock x:Name="countComment" Text="1" Opacity="0.8" Margin="0,3,0,0"/>
                                         <fa:IconImage Icon="Tasks" Foreground="{StaticResource color9}" Width="20" Opacity="0.6" Margin="10,0,5,0"/>
-                                        <TextBlock x:Name="contMiniTask" Text="0/0" Opacity="0.8" Margin="0,3,0,0"/>
+                                        <TextBlock x:Name="contMiniTask" Text="4/4" Opacity="0.8" Margin="0,3,0,0"/>
                                         <fa:IconImage Icon="CalendarTimes" Foreground="{StaticResource color9}" Width="20" Opacity="0.6" Margin="10,0,5,0"/>
-                                        <TextBlock x:Name="dateDeadline" Text="16-08-2003" Opacity="0.8" Margin="0,3,0,0"/>
+                                        <TextBlock x:Name="dateDeadline" Text="02-11-2003" Opacity="0.8" Margin="0,3,0,0"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
                             <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
-                                <TextBlock Text="Name WorkSpace |" Margin="0,0,10,0" 
+                                <TextBlock Text="AVG |" Margin="0,0,10,0" 
                                            FontFamily="Montserrat" FontWeight="DemiBold"/>
-                                <TextBlock Text="Name Table:" Margin="0,0,10,0" 
+                                <TextBlock Text="AVG Task" Margin="0,0,10,0" 
                                            FontFamily="Montserrat" FontWeight="DemiBold"/>
-                                <TextBlock Text="Name Card" Margin="0,0,10,0"
+                                <TextBlock Text="Complete" Margin="0,0,10,0"
                                            FontFamily="Montserrat"/>
                             </StackPanel>
                         </StackPanel>
@@ -108,7 +108,7 @@
                                     <ImageBrush Stretch="Fill" ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
                                 </Border.Background>
                             </Border>
-                            <TextBox Text="Name Comment" VerticalAlignment="Center" BorderThickness="0"
+                            <TextBox Text="Nguyen Mai Bao Huy" VerticalAlignment="Center" BorderThickness="0"
                                      FontFamily="Montserrat" FontSize="20" FontWeight="Medium"/>
                         </StackPanel>
                         <TextBlock Text="Comment" HorizontalAlignment="Center"

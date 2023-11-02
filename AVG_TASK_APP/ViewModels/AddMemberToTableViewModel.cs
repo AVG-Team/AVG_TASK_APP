@@ -15,12 +15,12 @@ using System.Windows.Input;
 
 namespace AVG_TASK_APP.ViewModels
 {
-    public class AddMemberToWorkSpaceViewModel : ViewModelBase
+    public class AddMemberToTableViewModel : ViewModelBase
     {
         //Fields
+
         private string _emailUsers;
-        private string _idWorkspace;
-        private string _errorMessage;
+        private string _idTable;
         private bool _isOpen;
         private string _valueEmail;
         public ObservableCollection<ItemMenuSearch> SelectedItems { get; set; } = new ObservableCollection<ItemMenuSearch>();
@@ -28,7 +28,7 @@ namespace AVG_TASK_APP.ViewModels
         private ObservableCollection<ItemMenuSearch> _menuSearch;
 
         private IUserRepository userRepository;
-        private IWorkspaceRepository workspaceReposity;
+        private ITableRepository tableRepository;
 
         public List<UserModel> Users { get; set; }
 
@@ -46,23 +46,13 @@ namespace AVG_TASK_APP.ViewModels
             }
         }
 
-        public string IdWorkspace
+        public string IdTable
         {
-            get { return _idWorkspace; }
+            get { return _idTable; }
             set
             {
-                _idWorkspace = value;
-                OnPropertyChanged(nameof(IdWorkspace));
-            }
-        }
-
-        public string ErrorMessage
-        {
-            get { return _errorMessage; }
-            set
-            {
-                _errorMessage = value;
-                OnPropertyChanged(nameof(ErrorMessage));
+                _idTable = value;
+                OnPropertyChanged(nameof(IdTable));
             }
         }
 
@@ -111,10 +101,10 @@ namespace AVG_TASK_APP.ViewModels
 
         // Constructor 
 
-        public AddMemberToWorkSpaceViewModel()
+        public AddMemberToTableViewModel()
         {
             userRepository = new UserRepository();
-            workspaceReposity = new WorkspaceRepository();
+            tableRepository = new TableRepository();
             InvitationCommand = new ViewModelCommand(ExcuteInvitationCommand, CanExcuteInvitationCommand);
         }
 
@@ -151,9 +141,9 @@ namespace AVG_TASK_APP.ViewModels
             if (users == null)
                 return;
 
-            List<UserModel> usersInWorkspace = (List<UserModel>)workspaceReposity.GetUsersForWorkspace(int.Parse(IdWorkspace));
+            List<UserModel> usersInTable = (List<UserModel>)tableRepository.GetUsersForTable(int.Parse(IdTable));
 
-            users = users.Where(user => !usersInWorkspace.Any(u => u.Id == user.Id)).ToList();
+            users = users.Where(user => !usersInTable.Any(u => u.Id == user.Id)).ToList();
 
             if(users == null) return;
 
@@ -210,15 +200,15 @@ namespace AVG_TASK_APP.ViewModels
                 }
 
             }
-            int tmp12312 = int.Parse(IdWorkspace);
-            if (string.IsNullOrWhiteSpace(EmailUsers) || EmailUsers.Length < 3 || !validDataEmail || int.Parse(IdWorkspace) == -1)
+            int tmp12312 = int.Parse(IdTable);
+            if (string.IsNullOrWhiteSpace(EmailUsers) || EmailUsers.Length < 3 || !validDataEmail || int.Parse(IdTable) == -1)
                 validData = false;
             else
                 validData = true;
             return validData;
         }
 
-        private void processAdd(string email, int idWorkspace)
+        private void processAdd(string email, int idTable)
         {
             UserModel user = userRepository.GetByEmail(email);
             if (user == null)
@@ -226,12 +216,14 @@ namespace AVG_TASK_APP.ViewModels
                 return;
             }
 
-            Workspace wsp = workspaceReposity.GetById(idWorkspace);
-            workspaceReposity.AddUserToWorkspace(wsp, user);
+            Table tb = tableRepository.GetById(idTable);
+            tableRepository.AddUserToTable(tb, user);
         }
 
         private void ExcuteInvitationCommand(object obj)
         {
+        MessageBoxView msb = new MessageBoxView();
+        string message = "";
             bool isSuccess = false;
             if (EmailUsers.Contains(";"))
             {
@@ -241,30 +233,30 @@ namespace AVG_TASK_APP.ViewModels
                 {
                     try
                     {
-                        processAdd(email, int.Parse(IdWorkspace));
+                        processAdd(email, int.Parse(IdTable));
                         isSuccess = true;
                     }
                     catch (Exception ex)
                     {
                         isSuccess = false;
-                        ErrorMessage += " Email " + email + " Error Unknown, Please Again";
+                        message += " Email " + email + " Error Unknown, Please Again";
                     }
                 }
             }
             if (isSuccess)
             {
-                MessageBoxView msb = new MessageBoxView();
                 msb.Show("Add Successfully");
 
                 foreach (Window window in Application.Current.Windows)
                 {
-                    if (window is CreateWorkspaceView)
+                    if (window is AddMember)
                     {
                         window.Close();
                         return;
                     }
                 }
             }
+            msb.Show(message);
         }
 
         public bool CanExecute(object? parameter)

@@ -29,9 +29,20 @@ namespace AVG_TASK_APP.Repositories
         }
         public void Add(Table table)
         {
-            AppDbContext dbContextTemp = dbContext;
-            dbContextTemp.Tables.Add(table);
-            dbContextTemp.SaveChanges();
+            IUserRepository userRepository = new UserRepository();
+            AppDbContext dbContextTmp = dbContext;
+            var identity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
+            int id = int.Parse(identity.Claims.FirstOrDefault(s => s.Type == "Id").Value);
+            dbContextTmp.Tables.Add(table);
+            dbContextTmp.SaveChanges();
+            UserTable userTable = new UserTable()
+            {
+                Id_User = id,
+                Id_Table = table.Id,
+                Role = 1,
+            };
+            dbContextTmp.UserTables.Add(userTable);
+            dbContextTmp.SaveChanges();
         }
 
         public IEnumerable<Table> GetAll(string sort = "desc")
@@ -119,6 +130,43 @@ namespace AVG_TASK_APP.Repositories
             tables = dbContext.Tables.Where(s => s.Name.Contains(name) && s.Deleted_At == null).ToList();
 
             return tables;
+        }
+
+        public IEnumerable<UserModel> GetUsersForTable (int idTable)
+        {
+            return dbContext.UserTables
+                  .Where(s => s.Id_Table == idTable)
+                  .Select(x => x.User).ToList();
+        }
+
+        public bool AddUserToTable(Table table, UserModel user)
+        {
+            AppDbContext dbContextTmp = dbContext;
+            try
+            {
+
+                if (dbContext.UserTables.FirstOrDefault(x => x.Id_Table == table.Id && x.Id_User == user.Id) != null)
+                    return false;
+                UserTable userTable = new UserTable()
+                {
+                    Id_User = user.Id,
+                    Id_Table = table.Id,
+                    Role = 0,
+                };
+
+                dbContextTmp.UserTables.Add(userTable);
+                dbContextTmp.SaveChanges();
+
+                IWorkspaceRepository workspaceRepository = new WorkspaceRepository();
+
+                workspaceRepository.AddUserToWorkspace(table.Workspace, user);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

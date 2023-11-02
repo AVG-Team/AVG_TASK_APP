@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:AVG_TASK_APP.Views"
         xmlns:viewmodels="clr-namespace:AVG_TASK_APP.ViewModels"
         xmlns:customcontrols="clr-namespace:AVG_TASK_APP.CustomControls"
-        xmlns:System="clr-namespace:System;assembly=System.Runtime" 
+        xmlns:System="clr-namespace:System;assembly=System.Runtime" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Title="CreateBoard" Height="300" Width="700"
+        Title="CreateBoard" Height="400" Width="700"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -34,7 +34,14 @@
                         <ColumnDefinition Width="25"/>
                         <ColumnDefinition Width="5"/>
                     </Grid.ColumnDefinitions>
-
+                    <TextBlock HorizontalAlignment="Center" 
+                              Margin="50,0,0,0"
+                              FontSize="20"
+                              FontWeight="Medium"
+                              Foreground="{StaticResource color6}" 
+                              TextWrapping="Wrap" 
+                              Text="Create Workspace" 
+                              VerticalAlignment="Center"/>
                     <Button x:Name="btnMinimize"
                             BorderThickness="0"
                             Content="-"
@@ -100,17 +107,6 @@
                     </Button>
                 </Grid>
 
-                <StackPanel Grid.Row="1">
-                    <TextBlock HorizontalAlignment="Center" 
-                              Margin="0,8,0,0"
-                              FontSize="20"
-                              FontWeight="Medium"
-                              Foreground="{StaticResource color6}" 
-                              TextWrapping="Wrap" 
-                              Text="Create Board" 
-                              VerticalAlignment="Center"/>
-                </StackPanel>
-
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="400"/>
@@ -127,31 +123,120 @@
                            FontWeight="Medium"
                            FontFamily="Montserrat"
                            Margin="0,5,0,5"/>
-                        <TextBox x:Name="txtTitle"         
+                        <Border  Background="{StaticResource color6}" CornerRadius="4" BorderThickness="0" Height="20">
+                            <TextBox x:Name="txtTitle"         
                              FontFamily="Montserrat"
                              FontSize="12"
                              FontWeight="Medium"
                              Foreground="{StaticResource textColor3}"
                              CaretBrush="{StaticResource color6}"
                              BorderBrush="{StaticResource color3}"
-                             BorderThickness="0,0,0,1"
+                             BorderThickness="0,0,0,0"
                              Height="17"
                              VerticalContentAlignment="Center"
-                             Padding="10,0,0,0"/>
+                             Padding="10,0,0,0"
+                             Margin="10,0,10,0"/>
+                        </Border>
 
+                        <TextBlock Text="Visibility"
+                           FontSize="12"
+                           FontFamily="Montserrat"
+                           FontWeight="Medium"
+                           Foreground="{StaticResource textColor2}"
+                           Margin="0,25,0,5"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <StackPanel Width="186">
+                                <RadioButton  GroupName="public" IsChecked="{Binding IsCheckedPublic, UpdateSourceTrigger=PropertyChanged}"
+                                              Margin="10" x:Name="radioVisibility">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Public" Foreground="LightGray"/>
+                                    </StackPanel>
+                                </RadioButton>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Right">
+                                <RadioButton x:Name="radioInvisibility" GroupName="public" IsChecked="{Binding IsCheckedNotPublic, UpdateSourceTrigger=PropertyChanged}"
+                                             Margin="10">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Private" Foreground="LightGray"/>
+                                    </StackPanel>
+                                </RadioButton>
+                            </StackPanel>
+                            
+                        </StackPanel>
+                        <TextBlock Text="Code board"
+                                   Foreground="{StaticResource textColor2}"
+                                   FontSize="12"
+                                   FontWeight="Medium"
+                                   FontFamily="Montserrat"
+                                   Margin="0,5,0,5"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Border  Background="{StaticResource color6}" CornerRadius="4" BorderThickness="0" Height="20" Width="200">
+                                <TextBox x:Name="codeBoard"
+                                         IsReadOnly="True"
+                                         FontFamily="Montserrat"
+                                         FontSize="12"
+                                         FontWeight="Medium"
+                                         BorderThickness="0,0,0,0"
+                                         Height="17"
+                                         VerticalContentAlignment="Center"
+                                         Padding="10,0,0,0"
+                                         Margin="10,0,10,0"
+                                         Foreground="Gray" 
+                                         Text="VD: AVG_Table_2023"/>
+                            </Border>
+                            <Button x:Name="btnGenerateCode"
+                                    BorderThickness="0"
+                                    Foreground="{StaticResource textButtonColor}"
+                                    FontSize="12"
+                                    FontWeight="Medium"
+                                    FontFamily="Montserrat"
+                                    Cursor="Hand"
+                                    Margin="20,0,0,0" Click="btnGenerateCode_Click">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="{StaticResource buttonColor}"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource hoverButtonColor}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <fa:IconImage Icon="Magic"/>
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Width="20" Height="20"
+                                                CornerRadius="5"
+                                                Background="{TemplateBinding Background}">
+                                            <ContentPresenter VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            
+                        </StackPanel>
+                        
                         <TextBlock Text="Workspace"
                            FontSize="12"
                            FontFamily="Montserrat"
                            FontWeight="Medium"
                            Foreground="{StaticResource textColor2}"
                            Margin="0,25,0,5"/>
-                        <ComboBox x:Name="txtWorkspace"         
-                                 FontSize="12"
-                                 Height="25"
-                                 VerticalContentAlignment="Center"
-                                 Foreground="{StaticResource textColor3}"
-                                 Background="{StaticResource color6}">
-                        </ComboBox>
+                        <Border Background="#ececec" CornerRadius="4" BorderThickness="2" BorderBrush="#ececec">
+                            <ComboBox x:Name="cbWorkspace"         
+                             FontSize="12"
+                             Height="25"
+                             VerticalContentAlignment="Center"
+                             Foreground="{StaticResource textColor3}"
+                             Background="{StaticResource color6}"
+                             Margin="10,0,10,0"
+                             BorderThickness="0"
+                             ItemsSource="{Binding NameWorkspace}"       
+                             >
+                            </ComboBox>
+                        </Border>
+                        
 
                         <Button x:Name="btnCreate"
                                 Content="Create"

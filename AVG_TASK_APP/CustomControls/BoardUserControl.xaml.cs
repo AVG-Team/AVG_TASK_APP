@@ -116,9 +116,22 @@ namespace AVG_TASK_APP.CustomControls
             areaBoard.Children.Add(newBoard);
         }
 
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
            
+
+        private void btnInvite_Click(object sender, RoutedEventArgs e)
+        {
+            AddMemberToWorkspace addMemberToWorkspace = new AddMemberToWorkspace(idWorkspace);
+            Window window = new CreateWorkspaceView();
+            window.Content = addMemberToWorkspace;
+            window.Width = addMemberToWorkspace.Width;
+            window.Height = addMemberToWorkspace.Height;
+            window.WindowStyle = WindowStyle.None;
+
+            window.Show();
+
         }
     }
 }

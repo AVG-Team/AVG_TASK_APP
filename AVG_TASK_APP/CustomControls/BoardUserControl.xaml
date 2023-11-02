@@ -46,14 +46,14 @@
 
             </Grid>
             <Grid Grid.Column="1" HorizontalAlignment="Center">
-                <Button x:Name="btnJoin"
+                <Button x:Name="btnInvite"
                         BorderThickness="0"
                         FontSize="14"
                         FontWeight="Medium"
                         FontFamily="Montserrat"
                         Cursor="Hand"
                         Foreground="{StaticResource textColor2}"
-                        Width="350" Height="50">
+                        Width="350" Height="50" Click="btnInvite_Click">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <fa:IconImage Icon="plus" Width="14" Foreground="{StaticResource textColor2}" Margin="20,0,10,0"></fa:IconImage>
                         <TextBlock Text="Invite Workspace members" FontSize="18" Margin="0,0,10,0" />
