@@ -1,80 +1,80 @@
-﻿using AVG_TASK_APP.CustomControls;
-using AVG_TASK_APP.DataAccess;
+﻿using AVG_TASK_APP.DataAccess;
 using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Repositories.Interface;
 using AVG_TASK_APP.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
-using MySqlConnector;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
-using System.Security.Principal;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace AVG_TASK_APP
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         private IUserRepository userRepository;
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // Other services...
-
             services.AddScoped<NotifyRepository>();
-
-            // Add your DbContext configuration here.
+            // Thêm cấu hình DbContext của bạn ở đây.
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            RepositoryBase repo = new RepositoryBase();
+
+            if (!repo.IsServerConnected())
+            {
+                ShowErrorMessage("Server connection error, please check your network connection and try again !!!");
+                return;
+            }
+
             userRepository = new UserRepository();
-
             var assembly = Assembly.GetExecutingAssembly();
-
             var registryKey = Registry.CurrentUser.OpenSubKey("Software\\" + assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title + "\\Login", true);
-            if (registryKey == null)
+
+            if (registryKey == null || registryKey.GetValue("Username") == null || registryKey.GetValue("Password") == null)
             {
-                LoginView loginView = new LoginView();
-                loginView.Show();
+                ShowLoginView();
                 return;
             }
 
-            var username = (string)registryKey.GetValue("Username", String.Empty);
-            var password = (string)registryKey.GetValue("Password", String.Empty);
+            var username = (string)registryKey.GetValue("Username");
+            var password = (string)registryKey.GetValue("Password");
 
-
-            if (username == null || password == null)
+            if (!userRepository.VerifyAccount(username, password))
             {
-                LoginView loginView = new LoginView();
-                loginView.Show();
-                return;
-            }
-
-            var isValidUser = userRepository.verifyAccount(username, password.ToString());
-            if (!isValidUser)
-            {
-                LoginView loginView = new LoginView();
-                loginView.Show();
-
+                ShowLoginView();
                 registryKey.SetValue("Username", String.Empty);
                 registryKey.SetValue("Password", String.Empty);
                 return;
             }
 
             UserModel user = userRepository.GetByEmail(username);
+            SetClaimsAndPrincipal(user);
+
+            PageLayout pageLayout = new PageLayout();
+            pageLayout.Show();
+        }
+
+        private void ShowErrorMessage(string message)
+        {
+            MessageBoxView msb = new MessageBoxView();
+            msb.Show(message);
+        }
+
+        private void ShowLoginView()
+        {
+            LoginView loginView = new LoginView();
+            loginView.Show();
+        }
+
+        private void SetClaimsAndPrincipal(UserModel user)
+        {
             var identity = new ClaimsIdentity(new[]
             {
                 new Claim("Id", user.Id.ToString()),
@@ -84,10 +84,6 @@ namespace AVG_TASK_APP
             var principal = new ClaimsPrincipal(identity);
             Thread.CurrentPrincipal = principal;
             AppDomain.CurrentDomain.SetThreadPrincipal(principal);
-
-
-            PageLayout pageLayout = new PageLayout();
-            pageLayout.Show();
         }
     }
 }

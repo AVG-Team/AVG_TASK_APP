@@ -44,16 +44,16 @@ namespace AVG_TASK_APP.CustomControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            loadData();
+            LoadData();
         }
-        public void loadData()
+        public void LoadData()
         {
             listNotifies.Children.Clear();
             List<Notify> notifyData = (List<Notify>)notifyRepository.GetAll();
 
             foreach (Notify notify in notifyData)
             {
-                var notifyItem = new NotifyItem(notify.Id);
+                NotifyItem notifyItem = new NotifyItem(notify.Id);
                 listNotifies.Children.Add(notifyItem);
             }
         }

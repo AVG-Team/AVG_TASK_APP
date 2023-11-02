@@ -128,6 +128,7 @@ namespace AVG_TASK_APP.ViewModels
 
         private void ExcuteCreateWorkspaceCommand(object obj)
         {
+            MessageBoxView msb = new MessageBoxView();
             try
             {
                 Workspace workspace = new Workspace()
@@ -139,7 +140,6 @@ namespace AVG_TASK_APP.ViewModels
                 };
 
                 workspaceReposity.Add(workspace);
-                MessageBoxView msb = new MessageBoxView();
                 msb.Show("Add Workspace Successfully");
 
                 foreach (Window window in Application.Current.Windows)
@@ -157,7 +157,7 @@ namespace AVG_TASK_APP.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error Unknow, Please try again");
+                msb.Show("Error Unknow, Please try again");
             }
         }
     }

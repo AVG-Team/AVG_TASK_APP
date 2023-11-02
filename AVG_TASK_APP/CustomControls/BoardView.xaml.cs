@@ -1,5 +1,6 @@
 ﻿using AVG_TASK_APP.Models;
 using AVG_TASK_APP.ViewModels;
+using AVG_TASK_APP.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,7 @@ namespace AVG_TASK_APP.CustomControls
         private void loadWorkspacesRecently()
         {
             List<Workspace> workspaceList = viewModel.GetWorkspacesRecently();
+            if (workspaceList == null) return;
             foreach (Workspace workspace in workspaceList)
             {
                 YourWorkspaceUserControl yourWorkspace = new YourWorkspaceUserControl(workspace.Id);
@@ -49,11 +51,19 @@ namespace AVG_TASK_APP.CustomControls
         private void loadTablesRecently()
         {
             List<Table> tables = viewModel.GetTablesRecently();
+            if (tables == null)
+                return;
             foreach (Table table in tables)
             {
                 btnBoard btnBoard = new btnBoard(table.Id, table.Name);
                 tableListRecently.Children.Add(btnBoard);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxView msb = new MessageBoxView();
+            msb.Show("Error Unknow , This feature is under development, please try again later. Sorry for the inconvenience", 2);
         }
     }
 }
