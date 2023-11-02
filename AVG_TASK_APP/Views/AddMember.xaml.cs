@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AVG_TASK_APP.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace AVG_TASK_APP.Views
     /// </summary>
     public partial class AddMember : Window
     {
-        public AddMember()
+        private MessageBoxView msb = new MessageBoxView();
+
+        public AddMember(int idTable)
         {
             InitializeComponent();
+            this.idTable.Text = idTable.ToString();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -29,26 +33,54 @@ namespace AVG_TASK_APP.Views
             this.Close();
         }
 
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        private void txtEmail_LostFocus(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            areaMenu.IsOpen = false;
         }
 
-        private void txtInput_TextChanged(object sender, TextChangedEventArgs e)
+        private void txtEmail_PreviewKeyUp(object sender, KeyEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            if (textBox != null && textBox.Text.Length > 0)
+            if (txtEmail.Text.Length == 0)
             {
-                // You can add further behavior here if needed
+                areaMenu.IsOpen = false;
+                valueEmail.Text = null;
+                return;
             }
-        }
+            if (e.Key == Key.Back || e.Key == Key.Delete)
+            {
+                areaMenu.IsOpen = false;
+            }
+            char lastChar = txtEmail.Text[txtEmail.Text.Length - 1];
 
-        private void txtUserName_keyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
+            if (lastChar == ';')
             {
-               
+                string[] tmp = txtEmail.Text.Split(";");
+                if (tmp.Length == 1)
+                {
+                    valueEmail.Text = null;
+                    return;
+                }
+
+                valueEmail.Text = txtEmail.Text;
+                return;
             }
+
+            string tmp1 = txtEmail.Text.Trim();
+
+            if(tmp1.Contains(";"))
+            {
+                string[] emailParts = tmp1.Split(';');
+                string valueTmp = "";
+                foreach (string a in emailParts.Take(emailParts.Length - 1))
+                {
+                    valueTmp += a + ";";
+                }
+                valueEmail.Text = valueTmp;
+
+                return;
+            }
+
+            valueEmail.Text = null;
         }
     }
 }

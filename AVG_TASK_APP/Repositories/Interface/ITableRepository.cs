@@ -15,10 +15,12 @@ namespace AVG_TASK_APP.Repositories.Interface
         Table GetById(int idTable);
         Workspace GetWorkspace(int idTable);
         int GetRole(int idTable);
+        bool AddUserToTable(Table table, UserModel user);
         IEnumerable<Table> GetAll(string sort = "desc");
         IEnumerable<Table> GetAllForWorkspace(int idWorkspace, string sort = "desc");
         IEnumerable<Table> GetAllForUser(string sort = "desc");
         IEnumerable<Table> GetByContainName(string name, string sort = "desc");
+        IEnumerable<UserModel> GetUsersForTable(int idTable);
     }
 }
 

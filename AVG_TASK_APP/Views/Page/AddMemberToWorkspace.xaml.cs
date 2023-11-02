@@ -2,6 +2,7 @@
 using AVG_TASK_APP.ViewModels;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -74,7 +75,25 @@ namespace AVG_TASK_APP.Views
                 }
 
                 valueEmail.Text = txtEmail.Text;
+                return;
             }
+
+            string tmp1 = txtEmail.Text.Trim();
+
+            if (tmp1.Contains(";"))
+            {
+                string[] emailParts = tmp1.Split(';');
+                string valueTmp = "";
+                foreach (string a in emailParts.Take(emailParts.Length - 1))
+                {
+                    valueTmp += a + ";";
+                }
+                valueEmail.Text = valueTmp;
+
+                return;
+            }
+
+            valueEmail.Text = null;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

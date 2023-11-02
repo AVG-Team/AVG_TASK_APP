@@ -120,6 +120,43 @@ namespace AVG_TASK_APP.Repositories
 
             return tables;
         }
+
+        public IEnumerable<UserModel> GetUsersForTable (int idTable)
+        {
+            return dbContext.UserTables
+                  .Where(s => s.Id_Table == idTable)
+                  .Select(x => x.User).ToList();
+        }
+
+        public bool AddUserToTable(Table table, UserModel user)
+        {
+            AppDbContext dbContextTmp = dbContext;
+            try
+            {
+
+                if (dbContext.UserTables.FirstOrDefault(x => x.Id_Table == table.Id && x.Id_User == user.Id) != null)
+                    return false;
+                UserTable userTable = new UserTable()
+                {
+                    Id_User = user.Id,
+                    Id_Table = table.Id,
+                    Role = 0,
+                };
+
+                dbContextTmp.UserTables.Add(userTable);
+                dbContextTmp.SaveChanges();
+
+                IWorkspaceRepository workspaceRepository = new WorkspaceRepository();
+
+                workspaceRepository.AddUserToWorkspace(table.Workspace, user);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
 
