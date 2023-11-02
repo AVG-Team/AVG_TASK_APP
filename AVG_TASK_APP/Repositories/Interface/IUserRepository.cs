@@ -23,8 +23,8 @@ namespace AVG_TASK_APP.Repositories.Interface
         UserModel GetByEmail(string email);
         IEnumerable<UserModel> GetByContainEmail(string email);
         IEnumerable<UserModel> GetAll();
-        bool verifyAccount(string username, SecureString password);
-        bool verifyAccount(string username, string password);
+        bool VerifyAccount(string username, SecureString password);
+        bool VerifyAccount(string username, string password);
 
     }
 }

@@ -110,7 +110,7 @@ namespace AVG_TASK_APP.Views
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            notifiesUserControl.loadData();
+            notifiesUserControl.LoadData();
         }
     }
 }

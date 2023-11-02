@@ -120,7 +120,7 @@ namespace AVG_TASK_APP.ViewModels
 
         private void ExcuteLoginCommand(object obj)
         {
-            var isValidUser = userRepository.verifyAccount(Username, Password);
+            var isValidUser = userRepository.VerifyAccount(Username, Password);
             if (isValidUser)
             {
                 MessageBoxView msb = new MessageBoxView();

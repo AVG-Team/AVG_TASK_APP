@@ -138,7 +138,7 @@ namespace AVG_TASK_APP.Repositories
             return salt;
         }
 
-        public bool verifyAccount(string username, SecureString password)
+        public bool VerifyAccount(string username, SecureString password)
         {
             if (dbContext.Users.FirstOrDefault(x => x.Email == username) == null)
             {
@@ -154,7 +154,7 @@ namespace AVG_TASK_APP.Repositories
             return true;
         }
 
-        public bool verifyAccount(string username, String password)
+        public bool VerifyAccount(string username, String password)
         {
             UserModel user = dbContext.Users.FirstOrDefault(x => x.Email == username);
             if (user == null)

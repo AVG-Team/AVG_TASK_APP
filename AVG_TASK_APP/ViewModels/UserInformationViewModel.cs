@@ -222,7 +222,7 @@ namespace AVG_TASK_APP.ViewModels
                 UserCurrent.PhoneNumber = Phone;
                 isChange = true;
             }
-            if (CheckRepeatPassword(Password, RepeatPassword) && !userRepository.verifyAccount(Email, Password))
+            if (CheckRepeatPassword(Password, RepeatPassword) && !userRepository.VerifyAccount(Email, Password))
             {
                 isChange = true;
                 byte[] salt = userRepository.GenerateSalt();

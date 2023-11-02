@@ -139,5 +139,11 @@ namespace AVG_TASK_APP.CustomControls
 
             window.Show();
         }
+
+        private void btnCancelDescription_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxView msb  = new MessageBoxView();
+            msb.Show("Error Unknow , This feature is under development, please try again later. Sorry for the inconvenience", 2);
+        }
     }
 }
