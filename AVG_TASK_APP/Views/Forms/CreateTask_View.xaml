@@ -1,0 +1,210 @@
+﻿<Window x:Class="AVG_TASK_APP.Views.Forms.CreateTask_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AVG_TASK_APP.Views.Forms"
+        xmlns:viewmodels="clr-namespace:AVG_TASK_APP.ViewModels"
+        xmlns:Usercontrols="clr-namespace:AVG_TASK_APP.Usercontrols"
+        xmlns:System="clr-namespace:System;assembly=System.Runtime" 
+        mc:Ignorable="d"
+        Title="CreateBoard" Height="300" Width="700"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Closed="Window_Closed">
+    <Border CornerRadius="30">
+        <Border CornerRadius="30"
+                BorderThickness="2"
+                BorderBrush="{StaticResource color7}"
+                Background="#3E4B51">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="0,0,5,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="btnMinimize"
+                            BorderThickness="0"
+                            Content="-"
+                            Foreground="{StaticResource textButtonColor}"
+                            FontSize="16"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="1"
+                            Click="btnMinimize_Click">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="{StaticResource color2}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource hoverColor2}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="10"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button x:Name="btnClose"
+                            BorderThickness="0"
+                            Content="X"
+                            Foreground="{StaticResource textButtonColor}"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnClose_Click">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="{StaticResource color1}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource hoverColor1}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="10"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <StackPanel Grid.Row="1">
+                    <TextBlock HorizontalAlignment="Center" 
+                              Margin="0,8,0,0"
+                              FontSize="20"
+                              FontWeight="Medium"
+                              Foreground="{StaticResource color6}" 
+                              TextWrapping="Wrap" 
+                              Text="Create Task" 
+                              VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="400"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0"
+                                Orientation="Vertical"
+                                Width="250"
+                                VerticalAlignment="Center">
+                        <TextBlock Text="Task name"
+                           Foreground="{StaticResource textColor2}"
+                           FontSize="12"
+                           FontWeight="Medium"
+                           FontFamily="Montserrat"
+                           Margin="0,0,0,10"/>
+                        <TextBox x:Name="txtTaskName"         
+                             FontFamily="Montserrat"
+                             FontSize="12"
+                             FontWeight="Medium"
+                             Foreground="{StaticResource textColor3}"  
+                             BorderThickness="0,0,0,1"
+                             Height="20"
+                             VerticalContentAlignment="Center"
+                             Padding="10,0,0,0"/>
+                        <Button x:Name="btnCreate"
+                                Content="Create"
+                                Foreground="{StaticResource textButtonColor}"
+                                FontSize="16"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Cursor="Hand"
+                                Click="btnCreate_Click"       
+                                Margin="0,20,0,0"
+                                >
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="{StaticResource buttonColor}"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource hoverButtonColor}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource textColor1}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Width="80" Height="30"
+                                            CornerRadius="10"
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                          HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Vertical"
+                                VerticalAlignment="Center">
+                        <!--phần bên phải-->
+                        <Image Source="/Resources/Icons/favicon-avg.png" 
+                               Width="100" Height="100"
+                               Margin="0,0,0,10" />
+                        <TextBlock Text="AVG TASK APPLICATION"
+                                     Foreground="{StaticResource textColor2}"
+                                     FontSize="18"
+                                     FontWeight="Medium"
+                                     FontFamily="Montserrat"
+                                     HorizontalAlignment="Center"
+                                     Margin="0,0,0,5"/>
+                        <TextBlock Text="Application Made By AVG Team"
+                                   Foreground="{StaticResource textColor1}"
+                                   FontSize="11"
+                                   FontWeight="Medium"
+                                   FontFamily="Montserrat"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,5"/>
+
+                    </StackPanel>
+
+
+
+
+                </Grid>
+
+            </Grid>
+        </Border>
+    </Border>
+</Window>

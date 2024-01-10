@@ -6,12 +6,12 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/UIColors.xaml"/>
-                <ResourceDictionary Source="/Styles/ButtonStyle.xaml"/>
-                <ResourceDictionary Source="/Styles/WatermarkStyle.xaml"/>
-                <ResourceDictionary Source="/Styles/Menu.xaml"/>
-                <ResourceDictionary Source="/Styles/ComboBox.xaml"/>
-                <ResourceDictionary Source="/Styles/ScrollBar.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/UIColors.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/WatermarkStyle.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/Menu.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/ComboBox.xaml"/>
+                <ResourceDictionary Source="/Resources/Styles/ScrollBar.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

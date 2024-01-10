@@ -2,6 +2,7 @@
 using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories.Interface;
 using AVG_TASK_APP.Views;
+using AVG_TASK_APP.Views.Notifies;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -103,7 +104,7 @@ namespace AVG_TASK_APP.Repositories
 
         public void check()
         {
-            MessageBoxView msb = new MessageBoxView();
+            MessageBox_View msb = new MessageBox_View();
             if (IsServerConnected())
             {
                 msb.Show("Connect!!");

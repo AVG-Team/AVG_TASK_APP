@@ -2,7 +2,9 @@
 using AVG_TASK_APP.Models;
 using AVG_TASK_APP.Repositories;
 using AVG_TASK_APP.Repositories.Interface;
-using AVG_TASK_APP.Views;
+using AVG_TASK_APP.Views.Layouts;
+using AVG_TASK_APP.Views.Notifies;
+using AVG_TASK_APP.Views.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
 using System;
@@ -57,19 +59,19 @@ namespace AVG_TASK_APP
             UserModel user = userRepository.GetByEmail(username);
             SetClaimsAndPrincipal(user);
 
-            PageLayout pageLayout = new PageLayout();
-            pageLayout.Show();
+            Home_Layout Home_Layout = new Home_Layout();
+            Home_Layout.Show();
         }
 
         private void ShowErrorMessage(string message)
         {
-            MessageBoxView msb = new MessageBoxView();
+            MessageBox_View msb = new MessageBox_View();
             msb.Show(message);
         }
 
         private void ShowLoginView()
         {
-            LoginView loginView = new LoginView();
+            Login_View loginView = new Login_View();
             loginView.Show();
         }
 

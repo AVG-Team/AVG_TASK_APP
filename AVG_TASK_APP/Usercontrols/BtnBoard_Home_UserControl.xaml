@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="AVG_TASK_APP.Usercontrols.BtnBoard_Home_UserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:local="clr-namespace:AVG_TASK_APP.Usercontrols"
+             mc:Ignorable="d" 
+             Background="{StaticResource backColor}"
+             BorderThickness="0"
+             d:DesignHeight="80" d:DesignWidth="400">
+    <Button Style="{StaticResource filterButtonNoBorder}"
+        BorderThickness="0" Width="400" Height="80" HorizontalAlignment="Left">
+        <Button.Triggers>
+            <EventTrigger RoutedEvent="Button.MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="iconTransform" 
+                                     Storyboard.TargetProperty="X"
+                                     To="0"
+                                     Duration="0:0:0.3" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Button.MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="iconTransform" 
+                                     Storyboard.TargetProperty="X"
+                                     To="50"
+                                     Duration="0:0:0.3" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Button.Triggers>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="340"/>
+                <ColumnDefinition Width="60"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <Border CornerRadius="20" Width="60" Height="60" 
+                    Margin="10,0,0,0"
+                    BorderThickness="0">
+                    <Border.Background>
+                        <ImageBrush Stretch="Fill" x:Name="imageBtn" ImageSource="/AVG_TASK_APP;component/Resources/Images/OIP.jpg"/>
+                    </Border.Background>
+                </Border>
+                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                    <TextBox Visibility="Collapsed" Text="{Binding idTable}" x:Name="idTable" />
+                    <TextBlock Text="Name Table" x:Name="nameTable"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Margin="0,0,0,8"/>
+                    <TextBlock Text="Name WorkSpace" x:Name="nameWorkspace"
+                           FontSize="10"
+                           Margin="0,0,0,8"/>
+                </StackPanel>
+            </StackPanel>
+            <fa:IconImage Icon="Star" Width="30" Opacity="0.8" Grid.Column="1">
+                <fa:IconImage.RenderTransform>
+                    <TranslateTransform x:Name="iconTransform" X="50"/>
+                </fa:IconImage.RenderTransform>
+            </fa:IconImage>
+        </Grid>
+    </Button>
+
+</UserControl>
