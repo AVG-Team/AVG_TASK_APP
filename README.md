@@ -143,9 +143,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
 	<tr>
 		<td align="center" valign="top">
-				<img loading="lazy" width="150" height="150" src="https://github.com/baohuy2k3.png?s=150">
+				<img loading="lazy" width="150" height="150" src="https://github.com/huynguyenjv.png?s=150">
         <br>
-        <a href="https://github.com/baohuy2k3">Huynguyen</a>
+        <a href="https://github.com/huynguyenjv">Huynguyen</a>
         <p>
           <a title="Developer">💻</a>
           <a title="Documentation">📖</a>
